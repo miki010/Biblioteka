@@ -74,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 409);
+            this.ClientSize = new System.Drawing.Size(812, 428);
             this.Controls.Add(this.tileAutor);
             this.Controls.Add(this.tileIzdavac);
             this.Controls.Add(this.tileNovaKnjiga);
