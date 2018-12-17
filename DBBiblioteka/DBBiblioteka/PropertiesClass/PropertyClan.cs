@@ -18,6 +18,11 @@ namespace DBBiblioteka.PropertiesClass
         [PrimaryKey]
         public int ClanID { get; set; }
 
+        [DisplayName("Broj legitimacije")]
+        [SqlName("BrojLegitimacije")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
+        public string BrojLegitimacije { get; set; }
+
         [DisplayName("Ime")]
         [SqlName("Ime")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
@@ -63,8 +68,6 @@ namespace DBBiblioteka.PropertiesClass
 
 
 
-
-
         #endregion
 
 
@@ -72,6 +75,7 @@ namespace DBBiblioteka.PropertiesClass
         public string GetSelectQuery()
         {
             return @"SELECT [ClanID]
+                      ,[BrojLegitimacije]
                       ,[Ime]
                       ,[SrednjeIme]
                       ,[Prezime]
@@ -88,6 +92,7 @@ namespace DBBiblioteka.PropertiesClass
         {
             return @"INSERT INTO [dbo].[Clan]
                    ([Ime]
+                   ,[BrojLegitimacije]     
                    ,[SrednjeIme]
                    ,[Prezime]
                    ,[Pol]
@@ -97,13 +102,13 @@ namespace DBBiblioteka.PropertiesClass
                    ,[Email]
                    ,[DatumUclanjenja])
                     VALUES
-                    (@Ime, @SrednjeIme, @Prezime, @Pol, @DatumRodjenja, @Adresa, @Telefon, @Email, @DatumUclanjena)";
+                    (@BrojLegitimacije, @Ime, @SrednjeIme, @Prezime, @Pol, @DatumRodjenja, @Adresa, @Telefon, @Email, @DatumUclanjena)";
         }
 
         public string GetUpdateQuery()
         {
             return @"UPDATE  [dbo].[Clan]
-                    (SET Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime, Pol=@Pol, DatumRodjenja=@DatumRodjenja, Adresa=@Adresa,
+                    (SET BrojLegitimacije=@BrojLegitimacije, Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime, Pol=@Pol, DatumRodjenja=@DatumRodjenja, Adresa=@Adresa,
                     Telefon = @Telefon, Email = @Email, DatumUclanjenja = @DatumUclanjenja where ClanID=@ClanID ";
         }
 
@@ -121,6 +126,11 @@ namespace DBBiblioteka.PropertiesClass
             {
                 SqlParameter parameter = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
                 parameter.Value = Ime;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@BrojLegitimacije", System.Data.SqlDbType.VarChar);
+                parameter.Value = BrojLegitimacije;
                 list.Add(parameter);
             }
             {

@@ -41,6 +41,7 @@
             this.tileDodajClana.Size = new System.Drawing.Size(204, 118);
             this.tileDodajClana.TabIndex = 0;
             this.tileDodajClana.Text = "DODAJ CLANARINU";
+            this.tileDodajClana.Click += new System.EventHandler(this.tileDodajClana_Click);
             // 
             // tilePregledClanarina
             // 

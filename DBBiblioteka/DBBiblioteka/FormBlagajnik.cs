@@ -21,5 +21,10 @@ namespace DBBiblioteka
         {
 
         }
+
+        private void tileDodajClana_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

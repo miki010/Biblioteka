@@ -62,6 +62,14 @@ namespace DBBiblioteka.PropertiesClass
         [SqlName("RadnoMjestoID")]
         public int RadnoMjestoID { get; set; }
 
+        [DisplayName("Korisnicko ime")]
+        [SqlName("KorisnickoIme")]
+        public string KorisnickoIme { get; set; }
+
+        [DisplayName("Lozinka")]
+        [SqlName("Lozinka")]
+        public string Lozinka { get; set; }
+
         #endregion
 
         #region Attributes
@@ -136,6 +144,16 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = RadnoMjestoID;
                 list.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.VarChar);
+                parameter.Value = KorisnickoIme;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
+                parameter.Value = Lozinka;
+                list.Add(parameter);
+            }
             return list;
         }
 
@@ -151,7 +169,9 @@ namespace DBBiblioteka.PropertiesClass
                            ,[Telefon]
                            ,[Email]
                            ,[DatumZaposlenja]
-                           ,[RadnoMjestoID])
+                           ,[RadnoMjestoID]
+                           ,[KorisnickoIme]
+                           ,[Lozinnka])
                      VALUES
                            (@Ime
                            ,@SrednjeIme
@@ -162,7 +182,9 @@ namespace DBBiblioteka.PropertiesClass
                            ,@Telefon
                            ,@Email
                            ,@DatumZaposlenja
-                           ,@RadnoMjestoID)";
+                           ,@RadnoMjestoID
+                           ,@KorisnickoIme 
+                           ,@Lozinka)";
         }
 
         public string GetSelectQuery()
@@ -178,6 +200,8 @@ namespace DBBiblioteka.PropertiesClass
                           ,[Email]
                           ,[DatumZaposlenja]
                           ,[RadnoMjestoID]
+                          ,[KorisnickoIme]
+                          ,[Lozinnka]
                       FROM [Biblioteka].[dbo].[Zaposleni]";
         }
 
@@ -239,6 +263,16 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = RadnoMjestoID;
                 list.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.VarChar);
+                parameter.Value = KorisnickoIme;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
+                parameter.Value = Lozinka;
+                list.Add(parameter);
+            }
             return list;
         }
 
@@ -255,6 +289,8 @@ namespace DBBiblioteka.PropertiesClass
                           ,[Email] = @Email
                           ,[DatumZaposlenja] = @DatumZaposlenja
                           ,[RadnoMjestoID] = @RadnoMjestoID
+                          ,[KorisnickoIme] = @KorisnickoIme
+                          ,[Lozinnka] = @KorisnickoImw
                      WHERE ZaposleniID = @ZaposleniID";
         } 
         #endregion
