@@ -91,7 +91,18 @@
     <Compile Include="Helper\ReflectionClass.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="PropertiesClass\PropertyAutor.cs" />
+    <Compile Include="PropertiesClass\PropertyAutorKnjiga.cs" />
+    <Compile Include="PropertiesClass\PropertyClan.cs" />
+    <Compile Include="PropertiesClass\PropertyClanarina.cs" />
     <Compile Include="PropertiesClass\PropertyInterface.cs" />
+    <Compile Include="PropertiesClass\PropertyIzdavac.cs" />
+    <Compile Include="PropertiesClass\PropertyIzdavacKnjiga.cs" />
+    <Compile Include="PropertiesClass\PropertyIznajmljivanje.cs" />
+    <Compile Include="PropertiesClass\PropertyKnjiga.cs" />
+    <Compile Include="PropertiesClass\PropertyRadnoMjesto.cs" />
+    <Compile Include="PropertiesClass\PropertyTipClanarine.cs" />
+    <Compile Include="PropertiesClass\PropertyZaposleni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
