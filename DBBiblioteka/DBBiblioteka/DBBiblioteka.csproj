@@ -87,9 +87,39 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStandard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStandard.Designer.cs">
+      <DependentUpon>FormStandard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormToDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormToDo.Designer.cs">
+      <DependentUpon>FormToDo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
     <Compile Include="Helper\ReflectionClass.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
+    <Compile Include="InputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputControl.Designer.cs">
+      <DependentUpon>InputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DateTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DateTimeControl.Designer.cs">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookUpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LookUpControl.Designer.cs">
+      <DependentUpon>LookUpControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="PropertiesClass\PropertyAutor.cs" />
     <Compile Include="PropertiesClass\PropertyAutorKnjiga.cs" />
@@ -116,20 +146,36 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStandard.resx">
+      <DependentUpon>FormStandard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormToDo.resx">
+      <DependentUpon>FormToDo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputControl.resx">
+      <DependentUpon>InputControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DateTimeControl.resx">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookUpControl.resx">
+      <DependentUpon>LookUpControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -141,6 +187,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\logo.jpg" />
+    <None Include="Resources\searchusermemberships.png" />
+    <None Include="Resources\returnedbooks.png" />
+    <None Include="Resources\takebook.png" />
+    <None Include="Resources\searchissued.png" />
+    <None Include="Resources\searchbook.png" />
+    <None Include="Resources\addmember.png" />
+    <None Include="Resources\financialreport.png" />
+    <None Include="Resources\typeofmembership.png" />
+    <None Include="Resources\listofmembers.png" />
+    <None Include="Resources\id-card.png" />
+    <None Include="Resources\publisher.png" />
+    <None Include="Resources\author.png" />
+    <None Include="Resources\addbook.png" />
+    <None Include="Resources\adduser.png" />
+    <None Include="Resources\devicestemplate.png" />
+    <None Include="Resources\laptoptemplate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
