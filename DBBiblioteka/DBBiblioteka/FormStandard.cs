@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace DBBiblioteka
 {
-    public partial class FormBibliotekar : MetroFramework.Forms.MetroForm
+    public partial class FormStandard : MetroFramework.Forms.MetroForm
     {
-        public FormBibliotekar()
+        public FormStandard()
         {
             InitializeComponent();
         }
 
-        private void Bibliotekar_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tilePretraga_Click(object sender, EventArgs e)
+        private void FormStandard_Load(object sender, EventArgs e)
         {
 
         }
