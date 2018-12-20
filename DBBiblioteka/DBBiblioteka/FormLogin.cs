@@ -32,14 +32,16 @@ namespace DBBiblioteka
             
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click_1(object sender, EventArgs e)
         {
             Login();
-
+            
         }
+
 
         private void Login()
         { 
+            
             //uzima podatke iz tabele PristupniPodaci sa kojima se vrsi poredjenje unesenih podataka
             DataTable dt = new DataTable();
 
@@ -61,9 +63,9 @@ namespace DBBiblioteka
                 string id = row["ZaposleniID"].ToString();
 
                 string pass = getHashSha256(txtPassword.Text);
-                MessageBox.Show(sifra, "iz baze", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(sifra, "iz baze", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show(pass, "iz txt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(pass, "iz txt", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
 
                 try
@@ -84,10 +86,12 @@ namespace DBBiblioteka
 
                 if (ime == txtUserName.Text)
                 {
+                    //if (sifra == getHashSha256(txtPassword.Text)) //==
                     if (sifra == txtPassword.Text) //==
                     {
                         prosao = true;//dobar username i pass   
                         idProsao = id;
+                        
                         break;
                     }
                     else if (!sifra.Equals(txtPassword.Text)) //!=
@@ -115,6 +119,7 @@ namespace DBBiblioteka
                 
                 foreach (DataRow row in dt2.Rows)
                 {
+                    
                     string zaposleniID = row["ZaposleniID"].ToString();
                     int idRadnogMjesta = Convert.ToInt32(row["RadnoMjestoID"]);
 
@@ -122,25 +127,29 @@ namespace DBBiblioteka
                     {
                         FormAdmin formAdmin = new FormAdmin();
                         formAdmin.Show();
+                       
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 2)
                     {
                         FormBlagajnik formBlagajnik = new FormBlagajnik();
                         formBlagajnik.Show();
+                       
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 3)
                     {
                         FormBibliotekar formBibliotekar = new FormBibliotekar();
                         formBibliotekar.Show();
+                        
                     }
-
+                    this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
                 }   
             }
             else if (prosaoIme)
             {
-                MessageBox.Show("Pogresna lozinka");
+                //MessageBox.Show("Pogresna lozinka");
+                lblInvalid.Visible = true;
                 txtPassword.Clear();
             }
             else if (nijeProsaoIme)
@@ -151,20 +160,6 @@ namespace DBBiblioteka
             }        
         }
 
-        //public string ToSHA256(string value)
-        //{
-        //    SHA256 sha256 = SHA256.Create();
-
-        //    byte[] hashData = sha256.ComputeHash(Encoding.Default.GetBytes(value));
-        //    StringBuilder returnValue = new StringBuilder();
-
-        //    for (int i = 0; i < hashData.Length; i++)
-        //    {
-        //        returnValue.Append(hashData[i].ToString());
-        //    }
-
-        //    return returnValue.ToString();
-        //}
         public static string getHashSha256(string text)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(text);
@@ -178,17 +173,12 @@ namespace DBBiblioteka
             return hashString;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Da li ste sigurni da želite da napustite aplikaciju?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                this.Close(); 
+                this.Close();
             }
-        }
-
-        private void btnLogin_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
