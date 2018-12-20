@@ -201,7 +201,7 @@ namespace DBBiblioteka.PropertiesClass
                           ,[DatumZaposlenja]
                           ,[RadnoMjestoID]
                           ,[KorisnickoIme]
-                          ,[Lozinnka]
+                          ,[Lozinka]
                       FROM [Biblioteka].[dbo].[Zaposleni]";
         }
 
@@ -290,9 +290,30 @@ namespace DBBiblioteka.PropertiesClass
                           ,[DatumZaposlenja] = @DatumZaposlenja
                           ,[RadnoMjestoID] = @RadnoMjestoID
                           ,[KorisnickoIme] = @KorisnickoIme
-                          ,[Lozinnka] = @KorisnickoImw
+                          ,[Lozinka] = @Lozinka
                      WHERE ZaposleniID = @ZaposleniID";
-        } 
+        }
+
+        //za login formu
+        public List<SqlParameter> GetSelectParametersForLogin()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.TinyInt);
+                parameter.Value = ZaposleniID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+
+        public string GetSelectQueryForLogin()
+        {
+            return @"SELECT *
+                      FROM [Biblioteka].[dbo].[Zaposleni]";
+        }
+
+
+
         #endregion
     }
 }
