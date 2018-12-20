@@ -70,6 +70,7 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Prijava";
             this.btnLogin.UseMnemonic = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
             // 
             // btnCancel
             // 
