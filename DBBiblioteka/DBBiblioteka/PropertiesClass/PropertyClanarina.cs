@@ -60,13 +60,13 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetSelectQuery()
         {
-            return @"SELECT[ClanarinaID
-                           ,ClanID
-                           ,TipID
-                           ,DatumUplate
-                           ,ZaposleniID
-                           ,DatumIstekaClanarine
-                    FROM dbo.Clanarina";
+            return @"SELECT [ClanarinaID]
+                      ,[ClanID]
+                      ,[TipID]
+                      ,[DatumUplate]
+                      ,[ZaposleniID]
+                      ,[DatumIstekaClanarine]
+                  FROM [Biblioteka].[dbo].[Clanarina]";
         }
 
         public string GetInsertQuery()

@@ -82,6 +82,12 @@
     <Compile Include="FormBlagajnik.Designer.cs">
       <DependentUpon>FormBlagajnik.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInput.designer.cs">
+      <DependentUpon>FormInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,12 +99,6 @@
     </Compile>
     <Compile Include="FormStandard.Designer.cs">
       <DependentUpon>FormStandard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormInput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormInput.Designer.cs">
-      <DependentUpon>FormInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
     <Compile Include="Helper\ReflectionClass.cs" />
@@ -146,14 +146,14 @@
     <EmbeddedResource Include="FormBlagajnik.resx">
       <DependentUpon>FormBlagajnik.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormInput.resx">
+      <DependentUpon>FormInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStandard.resx">
       <DependentUpon>FormStandard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInput.resx">
-      <DependentUpon>FormInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputControl.resx">
       <DependentUpon>InputControl.cs</DependentUpon>

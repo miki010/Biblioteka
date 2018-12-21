@@ -49,14 +49,14 @@
             this.txtUserName.Location = new System.Drawing.Point(57, 395);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(352, 25);
-            this.txtUserName.TabIndex = 3;
+            this.txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(57, 458);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(352, 25);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 2;
             // 
             // btnLogin
             // 
@@ -65,7 +65,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(142, 39);
             this.btnLogin.Style = MetroFramework.MetroColorStyle.Purple;
-            this.btnLogin.TabIndex = 5;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Prijava";
             this.btnLogin.UseMnemonic = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);

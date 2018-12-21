@@ -47,6 +47,7 @@
             this.tileAutor.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileAutor.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileAutor.UseTileImage = true;
+            this.tileAutor.Click += new System.EventHandler(this.tileAutor_Click);
             // 
             // tileIzdavac
             // 
@@ -61,6 +62,7 @@
             this.tileIzdavac.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileIzdavac.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileIzdavac.UseTileImage = true;
+            this.tileIzdavac.Click += new System.EventHandler(this.tileIzdavac_Click);
             // 
             // tileNovaKnjiga
             // 
@@ -75,6 +77,7 @@
             this.tileNovaKnjiga.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileNovaKnjiga.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileNovaKnjiga.UseTileImage = true;
+            this.tileNovaKnjiga.Click += new System.EventHandler(this.tileNovaKnjiga_Click);
             // 
             // tileNoviRadnik
             // 
@@ -89,6 +92,7 @@
             this.tileNoviRadnik.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileNoviRadnik.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileNoviRadnik.UseTileImage = true;
+            this.tileNoviRadnik.Click += new System.EventHandler(this.tileNoviRadnik_Click);
             // 
             // FormAdmin
             // 

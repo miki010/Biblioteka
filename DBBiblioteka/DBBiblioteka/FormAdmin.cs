@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MetroFramework;
+using DBBiblioteka.PropertiesClass;
+
 namespace DBBiblioteka
 {
     public partial class FormAdmin : MetroFramework.Forms.MetroForm
@@ -20,6 +21,30 @@ namespace DBBiblioteka
         private void FormAdmin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void tileNoviRadnik_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyZaposleni());
+            formStandard.ShowDialog();
+        }
+
+        private void tileNovaKnjiga_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyKnjiga());
+            formStandard.ShowDialog();
+        }
+
+        private void tileIzdavac_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyIzdavac());
+            formStandard.ShowDialog();
+        }
+
+        private void tileAutor_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyAutor());
+            formStandard.ShowDialog();
         }
     }
 }
