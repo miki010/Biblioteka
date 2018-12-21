@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBBiblioteka.PropertiesClass;
 
 namespace DBBiblioteka
 {
@@ -25,6 +26,24 @@ namespace DBBiblioteka
         private void tilePretraga_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tileUnosClana_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyClan());
+            formStandard.ShowDialog();
+        }
+
+        private void tileIznajmi_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
+            formStandard.ShowDialog();
+        }
+
+        private void tileVracanje_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
+            formStandard.ShowDialog();
         }
     }
 }

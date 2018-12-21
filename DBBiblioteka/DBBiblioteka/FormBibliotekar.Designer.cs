@@ -63,6 +63,7 @@
             this.tileVracanje.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileVracanje.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileVracanje.UseTileImage = true;
+            this.tileVracanje.Click += new System.EventHandler(this.tileVracanje_Click);
             // 
             // tilePregledIznajmljivanja
             // 
@@ -106,6 +107,7 @@
             this.tileIznajmi.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileIznajmi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileIznajmi.UseTileImage = true;
+            this.tileIznajmi.Click += new System.EventHandler(this.tileIznajmi_Click);
             // 
             // tileUnosClana
             // 
@@ -120,6 +122,7 @@
             this.tileUnosClana.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileUnosClana.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileUnosClana.UseTileImage = true;
+            this.tileUnosClana.Click += new System.EventHandler(this.tileUnosClana_Click);
             // 
             // FormBibliotekar
             // 

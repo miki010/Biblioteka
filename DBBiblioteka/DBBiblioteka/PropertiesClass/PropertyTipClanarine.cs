@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DBBiblioteka.PropertiesClass
 {
-    public class PropertyTipClanarine : Attribute
+    public class PropertyTipClanarine : PropertyInterface
     {
         #region property
 
@@ -79,7 +79,7 @@ namespace DBBiblioteka.PropertiesClass
             return @"SELECT [TipID]
                           ,[NazivTipa]
                           ,[IznosClanarine]
-                      FROM [Biblioteka].[dbo].[RadnoMjesto]";
+                      FROM [Biblioteka].[dbo].[TipClanarine]";
         }
 
         public List<SqlParameter> GetUpdateParameters()
