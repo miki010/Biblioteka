@@ -70,6 +70,7 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Prijava";
             this.btnLogin.UseMnemonic = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
             // 
             // btnCancel
             // 
@@ -81,6 +82,7 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Izlaz";
             this.btnCancel.UseMnemonic = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
             // 
             // lblUsername
             // 
@@ -133,6 +135,7 @@
             this.lblInvalid.TabIndex = 12;
             this.lblInvalid.Text = "Pogrešna lozinka!";
             this.lblInvalid.UseStyleColors = true;
+            this.lblInvalid.Visible = false;
             // 
             // lblTitle1
             // 
