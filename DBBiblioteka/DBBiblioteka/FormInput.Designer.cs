@@ -1,6 +1,6 @@
 ﻿namespace DBBiblioteka
 {
-    partial class FormToDo
+    partial class FormInput
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flPanelControls = new System.Windows.Forms.FlowLayoutPanel();
             this.tilePotvrdi = new MetroFramework.Controls.MetroTile();
             this.tileOdustani = new MetroFramework.Controls.MetroTile();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // flPanelControls
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(35, 53);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(880, 435);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flPanelControls.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flPanelControls.Location = new System.Drawing.Point(35, 53);
+            this.flPanelControls.Name = "flPanelControls";
+            this.flPanelControls.Size = new System.Drawing.Size(880, 509);
+            this.flPanelControls.TabIndex = 0;
             // 
             // tilePotvrdi
             // 
@@ -53,6 +54,7 @@
             this.tilePotvrdi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tilePotvrdi.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tilePotvrdi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tilePotvrdi.Click += new System.EventHandler(this.tilePotvrdi_Click);
             // 
             // tileOdustani
             // 
@@ -74,7 +76,7 @@
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(222, 509);
+            this.metroPanel1.Location = new System.Drawing.Point(213, 582);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Size = new System.Drawing.Size(540, 68);
             this.metroPanel1.TabIndex = 1;
@@ -82,18 +84,17 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // FormToDo
+            // FormInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 600);
+            this.ClientSize = new System.Drawing.Size(952, 673);
             this.Controls.Add(this.metroPanel1);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flPanelControls);
             this.MaximizeBox = false;
-            this.Name = "FormToDo";
+            this.Name = "FormInput";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
-            this.Load += new System.EventHandler(this.FormToDo_Load);
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -101,7 +102,7 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flPanelControls;
         private MetroFramework.Controls.MetroTile tilePotvrdi;
         private MetroFramework.Controls.MetroTile tileOdustani;
         private MetroFramework.Controls.MetroPanel metroPanel1;

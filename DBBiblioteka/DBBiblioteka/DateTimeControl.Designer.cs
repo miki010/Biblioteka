@@ -28,34 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUC2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblText = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // lblUC2
+            // lblText
             // 
-            this.lblUC2.AutoSize = true;
-            this.lblUC2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUC2.Location = new System.Drawing.Point(3, 19);
-            this.lblUC2.Name = "lblUC2";
-            this.lblUC2.Size = new System.Drawing.Size(64, 15);
-            this.lblUC2.TabIndex = 0;
-            this.lblUC2.Text = "label text...";
+            this.lblText.AutoSize = true;
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText.Location = new System.Drawing.Point(18, 14);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(70, 16);
+            this.lblText.TabIndex = 0;
+            this.lblText.Text = "label text...";
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(102, 14);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(315, 20);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(166, 9);
+            this.dateTimePicker.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(183, 22);
+            this.dateTimePicker.TabIndex = 1;
             // 
-            // LookUpControl
+            // DateTimeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.lblUC2);
-            this.Name = "LookUpControl";
+            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.lblText);
+            this.Name = "DateTimeControl";
             this.Size = new System.Drawing.Size(420, 45);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,7 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblUC2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblText;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

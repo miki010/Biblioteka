@@ -1,4 +1,5 @@
 ﻿using DBBiblioteka.AtributesClass;
+using DBBiblioteka.AttributesClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum rodjenja")]
         [SqlName("DatumRodjenja")]
+        [DateTimeAttribute]
         public DateTime DatumRodjenja { get; set; }
 
         [DisplayName("Adresa")]
@@ -56,19 +58,14 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum zaposlenja")]
         [SqlName("DatumZaposlenja")]
+        [DateTimeAttribute]
         public DateTime DatumZaposlenja { get; set; }
 
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
         public int RadnoMjestoID { get; set; }
 
-        [DisplayName("Korisnicko ime")]
-        [SqlName("KorisnickoIme")]
-        public string KorisnickoIme { get; set; }
-
-        [DisplayName("Lozinka")]
-        [SqlName("Lozinka")]
-        public string Lozinka { get; set; }
+       
 
         #endregion
 
@@ -144,16 +141,8 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = RadnoMjestoID;
                 list.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.VarChar);
-                parameter.Value = KorisnickoIme;
-                list.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
-                parameter.Value = Lozinka;
-                list.Add(parameter);
-            }
+           
+            
             return list;
         }
 
@@ -263,16 +252,7 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = RadnoMjestoID;
                 list.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.VarChar);
-                parameter.Value = KorisnickoIme;
-                list.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
-                parameter.Value = Lozinka;
-                list.Add(parameter);
-            }
+         
             return list;
         }
 

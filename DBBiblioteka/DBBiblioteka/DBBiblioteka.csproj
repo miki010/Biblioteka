@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributesClass\DateTimeAttribute.cs" />
     <Compile Include="AttributesClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributesClass\LookupKey.cs" />
     <Compile Include="AttributesClass\LookupValue.cs" />
@@ -93,11 +94,11 @@
     <Compile Include="FormStandard.Designer.cs">
       <DependentUpon>FormStandard.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormToDo.cs">
+    <Compile Include="FormInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormToDo.Designer.cs">
-      <DependentUpon>FormToDo.cs</DependentUpon>
+    <Compile Include="FormInput.Designer.cs">
+      <DependentUpon>FormInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
     <Compile Include="Helper\ReflectionClass.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="PropertiesClass\PropertyRadnoMjesto.cs" />
     <Compile Include="PropertiesClass\PropertyTipClanarine.cs" />
     <Compile Include="PropertiesClass\PropertyZaposleni.cs" />
+    <Compile Include="PropertiesClass\StateEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
@@ -150,8 +152,8 @@
     <EmbeddedResource Include="FormStandard.resx">
       <DependentUpon>FormStandard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormToDo.resx">
-      <DependentUpon>FormToDo.cs</DependentUpon>
+    <EmbeddedResource Include="FormInput.resx">
+      <DependentUpon>FormInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputControl.resx">
       <DependentUpon>InputControl.cs</DependentUpon>

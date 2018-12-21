@@ -1,4 +1,5 @@
 ﻿using DBBiblioteka.AtributesClass;
+using DBBiblioteka.AttributesClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +47,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum rodjenja")]
         [SqlName("DatumRodjenja")]
+        [DateTimeAttribute]
         public DateTime DatumRodjenja { get; set; }
 
 
@@ -64,6 +66,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum uclanjenja")]
         [SqlName("DatumUclanjenja")]
+        [DateTimeAttribute]
         public DateTime DatumUclanjenja { get; set; }
 
 
