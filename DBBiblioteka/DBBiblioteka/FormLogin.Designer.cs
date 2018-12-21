@@ -39,11 +39,9 @@
             this.lblInvalid = new MetroFramework.Controls.MetroLabel();
             this.lblTitle1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.lblTitle3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
@@ -154,15 +152,6 @@
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DBBiblioteka.Properties.Resources.devicestemplate1;
-            this.pictureBox1.Location = new System.Drawing.Point(473, 258);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(374, 360);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
@@ -185,12 +174,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 678);
+            this.ClientSize = new System.Drawing.Size(465, 678);
             this.Controls.Add(this.lblTitle3);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblTitle1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblInvalid);
             this.Controls.Add(this.lblSee);
             this.Controls.Add(this.metroToggle1);
@@ -210,7 +198,6 @@
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,7 +213,6 @@
         private MetroFramework.Controls.MetroToggle metroToggle1;
         private MetroFramework.Controls.MetroLabel lblSee;
         private MetroFramework.Controls.MetroLabel lblInvalid;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitle1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private MetroFramework.Controls.MetroLabel lblVersion;

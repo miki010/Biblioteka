@@ -1,4 +1,5 @@
 ﻿using DBBiblioteka.AtributesClass;
+using DBBiblioteka.AttributesClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +36,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum uplate")]
         [SqlName("DatumUplate")]
+        [DateTimeAttribute]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public DateTime DatumUplate { get; set; }
 
@@ -46,6 +48,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Vazi do")]
         [SqlName("DatumIstekaClanarine")]
+        [DateTimeAttribute]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public DateTime DatumIstekaClanarine { get; set; }
 

@@ -16,5 +16,22 @@ namespace DBBiblioteka
         {
             InitializeComponent();
         }
+
+
+        public void SetLabel(string name)
+        {
+            lblText.Text = name;
+        }
+
+        public string GetValue()
+        {
+            return dateTimePicker.Value.ToShortDateString();
+        }
+
+        public void SetValue(DateTime date)
+        {
+            dateTimePicker.Value = date;
+        }
+        
     }
 }

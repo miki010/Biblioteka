@@ -1,4 +1,5 @@
 ﻿using DBBiblioteka.AtributesClass;
+using DBBiblioteka.AttributesClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,11 +40,13 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Datum iznajmljivanja")]
         [SqlName("DatumIznajmljivanja")]
+        [DateTimeAttribute]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public DateTime DatumIznajmljivanja { get; set; }
 
         [DisplayName("Datum razduživanja")]
         [SqlName("DatumRazduzivanja")]
+        [DateTimeAttribute]
         public DateTime DatumRazduzivanja { get; set; }
 
     #endregion

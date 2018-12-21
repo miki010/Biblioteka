@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            MetroFramework.Controls.MetroTextBox tbxUC1;
-            this.label1 = new System.Windows.Forms.Label();
-            tbxUC1 = new MetroFramework.Controls.MetroTextBox();
+            this.lblText = new System.Windows.Forms.Label();
+            this.txtValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // lblText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(3, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label text...";
+            this.lblText.AutoSize = true;
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText.Location = new System.Drawing.Point(18, 9);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(45, 16);
+            this.lblText.TabIndex = 0;
+            this.lblText.Text = "label1";
             // 
-            // tbxUC1
+            // txtValue
             // 
-            tbxUC1.Location = new System.Drawing.Point(95, 13);
-            tbxUC1.Name = "tbxUC1";
-            tbxUC1.Size = new System.Drawing.Size(315, 20);
-            tbxUC1.TabIndex = 1;
+            this.txtValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValue.Location = new System.Drawing.Point(113, 6);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(288, 22);
+            this.txtValue.TabIndex = 1;
             // 
             // InputControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(tbxUC1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.lblText);
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(420, 45);
+            this.Size = new System.Drawing.Size(419, 37);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -65,6 +65,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblText;
+        private System.Windows.Forms.TextBox txtValue;
     }
 }
