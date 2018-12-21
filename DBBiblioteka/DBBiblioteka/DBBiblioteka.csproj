@@ -94,12 +94,6 @@
     <Compile Include="FormStandard.Designer.cs">
       <DependentUpon>FormStandard.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormInput.Designer.cs">
-      <DependentUpon>FormInput.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
     <Compile Include="Helper\ReflectionClass.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
@@ -151,9 +145,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStandard.resx">
       <DependentUpon>FormStandard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInput.resx">
-      <DependentUpon>FormInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputControl.resx">
       <DependentUpon>InputControl.cs</DependentUpon>
