@@ -31,7 +31,7 @@
             this.tileIzvjestaj = new MetroFramework.Controls.MetroTile();
             this.tileTipClanarine = new MetroFramework.Controls.MetroTile();
             this.tilePregledClanarina = new MetroFramework.Controls.MetroTile();
-            this.tileDodajClana = new MetroFramework.Controls.MetroTile();
+            this.tileDodajClanarinu = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
             // 
             // tileIzvjestaj
@@ -59,6 +59,7 @@
             this.tileTipClanarine.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileTipClanarine.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileTipClanarine.UseTileImage = true;
+            this.tileTipClanarine.Click += new System.EventHandler(this.tileTipClanarine_Click);
             // 
             // tilePregledClanarina
             // 
@@ -73,19 +74,19 @@
             this.tilePregledClanarina.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tilePregledClanarina.UseTileImage = true;
             // 
-            // tileDodajClana
+            // tileDodajClanarinu
             // 
-            this.tileDodajClana.Location = new System.Drawing.Point(35, 85);
-            this.tileDodajClana.Name = "tileDodajClana";
-            this.tileDodajClana.Size = new System.Drawing.Size(272, 183);
-            this.tileDodajClana.TabIndex = 0;
-            this.tileDodajClana.Text = "DODAJ ČLANARINU";
-            this.tileDodajClana.TileImage = global::DBBiblioteka.Properties.Resources.id_card;
-            this.tileDodajClana.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileDodajClana.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileDodajClana.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileDodajClana.UseTileImage = true;
-            this.tileDodajClana.Click += new System.EventHandler(this.tileDodajClana_Click);
+            this.tileDodajClanarinu.Location = new System.Drawing.Point(35, 85);
+            this.tileDodajClanarinu.Name = "tileDodajClanarinu";
+            this.tileDodajClanarinu.Size = new System.Drawing.Size(272, 183);
+            this.tileDodajClanarinu.TabIndex = 0;
+            this.tileDodajClanarinu.Text = "DODAJ ČLANARINU";
+            this.tileDodajClanarinu.TileImage = global::DBBiblioteka.Properties.Resources.id_card;
+            this.tileDodajClanarinu.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileDodajClanarinu.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileDodajClanarinu.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileDodajClanarinu.UseTileImage = true;
+            this.tileDodajClanarinu.Click += new System.EventHandler(this.tileDodajClanarinu_Click);
             // 
             // FormBlagajnik
             // 
@@ -95,7 +96,7 @@
             this.Controls.Add(this.tileIzvjestaj);
             this.Controls.Add(this.tileTipClanarine);
             this.Controls.Add(this.tilePregledClanarina);
-            this.Controls.Add(this.tileDodajClana);
+            this.Controls.Add(this.tileDodajClanarinu);
             this.MaximizeBox = false;
             this.Name = "FormBlagajnik";
             this.Resizable = false;
@@ -107,7 +108,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroTile tileDodajClana;
+        private MetroFramework.Controls.MetroTile tileDodajClanarinu;
         private MetroFramework.Controls.MetroTile tilePregledClanarina;
         private MetroFramework.Controls.MetroTile tileTipClanarine;
         private MetroFramework.Controls.MetroTile tileIzvjestaj;

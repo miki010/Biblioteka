@@ -18,7 +18,7 @@ namespace DBBiblioteka.PropertiesClass
         #region Properties
 
         [DisplayName("Izdavac ID")]
-        [SqlName("OrganizacijaId")]
+        [SqlName("IzdavacID")]
         [PrimaryKey]
         public int IzdavacID { get; set; }
 

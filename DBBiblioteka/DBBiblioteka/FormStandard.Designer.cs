@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgv1 = new System.Windows.Forms.DataGridView();
+            this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.tileDodaj = new MetroFramework.Controls.MetroTile();
             this.tileIzmijeni = new MetroFramework.Controls.MetroTile();
             this.tileObrisi = new MetroFramework.Controls.MetroTile();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgv1
+            // dgvPrikaz
             // 
-            this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv1.Location = new System.Drawing.Point(55, 128);
-            this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(784, 328);
-            this.dgv1.TabIndex = 0;
+            this.dgvPrikaz.AllowUserToAddRows = false;
+            this.dgvPrikaz.AllowUserToDeleteRows = false;
+            this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrikaz.Location = new System.Drawing.Point(55, 128);
+            this.dgvPrikaz.Name = "dgvPrikaz";
+            this.dgvPrikaz.ReadOnly = true;
+            this.dgvPrikaz.Size = new System.Drawing.Size(784, 328);
+            this.dgvPrikaz.TabIndex = 0;
             // 
             // tileDodaj
             // 
@@ -56,6 +59,7 @@
             this.tileDodaj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileDodaj.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileDodaj.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileDodaj.Click += new System.EventHandler(this.tileDodaj_Click);
             // 
             // tileIzmijeni
             // 
@@ -68,6 +72,7 @@
             this.tileIzmijeni.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIzmijeni.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileIzmijeni.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileIzmijeni.Click += new System.EventHandler(this.tileIzmijeni_Click);
             // 
             // tileObrisi
             // 
@@ -80,6 +85,7 @@
             this.tileObrisi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileObrisi.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileObrisi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileObrisi.Click += new System.EventHandler(this.tileObrisi_Click);
             // 
             // metroPanel1
             // 
@@ -103,14 +109,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 500);
             this.Controls.Add(this.metroPanel1);
-            this.Controls.Add(this.dgv1);
+            this.Controls.Add(this.dgvPrikaz);
             this.MaximizeBox = false;
             this.Name = "FormStandard";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = " ";
             this.Load += new System.EventHandler(this.FormStandard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -118,7 +124,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgv1;
+        private System.Windows.Forms.DataGridView dgvPrikaz;
         private MetroFramework.Controls.MetroTile tileDodaj;
         private MetroFramework.Controls.MetroTile tileIzmijeni;
         private MetroFramework.Controls.MetroTile tileObrisi;
