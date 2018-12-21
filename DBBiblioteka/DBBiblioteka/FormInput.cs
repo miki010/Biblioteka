@@ -48,14 +48,22 @@ namespace DBBiblioteka
                     flPanelControls.Controls.Add(ul);
                 }
 
-                if (item.GetCustomAttribute<DateTimeAttribute>() != null)
+                else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
                     DateTimeControl dtc = new DateTimeControl();
                     dtc.Name = item.Name;
                     dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    dtc.SetValue((DateTime)item.GetValue(myInterface)); //provjeri
+                    
+                    if (state == StateEnum.Create)
+                    {
+                        dtc.SetValue(DateTime.Now);                      
+                    }
+                    else
+                    {
+                        dtc.SetValue((DateTime)item.GetValue(myInterface));
+                    }                   
+                    flPanelControls.Controls.Add(dtc);
                 }
-
                 else
                 {
                     InputControl ic = new InputControl();
@@ -70,7 +78,6 @@ namespace DBBiblioteka
                     {
                         ic.Enabled = false;
                     }
-
                     flPanelControls.Controls.Add(ic);
                 }
             }
@@ -102,12 +109,11 @@ namespace DBBiblioteka
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
                     DateTimeControl input = item as DateTimeControl;
-                    string value = input.GetValue();
+                    DateTime value = input.GetValue();
                         
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
-
             }
 
             if (state == StateEnum.Create)
@@ -116,7 +122,6 @@ namespace DBBiblioteka
             else if (state == StateEnum.Update)
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
-
         }
     }
 }

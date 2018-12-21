@@ -63,6 +63,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
+        [ForeignKey("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertyRadnoMjesto")]
         public int RadnoMjestoID { get; set; }
 
        
@@ -159,8 +160,7 @@ namespace DBBiblioteka.PropertiesClass
                            ,[Email]
                            ,[DatumZaposlenja]
                            ,[RadnoMjestoID]
-                           ,[KorisnickoIme]
-                           ,[Lozinnka])
+                           )
                      VALUES
                            (@Ime
                            ,@SrednjeIme
@@ -172,8 +172,7 @@ namespace DBBiblioteka.PropertiesClass
                            ,@Email
                            ,@DatumZaposlenja
                            ,@RadnoMjestoID
-                           ,@KorisnickoIme 
-                           ,@Lozinka)";
+                           )";
         }
 
         public string GetSelectQuery()
@@ -189,8 +188,7 @@ namespace DBBiblioteka.PropertiesClass
                           ,[Email]
                           ,[DatumZaposlenja]
                           ,[RadnoMjestoID]
-                          ,[KorisnickoIme]
-                          ,[Lozinka]
+                          
                       FROM [Biblioteka].[dbo].[Zaposleni]";
         }
 
@@ -269,8 +267,7 @@ namespace DBBiblioteka.PropertiesClass
                           ,[Email] = @Email
                           ,[DatumZaposlenja] = @DatumZaposlenja
                           ,[RadnoMjestoID] = @RadnoMjestoID
-                          ,[KorisnickoIme] = @KorisnickoIme
-                          ,[Lozinka] = @Lozinka
+                          
                      WHERE ZaposleniID = @ZaposleniID";
         }
 

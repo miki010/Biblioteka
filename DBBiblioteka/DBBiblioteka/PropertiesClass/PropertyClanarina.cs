@@ -31,7 +31,7 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Tip ID")]
         [SqlName("TipID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("TipClanarine", "TipID", "DBBiblioteka.PropertyTipClanarina")]
+        [ForeignKey("TipClanarine", "TipID", "DBBiblioteka.PropertyTipClanarine")]
         public int TipID { get; set; }
 
         [DisplayName("Datum uplate")]

@@ -18,22 +18,37 @@ namespace DBBiblioteka
     public partial class FormStandard : MetroFramework.Forms.MetroForm
     {
         PropertyInterface myProperty;
+        public string Key;
+        public string Value;
+
+        public FormStandard()
+        {
+            InitializeComponent();
+        }
         
         public FormStandard(PropertyInterface propertyInterface)
         {
-            InitializeComponent();
+            InitializeComponent();          
             this.myProperty = propertyInterface;
             loadTable();
+            dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPrikaz.MultiSelect = false;
         }
 
         private void FormStandard_Load(object sender, EventArgs e)
         {
-            this.Focus();
+            //this.Focus();
         }
 
         private void loadTable()
         {
-            refreshTable();
+            MessageBox.Show("usao");
+            DataTable dt = new DataTable();
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                myProperty.GetSelectQuery());
+            dt.Load(reader);
+            reader.Close();
+            dgvPrikaz.DataSource = dt;
 
             var type = myProperty.GetType();
             var properties = type.GetProperties();
@@ -48,40 +63,40 @@ namespace DBBiblioteka
 
         private void tileDodaj_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    FormInput formInput = new FormInput(myProperty);//dodati enum
-            //    formInput.ShowDialog();
-            //    if (formInput.DialogResult == DialogResult.OK)
-            //    {
-            //        refreshTable();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
+            try
+            {
+                FormInput formInput = new FormInput(myProperty, StateEnum.Create);//dodati enum
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    refreshTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("ovdje je ex");
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
         }
 
         private void tileIzmijeni_Click(object sender, EventArgs e)
         {
-            //populatePropertyInterface();
-            //try
-            //{
-            //    FormInput formInput = new FormInput(myProperty );//enum
-            //    formInput.ShowDialog();
-            //    if (formInput.DialogResult == DialogResult.OK)
-            //    {
-            //        refreshTable();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
+            populatePropertyInterface();
+            try
+            {
+                FormInput formInput = new FormInput(myProperty, StateEnum.Update);//enum
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    refreshTable();
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //    MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void tileObrisi_Click(object sender, EventArgs e)
