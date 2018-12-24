@@ -25,13 +25,13 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Clan ID")]
         [SqlName("ClanID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("Clan", "ClanID", "DBBiblioteka.PropertyClan")]
+        [ForeignKey("Clan", "ClanID", "DBBiblioteka.PropertiesClass.PropertyClan")]
         public int ClanID { get; set; }
 
         [DisplayName("Tip ID")]
         [SqlName("TipID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("TipClanarine", "TipID", "DBBiblioteka.PropertyTipClanarina")]
+        [ForeignKey("TipClanarine", "TipID", "DBBiblioteka.PropertiesClass.PropertyTipClanarine")]
         public int TipID { get; set; }
 
         [DisplayName("Datum uplate")]
@@ -43,7 +43,7 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Zaposleni ID")]
         [SqlName("ZaposleniID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertyZaposleni")]
+        [ForeignKey("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertiesClass.PropertyZaposleni")]
         public int ZaposleniID { get; set; }
 
         [DisplayName("Vazi do")]

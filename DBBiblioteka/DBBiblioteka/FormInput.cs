@@ -39,29 +39,47 @@ namespace DBBiblioteka
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
-                {
+                {                   
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
-                        CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
+                        CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;               
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     flPanelControls.Controls.Add(ul);
                 }
 
-                if (item.GetCustomAttribute<DateTimeAttribute>() != null)
+                else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
                     DateTimeControl dtc = new DateTimeControl();
                     dtc.Name = item.Name;
                     dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    dtc.SetValue((DateTime)item.GetValue(myInterface)); //provjeri
+                    
+                    if (state == StateEnum.Create)
+                    {
+                        dtc.SetValue(DateTime.Now);                      
+                    }
+                    else
+                    {
+                        dtc.SetValue((DateTime)item.GetValue(myInterface));
+                    }                   
+                    flPanelControls.Controls.Add(dtc);
                 }
-
                 else
                 {
                     InputControl ic = new InputControl();
                     ic.Name = item.Name;
                     ic.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
+                    if (state == StateEnum.Create && item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
+                    {
+                        ic.SetValue("0");
+                        ic.Visible = false;
+                    }
+                    else if (state == StateEnum.Update && item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
+                    {
+                        ic.Visible = true;
+                        ic.Enabled = false;
+                    }
                     if (state == StateEnum.Update)
                     {
                         ic.SetValue(item.GetValue(myInterface).ToString());
@@ -70,7 +88,6 @@ namespace DBBiblioteka
                     {
                         ic.Enabled = false;
                     }
-
                     flPanelControls.Controls.Add(ic);
                 }
             }
@@ -78,7 +95,6 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
-
             var properties = myInterface.GetType().GetProperties();
 
             foreach (var item in flPanelControls.Controls)
@@ -87,7 +103,6 @@ namespace DBBiblioteka
                 {
                     LookUpControl input = item as LookUpControl;
                     string value = input.Key;
-
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
@@ -95,19 +110,16 @@ namespace DBBiblioteka
                 {
                     InputControl input = item as InputControl;
                     string value = input.GetValue();
-
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
                     DateTimeControl input = item as DateTimeControl;
-                    string value = input.GetValue();
-                        
+                    DateTime value = input.GetValue();                      
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
-
             }
 
             if (state == StateEnum.Create)
@@ -116,7 +128,14 @@ namespace DBBiblioteka
             else if (state == StateEnum.Update)
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+        }
 
+        private void tileOdustani_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

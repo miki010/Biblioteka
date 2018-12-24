@@ -17,6 +17,7 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Knjiga ID")]
         [SqlName("KnjigaID")]
         [PrimaryKey]
+        [LookupKey]
         public int KnjigaID { get; set; }
 
         [DisplayName("Šifra knjige")]
@@ -26,6 +27,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Naziv")]
         [SqlName("Naziv")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public int Naziv { get; set; }
 

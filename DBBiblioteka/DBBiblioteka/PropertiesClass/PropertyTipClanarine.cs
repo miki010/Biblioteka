@@ -16,11 +16,13 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID tipa")]
         [SqlName("TipID")]
+        [LookupKey]
         [PrimaryKey]
         public int TipID { get; set; }
 
         [DisplayName("Naziv tipa")]
         [SqlName("NazivTipa")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string NazivTipa { get; set; }
 

@@ -21,13 +21,13 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Knjiga ID")]
         [SqlName("KnjigaID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("Knjiga", "KnjigaID", "DBBiblioteka.PropertyKnjiga")]
+        [ForeignKey("Knjiga", "KnjigaID", "DBBiblioteka.PropertiesClass.PropertyKnjiga")]
         public int KnjigaID { get; set; }
 
         [DisplayName("Autor ID")]
         [SqlName("AutorID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKey("Autor", "AutorID", "DBBiblioteka.PropertyAutor")]
+        [ForeignKey("Autor", "AutorID", "DBBiblioteka.PropertiesClass.PropertyAutor")]
         public int AutorID { get; set; }
 
         #endregion

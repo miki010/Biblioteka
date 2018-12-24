@@ -58,6 +58,7 @@
             this.tileLookUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileLookUp.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileLookUp.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.tileLookUp.Click += new System.EventHandler(this.tileLookUp_Click_1);
             // 
             // lblText
             // 

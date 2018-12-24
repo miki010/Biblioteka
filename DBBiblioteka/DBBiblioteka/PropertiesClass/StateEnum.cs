@@ -10,6 +10,7 @@ namespace DBBiblioteka.PropertiesClass
     public enum StateEnum
     {
         Create = 1,
-        Update = 2
+        Update = 2,
+        LookUp = 3
     }
 }

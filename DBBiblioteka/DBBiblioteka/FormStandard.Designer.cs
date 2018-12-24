@@ -33,8 +33,11 @@
             this.tileIzmijeni = new MetroFramework.Controls.MetroTile();
             this.tileObrisi = new MetroFramework.Controls.MetroTile();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.btnVrati = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
+            this.metroPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPrikaz
@@ -103,11 +106,36 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // metroPanel2
+            // 
+            this.metroPanel2.Controls.Add(this.btnVrati);
+            this.metroPanel2.HorizontalScrollbarBarColor = true;
+            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.HorizontalScrollbarSize = 10;
+            this.metroPanel2.Location = new System.Drawing.Point(75, 25);
+            this.metroPanel2.Name = "metroPanel2";
+            this.metroPanel2.Size = new System.Drawing.Size(408, 79);
+            this.metroPanel2.TabIndex = 5;
+            this.metroPanel2.VerticalScrollbarBarColor = true;
+            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.VerticalScrollbarSize = 10;
+            this.metroPanel2.Visible = false;
+            // 
+            // btnVrati
+            // 
+            this.btnVrati.Location = new System.Drawing.Point(31, 14);
+            this.btnVrati.Name = "btnVrati";
+            this.btnVrati.Size = new System.Drawing.Size(192, 54);
+            this.btnVrati.TabIndex = 2;
+            this.btnVrati.Text = "POTVRDI";
+            this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
+            // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 500);
+            this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.dgvPrikaz);
             this.MaximizeBox = false;
@@ -118,6 +146,7 @@
             this.Load += new System.EventHandler(this.FormStandard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.metroPanel1.ResumeLayout(false);
+            this.metroPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -129,5 +158,7 @@
         private MetroFramework.Controls.MetroTile tileIzmijeni;
         private MetroFramework.Controls.MetroTile tileObrisi;
         private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroPanel metroPanel2;
+        private MetroFramework.Controls.MetroTile btnVrati;
     }
 }
