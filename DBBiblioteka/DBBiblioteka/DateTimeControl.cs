@@ -15,6 +15,7 @@ namespace DBBiblioteka
         public DateTimeControl()
         {
             InitializeComponent();
+            
         }
 
 
@@ -23,14 +24,16 @@ namespace DBBiblioteka
             lblText.Text = name;
         }
 
-        public string GetValue()
+        public DateTime GetValue()
         {
-            return dateTimePicker.Value.ToShortDateString();
+            return dateTimePicker.Value;
         }
 
         public void SetValue(DateTime date)
         {
             dateTimePicker.Value = date;
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.CustomFormat = "dd.MM.yyyy.";
         }
         
     }

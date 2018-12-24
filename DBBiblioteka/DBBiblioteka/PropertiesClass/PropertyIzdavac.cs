@@ -20,10 +20,12 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Izdavac ID")]
         [SqlName("IzdavacID")]
         [PrimaryKey]
+        [LookupKey]
         public int IzdavacID { get; set; }
 
         [DisplayName("Naziv izdavača")]
         [SqlName("Naziv")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Naziv { get; set; }
 

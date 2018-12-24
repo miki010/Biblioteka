@@ -23,19 +23,19 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Član ID")]
         [SqlName("ClanID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKeyAttribute("Clan", "ClanID", "DBBiblioteka.PropertyClan")]
+        [ForeignKeyAttribute("Clan", "ClanID", "DBBiblioteka.PropertiesClass.PropertyClan")]
         public int ClanID { get; set; }
 
         [DisplayName("Knjiga ID")]
         [SqlName("KnjigaID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKeyAttribute("Knjiga", "KnjigaID", "DBBiblioteka.PropertyKnjiga")]
+        [ForeignKeyAttribute("Knjiga", "KnjigaID", "DBBiblioteka.PropertiesClass.PropertyKnjiga")]
         public int KnjigaID { get; set; }
 
         [DisplayName("Zaposleni ID")]
         [SqlName("ZaposleniID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        [ForeignKeyAttribute("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertyZaposleni")]
+        [ForeignKeyAttribute("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertiesClass.PropertyZaposleni")]
         public int ZaposleniID { get; set; }
 
         [DisplayName("Datum iznajmljivanja")]

@@ -16,20 +16,24 @@ namespace DBBiblioteka.PropertiesClass
         #region attributes
         [DisplayName("Autor ID")]
         [SqlName("AutorID")]
+        [LookupKey]
         [PrimaryKey]
         public int AutorID { get; set; }
 
         [DisplayName("Ime")]
         [SqlName("Ime")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Ime { get; set; }
 
         [DisplayName("Srednje ime")]
         [SqlName("SrednjeIme")]
+        [LookupValue]
         public string SrednjeIme { get; set; }
 
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
+        [LookupValue]
         public string Prezime { get; set; }
 
 

@@ -17,6 +17,7 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Clan ID")]
         [SqlName("ClanID")]
         [PrimaryKey]
+        [LookupKey]
         public int ClanID { get; set; }
 
         [DisplayName("Broj legitimacije")]
@@ -26,16 +27,19 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Ime")]
         [SqlName("Ime")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Ime { get; set; }
 
         [DisplayName("Srednje ime")]
         [SqlName("SrednjeIme")]
+        [LookupValue]
         public string SrednjeIme { get; set; }
 
 
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Prezime { get; set; }
 

@@ -68,6 +68,7 @@
             this.tileOdustani.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileOdustani.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileOdustani.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileOdustani.Click += new System.EventHandler(this.tileOdustani_Click);
             // 
             // metroPanel1
             // 
