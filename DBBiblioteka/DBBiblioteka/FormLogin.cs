@@ -80,7 +80,7 @@ namespace DBBiblioteka
 
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
                     MessageBox.Show("Greska!");
