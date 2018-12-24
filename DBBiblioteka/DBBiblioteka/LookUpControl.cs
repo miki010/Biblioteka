@@ -22,20 +22,21 @@ namespace DBBiblioteka
         {
             InitializeComponent();
             myInterface = interf;
+            txtName.ReadOnly = true;
         }
 
          public void SetLabel(string text)
-        {
+         {
             lblText.Text = text;       
-        }
+         }
 
         private void tileLookUp_Click_1(object sender, EventArgs e)
         {
-            FormStandard sf = new FormStandard(myInterface);
+            FormStandard sf = new FormStandard(myInterface, StateEnum.LookUp);
             sf.ShowDialog();
             Key = sf.Key;
             Value = sf.Value;
-            txtID.Text = Value;
+            txtID.Text = Key;
             txtName.Text = Value;
         }
     }

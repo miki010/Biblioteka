@@ -17,10 +17,12 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
         [PrimaryKey]
+        [LookupKey]
         public int RadnoMjestoID { get; set; }
 
         [DisplayName("Naziv")]
         [SqlName("Naziv")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Naziv { get; set; }
 

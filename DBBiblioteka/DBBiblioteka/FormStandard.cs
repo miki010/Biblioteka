@@ -18,31 +18,44 @@ namespace DBBiblioteka
     public partial class FormStandard : MetroFramework.Forms.MetroForm
     {
         PropertyInterface myProperty;
+        StateEnum state;
         public string Key;
         public string Value;
 
         public FormStandard()
         {
             InitializeComponent();
+            
         }
         
         public FormStandard(PropertyInterface propertyInterface)
         {
             InitializeComponent();          
+            this.myProperty = propertyInterface;        
+        }
+
+        public FormStandard(PropertyInterface propertyInterface, StateEnum stateEnum)
+        {
+            InitializeComponent();
             this.myProperty = propertyInterface;
+            this.state = stateEnum;
+        }
+
+        private void FormStandard_Load(object sender, EventArgs e)
+        {
+            if (state == StateEnum.LookUp)
+            {
+                metroPanel1.Visible = false;
+                metroPanel2.Visible = true;
+            }
+
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
         }
 
-        private void FormStandard_Load(object sender, EventArgs e)
-        {
-            //this.Focus();
-        }
-
         private void loadTable()
         {
-            MessageBox.Show("usao");
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
                 myProperty.GetSelectQuery());
@@ -65,16 +78,16 @@ namespace DBBiblioteka
         {
             try
             {
-                FormInput formInput = new FormInput(myProperty, StateEnum.Create);//dodati enum
+                FormInput formInput = new FormInput(myProperty, StateEnum.Create);
                 formInput.ShowDialog();
-                if (formInput.DialogResult == DialogResult.OK)
-                {
-                    refreshTable();
-                }
+            if (formInput.DialogResult == DialogResult.OK)
+            {
+                refreshTable();
+                // loadTable();
+            }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("ovdje je ex");
                 MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -105,6 +118,8 @@ namespace DBBiblioteka
             try
             {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetDeleteQuery(), myProperty.GetDeleteParameters().ToArray());
+                MessageBox.Show("Podatak je obrisan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                refreshTable();
             }
             catch (Exception ex)
             {
@@ -136,5 +151,31 @@ namespace DBBiblioteka
 
         }
 
+        private void btnVrati_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvPrikaz.SelectedRows[0];
+            var properties = myProperty.GetType().GetProperties();
+            string columnName = properties.Where(x => x.GetCustomAttribute<LookupKey>() != null).FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Name;
+
+            Key = row.Cells[columnName].Value.ToString();
+
+            var lookUpValues = properties.Where(p => p.GetCustomAttribute<LookupValue>() != null);
+            
+            foreach (var item in lookUpValues)
+            {
+                Value += row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString() + " ";
+            }
+
+
+            //columnName = properties.Where(x => x.GetCustomAttribute<LookupValue>() != null)
+                //.FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Name;
+
+           // Value = row.Cells[columnName].Value.ToString();
+
+            
+
+            this.Close();
+
+        }
     }
 }

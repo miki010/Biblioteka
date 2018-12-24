@@ -17,20 +17,24 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID zaposlenog")]
         [SqlName("ZaposleniID")]
+        [LookupKey]
         [PrimaryKey]
         public int ZaposleniID { get; set; }
 
         [DisplayName("Ime")]
         [SqlName("Ime")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Ime { get; set; }
 
         [DisplayName("Srednje ime")]
         [SqlName("SrednjeIme")]
+        [LookupValue]
         public string SrednjeIme { get; set; }
 
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
+        [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Prezime { get; set; }
 
@@ -63,7 +67,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
-        [ForeignKey("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertyRadnoMjesto")]
+        [ForeignKey("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertiesClass.PropertyRadnoMjesto")]
         public int RadnoMjestoID { get; set; }
 
        
