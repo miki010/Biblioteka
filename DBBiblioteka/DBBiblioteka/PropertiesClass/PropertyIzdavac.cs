@@ -73,11 +73,11 @@ namespace DBBiblioteka.PropertiesClass
         public string GetUpdateQuery()
         {
             return @"UPDATE dbo.Izdavac
-                       SET Naziv
-                          ,Grad
-                          ,Adresa 
-                          ,Telefon
-                          ,Email
+                       SET Naziv = @Naziv
+                          ,Grad = @Grad
+                          ,Adresa = @Adresa
+                          ,Telefon = @Telefon
+                          ,Email = @Email
                      WHERE IzdavacID=@IzdavacID";
         }
 

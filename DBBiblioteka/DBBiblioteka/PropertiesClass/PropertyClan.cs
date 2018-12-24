@@ -109,13 +109,13 @@ namespace DBBiblioteka.PropertiesClass
                    ,[Email]
                    ,[DatumUclanjenja])
                     VALUES
-                    (@BrojLegitimacije, @Ime, @SrednjeIme, @Prezime, @Pol, @DatumRodjenja, @Adresa, @Telefon, @Email, @DatumUclanjena)";
+                    (@BrojLegitimacije, @Ime, @SrednjeIme, @Prezime, @Pol, @DatumRodjenja, @Adresa, @Telefon, @Email, @DatumUclanjenja)";
         }
 
         public string GetUpdateQuery()
         {
             return @"UPDATE  [dbo].[Clan]
-                    (SET BrojLegitimacije=@BrojLegitimacije, Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime, Pol=@Pol, DatumRodjenja=@DatumRodjenja, Adresa=@Adresa,
+                    SET BrojLegitimacije=@BrojLegitimacije, Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime, Pol=@Pol, DatumRodjenja=@DatumRodjenja, Adresa=@Adresa,
                     Telefon = @Telefon, Email = @Email, DatumUclanjenja = @DatumUclanjenja where ClanID=@ClanID ";
         }
 
@@ -193,7 +193,11 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = ClanID;
                 list.Add(parameter);
             }
-
+            {
+                SqlParameter parameter = new SqlParameter("@BrojLegitimacije", System.Data.SqlDbType.VarChar);
+                parameter.Value = BrojLegitimacije;
+                list.Add(parameter);
+            }
             {
                 SqlParameter parameter = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
                 parameter.Value = Ime;
