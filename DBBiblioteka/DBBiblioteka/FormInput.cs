@@ -45,6 +45,10 @@ namespace DBBiblioteka
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                    if (state == StateEnum.Update)
+                    {
+                        ul.SetKey(item.GetValue(myInterface).ToString());
+                    }
                     flPanelControls.Controls.Add(ul);
                 }
 

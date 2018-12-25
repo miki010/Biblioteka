@@ -78,21 +78,21 @@ namespace DBBiblioteka.PropertiesClass
                    ,ZaposleniID
                    ,DatumIstekaClanarine)
              VALUES
-                   (@ClanID,
-                   ,@TipID,
-                   ,@DatumUplate,
-                   ,@ZaposleniID,
+                   (@ClanID
+                   ,@TipID
+                   ,@DatumUplate
+                   ,@ZaposleniID
                    ,@DatumIstekaClanarine)";
         }
 
         public string GetUpdateQuery()
         {
             return @"UPDATE dbo.Clanarina
-                       SET ClanID
-                          ,TipID
-                          ,DatumUplate
-                          ,ZaposleniID
-                          ,DatumIstekaClanarine
+                       SET ClanID = @ClanID
+                          ,TipID = @TipID
+                          ,DatumUplate = @DatumUplate
+                          ,ZaposleniID = @ZaposleniId
+                          ,DatumIstekaClanarine = @DatumIstekaClanarine 
                      WHERE ClanarinaID=@ClanarinaID";
         }
 
