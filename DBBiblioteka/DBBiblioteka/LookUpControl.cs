@@ -51,11 +51,17 @@ namespace DBBiblioteka
             if (txtID.Text == "")
             {
                 txtName.Text = "";
-
             }
 
-            else 
+            else
             {
+                char[] str = txtID.Text.ToCharArray();
+                if (str[str.Length - 1] < 48 || str[str.Length - 1] > 57)
+                {
+                    txtID.Text = "";
+                    return;
+                }
+
                 FormStandard sf = new FormStandard(myInterface, StateEnum.LookUp, Convert.ToInt32(txtID.Text));
                 sf.Vrati();
                 Key = sf.Key;

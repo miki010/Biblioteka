@@ -126,9 +126,8 @@ namespace DBBiblioteka
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                       
                     }
+
                 }
             }
             catch (Exception)
@@ -225,7 +224,10 @@ namespace DBBiblioteka
 
         public void Vrati()
         {
-            DataGridViewRow row = dgvPrikaz.Rows.Cast<DataGridViewRow>().Where(r => r.Cells[0].Value.ToString().Equals(red.ToString())).First();
+            DataGridViewRow row = dgvPrikaz.Rows.Cast<DataGridViewRow>().Where(r => r.Cells[0].Value.ToString().Equals(red.ToString())).FirstOrDefault();
+
+            if (row == default(DataGridViewRow))  //u slucaju da ID-a nema u tabeli
+                return;
 
             var properties = myProperty.GetType().GetProperties();
             string columnName = properties.Where(x => x.GetCustomAttribute<LookupKey>() != null).FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Name;
