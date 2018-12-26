@@ -12,6 +12,8 @@ using DBBiblioteka.Helper;
 using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.AtributesClass;
 using System.Reflection;
+using MetroFramework;
+using MetroFramework.Forms;
 
 namespace DBBiblioteka
 {
@@ -107,20 +109,32 @@ namespace DBBiblioteka
 
         private void tileIzmijeni_Click(object sender, EventArgs e)
         {
-            populatePropertyInterface();
             try
             {
-                FormInput formInput = new FormInput(myProperty, StateEnum.Update);//enum
-                formInput.ShowDialog();
-                if (formInput.DialogResult == DialogResult.OK)
+                if (dgvPrikaz.SelectedRows[0] != null)
                 {
-                    refreshTable();
+                    populatePropertyInterface();
+                    try
+                    {
+                        FormInput formInput = new FormInput(myProperty, StateEnum.Update);//enum
+                        formInput.ShowDialog();
+                        if (formInput.DialogResult == DialogResult.OK)
+                        {
+                            refreshTable();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                       
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selektujte u tabeli podatak koji zelite da izmjenite!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -150,14 +164,15 @@ namespace DBBiblioteka
             {
 
                 MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
         //klikom na DataGridView selektuje se zeljeni red i ti se podaci prosljedjuju u input formu
         private void populatePropertyInterface()
         {
-            try
-            {
+            //try
+            //{
                 if (dgvPrikaz.SelectedRows[0] != null)
                 {
                     DataGridViewRow row = dgvPrikaz.SelectedRows[0];
@@ -170,12 +185,12 @@ namespace DBBiblioteka
                         
                     }
                 }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-            }          
+            //}          
         }
 
         private void refreshTable()

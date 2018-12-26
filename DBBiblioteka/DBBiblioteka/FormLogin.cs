@@ -143,7 +143,7 @@ namespace DBBiblioteka
                         formBibliotekar.Show();
                         
                     }
-                    this.Hide();
+                    //this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
                 }   
