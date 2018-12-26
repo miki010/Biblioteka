@@ -39,9 +39,9 @@ namespace DBBiblioteka
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
-                {                   
+                {
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
-                        CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;               
+                        CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
@@ -57,15 +57,15 @@ namespace DBBiblioteka
                     DateTimeControl dtc = new DateTimeControl();
                     dtc.Name = item.Name;
                     dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    
+
                     if (state == StateEnum.Create)
                     {
-                        dtc.SetValue(DateTime.Now);                      
+                        dtc.SetValue(DateTime.Now);
                     }
                     else
                     {
                         dtc.SetValue((DateTime)item.GetValue(myInterface));
-                    }                   
+                    }
                     flPanelControls.Controls.Add(dtc);
                 }
                 else
@@ -120,8 +120,8 @@ namespace DBBiblioteka
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
                     DateTimeControl input = item as DateTimeControl;
-                    DateTime value = input.GetValue();                      
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    DateTime value = input.GetValue();
+                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
             }
@@ -140,7 +140,7 @@ namespace DBBiblioteka
             }
 
             DialogResult = DialogResult.OK;
-            
+
 
         }
 

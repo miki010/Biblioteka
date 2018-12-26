@@ -37,11 +37,11 @@
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(107, 13);
+            this.txtID.MaxLength = 9;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(94, 25);
             this.txtID.TabIndex = 0;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
-            
             // 
             // txtName
             // 
