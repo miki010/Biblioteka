@@ -21,7 +21,7 @@ namespace DBBiblioteka.PropertiesClass
         public int IznajmljivanjeID { get; set; }
 
         [DisplayName("Član ID")]
-        [SqlName("ClanID")]
+        [SqlName("ClanID")]      
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKeyAttribute("Clan", "ClanID", "DBBiblioteka.PropertiesClass.PropertyClan")]
         public int ClanID { get; set; }
@@ -33,7 +33,7 @@ namespace DBBiblioteka.PropertiesClass
         public int KnjigaID { get; set; }
 
         [DisplayName("Zaposleni ID")]
-        [SqlName("ZaposleniID")]
+        [SqlName("ZaposleniID")]   
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKeyAttribute("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertiesClass.PropertyZaposleni")]
         public int ZaposleniID { get; set; }
