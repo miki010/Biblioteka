@@ -45,6 +45,10 @@ namespace DBBiblioteka
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                    if (state == StateEnum.Update)
+                    {
+                        ul.SetKey(item.GetValue(myInterface).ToString());
+                    }
                     flPanelControls.Controls.Add(ul);
                 }
 
@@ -123,11 +127,21 @@ namespace DBBiblioteka
             }
 
             if (state == StateEnum.Create)
+            {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else if (state == StateEnum.Update)
+            {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            DialogResult = DialogResult.OK;
+            
+
         }
 
         private void tileOdustani_Click(object sender, EventArgs e)

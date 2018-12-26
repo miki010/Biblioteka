@@ -112,7 +112,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(75, 25);
+            this.metroPanel2.Location = new System.Drawing.Point(98, 22);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(408, 79);
             this.metroPanel2.TabIndex = 5;
@@ -159,6 +159,6 @@
         private MetroFramework.Controls.MetroTile tileObrisi;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
-        private MetroFramework.Controls.MetroTile btnVrati;
+        public MetroFramework.Controls.MetroTile btnVrati;
     }
 }
