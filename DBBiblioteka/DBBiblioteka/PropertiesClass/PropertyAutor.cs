@@ -64,7 +64,7 @@ namespace DBBiblioteka.PropertiesClass
         public string GetUpdateQuery()
         {
             return @"UPDATE  [dbo].[Autor]
-                    (SET Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime where AutorID=@AutorID ";
+                    SET Ime=@Ime, SrednjeIme=@SrednjeIme, Prezime=@Prezime where AutorID=@AutorID ";
         }
 
         public string GetDeleteQuery()

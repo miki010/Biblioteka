@@ -23,13 +23,13 @@ namespace DBBiblioteka.PropertiesClass
         [DisplayName("Šifra knjige")]
         [SqlName("Sifra")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        public int Sifra { get; set; }
+        public string Sifra { get; set; }
 
         [DisplayName("Naziv")]
         [SqlName("Naziv")]
         [LookupValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        public int Naziv { get; set; }
+        public string Naziv { get; set; }
 
         [DisplayName("Količina")]
         [SqlName("Kolicina")]
@@ -38,7 +38,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Žanr")]
         [SqlName("Zanr")]
-        public int Zanr { get; set; }
+        public string Zanr { get; set; }
  
         #endregion
 

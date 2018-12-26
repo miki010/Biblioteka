@@ -80,7 +80,7 @@ namespace DBBiblioteka
 
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
                     MessageBox.Show("Greska!");
@@ -143,7 +143,7 @@ namespace DBBiblioteka
                         formBibliotekar.Show();
                         
                     }
-                    this.Hide();
+                    //this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
                 }   
