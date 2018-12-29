@@ -35,6 +35,7 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnVrati = new MetroFramework.Controls.MetroTile();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -98,7 +99,7 @@
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(75, 38);
+            this.metroPanel1.Location = new System.Drawing.Point(77, 25);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Size = new System.Drawing.Size(746, 66);
             this.metroPanel1.TabIndex = 4;
@@ -130,11 +131,20 @@
             this.btnVrati.Text = "POTVRDI";
             this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
             // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Location = new System.Drawing.Point(581, 102);
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(242, 20);
+            this.txtPretraga.TabIndex = 6;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 500);
+            this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.dgvPrikaz);
@@ -148,6 +158,7 @@
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,5 +171,6 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         public MetroFramework.Controls.MetroTile btnVrati;
+        private System.Windows.Forms.TextBox txtPretraga;
     }
 }
