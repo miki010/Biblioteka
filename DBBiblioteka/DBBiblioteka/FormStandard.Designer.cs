@@ -32,10 +32,10 @@
             this.tileDodaj = new MetroFramework.Controls.MetroTile();
             this.tileIzmijeni = new MetroFramework.Controls.MetroTile();
             this.tileObrisi = new MetroFramework.Controls.MetroTile();
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.panelCRUD = new MetroFramework.Controls.MetroPanel();
+            this.panelPotvrdi = new MetroFramework.Controls.MetroPanel();
             this.btnVrati = new MetroFramework.Controls.MetroTile();
-            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.panelSearch = new MetroFramework.Controls.MetroPanel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new MetroFramework.Controls.MetroTile();
             this.btnSelectFirst = new MetroFramework.Controls.MetroTile();
@@ -43,9 +43,9 @@
             this.btnSelectLast = new MetroFramework.Controls.MetroTile();
             this.btnSelectNext = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
-            this.metroPanel1.SuspendLayout();
-            this.metroPanel2.SuspendLayout();
-            this.metroPanel3.SuspendLayout();
+            this.panelCRUD.SuspendLayout();
+            this.panelPotvrdi.SuspendLayout();
+            this.panelSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPrikaz
@@ -95,36 +95,35 @@
             this.tileObrisi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileObrisi.Click += new System.EventHandler(this.tileObrisi_Click);
             // 
-            // metroPanel1
+            // panelCRUD
             // 
-            this.metroPanel1.Controls.Add(this.tileObrisi);
-            this.metroPanel1.Controls.Add(this.tileIzmijeni);
-            this.metroPanel1.Controls.Add(this.tileDodaj);
-            this.metroPanel1.HorizontalScrollbarBarColor = true;
-            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(7, 29);
-            this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(268, 53);
-            this.metroPanel1.TabIndex = 4;
-            this.metroPanel1.VerticalScrollbarBarColor = true;
-            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 10;
+            this.panelCRUD.Controls.Add(this.tileObrisi);
+            this.panelCRUD.Controls.Add(this.tileIzmijeni);
+            this.panelCRUD.Controls.Add(this.tileDodaj);
+            this.panelCRUD.HorizontalScrollbarBarColor = true;
+            this.panelCRUD.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelCRUD.HorizontalScrollbarSize = 10;
+            this.panelCRUD.Location = new System.Drawing.Point(7, 29);
+            this.panelCRUD.Name = "panelCRUD";
+            this.panelCRUD.Size = new System.Drawing.Size(268, 53);
+            this.panelCRUD.TabIndex = 4;
+            this.panelCRUD.VerticalScrollbarBarColor = true;
+            this.panelCRUD.VerticalScrollbarHighlightOnWheel = false;
+            this.panelCRUD.VerticalScrollbarSize = 10;
             // 
-            // metroPanel2
+            // panelPotvrdi
             // 
-            this.metroPanel2.Controls.Add(this.btnVrati);
-            this.metroPanel2.HorizontalScrollbarBarColor = true;
-            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(281, 29);
-            this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(95, 53);
-            this.metroPanel2.TabIndex = 5;
-            this.metroPanel2.VerticalScrollbarBarColor = true;
-            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.VerticalScrollbarSize = 10;
-            this.metroPanel2.Visible = false;
+            this.panelPotvrdi.Controls.Add(this.btnVrati);
+            this.panelPotvrdi.HorizontalScrollbarBarColor = true;
+            this.panelPotvrdi.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelPotvrdi.HorizontalScrollbarSize = 10;
+            this.panelPotvrdi.Location = new System.Drawing.Point(281, 29);
+            this.panelPotvrdi.Name = "panelPotvrdi";
+            this.panelPotvrdi.Size = new System.Drawing.Size(95, 53);
+            this.panelPotvrdi.TabIndex = 5;
+            this.panelPotvrdi.VerticalScrollbarBarColor = true;
+            this.panelPotvrdi.VerticalScrollbarHighlightOnWheel = false;
+            this.panelPotvrdi.VerticalScrollbarSize = 10;
             // 
             // btnVrati
             // 
@@ -137,28 +136,27 @@
             this.btnVrati.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
             // 
-            // metroPanel3
+            // panelSearch
             // 
-            this.metroPanel3.BackColor = System.Drawing.Color.NavajoWhite;
-            this.metroPanel3.CausesValidation = false;
-            this.metroPanel3.Controls.Add(this.btnSearch);
-            this.metroPanel3.Controls.Add(this.txtSearch);
-            this.metroPanel3.Controls.Add(this.btnSelectFirst);
-            this.metroPanel3.Controls.Add(this.btnSelectPrevious);
-            this.metroPanel3.Controls.Add(this.btnSelectLast);
-            this.metroPanel3.Controls.Add(this.btnSelectNext);
-            this.metroPanel3.CustomBackground = true;
-            this.metroPanel3.HorizontalScrollbarBarColor = true;
-            this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(391, 29);
-            this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(547, 53);
-            this.metroPanel3.TabIndex = 7;
-            this.metroPanel3.VerticalScrollbarBarColor = true;
-            this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.VerticalScrollbarSize = 10;
-            this.metroPanel3.Visible = false;
+            this.panelSearch.BackColor = System.Drawing.Color.NavajoWhite;
+            this.panelSearch.CausesValidation = false;
+            this.panelSearch.Controls.Add(this.btnSearch);
+            this.panelSearch.Controls.Add(this.txtSearch);
+            this.panelSearch.Controls.Add(this.btnSelectFirst);
+            this.panelSearch.Controls.Add(this.btnSelectPrevious);
+            this.panelSearch.Controls.Add(this.btnSelectLast);
+            this.panelSearch.Controls.Add(this.btnSelectNext);
+            this.panelSearch.CustomBackground = true;
+            this.panelSearch.HorizontalScrollbarBarColor = true;
+            this.panelSearch.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelSearch.HorizontalScrollbarSize = 10;
+            this.panelSearch.Location = new System.Drawing.Point(391, 29);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(547, 53);
+            this.panelSearch.TabIndex = 7;
+            this.panelSearch.VerticalScrollbarBarColor = true;
+            this.panelSearch.VerticalScrollbarHighlightOnWheel = false;
+            this.panelSearch.VerticalScrollbarSize = 10;
             // 
             // txtSearch
             // 
@@ -231,9 +229,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 500);
-            this.Controls.Add(this.metroPanel3);
-            this.Controls.Add(this.metroPanel2);
-            this.Controls.Add(this.metroPanel1);
+            this.Controls.Add(this.panelSearch);
+            this.Controls.Add(this.panelPotvrdi);
+            this.Controls.Add(this.panelCRUD);
             this.Controls.Add(this.dgvPrikaz);
             this.MaximizeBox = false;
             this.Name = "FormStandard";
@@ -242,10 +240,10 @@
             this.Text = " ";
             this.Load += new System.EventHandler(this.FormStandard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
-            this.metroPanel1.ResumeLayout(false);
-            this.metroPanel2.ResumeLayout(false);
-            this.metroPanel3.ResumeLayout(false);
-            this.metroPanel3.PerformLayout();
+            this.panelCRUD.ResumeLayout(false);
+            this.panelPotvrdi.ResumeLayout(false);
+            this.panelSearch.ResumeLayout(false);
+            this.panelSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -256,10 +254,10 @@
         private MetroFramework.Controls.MetroTile tileDodaj;
         private MetroFramework.Controls.MetroTile tileIzmijeni;
         private MetroFramework.Controls.MetroTile tileObrisi;
-        private MetroFramework.Controls.MetroPanel metroPanel1;
-        private MetroFramework.Controls.MetroPanel metroPanel2;
+        private MetroFramework.Controls.MetroPanel panelCRUD;
+        private MetroFramework.Controls.MetroPanel panelPotvrdi;
         public MetroFramework.Controls.MetroTile btnVrati;
-        private MetroFramework.Controls.MetroPanel metroPanel3;
+        private MetroFramework.Controls.MetroPanel panelSearch;
         public MetroFramework.Controls.MetroTile btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         public MetroFramework.Controls.MetroTile btnSelectFirst;

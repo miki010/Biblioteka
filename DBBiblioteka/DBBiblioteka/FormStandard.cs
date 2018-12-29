@@ -58,10 +58,16 @@ namespace DBBiblioteka
         {
             if (state == StateEnum.LookUp)
             {
-                metroPanel1.Visible = false;
-                metroPanel2.Visible = true;
+                panelCRUD.Enabled = false;
+                panelPotvrdi.Enabled = true;
+                panelSearch.Enabled = true;
             }
-
+            else
+            {
+                panelCRUD.Enabled = true;
+                panelPotvrdi.Enabled = false;
+                panelSearch.Enabled = true;
+            }
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
