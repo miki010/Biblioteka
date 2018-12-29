@@ -191,6 +191,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\search1.png" />
+    <None Include="Resources\resultset_previous1.png" />
+    <None Include="Resources\resultset_next1.png" />
+    <None Include="Resources\resultset_last1.png" />
+    <None Include="Resources\resultset_first1.png" />
     <None Include="Resources\logo.jpg" />
     <None Include="Resources\searchusermemberships.png" />
     <None Include="Resources\returnedbooks.png" />
