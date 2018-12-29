@@ -68,6 +68,11 @@ namespace DBBiblioteka
                     }
                     flPanelControls.Controls.Add(dtc);
                 }
+                else if (item.GetCustomAttribute<RadioValue>() != null)
+                {
+                    RadioValue rv = new RadioValue();
+                    //rv.
+                }
                 else
                 {
                     InputControl ic = new InputControl();

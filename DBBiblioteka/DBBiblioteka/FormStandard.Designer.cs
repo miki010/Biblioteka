@@ -50,6 +50,7 @@
             this.dgvPrikaz.ReadOnly = true;
             this.dgvPrikaz.Size = new System.Drawing.Size(784, 328);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
             // tileDodaj
             // 
@@ -134,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 500);
+            this.ClientSize = new System.Drawing.Size(898, 550);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.dgvPrikaz);

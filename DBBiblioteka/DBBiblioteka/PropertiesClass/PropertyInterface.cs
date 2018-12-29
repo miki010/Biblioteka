@@ -14,8 +14,15 @@ namespace DBBiblioteka.PropertiesClass
         string GetUpdateQuery();
         string GetDeleteQuery();
 
+        //select upiti
+        string GetSelectPregledClanarinePoClanovima();
+
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();
         List<SqlParameter> GetDeleteParameters();
+
+        //parametri za select upite
+        List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
+
     }
 }

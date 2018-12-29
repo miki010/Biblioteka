@@ -40,6 +40,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Pol")]
         [SqlName("Pol")]
+        [RadioValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public char Pol { get; set; }
 
@@ -291,6 +292,16 @@ namespace DBBiblioteka.PropertiesClass
         {
             return @"SELECT *
                       FROM [Biblioteka].[dbo].[Zaposleni]";
+        }
+
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
         }
 
 

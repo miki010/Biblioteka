@@ -71,8 +71,16 @@ namespace DBBiblioteka
         private void loadTable()
         {
             DataTable dt = new DataTable();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                myProperty.GetSelectQuery());
+            SqlDataReader reader = null;
+            //if (state == StateEnum.View)
+            //{
+               
+            //}
+            //else
+            //{
+                 reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myProperty.GetSelectQuery()); 
+            //}
             dt.Load(reader);
             reader.Close();
             dgvPrikaz.DataSource = dt;
@@ -238,6 +246,41 @@ namespace DBBiblioteka
             foreach (var item in lookUpValues)
             {
                 Value += row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString() + " ";
+            }
+        }
+
+        private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
+        {
+            //pozivanje procedure, preko txtPretraga implementirati da se posalje parametar u proceduru
+            if(state == StateEnum.View)
+            {
+                populatePropertyInterface();
+
+              
+
+                DataTable dt = new DataTable();
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+              myProperty.GetSelectPregledClanarinePoClanovima(), myProperty.GetSelectPregledClanarinePoClanovimaParameters().ToArray());
+                dt.Load(reader);
+                reader.Close();
+                dgvPrikaz.DataSource = dt;
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                m.MenuItems.Add(new MenuItem("Dodaj izdavaca"));
+                m.MenuItems.Add(new MenuItem("Dodaj autora"));
+               // m.MenuItems.Add(new MenuItem("Paste"));
+
+                int currentMouseOverRow = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
+
+                if (currentMouseOverRow >= 0)
+                {
+                    m.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+                }
+
+                m.Show(dgvPrikaz, new Point(e.X, e.Y));
+
             }
         }
     }
