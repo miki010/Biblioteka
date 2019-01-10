@@ -12,6 +12,7 @@ using DBBiblioteka.AtributesClass;
 using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.Helper;
 using DBBiblioteka.AttributesClass;
+using System.ComponentModel.DataAnnotations;
 
 namespace DBBiblioteka
 {
@@ -70,9 +71,18 @@ namespace DBBiblioteka
                 }
                 else if (item.GetCustomAttribute<RadioValue>() != null)
                 {
-                    RadioValue rv = new RadioValue();
-                    //rv.
+                    UserControlRadio ucr = new UserControlRadio();
+                    ucr.Name = item.Name;
+                    ucr.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+
+                    if(state == StateEnum.Update)
+                    {
+                        ucr.SetValue(item.GetValue(myInterface).ToString());
+                    }
+
+                    flPanelControls.Controls.Add(ucr);
                 }
+
                 else
                 {
                     InputControl ic = new InputControl();
@@ -104,23 +114,51 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
+
             var properties = myInterface.GetType().GetProperties();
+
 
             foreach (var item in flPanelControls.Controls)
             {
+
                 if (item.GetType() == typeof(LookUpControl))
                 {
                     LookUpControl input = item as LookUpControl;
                     string value = input.Key;
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    try
+                    {
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
+                        {
+                            input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                        }
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
                 }
                 else if (item.GetType() == typeof(InputControl))
                 {
                     InputControl input = item as InputControl;
                     string value = input.GetValue();
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    try
+                    {
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
+                        {
+                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                        }
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+
                 }
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
@@ -129,7 +167,16 @@ namespace DBBiblioteka
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
+                else if(item.GetType() == typeof(UserControlRadio))
+                {
+                    UserControlRadio input = item as UserControlRadio;
+                    string value = input.GetValue();
+                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                }
             }
+
+
 
             if (state == StateEnum.Create)
             {

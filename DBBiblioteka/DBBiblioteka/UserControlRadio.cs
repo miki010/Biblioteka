@@ -34,9 +34,9 @@ namespace DBBiblioteka
 
         public void SetValue(string value)
         {
-            if (value == "M")
+            if (value == rbM.Text.Substring(0, 1))
                 rbM.Checked = true;
-            else if (value == "")
+            else if (value == rbZenski.Text.Substring(0, 1))
                 rbZenski.Checked = true;
         }
     }

@@ -41,6 +41,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.lblTitle3 = new System.Windows.Forms.Label();
+            this.lblIme = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +129,7 @@
             this.lblInvalid.ForeColor = System.Drawing.Color.Red;
             this.lblInvalid.Location = new System.Drawing.Point(118, 436);
             this.lblInvalid.Name = "lblInvalid";
-            this.lblInvalid.Size = new System.Drawing.Size(112, 19);
+            this.lblInvalid.Size = new System.Drawing.Size(111, 19);
             this.lblInvalid.Style = MetroFramework.MetroColorStyle.Red;
             this.lblInvalid.TabIndex = 12;
             this.lblInvalid.Text = "Pogrešna lozinka!";
@@ -160,7 +161,7 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(424, 652);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(43, 19);
+            this.lblVersion.Size = new System.Drawing.Size(39, 19);
             this.lblVersion.TabIndex = 16;
             this.lblVersion.Text = "v 1.10";
             // 
@@ -173,11 +174,22 @@
             this.lblTitle3.TabIndex = 17;
             this.lblTitle3.Text = "ELSA";
             // 
+            // lblIme
+            // 
+            this.lblIme.AutoSize = true;
+            this.lblIme.ForeColor = System.Drawing.Color.Red;
+            this.lblIme.Location = new System.Drawing.Point(159, 373);
+            this.lblIme.Name = "lblIme";
+            this.lblIme.Size = new System.Drawing.Size(23, 19);
+            this.lblIme.TabIndex = 18;
+            this.lblIme.Text = "lbl";
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 678);
+            this.Controls.Add(this.lblIme);
             this.Controls.Add(this.lblTitle3);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox2);
@@ -220,6 +232,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private MetroFramework.Controls.MetroLabel lblVersion;
         private System.Windows.Forms.Label lblTitle3;
+        private MetroFramework.Controls.MetroLabel lblIme;
     }
 }
 

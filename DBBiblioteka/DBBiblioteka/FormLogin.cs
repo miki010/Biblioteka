@@ -37,10 +37,13 @@ namespace DBBiblioteka
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
+            //prije poziva f-je provjerava da li su obadva polja popunjena
+            
+
+
             Login();
             
         }
-
 
         private void Login()
         { 
@@ -65,11 +68,7 @@ namespace DBBiblioteka
                 string sifra = row["Lozinka"].ToString();
                 string id = row["ZaposleniID"].ToString();
 
-                string pass = getHashSha256(txtPassword.Text);
-                //MessageBox.Show(sifra, "iz baze", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //MessageBox.Show(pass, "iz txt", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                string pass = getHashSha256(txtPassword.Text);                
 
                 try
                 {
