@@ -20,6 +20,7 @@ namespace DBBiblioteka
     {
         PropertyInterface myInterface;
         StateEnum state;
+        int? idKnjige;
 
         public FormInput()
         {
@@ -34,6 +35,14 @@ namespace DBBiblioteka
 
             PopulateControls();
         }
+        public FormInput(PropertyInterface myInterface, StateEnum state, int id)
+        {
+            InitializeComponent();
+            this.myInterface = myInterface;
+            this.state = state;
+            this.idKnjige = id;
+            PopulateControls();
+        }
 
         private void PopulateControls()
         {
@@ -41,10 +50,20 @@ namespace DBBiblioteka
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
                 {
+
+
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
+
+                    //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
+                    if (idKnjige != null && ul.Name == "KnjigaID")
+                    {
+                        ul.SetKey(idKnjige.ToString());
+                        ul.Enabled = false;
+                    }
+
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
@@ -75,7 +94,7 @@ namespace DBBiblioteka
                     ucr.Name = item.Name;
                     ucr.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
-                    if(state == StateEnum.Update)
+                    if (state == StateEnum.Update)
                     {
                         ucr.SetValue(item.GetValue(myInterface).ToString());
                     }
@@ -167,7 +186,7 @@ namespace DBBiblioteka
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
-                else if(item.GetType() == typeof(UserControlRadio))
+                else if (item.GetType() == typeof(UserControlRadio))
                 {
                     UserControlRadio input = item as UserControlRadio;
                     string value = input.GetValue();
