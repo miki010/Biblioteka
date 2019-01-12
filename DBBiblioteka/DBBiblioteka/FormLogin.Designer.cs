@@ -41,7 +41,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.lblTitle3 = new System.Windows.Forms.Label();
-            this.lblIme = new MetroFramework.Controls.MetroLabel();
+            this.lblUName = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(352, 25);
             this.txtUserName.TabIndex = 0;
+            this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // txtPassword
             // 
@@ -58,6 +59,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(352, 25);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // btnLogin
             // 
@@ -174,22 +176,22 @@
             this.lblTitle3.TabIndex = 17;
             this.lblTitle3.Text = "ELSA";
             // 
-            // lblIme
+            // lblUName
             // 
-            this.lblIme.AutoSize = true;
-            this.lblIme.ForeColor = System.Drawing.Color.Red;
-            this.lblIme.Location = new System.Drawing.Point(159, 373);
-            this.lblIme.Name = "lblIme";
-            this.lblIme.Size = new System.Drawing.Size(23, 19);
-            this.lblIme.TabIndex = 18;
-            this.lblIme.Text = "lbl";
+            this.lblUName.AutoSize = true;
+            this.lblUName.ForeColor = System.Drawing.Color.Red;
+            this.lblUName.Location = new System.Drawing.Point(159, 373);
+            this.lblUName.Name = "lblUName";
+            this.lblUName.Size = new System.Drawing.Size(23, 19);
+            this.lblUName.TabIndex = 18;
+            this.lblUName.Text = "lbl";
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 678);
-            this.Controls.Add(this.lblIme);
+            this.Controls.Add(this.lblUName);
             this.Controls.Add(this.lblTitle3);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox2);
@@ -232,7 +234,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private MetroFramework.Controls.MetroLabel lblVersion;
         private System.Windows.Forms.Label lblTitle3;
-        private MetroFramework.Controls.MetroLabel lblIme;
+        private MetroFramework.Controls.MetroLabel lblUName;
     }
 }
 

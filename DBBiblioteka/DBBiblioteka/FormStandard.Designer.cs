@@ -35,6 +35,7 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnVrati = new MetroFramework.Controls.MetroTile();
+            this.lbDetaljno = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -48,7 +49,7 @@
             this.dgvPrikaz.Location = new System.Drawing.Point(55, 128);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            this.dgvPrikaz.Size = new System.Drawing.Size(784, 328);
+            this.dgvPrikaz.Size = new System.Drawing.Size(505, 328);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
@@ -131,11 +132,20 @@
             this.btnVrati.Text = "POTVRDI";
             this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
             // 
+            // lbDetaljno
+            // 
+            this.lbDetaljno.FormattingEnabled = true;
+            this.lbDetaljno.Location = new System.Drawing.Point(566, 128);
+            this.lbDetaljno.Name = "lbDetaljno";
+            this.lbDetaljno.Size = new System.Drawing.Size(309, 329);
+            this.lbDetaljno.TabIndex = 6;
+            // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 550);
+            this.Controls.Add(this.lbDetaljno);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.dgvPrikaz);
@@ -161,5 +171,6 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         public MetroFramework.Controls.MetroTile btnVrati;
+        private System.Windows.Forms.ListBox lbDetaljno;
     }
 }

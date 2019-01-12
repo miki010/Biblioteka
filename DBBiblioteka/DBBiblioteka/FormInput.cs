@@ -21,10 +21,12 @@ namespace DBBiblioteka
         PropertyInterface myInterface;
         StateEnum state;
         int? idKnjige;
+        
 
         public FormInput()
         {
             InitializeComponent();
+            
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -50,8 +52,6 @@ namespace DBBiblioteka
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
                 {
-
-
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
@@ -64,6 +64,13 @@ namespace DBBiblioteka
                         ul.Enabled = false;
                     }
 
+                    //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
+                    if(ul.Name == "ZaposleniID")
+                    {
+                        ul.SetKey(FormLogin.idZaposlenog);
+                        ul.Enabled = false;
+                    }
+                    
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
