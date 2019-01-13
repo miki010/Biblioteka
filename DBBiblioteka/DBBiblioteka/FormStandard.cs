@@ -266,7 +266,7 @@ namespace DBBiblioteka
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             try
             {
-                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString, sqlParameters);
+                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
                 formInput.ShowDialog();
                 if (formInput.DialogResult == DialogResult.OK)
                 {
@@ -274,7 +274,7 @@ namespace DBBiblioteka
                     if(dgvPrikaz.Rows.Count == 0)
                     {
                         refreshTable();
-                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "");
+                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
                     }
                 }
             }

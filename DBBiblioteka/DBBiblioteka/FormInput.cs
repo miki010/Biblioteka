@@ -21,7 +21,6 @@ namespace DBBiblioteka
         PropertyInterface myInterface;
         StateEnum state;
         FilterString filterString;
-        List<SqlParameter> sqlParameters;
 
         public FormInput()
         {
@@ -37,13 +36,12 @@ namespace DBBiblioteka
             PopulateControls();
         }
 
-        public FormInput(PropertyInterface myInterface, StateEnum state, FilterString filterString, List<SqlParameter> sqlParameters)  //konstruktor za Search inputform
+        public FormInput(PropertyInterface myInterface, StateEnum state, FilterString filterString)  //konstruktor za Search inputform
         {
             InitializeComponent();
             this.myInterface = myInterface;
             this.state = state;
             this.filterString = filterString;
-            this.sqlParameters = sqlParameters;
 
             PopulateControls();
         }
