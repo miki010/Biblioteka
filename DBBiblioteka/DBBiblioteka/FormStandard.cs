@@ -246,7 +246,8 @@ namespace DBBiblioteka
 
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" && table.Columns[i].DataType.ToString() != "System.Byte")
+                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" 
+                    && table.Columns[i].DataType.ToString() != "System.Byte" && table.Columns[i].DataType.ToString() != "System.Decimal") // ili !nvarchar...
                     columnNames.Add(table.Columns[i].ColumnName);
                 
             }

@@ -169,19 +169,19 @@ namespace DBBiblioteka
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
-                        if (input.Name.Contains("ID"))
+                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
                                 continue;
-                            else if (!int.TryParse(input.GetValue(), out int number))
+                            else if (!int.TryParse(input.GetValue(), out int number1) && !double.TryParse(input.GetValue(), out double numer2))
                             {
-                                MessageBox.Show("Polje "+ input.Name + " može sadržati samo cjelobrojne podatke!", "Greška");
+                                MessageBox.Show("Polje " + input.Name + " može sadržati samo brojevne podatke!", "Greška");
                                 input.SetValue("");
                                 return;
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(input.GetValue()) && input.Name.Contains("ID"))
+                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
                             filterString.FStr += input.Name + " = " + value + " and ";
                         else if(!string.IsNullOrEmpty(input.GetValue()))
                             filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
