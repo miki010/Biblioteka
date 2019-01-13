@@ -246,17 +246,17 @@ namespace DBBiblioteka
 
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32")
+                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" && table.Columns[i].DataType.ToString() != "System.Byte")
                     columnNames.Add(table.Columns[i].ColumnName);
+                
             }
 
             for (int i = 0; i < columnNames.Count - 1; i++)
                 searchString += columnNames[i] + " LIKE '%{0}%' or ";
 
+            if(columnNames.Count > 0)
             searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
             (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
-
-            //(dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = "Datumrodjenja >= '1984-09-15 12:00:00' and Datumrodjenja <= '1984-09-15 12:00:00'"; //proba
 
         }
 
