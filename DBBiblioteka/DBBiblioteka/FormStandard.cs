@@ -62,6 +62,7 @@ namespace DBBiblioteka
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
 
+
         }
 
         private void loadTable()
@@ -238,42 +239,56 @@ namespace DBBiblioteka
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var type = myProperty.GetType();
-            var properties = type.GetProperties();
-
             List<string> columnNames = new List<string>();
-            string searchColumns = "";
+            string searchString = "";
 
             DataTable table = dgvPrikaz.DataSource as DataTable;
 
-            
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                if (table.Columns[i].DataType.ToString() != "System.DateTime")
+                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32")
                     columnNames.Add(table.Columns[i].ColumnName);
             }
 
-
             for (int i = 0; i < columnNames.Count - 1; i++)
+                searchString += columnNames[i] + " LIKE '%{0}%' or ";
+
+            searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
+            (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
+
+            //(dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = "Datumrodjenja >= '1984-09-15 12:00:00' and Datumrodjenja <= '1984-09-15 12:00:00'"; //proba
+
+        }
+
+        private void btnDetaljnaPretraga_Click(object sender, EventArgs e)
+        {
+            FilterString filterString = new FilterString();
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            try
             {
-                if (table.Columns[i].DataType.ToString() != "System.Int32")
-                    searchColumns += columnNames[i] + " LIKE  '%{0}%' or ";
-                else
-                    searchColumns += columnNames[i] + " = {0} or ";
-
+                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString, sqlParameters);
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
+                    if(dgvPrikaz.Rows.Count == 0)
+                    {
+                        refreshTable();
+                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "");
+                    }
+                }
             }
-            if (table.Columns[columnNames.Count - 1].DataType.ToString() != "System.Int32")
-                searchColumns += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
-            else
-                searchColumns += columnNames[columnNames.Count - 1] + " = {0}";
-            MessageBox.Show(searchColumns);
-            
-            (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchColumns, txtPretraga.Text);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
 
+        }
 
-
-
-
+        private void btnAzurirajZapise_Click(object sender, EventArgs e)
+        {
+            refreshTable();
+            dgvPrikaz.ClearSelection();
         }
     }
 }
