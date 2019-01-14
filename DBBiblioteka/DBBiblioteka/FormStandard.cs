@@ -357,12 +357,8 @@ namespace DBBiblioteka
             dti.Load(readeri);
             readeri.Close();
 
-            //prikaaz
-            int numRows = dt.Rows.Count;
-            int numCol = dt.Columns.Count;
-
             //prikazuje se Autor/i knjige
-            if (numRows == 1)
+            if (dt.Rows.Count == 1)
             {
                 lbDetaljno.Items.Add("-----------------------------------------");
                 lbDetaljno.Items.Add("Autor: ");
@@ -370,14 +366,16 @@ namespace DBBiblioteka
             else
             {
                 lbDetaljno.Items.Add("-----------------------------------------");
-                lbDetaljno.Items.Add("\nAutori: ");
+                lbDetaljno.Items.Add("Autori: ");
             }
-            for (int i = 0; i < dt.Columns.Count; i++)
+            foreach (DataRow row in dt.Rows)
             {
-                foreach (DataRow row in dt.Rows)
+                int h = 0;
+                foreach (DataColumn col in dt.Columns)
                 {
-                    lbDetaljno.Items.Add("\t" + row[i]);
+                    lbDetaljno.Items.Add("\t" + row[h++]);
                 }
+
             }
 
             //prikazuje se Izdavac/i knjige
@@ -395,11 +393,11 @@ namespace DBBiblioteka
             foreach (DataRow row in dti.Rows)
             {
                 int h = 0;
-                foreach (DataColumn col in dti.Columns)//do while petlja da se ispise jedan red pa onda drugi, ili obrnuti for petlje da unutrasnja bude vanjska
+                foreach (DataColumn col in dti.Columns)
                 {
                     lbDetaljno.Items.Add("\t" + col + ": " + row[h++]);
                 }
-                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("\t" + "--------------------------------");
             }
 
         }
