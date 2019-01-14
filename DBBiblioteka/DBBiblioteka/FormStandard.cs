@@ -254,27 +254,22 @@ namespace DBBiblioteka
         {
             //popunjavanje list box-a
             lbDetaljno.Items.Clear();
-
             if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
             {
-                //MessageBox.Show(dgvPrikaz.SelectedCells.Count.ToString());
                 for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
                 {
-                    
                     lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
                 }
             }
+
+
             //pozivanje procedure, preko txtPretraga implementirati da se posalje parametar u proceduru
             if (state == StateEnum.View)
             {
                 populatePropertyInterface();
-
-
-
                 DataTable dt = new DataTable();
                 SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-              myProperty.GetSelectPregledClanarinePoClanovima(), myProperty.GetSelectPregledClanarinePoClanovimaParameters().ToArray());
+                myProperty.GetSelectPregledClanarinePoClanovima(), myProperty.GetSelectPregledClanarinePoClanovimaParameters().ToArray());
                 dt.Load(reader);
                 reader.Close();
                 dgvPrikaz.DataSource = dt;
@@ -284,21 +279,15 @@ namespace DBBiblioteka
             {
                 try
                 {
-
-                    //ContextMenu m = new ContextMenu();
                     ContextMenuStrip m = new ContextMenuStrip();
-
                     idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
                     idKnjige = Convert.ToInt32(dgvPrikaz.SelectedRows[0].Cells[0].Value);
                     if (idReda >= 0)
                     {
                         m.Items.Add("Dodaj izdavača").Name = "Izdavac";
                         m.Items.Add("Dodaj autora").Name = "Autor";
-                        // m.Items.Add(string.Format("Do something to row {0}", currentMouseOverRow.ToString()));
                     }
-
                     m.Show(dgvPrikaz, new Point(e.X, e.Y));
-
                     m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
                 }
                 catch (Exception ex)
@@ -308,7 +297,22 @@ namespace DBBiblioteka
                 }
 
             }
+            if (myProperty.GetType() == typeof(PropertyKnjiga))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
 
+                    try
+                    {
+                        ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
 
         }
 
@@ -329,6 +333,75 @@ namespace DBBiblioteka
                 default:
                     break;
             }
+        }
+
+        private void ViewDetails(string id)
+        {
+            //pozivanje view-a ili procedure, kojima ce se prikazati sredjeni podaci bez ID-eva ili zajedno sa njima
+            //1.treba mi id reda 
+            //2.select upit - procedura
+            //3.rezultat smjesti u ListBox
+
+            populatePropertyInterface();
+            //dt za autora
+            DataTable dt = new DataTable();
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+            myProperty.GetProcedureSelectAutor(), myProperty.GetProcedureParameters().ToArray());
+            dt.Load(reader);
+            reader.Close();
+
+            //dt za izdavaca
+            DataTable dti = new DataTable();
+            SqlDataReader readeri = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+            myProperty.GetProcedureSelectIzdavac(), myProperty.GetProcedureParameters().ToArray());
+            dti.Load(readeri);
+            readeri.Close();
+
+            //prikaaz
+            int numRows = dt.Rows.Count;
+            int numCol = dt.Columns.Count;
+
+            //prikazuje se Autor/i knjige
+            if (numRows == 1)
+            {
+                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("Autor: ");
+            }
+            else
+            {
+                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("\nAutori: ");
+            }
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    lbDetaljno.Items.Add("\t" + row[i]);
+                }
+            }
+
+            //prikazuje se Izdavac/i knjige
+            if (dti.Rows.Count == 1)
+            {
+                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("Izdavač: ");
+            }
+            else
+            {
+                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("Izdavači: ");
+            }
+
+            foreach (DataRow row in dti.Rows)
+            {
+                int h = 0;
+                foreach (DataColumn col in dti.Columns)//do while petlja da se ispise jedan red pa onda drugi, ili obrnuti for petlje da unutrasnja bude vanjska
+                {
+                    lbDetaljno.Items.Add("\t" + col + ": " + row[h++]);
+                }
+                lbDetaljno.Items.Add("-----------------------------------------");
+            }
+
         }
     }
 }
