@@ -223,7 +223,7 @@ namespace DBBiblioteka
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
-                else if (item.GetType() == typeof(InputControl) && state == StateEnum.Search)
+                else if (item.GetType() == typeof(InputControl))
                 {
                     InputControl input = item as InputControl;
                     string value = input.GetValue();
@@ -261,6 +261,8 @@ namespace DBBiblioteka
             if (filterString.FStr.Length == 0)
                 return;
             filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
+
+
 
 
             if (state == StateEnum.Create)
