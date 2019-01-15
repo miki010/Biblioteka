@@ -12,6 +12,7 @@ using DBBiblioteka.AtributesClass;
 using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.Helper;
 using DBBiblioteka.AttributesClass;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
 namespace DBBiblioteka
@@ -20,11 +21,15 @@ namespace DBBiblioteka
     {
         PropertyInterface myInterface;
         StateEnum state;
+        int? idKnjige;
+        
+
         FilterString filterString;
 
         public FormInput()
         {
             InitializeComponent();
+            
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -33,6 +38,14 @@ namespace DBBiblioteka
             this.myInterface = myInterface;
             this.state = state;
 
+            PopulateControls();
+        }
+        public FormInput(PropertyInterface myInterface, StateEnum state, int id)
+        {
+            InitializeComponent();
+            this.myInterface = myInterface;
+            this.state = state;
+            this.idKnjige = id;
             PopulateControls();
         }
 
@@ -56,6 +69,21 @@ namespace DBBiblioteka
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
+
+                    //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
+                    if (idKnjige != null && ul.Name == "KnjigaID")
+                    {
+                        ul.SetKey(idKnjige.ToString());
+                        ul.Enabled = false;
+                    }
+
+                    //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
+                    if(ul.Name == "ZaposleniID")
+                    {
+                        ul.SetKey(FormLogin.idZaposlenog);
+                        ul.Enabled = false;
+                    }
+                    
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
@@ -89,6 +117,20 @@ namespace DBBiblioteka
                     }
 
                 }
+                else if (item.GetCustomAttribute<RadioValue>() != null)
+                {
+                    UserControlRadio ucr = new UserControlRadio();
+                    ucr.Name = item.Name;
+                    ucr.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+
+                    if (state == StateEnum.Update)
+                    {
+                        ucr.SetValue(item.GetValue(myInterface).ToString());
+                    }
+
+                    flPanelControls.Controls.Add(ucr);
+                }
+
                 else
                 {
                     InputControl ic = new InputControl();
@@ -120,49 +162,68 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
+
             var properties = myInterface.GetType().GetProperties();
             filterString.FStr = "";
 
-            if (state != StateEnum.Search)
-                foreach (var item in flPanelControls.Controls)
+
+            foreach (var item in flPanelControls.Controls)
+            {
+
+                if (item.GetType() == typeof(LookUpControl))
                 {
-                    if (item.GetType() == typeof(LookUpControl))
+                    LookUpControl input = item as LookUpControl;
+                    string value = input.Key;
+                    try
                     {
-                        LookUpControl input = item as LookUpControl;
-                        string value = input.Key;
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
+                        {
+                            input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                        }
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                     }
-                    else if (item.GetType() == typeof(InputControl))
+                    catch (Exception)
                     {
-                        InputControl input = item as InputControl;
-                        string value = input.GetValue();
+
+                        return;
+                    }
+                }
+                else if (item.GetType() == typeof(InputControl))
+                {
+                    InputControl input = item as InputControl;
+                    string value = input.GetValue();
+                    try
+                    {
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
+                        {
+                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                        }
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                     }
-                    else if (item.GetType() == typeof(DateTimeControl))
+                    catch (Exception)
                     {
-                        DateTimeControl input = item as DateTimeControl;
-                        DateTime value = input.GetValue();
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        return;
                     }
 
                 }
-            else
-            {
-
-                for (int i = 0; i < flPanelControls.Controls.Count; i++)
+                else if (item.GetType() == typeof(DateTimeControl))
                 {
-                    var item = flPanelControls.Controls[i];
-
-                    if (item.GetType() == typeof(LookUpControl))
-                    {
-                        LookUpControl input = item as LookUpControl;
-                        if (string.IsNullOrEmpty(input.Key))
-                            continue;
-                        string value = input.Key;
-                        filterString.FStr += input.Name + " = " + value + " and ";
+                    DateTimeControl input = item as DateTimeControl;
+                    DateTime value = input.GetValue();
+                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                }
+                else if (item.GetType() == typeof(UserControlRadio))
+                {
+                    UserControlRadio input = item as UserControlRadio;
+                    string value = input.GetValue();
+                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                }
+            }
 
                     }
                     else if (item.GetType() == typeof(InputControl))

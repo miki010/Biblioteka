@@ -16,6 +16,7 @@ namespace DBBiblioteka
     public partial class FormStandard : MetroForm
     {
         PropertyInterface myProperty;
+
         StateEnum state;
         public string Key;
         public string Value;
@@ -61,15 +62,22 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
-
-
+            
         }
 
         private void loadTable()
         {
             DataTable dt = new DataTable();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                myProperty.GetSelectQuery());
+            SqlDataReader reader = null;
+            //if (state == StateEnum.View)
+            //{
+
+            //}
+            //else
+            //{
+            reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+               myProperty.GetSelectQuery());
+            //}
             dt.Load(reader);
             reader.Close();
             dgvPrikaz.DataSource = dt;
@@ -290,6 +298,87 @@ namespace DBBiblioteka
         {
             refreshTable();
             dgvPrikaz.ClearSelection();
+        }
+        int idReda, idKnjige;
+        private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
+        {
+            //popunjavanje list box-a
+            lbDetaljno.Items.Clear();
+
+            if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+            {
+                //MessageBox.Show(dgvPrikaz.SelectedCells.Count.ToString());
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+                }
+            }
+            //pozivanje procedure, preko txtPretraga implementirati da se posalje parametar u proceduru
+            if (state == StateEnum.View)
+            {
+                populatePropertyInterface();
+
+
+
+                DataTable dt = new DataTable();
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+              myProperty.GetSelectPregledClanarinePoClanovima(), myProperty.GetSelectPregledClanarinePoClanovimaParameters().ToArray());
+                dt.Load(reader);
+                reader.Close();
+                dgvPrikaz.DataSource = dt;
+            }
+            //provjerava da li se radi o klasi PropertyKnjiga 
+            if (e.Button == MouseButtons.Right && myProperty.GetType() == typeof(PropertyKnjiga))
+            {
+                try
+                {
+
+                    //ContextMenu m = new ContextMenu();
+                    ContextMenuStrip m = new ContextMenuStrip();
+
+                    idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
+                    idKnjige = Convert.ToInt32(dgvPrikaz.SelectedRows[0].Cells[0].Value);
+                    if (idReda >= 0)
+                    {
+                        m.Items.Add("Dodaj izdavača").Name = "Izdavac";
+                        m.Items.Add("Dodaj autora").Name = "Autor";
+                        // m.Items.Add(string.Format("Do something to row {0}", currentMouseOverRow.ToString()));
+                    }
+
+                    m.Show(dgvPrikaz, new Point(e.X, e.Y));
+
+                    m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
+
+            }
+
+
+        }
+
+        private void m_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Izdavac":
+                    FormInput inputIzdavac = new FormInput(new PropertyIzdavacKnjiga(), StateEnum.Create, idKnjige);
+                    inputIzdavac.ShowDialog();
+
+                    break;
+                case "Autor":
+                    FormInput inputAutor = new FormInput(new PropertyAutorKnjiga(), StateEnum.Create, idKnjige);
+                    inputAutor.ShowDialog();
+
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

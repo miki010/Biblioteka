@@ -45,6 +45,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Pol")]
         [SqlName("Pol")]
+        [RadioValue]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public char Pol { get; set; }
 
@@ -258,6 +259,21 @@ namespace DBBiblioteka.PropertiesClass
             return list;
         }
 
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            return @"EXEC sp_PregledClanarinePoClanovima @BrojLegitimacije";
+        }
 
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@BrojLegitimacije", System.Data.SqlDbType.VarChar);
+                parameter.Value = BrojLegitimacije;
+                list.Add(parameter);
+            }
+
+            return list;
+        }
     }
 }

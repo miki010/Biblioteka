@@ -9,40 +9,35 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework;
 
+
 namespace DBBiblioteka
 {
-    public partial class InputControl : UserControl
+    public partial class UserControlRadio : UserControl
     {
-        
-        public InputControl()
+        public UserControlRadio()
         {
             InitializeComponent();
         }
 
         public void SetLabel(string name)
         {
-            lblText.Text = name;
-        }
-
-        public void SetLblObavezno(string text)
-        {
-            lblObavezno.Text = text;
-            lblObavezno.ForeColor = Color.Red;
+            lblNaziv.Text = name;
         }
 
         public string GetValue()
         {
-            return txtValue.Text;
+            if (rbM.Checked)
+                return rbM.Text.Substring(0, 1);
+            else
+                return rbZenski.Text.Substring(0, 1);
         }
 
         public void SetValue(string value)
         {
-            txtValue.Text = value;
-        }
-
-        private void txtValue_TextChanged(object sender, EventArgs e)
-        {
-            lblObavezno.Visible = false;
+            if (value == rbM.Text.Substring(0, 1))
+                rbM.Checked = true;
+            else if (value == rbZenski.Text.Substring(0, 1))
+                rbZenski.Checked = true;
         }
     }
 }

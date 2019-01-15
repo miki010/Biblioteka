@@ -49,6 +49,7 @@
             this.tileClanarina.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileClanarina.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileClanarina.UseTileImage = true;
+            this.tileClanarina.Click += new System.EventHandler(this.tileClanarina_Click);
             // 
             // tileVracanje
             // 

@@ -186,6 +186,16 @@ namespace DBBiblioteka.PropertiesClass
             return list;
         }
 
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
 

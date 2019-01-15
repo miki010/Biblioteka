@@ -35,6 +35,7 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnVrati = new MetroFramework.Controls.MetroTile();
+            this.lbDetaljno = new System.Windows.Forms.ListBox();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.btnDetaljnaPretraga = new MetroFramework.Controls.MetroButton();
             this.btnAzurirajZapise = new MetroFramework.Controls.MetroButton();
@@ -53,8 +54,9 @@
             this.dgvPrikaz.Location = new System.Drawing.Point(57, 193);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            this.dgvPrikaz.Size = new System.Drawing.Size(784, 328);
+            this.dgvPrikaz.Size = new System.Drawing.Size(505, 328);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
             // tileDodaj
             // 
@@ -135,6 +137,14 @@
             this.btnVrati.Text = "POTVRDI";
             this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
             // 
+            // lbDetaljno
+            // 
+            this.lbDetaljno.FormattingEnabled = true;
+            this.lbDetaljno.Location = new System.Drawing.Point(566, 128);
+            this.lbDetaljno.Name = "lbDetaljno";
+            this.lbDetaljno.Size = new System.Drawing.Size(309, 329);
+            this.lbDetaljno.TabIndex = 6;
+            // 
             // txtPretraga
             // 
             this.txtPretraga.Location = new System.Drawing.Point(590, 167);
@@ -174,6 +184,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(898, 550);
+            this.Controls.Add(this.lbDetaljno);
             this.ClientSize = new System.Drawing.Size(898, 566);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btnAzurirajZapise);
@@ -205,6 +217,7 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         public MetroFramework.Controls.MetroTile btnVrati;
+        private System.Windows.Forms.ListBox lbDetaljno;
         private System.Windows.Forms.TextBox txtPretraga;
         private MetroFramework.Controls.MetroButton btnDetaljnaPretraga;
         private MetroFramework.Controls.MetroButton btnAzurirajZapise;

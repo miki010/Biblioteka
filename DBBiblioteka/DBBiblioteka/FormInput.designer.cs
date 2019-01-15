@@ -96,6 +96,7 @@
             this.Name = "FormInput";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Text = "Forma za unos podataka";
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

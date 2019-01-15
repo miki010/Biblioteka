@@ -45,5 +45,11 @@ namespace DBBiblioteka
             FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
             formStandard.ShowDialog();
         }
+
+        private void tileClanarina_Click(object sender, EventArgs e)
+        {
+            FormStandard formStandard = new FormStandard(new PropertyClan(), StateEnum.View);
+            formStandard.ShowDialog();
+        }
     }
 }

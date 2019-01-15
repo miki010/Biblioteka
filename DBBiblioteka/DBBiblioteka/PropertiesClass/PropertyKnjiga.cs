@@ -102,6 +102,16 @@ namespace DBBiblioteka.PropertiesClass
                            ,@Zanr";
         }
 
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectQuery()
         {
             return @"SELECT [KnjigaID]
