@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DBBiblioteka.Helper;
 using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.AtributesClass;
 using System.Reflection;
-using MetroFramework;
 using MetroFramework.Forms;
 
 namespace DBBiblioteka
 {
-    public partial class FormStandard : MetroFramework.Forms.MetroForm
+    public partial class FormStandard : MetroForm
     {
         PropertyInterface myProperty;
         StateEnum state;
@@ -28,13 +24,13 @@ namespace DBBiblioteka
         public FormStandard()
         {
             InitializeComponent();
-            
+
         }
-        
+
         public FormStandard(PropertyInterface propertyInterface)
         {
-            InitializeComponent();          
-            this.myProperty = propertyInterface;        
+            InitializeComponent();
+            this.myProperty = propertyInterface;
         }
 
         public FormStandard(PropertyInterface propertyInterface, StateEnum stateEnum)
@@ -65,7 +61,8 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
-            
+
+
         }
 
         private void loadTable()
@@ -94,11 +91,11 @@ namespace DBBiblioteka
             {
                 FormInput formInput = new FormInput(myProperty, StateEnum.Create);
                 formInput.ShowDialog();
-            if (formInput.DialogResult == DialogResult.OK)
-            {
-                refreshTable();
-                // loadTable();
-            }
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    refreshTable();
+                    // loadTable();
+                }
             }
             catch (Exception ex)
             {
@@ -125,14 +122,13 @@ namespace DBBiblioteka
                     }
                     catch (Exception ex)
                     {
-
+                        //hvata exception za nevalidan unos u textID lookupcontrol polje
                     }
 
                 }
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Selektujte u tabeli podatak koji zelite da izmjenite!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -163,7 +159,7 @@ namespace DBBiblioteka
             {
 
                 MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
         }
 
@@ -172,23 +168,23 @@ namespace DBBiblioteka
         {
             //try
             //{
-                if (dgvPrikaz.SelectedRows[0] != null)
-                {
-                    DataGridViewRow row = dgvPrikaz.SelectedRows[0];
-                    var properties = myProperty.GetType().GetProperties();
+            if (dgvPrikaz.SelectedRows[0] != null)
+            {
+                DataGridViewRow row = dgvPrikaz.SelectedRows[0];
+                var properties = myProperty.GetType().GetProperties();
 
-                    foreach (PropertyInfo item in properties)
-                    {
-                        string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
-                        item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
-                        
-                    }
+                foreach (PropertyInfo item in properties)
+                {
+                    string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
+                    item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
+
                 }
+            }
             //}
             //catch (Exception)
             //{
             //    MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             //}          
         }
 
@@ -239,6 +235,61 @@ namespace DBBiblioteka
             {
                 Value += row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString() + " ";
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            List<string> columnNames = new List<string>();
+            string searchString = "";
+
+            DataTable table = dgvPrikaz.DataSource as DataTable;
+
+            for (int i = 0; i < table.Columns.Count; i++)
+            {
+                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" 
+                    && table.Columns[i].DataType.ToString() != "System.Byte" && table.Columns[i].DataType.ToString() != "System.Decimal") // ili !nvarchar...
+                    columnNames.Add(table.Columns[i].ColumnName);
+                
+            }
+
+            for (int i = 0; i < columnNames.Count - 1; i++)
+                searchString += columnNames[i] + " LIKE '%{0}%' or ";
+
+            if(columnNames.Count > 0)
+            searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
+            (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
+
+        }
+
+        private void btnDetaljnaPretraga_Click(object sender, EventArgs e)
+        {
+            FilterString filterString = new FilterString();
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            try
+            {
+                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
+                    if(dgvPrikaz.Rows.Count == 0)
+                    {
+                        refreshTable();
+                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
+
+        }
+
+        private void btnAzurirajZapise_Click(object sender, EventArgs e)
+        {
+            refreshTable();
+            dgvPrikaz.ClearSelection();
         }
     }
 }

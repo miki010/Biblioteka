@@ -65,6 +65,12 @@
     <Compile Include="AttributesClass\LookupValue.cs" />
     <Compile Include="AttributesClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributesClass\SqlNameAttribute.cs" />
+    <Compile Include="DateRangeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DateRangeControl.Designer.cs">
+      <DependentUpon>DateRangeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,10 @@
     <Compile Include="PropertiesClass\PropertyZaposleni.cs" />
     <Compile Include="PropertiesClass\StateEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FilterString.cs" />
+    <EmbeddedResource Include="DateRangeControl.resx">
+      <DependentUpon>DateRangeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>

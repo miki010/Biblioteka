@@ -35,6 +35,10 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnVrati = new MetroFramework.Controls.MetroTile();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
+            this.btnDetaljnaPretraga = new MetroFramework.Controls.MetroButton();
+            this.btnAzurirajZapise = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -44,8 +48,9 @@
             // 
             this.dgvPrikaz.AllowUserToAddRows = false;
             this.dgvPrikaz.AllowUserToDeleteRows = false;
+            this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrikaz.Location = new System.Drawing.Point(55, 128);
+            this.dgvPrikaz.Location = new System.Drawing.Point(57, 193);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
             this.dgvPrikaz.Size = new System.Drawing.Size(784, 328);
@@ -98,7 +103,7 @@
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(75, 38);
+            this.metroPanel1.Location = new System.Drawing.Point(77, 25);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Size = new System.Drawing.Size(746, 66);
             this.metroPanel1.TabIndex = 4;
@@ -130,11 +135,50 @@
             this.btnVrati.Text = "POTVRDI";
             this.btnVrati.Click += new System.EventHandler(this.btnVrati_Click);
             // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Location = new System.Drawing.Point(590, 167);
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(251, 20);
+            this.txtPretraga.TabIndex = 6;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // btnDetaljnaPretraga
+            // 
+            this.btnDetaljnaPretraga.Location = new System.Drawing.Point(700, 129);
+            this.btnDetaljnaPretraga.Name = "btnDetaljnaPretraga";
+            this.btnDetaljnaPretraga.Size = new System.Drawing.Size(141, 32);
+            this.btnDetaljnaPretraga.TabIndex = 10;
+            this.btnDetaljnaPretraga.Text = "Detaljna pretraga";
+            this.btnDetaljnaPretraga.Click += new System.EventHandler(this.btnDetaljnaPretraga_Click);
+            // 
+            // btnAzurirajZapise
+            // 
+            this.btnAzurirajZapise.Location = new System.Drawing.Point(57, 167);
+            this.btnAzurirajZapise.Name = "btnAzurirajZapise";
+            this.btnAzurirajZapise.Size = new System.Drawing.Size(161, 20);
+            this.btnAzurirajZapise.TabIndex = 11;
+            this.btnAzurirajZapise.Text = "Ažuriraj zapise";
+            this.btnAzurirajZapise.Click += new System.EventHandler(this.btnAzurirajZapise_Click);
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(480, 167);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(97, 19);
+            this.metroLabel1.TabIndex = 12;
+            this.metroLabel1.Text = "Brza pretraga: ";
+            // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 500);
+            this.ClientSize = new System.Drawing.Size(898, 566);
+            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.btnAzurirajZapise);
+            this.Controls.Add(this.btnDetaljnaPretraga);
+            this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.dgvPrikaz);
@@ -148,6 +192,7 @@
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,5 +205,9 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         public MetroFramework.Controls.MetroTile btnVrati;
+        private System.Windows.Forms.TextBox txtPretraga;
+        private MetroFramework.Controls.MetroButton btnDetaljnaPretraga;
+        private MetroFramework.Controls.MetroButton btnAzurirajZapise;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

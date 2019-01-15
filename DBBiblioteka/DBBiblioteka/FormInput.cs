@@ -12,6 +12,7 @@ using DBBiblioteka.AtributesClass;
 using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.Helper;
 using DBBiblioteka.AttributesClass;
+using System.Data.SqlClient;
 
 namespace DBBiblioteka
 {
@@ -19,6 +20,7 @@ namespace DBBiblioteka
     {
         PropertyInterface myInterface;
         StateEnum state;
+        FilterString filterString;
 
         public FormInput()
         {
@@ -30,6 +32,16 @@ namespace DBBiblioteka
             InitializeComponent();
             this.myInterface = myInterface;
             this.state = state;
+
+            PopulateControls();
+        }
+
+        public FormInput(PropertyInterface myInterface, StateEnum state, FilterString filterString)  //konstruktor za Search inputform
+        {
+            InitializeComponent();
+            this.myInterface = myInterface;
+            this.state = state;
+            this.filterString = filterString;
 
             PopulateControls();
         }
@@ -54,19 +66,28 @@ namespace DBBiblioteka
 
                 else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
-                    DateTimeControl dtc = new DateTimeControl();
-                    dtc.Name = item.Name;
-                    dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    if (state == StateEnum.Create || state == StateEnum.Update)
+                    {
+                        DateTimeControl dtc = new DateTimeControl();
+                        dtc.Name = item.Name;
+                        dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
-                    if (state == StateEnum.Create)
-                    {
-                        dtc.SetValue(DateTime.Now);
+                        if (state == StateEnum.Create)
+                            dtc.SetValue(DateTime.Now);
+                        else if (state == StateEnum.Update)
+                            dtc.SetValue((DateTime)item.GetValue(myInterface));
+
+                        flPanelControls.Controls.Add(dtc);
                     }
-                    else
+                    else if (state == StateEnum.Search)
                     {
-                        dtc.SetValue((DateTime)item.GetValue(myInterface));
+                        DateRangeControl dateRange = new DateRangeControl();
+                        dateRange.Name = item.Name;
+                        dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                        dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+                        flPanelControls.Controls.Add(dateRange);
                     }
-                    flPanelControls.Controls.Add(dtc);
+
                 }
                 else
                 {
@@ -100,30 +121,90 @@ namespace DBBiblioteka
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
             var properties = myInterface.GetType().GetProperties();
+            filterString.FStr = "";
 
-            foreach (var item in flPanelControls.Controls)
+            if (state != StateEnum.Search)
+                foreach (var item in flPanelControls.Controls)
+                {
+                    if (item.GetType() == typeof(LookUpControl))
+                    {
+                        LookUpControl input = item as LookUpControl;
+                        string value = input.Key;
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    else if (item.GetType() == typeof(InputControl))
+                    {
+                        InputControl input = item as InputControl;
+                        string value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    else if (item.GetType() == typeof(DateTimeControl))
+                    {
+                        DateTimeControl input = item as DateTimeControl;
+                        DateTime value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+
+                }
+            else
             {
-                if (item.GetType() == typeof(LookUpControl))
+
+                for (int i = 0; i < flPanelControls.Controls.Count; i++)
                 {
-                    LookUpControl input = item as LookUpControl;
-                    string value = input.Key;
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    var item = flPanelControls.Controls[i];
+
+                    if (item.GetType() == typeof(LookUpControl))
+                    {
+                        LookUpControl input = item as LookUpControl;
+                        if (string.IsNullOrEmpty(input.Key))
+                            continue;
+                        string value = input.Key;
+                        filterString.FStr += input.Name + " = " + value + " and ";
+
+                    }
+                    else if (item.GetType() == typeof(InputControl))
+                    {
+                        InputControl input = item as InputControl;
+                        string value = input.GetValue();
+                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
+                        {
+                            if (string.IsNullOrEmpty(input.GetValue()))
+                                continue;
+                            else if (!int.TryParse(input.GetValue(), out int number1) && !double.TryParse(input.GetValue(), out double numer2))
+                            {
+                                MessageBox.Show("Polje " + input.Name + " može sadržati samo brojevne podatke!", "Greška");
+                                input.SetValue("");
+                                return;
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
+                            filterString.FStr += input.Name + " = " + value + " and ";
+                        else if(!string.IsNullOrEmpty(input.GetValue()))
+                            filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
+                    }
+                    else if (item.GetType() == typeof(DateRangeControl))
+                    {
+                        DateRangeControl input = item as DateRangeControl;
+                        DateTime[] dates = input.GetValue();
+                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                            continue;
+                        else if (dates[0].Date > dates[1].Date)
+                        {
+                            MessageBox.Show("Izaberite validan raspon datuma!", "Greška"); 
+                            return;
+                        }
+                        filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
+                    }
                 }
-                else if (item.GetType() == typeof(InputControl))
-                {
-                    InputControl input = item as InputControl;
-                    string value = input.GetValue();
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                }
-                else if (item.GetType() == typeof(DateTimeControl))
-                {
-                    DateTimeControl input = item as DateTimeControl;
-                    DateTime value = input.GetValue();
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                }
+                if (filterString.FStr.Length == 0) 
+                    return;
+                filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5); 
+
+
             }
 
             if (state == StateEnum.Create)
@@ -139,8 +220,8 @@ namespace DBBiblioteka
                 MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            DialogResult = DialogResult.OK;
 
+            DialogResult = DialogResult.OK;
 
         }
 
