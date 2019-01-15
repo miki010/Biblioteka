@@ -10,6 +10,7 @@ using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.AtributesClass;
 using System.Reflection;
 using MetroFramework.Forms;
+using System.Drawing;
 
 namespace DBBiblioteka
 {
@@ -255,7 +256,7 @@ namespace DBBiblioteka
             for (int i = 0; i < table.Columns.Count; i++)
             {
                 if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" 
-                    && table.Columns[i].DataType.ToString() != "System.Byte" && table.Columns[i].DataType.ToString() != "System.Decimal") // ili !nvarchar...
+                    && table.Columns[i].DataType.ToString() != "System.Byte" && table.Columns[i].DataType.ToString() != "System.Decimal" && table.Columns[i].DataType.ToString() != "System.Int16") // ili !nvarchar...
                     columnNames.Add(table.Columns[i].ColumnName);
                 
             }
@@ -265,6 +266,7 @@ namespace DBBiblioteka
 
             if(columnNames.Count > 0)
             searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
+            MessageBox.Show(string.Format(searchString, txtPretraga.Text));
             (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
 
         }

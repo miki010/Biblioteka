@@ -22,14 +22,14 @@ namespace DBBiblioteka
         PropertyInterface myInterface;
         StateEnum state;
         int? idKnjige;
-        
+
 
         FilterString filterString;
 
         public FormInput()
         {
             InitializeComponent();
-            
+
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -78,12 +78,12 @@ namespace DBBiblioteka
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
-                    if(ul.Name == "ZaposleniID")
+                    if (ul.Name == "ZaposleniID")
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
                         ul.Enabled = false;
                     }
-                    
+
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
@@ -223,50 +223,47 @@ namespace DBBiblioteka
                     PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                 }
-            }
-
-                    }
-                    else if (item.GetType() == typeof(InputControl))
+                else if (item.GetType() == typeof(InputControl))
+                {
+                    InputControl input = item as InputControl;
+                    string value = input.GetValue();
+                    if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
                     {
-                        InputControl input = item as InputControl;
-                        string value = input.GetValue();
-                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
-                        {
-                            if (string.IsNullOrEmpty(input.GetValue()))
-                                continue;
-                            else if (!int.TryParse(input.GetValue(), out int number1) && !double.TryParse(input.GetValue(), out double numer2))
-                            {
-                                MessageBox.Show("Polje " + input.Name + " može sadržati samo brojevne podatke!", "Greška");
-                                input.SetValue("");
-                                return;
-                            }
-                        }
-
-                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
-                            filterString.FStr += input.Name + " = " + value + " and ";
-                        else if(!string.IsNullOrEmpty(input.GetValue()))
-                            filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
-                    }
-                    else if (item.GetType() == typeof(DateRangeControl))
-                    {
-                        DateRangeControl input = item as DateRangeControl;
-                        DateTime[] dates = input.GetValue();
-                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                        if (string.IsNullOrEmpty(input.GetValue()))
                             continue;
-                        else if (dates[0].Date > dates[1].Date)
+                        else if (!int.TryParse(input.GetValue(), out int number1) && !double.TryParse(input.GetValue(), out double numer2))
                         {
-                            MessageBox.Show("Izaberite validan raspon datuma!", "Greška"); 
+                            MessageBox.Show("Polje " + input.Name + " može sadržati samo brojevne podatke!", "Greška");
+                            input.SetValue("");
                             return;
                         }
-                        filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
                     }
+
+                    if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
+                        filterString.FStr += input.Name + " = " + value + " and ";
+                    else if (!string.IsNullOrEmpty(input.GetValue()))
+                        filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
                 }
-                if (filterString.FStr.Length == 0) 
-                    return;
-                filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5); 
-
-
+                else if (item.GetType() == typeof(DateRangeControl))
+                {
+                    DateRangeControl input = item as DateRangeControl;
+                    DateTime[] dates = input.GetValue();
+                    if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                        continue;
+                    else if (dates[0].Date > dates[1].Date)
+                    {
+                        MessageBox.Show("Izaberite validan raspon datuma!", "Greška");
+                        return;
+                    }
+                    filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
+                }
             }
+            if (filterString.FStr.Length == 0)
+                return;
+            filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
+
+
+
 
             if (state == StateEnum.Create)
             {

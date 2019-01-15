@@ -140,14 +140,14 @@
             // lbDetaljno
             // 
             this.lbDetaljno.FormattingEnabled = true;
-            this.lbDetaljno.Location = new System.Drawing.Point(566, 128);
+            this.lbDetaljno.Location = new System.Drawing.Point(566, 193);
             this.lbDetaljno.Name = "lbDetaljno";
             this.lbDetaljno.Size = new System.Drawing.Size(309, 329);
             this.lbDetaljno.TabIndex = 6;
             // 
             // txtPretraga
             // 
-            this.txtPretraga.Location = new System.Drawing.Point(590, 167);
+            this.txtPretraga.Location = new System.Drawing.Point(624, 167);
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(251, 20);
             this.txtPretraga.TabIndex = 6;
@@ -155,7 +155,7 @@
             // 
             // btnDetaljnaPretraga
             // 
-            this.btnDetaljnaPretraga.Location = new System.Drawing.Point(700, 129);
+            this.btnDetaljnaPretraga.Location = new System.Drawing.Point(734, 129);
             this.btnDetaljnaPretraga.Name = "btnDetaljnaPretraga";
             this.btnDetaljnaPretraga.Size = new System.Drawing.Size(141, 32);
             this.btnDetaljnaPretraga.TabIndex = 10;
@@ -174,7 +174,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(480, 167);
+            this.metroLabel1.Location = new System.Drawing.Point(514, 167);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(97, 19);
             this.metroLabel1.TabIndex = 12;
@@ -184,9 +184,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 550);
-            this.Controls.Add(this.lbDetaljno);
             this.ClientSize = new System.Drawing.Size(898, 566);
+            this.Controls.Add(this.lbDetaljno);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btnAzurirajZapise);
             this.Controls.Add(this.btnDetaljnaPretraga);
