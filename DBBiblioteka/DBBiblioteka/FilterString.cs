@@ -9,5 +9,10 @@ namespace DBBiblioteka
     public class FilterString
     {
         public string FStr { get; set; }
+
+        public FilterString()
+        {
+
+        }
     }
 }
