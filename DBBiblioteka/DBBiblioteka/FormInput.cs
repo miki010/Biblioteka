@@ -164,7 +164,7 @@ namespace DBBiblioteka
         {
 
             var properties = myInterface.GetType().GetProperties();
-            filterString.FStr = "";
+            //filterString.FStr = "";
 
 
             foreach (var item in flPanelControls.Controls)
