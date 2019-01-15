@@ -24,6 +24,12 @@ namespace DBBiblioteka
             lblText.Text = name;
         }
 
+        public void SetLblObavezno(string text)
+        {
+            lblObavezno.Text = text;
+            lblObavezno.ForeColor = Color.Red;
+        }
+
         public string GetValue()
         {
             return txtValue.Text;
@@ -32,6 +38,11 @@ namespace DBBiblioteka
         public void SetValue(string value)
         {
             txtValue.Text = value;
+        }
+
+        private void txtValue_TextChanged(object sender, EventArgs e)
+        {
+            lblObavezno.Visible = false;
         }
     }
 }

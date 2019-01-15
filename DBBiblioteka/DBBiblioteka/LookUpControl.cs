@@ -27,7 +27,15 @@ namespace DBBiblioteka
 
         public void SetLabel(string text)
         {
-        lblText.Text = text;       
+            lblText.Text = text;
+        }
+        public void SetLabelObavezno(string text)
+        {
+            lblObavezno.Visible = true;
+            lblObavezno.Text = text;
+            lblObavezno.ForeColor = Color.Red;
+            //Label label = new Label();
+            //label.Text = text;
         }
 
         public void SetKey(string key)
@@ -37,17 +45,20 @@ namespace DBBiblioteka
 
         private void tileLookUp_Click_1(object sender, EventArgs e)
         {
+            lblObavezno.Visible = false;
+
             FormStandard sf = new FormStandard(myInterface, StateEnum.LookUp);
             sf.ShowDialog();
             if (sf.DialogResult == DialogResult.OK)
             {
-                Key = sf.Key;           
-                txtID.Text = Key; 
+                Key = sf.Key;
+                txtID.Text = Key;
             }
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)
         {
+            lblObavezno.Visible = false;
             if (txtID.Text == "")
             {
                 txtName.Text = "";
@@ -66,11 +77,11 @@ namespace DBBiblioteka
                 sf.Vrati();
                 Key = sf.Key;
                 Value = sf.Value;
-                txtName.Text = Value; 
+                txtName.Text = Value;
             }
 
         }
-        
+
 
     }
 }

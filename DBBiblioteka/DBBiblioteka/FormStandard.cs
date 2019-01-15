@@ -20,6 +20,7 @@ namespace DBBiblioteka
     public partial class FormStandard : MetroFramework.Forms.MetroForm
     {
         PropertyInterface myProperty;
+
         StateEnum state;
         public string Key;
         public string Value;
@@ -28,13 +29,13 @@ namespace DBBiblioteka
         public FormStandard()
         {
             InitializeComponent();
-            
+
         }
-        
+
         public FormStandard(PropertyInterface propertyInterface)
         {
-            InitializeComponent();          
-            this.myProperty = propertyInterface;        
+            InitializeComponent();
+            this.myProperty = propertyInterface;
         }
 
         public FormStandard(PropertyInterface propertyInterface, StateEnum stateEnum)
@@ -65,7 +66,7 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
-            
+
         }
 
         private void loadTable()
@@ -74,12 +75,12 @@ namespace DBBiblioteka
             SqlDataReader reader = null;
             //if (state == StateEnum.View)
             //{
-               
+
             //}
             //else
             //{
-                 reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myProperty.GetSelectQuery()); 
+            reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+               myProperty.GetSelectQuery());
             //}
             dt.Load(reader);
             reader.Close();
@@ -102,11 +103,11 @@ namespace DBBiblioteka
             {
                 FormInput formInput = new FormInput(myProperty, StateEnum.Create);
                 formInput.ShowDialog();
-            if (formInput.DialogResult == DialogResult.OK)
-            {
-                refreshTable();
-                // loadTable();
-            }
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    refreshTable();
+                    // loadTable();
+                }
             }
             catch (Exception ex)
             {
@@ -171,7 +172,7 @@ namespace DBBiblioteka
             {
 
                 MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
         }
 
@@ -180,23 +181,23 @@ namespace DBBiblioteka
         {
             //try
             //{
-                if (dgvPrikaz.SelectedRows[0] != null)
-                {
-                    DataGridViewRow row = dgvPrikaz.SelectedRows[0];
-                    var properties = myProperty.GetType().GetProperties();
+            if (dgvPrikaz.SelectedRows[0] != null)
+            {
+                DataGridViewRow row = dgvPrikaz.SelectedRows[0];
+                var properties = myProperty.GetType().GetProperties();
 
-                    foreach (PropertyInfo item in properties)
-                    {
-                        string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
-                        item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
-                        
-                    }
+                foreach (PropertyInfo item in properties)
+                {
+                    string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
+                    item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
+
                 }
+            }
             //}
             //catch (Exception)
             //{
             //    MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             //}          
         }
 
@@ -248,15 +249,28 @@ namespace DBBiblioteka
                 Value += row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString() + " ";
             }
         }
-
+        int idReda, idKnjige;
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
+            //popunjavanje list box-a
+            lbDetaljno.Items.Clear();
+
+            if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+            {
+                //MessageBox.Show(dgvPrikaz.SelectedCells.Count.ToString());
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+                }
+            }
             //pozivanje procedure, preko txtPretraga implementirati da se posalje parametar u proceduru
-            if(state == StateEnum.View)
+            if (state == StateEnum.View)
             {
                 populatePropertyInterface();
 
-              
+
 
                 DataTable dt = new DataTable();
                 SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
@@ -265,22 +279,55 @@ namespace DBBiblioteka
                 reader.Close();
                 dgvPrikaz.DataSource = dt;
             }
-            if (e.Button == MouseButtons.Right)
+            //provjerava da li se radi o klasi PropertyKnjiga 
+            if (e.Button == MouseButtons.Right && myProperty.GetType() == typeof(PropertyKnjiga))
             {
-                ContextMenu m = new ContextMenu();
-                m.MenuItems.Add(new MenuItem("Dodaj izdavaca"));
-                m.MenuItems.Add(new MenuItem("Dodaj autora"));
-               // m.MenuItems.Add(new MenuItem("Paste"));
-
-                int currentMouseOverRow = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
-
-                if (currentMouseOverRow >= 0)
+                try
                 {
-                    m.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+
+                    //ContextMenu m = new ContextMenu();
+                    ContextMenuStrip m = new ContextMenuStrip();
+
+                    idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
+                    idKnjige = Convert.ToInt32(dgvPrikaz.SelectedRows[0].Cells[0].Value);
+                    if (idReda >= 0)
+                    {
+                        m.Items.Add("Dodaj izdavača").Name = "Izdavac";
+                        m.Items.Add("Dodaj autora").Name = "Autor";
+                        // m.Items.Add(string.Format("Do something to row {0}", currentMouseOverRow.ToString()));
+                    }
+
+                    m.Show(dgvPrikaz, new Point(e.X, e.Y));
+
+                    m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
                 }
 
-                m.Show(dgvPrikaz, new Point(e.X, e.Y));
+            }
 
+
+        }
+
+        private void m_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Izdavac":
+                    FormInput inputIzdavac = new FormInput(new PropertyIzdavacKnjiga(), StateEnum.Create, idKnjige);
+                    inputIzdavac.ShowDialog();
+
+                    break;
+                case "Autor":
+                    FormInput inputAutor = new FormInput(new PropertyAutorKnjiga(), StateEnum.Create, idKnjige);
+                    inputAutor.ShowDialog();
+
+                    break;
+                default:
+                    break;
             }
         }
     }
