@@ -65,6 +65,21 @@ namespace DBBiblioteka.PropertiesClass
                            (@Naziv)";
         }
 
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectPregledClanarinePoClanovima()
         {
             throw new NotImplementedException();

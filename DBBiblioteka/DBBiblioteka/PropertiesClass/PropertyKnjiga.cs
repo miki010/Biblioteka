@@ -102,15 +102,7 @@ namespace DBBiblioteka.PropertiesClass
                            ,@Zanr";
         }
 
-        public string GetSelectPregledClanarinePoClanovima()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public string GetSelectQuery()
         {
@@ -163,6 +155,36 @@ namespace DBBiblioteka.PropertiesClass
                           ,[Kolicina] = @Kolicina
                           ,[Zanr] = @Zanr
                      WHERE KnjigaID = @KnjigaID";
+        }
+
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
+                parameter.Value = KnjigaID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public string GetProcedureSelectAutor()
+        {
+            return @"EXEC sp_KnjigaAutor @KnjigaID";
+        }
+
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+
+        }
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            return @"EXEC sp_KnjigaIzdavac @KnjigaID";
         }
     }
 }
