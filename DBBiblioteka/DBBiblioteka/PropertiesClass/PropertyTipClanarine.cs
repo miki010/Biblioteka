@@ -76,6 +76,31 @@ namespace DBBiblioteka.PropertiesClass
                            (@NazivTipa, @IznosClanarine)";
         }
 
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectQuery()
         {
             return @"SELECT [TipID]

@@ -30,6 +30,7 @@
         {
             this.lblText = new System.Windows.Forms.Label();
             this.txtValue = new System.Windows.Forms.TextBox();
+            this.lblObavezno = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // lblText
@@ -49,15 +50,29 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(288, 22);
             this.txtValue.TabIndex = 1;
+            this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
+            // 
+            // lblObavezno
+            // 
+            this.lblObavezno.AutoSize = true;
+            this.lblObavezno.BackColor = System.Drawing.SystemColors.Control;
+            this.lblObavezno.ForeColor = System.Drawing.Color.Red;
+            this.lblObavezno.Location = new System.Drawing.Point(113, 31);
+            this.lblObavezno.Name = "lblObavezno";
+            this.lblObavezno.Size = new System.Drawing.Size(0, 0);
+            this.lblObavezno.Style = MetroFramework.MetroColorStyle.Red;
+            this.lblObavezno.TabIndex = 2;
+            this.lblObavezno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // InputControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblObavezno);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblText);
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(419, 37);
+            this.Size = new System.Drawing.Size(408, 55);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +82,6 @@
 
         private System.Windows.Forms.Label lblText;
         private System.Windows.Forms.TextBox txtValue;
+        private MetroFramework.Controls.MetroLabel lblObavezno;
     }
 }

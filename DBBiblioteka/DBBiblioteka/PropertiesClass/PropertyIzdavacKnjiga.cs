@@ -17,7 +17,7 @@ namespace DBBiblioteka.PropertiesClass
 
         #region Properties
 
-        [DisplayName("IzdavacKnjigaID")]
+        [DisplayName("ID")]
         [SqlName("IzdavacKnjigaID")]
         [PrimaryKey]
         public int IzdavacKnjigaID { get; set; }
@@ -28,18 +28,17 @@ namespace DBBiblioteka.PropertiesClass
         [ForeignKey("Knjiga", "KnjigaID", "DBBiblioteka.PropertiesClass.PropertyKnjiga")]
         public int KnjigaID { get; set; }
 
-        [DisplayName("IzdavacID")]
+        [DisplayName("Izdavač ID")]
         [SqlName("IzdavacID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKey("IzdavacID", "IzdavacID", "DBBiblioteka.PropertiesClass.PropertyIzdavac")]
         public int IzdavacID { get; set; }
      
 
-        [DisplayName("Kolicina")]
+        [DisplayName("Količina")]
         [SqlName("Kolicina")]
-        [DateTimeAttribute]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
-        public DateTime Kolicina { get; set; }
+        public int Kolicina { get; set; }
 
 
         #endregion
@@ -59,7 +58,7 @@ namespace DBBiblioteka.PropertiesClass
         public string GetInsertQuery()
         {
             return @"INSERT INTO dbo.IzdavacKnjiga
-                           ,KnjigaID
+                           (KnjigaID
                            ,IzdavacID
                            ,Kolicina)
                      VALUES
@@ -158,6 +157,31 @@ namespace DBBiblioteka.PropertiesClass
             }
 
             return list;
+        }
+
+        public string GetSelectPregledClanarinePoClanovima()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
         }
 
 

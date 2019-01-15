@@ -32,11 +32,12 @@
             this.txtName = new MetroFramework.Controls.MetroTextBox();
             this.tileLookUp = new MetroFramework.Controls.MetroTile();
             this.lblText = new System.Windows.Forms.Label();
+            this.lblObavezno = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(107, 13);
+            this.txtID.Location = new System.Drawing.Point(99, 7);
             this.txtID.MaxLength = 9;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(94, 25);
@@ -45,14 +46,14 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(320, 13);
+            this.txtName.Location = new System.Drawing.Point(312, 7);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(300, 25);
             this.txtName.TabIndex = 1;
             // 
             // tileLookUp
             // 
-            this.tileLookUp.Location = new System.Drawing.Point(217, 13);
+            this.tileLookUp.Location = new System.Drawing.Point(209, 7);
             this.tileLookUp.Name = "tileLookUp";
             this.tileLookUp.Size = new System.Drawing.Size(84, 24);
             this.tileLookUp.TabIndex = 2;
@@ -65,22 +66,34 @@
             // lblText
             // 
             this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(19, 19);
+            this.lblText.Location = new System.Drawing.Point(11, 13);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(35, 13);
             this.lblText.TabIndex = 3;
             this.lblText.Text = "label1";
             // 
+            // lblObavezno
+            // 
+            this.lblObavezno.AutoSize = true;
+            this.lblObavezno.ForeColor = System.Drawing.Color.Red;
+            this.lblObavezno.Location = new System.Drawing.Point(99, 35);
+            this.lblObavezno.Name = "lblObavezno";
+            this.lblObavezno.Size = new System.Drawing.Size(0, 0);
+            this.lblObavezno.Style = MetroFramework.MetroColorStyle.Red;
+            this.lblObavezno.TabIndex = 4;
+            this.lblObavezno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // LookUpControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblObavezno);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.tileLookUp);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
             this.Name = "LookUpControl";
-            this.Size = new System.Drawing.Size(651, 54);
+            this.Size = new System.Drawing.Size(620, 63);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +105,6 @@
         private MetroFramework.Controls.MetroTextBox txtName;
         private MetroFramework.Controls.MetroTile tileLookUp;
         private System.Windows.Forms.Label lblText;
+        private MetroFramework.Controls.MetroLabel lblObavezno;
     }
 }

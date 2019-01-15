@@ -23,7 +23,9 @@ namespace DBBiblioteka
     {
         PropertyLogin myProperty = new PropertyLogin();
         PropertyZaposleni propertyZaposleni = new PropertyZaposleni();
-        
+        public static string idZaposlenog = "";
+
+
 
         public FormLogin()
         {
@@ -37,10 +39,30 @@ namespace DBBiblioteka
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            Login();
+            //prije poziva f-je provjerava da li su obadva polja popunjena
+            
+            
+            if(!txtUserName.Text.Trim().Equals("") && !txtPassword.Text.Trim().Equals(""))
+            {
+                Login();
+
+                lblInvalid.Visible = false;
+                lblUName.Visible = false;
+            }
+            else if (txtUserName.Text.Trim().Equals(""))
+            {
+                lblUName.Visible = true;
+                lblUName.Text = "Polje je obavezno za unos!";
+                lblUName.ForeColor = Color.Red;
+            }
+            else if (txtPassword.Text.Trim().Equals(""))
+            {
+                lblInvalid.Visible = true;
+                lblInvalid.Text = "Polje je obavezno za unos!";
+            }
+
             
         }
-
 
         private void Login()
         { 
@@ -64,12 +86,8 @@ namespace DBBiblioteka
                 string ime = row["KorisnickoIme"].ToString();
                 string sifra = row["Lozinka"].ToString();
                 string id = row["ZaposleniID"].ToString();
-
-                string pass = getHashSha256(txtPassword.Text);
-                //MessageBox.Show(sifra, "iz baze", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //MessageBox.Show(pass, "iz txt", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                idZaposlenog = id; //koristi se za pracenje ko se prijavio u sistem
+                string pass = getHashSha256(txtPassword.Text);                
 
                 try
                 {
@@ -151,13 +169,13 @@ namespace DBBiblioteka
             }
             else if (prosaoIme)
             {
-                //MessageBox.Show("Pogresna lozinka");
+                MessageBox.Show("Pogresna lozinka", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblInvalid.Visible = true;
                 txtPassword.Clear();
             }
             else if (nijeProsaoIme)
             {
-                MessageBox.Show("Uneseno korisnicko ime ne postoji u bazi!");//
+                MessageBox.Show("Uneseno korisnicko ime ne postoji u bazi!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);//
                 txtPassword.Clear();
                 txtUserName.Clear();
             }        
@@ -182,6 +200,18 @@ namespace DBBiblioteka
             {
                 this.Close();
             }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            lblInvalid.Visible = false;
+
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+            lblUName.Visible = false;
+
         }
     }
 }

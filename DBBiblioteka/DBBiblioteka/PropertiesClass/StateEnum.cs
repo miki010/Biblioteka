@@ -11,6 +11,10 @@ namespace DBBiblioteka.PropertiesClass
     {
         Create = 1,
         Update = 2,
-        LookUp = 3
+        LookUp = 3,
+        Search = 4,
+        View = 5
+
+
     }
 }
