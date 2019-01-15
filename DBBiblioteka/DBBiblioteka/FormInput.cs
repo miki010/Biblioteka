@@ -71,17 +71,17 @@ namespace DBBiblioteka
                     ul.Name = item.Name;
 
                     //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
-                    if (idKnjige != null && ul.Name == "KnjigaID")
+                    if (idKnjige != null && ul.Name == "KnjigaID" && state != StateEnum.Search)
                     {
                         ul.SetKey(idKnjige.ToString());
-                        ul.Enabled = false;
+                            ul.Enabled = false;
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
-                    if (ul.Name == "ZaposleniID")
+                    if (ul.Name == "ZaposleniID" && state != StateEnum.Search)
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
-                        ul.Enabled = false;
+                            ul.Enabled = false;
                     }
 
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
@@ -164,7 +164,6 @@ namespace DBBiblioteka
         {
 
             var properties = myInterface.GetType().GetProperties();
-            //filterString.FStr = "";
 
             if (state != StateEnum.Search)
                 foreach (var item in flPanelControls.Controls)
@@ -204,6 +203,7 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
+                        
                         string value = input.Key;
                         filterString.FStr += input.Name + " = " + value + " and ";
 
@@ -250,7 +250,7 @@ namespace DBBiblioteka
             }
 
 
-                if (state == StateEnum.Create)
+            if (state == StateEnum.Create)
             {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
