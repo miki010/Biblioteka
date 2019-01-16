@@ -45,6 +45,7 @@
             // 
             // tilePotvrdi
             // 
+            this.tilePotvrdi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tilePotvrdi.Location = new System.Drawing.Point(5, 5);
             this.tilePotvrdi.Name = "tilePotvrdi";
             this.tilePotvrdi.Size = new System.Drawing.Size(260, 60);
@@ -58,6 +59,7 @@
             // 
             // tileOdustani
             // 
+            this.tileOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileOdustani.Location = new System.Drawing.Point(271, 5);
             this.tileOdustani.Name = "tileOdustani";
             this.tileOdustani.Size = new System.Drawing.Size(260, 60);

@@ -189,6 +189,13 @@ namespace DBBiblioteka
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                     }
+                    else if (item.GetType() == typeof(UserControlRadio))
+                    {
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
 
                 }
             else
@@ -242,6 +249,8 @@ namespace DBBiblioteka
                         }
                         filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
                     }
+                 //   else if (item.GetType() == typeof(UserControlRadio))
+
                 }
                 if (filterString.FStr.Length == 0)
                     return;

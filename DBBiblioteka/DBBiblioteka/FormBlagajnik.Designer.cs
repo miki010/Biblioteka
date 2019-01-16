@@ -41,7 +41,7 @@
             this.tileIzvjestaj.Size = new System.Drawing.Size(370, 175);
             this.tileIzvjestaj.TabIndex = 3;
             this.tileIzvjestaj.Text = "DETALJAN FINANCIJSKI IZVJEŠTAJ";
-            this.tileIzvjestaj.TileImage = global::DBBiblioteka.Properties.Resources.financialreport;
+           this.tileIzvjestaj.TileImage = global::DBBiblioteka.Properties.Resources.financialreport;
             this.tileIzvjestaj.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIzvjestaj.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileIzvjestaj.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -54,7 +54,7 @@
             this.tileTipClanarine.Size = new System.Drawing.Size(247, 175);
             this.tileTipClanarine.TabIndex = 2;
             this.tileTipClanarine.Text = "TIP ČLANARINE";
-            this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
+           this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
             this.tileTipClanarine.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileTipClanarine.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileTipClanarine.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;

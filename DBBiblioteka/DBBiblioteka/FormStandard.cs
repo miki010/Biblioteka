@@ -56,10 +56,17 @@ namespace DBBiblioteka
         {
             if (state == StateEnum.LookUp)
             {
-                metroPanel1.Visible = false;
-                metroPanel2.Visible = true;
+                panelCrud.Visible = true;
+                panelCrud.Enabled = false;
+                panelVrati.Visible = true;
             }
-
+            else
+            {
+                panelCrud.Visible = true;
+                panelCrud.Enabled = true;
+                panelVrati.Visible = true;
+                panelVrati.Enabled = false;
+            }
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
@@ -268,36 +275,10 @@ namespace DBBiblioteka
 
         }
 
-        private void btnDetaljnaPretraga_Click(object sender, EventArgs e)
-        {
-            FilterString filterString = new FilterString();
-            try
-            {
-                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
-                formInput.ShowDialog();
-                if (formInput.DialogResult == DialogResult.OK)
-                {
-                    (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
-                    if(dgvPrikaz.Rows.Count == 0)
-                    {
-                        refreshTable();
-                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } 
+     
 
-        }
-
-        private void btnAzurirajZapise_Click(object sender, EventArgs e)
-        {
-            refreshTable();
-            dgvPrikaz.ClearSelection();
-        }
         int idReda, idKnjige;
+
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
             //popunjavanje list box-a
@@ -398,6 +379,36 @@ namespace DBBiblioteka
             else
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
+
+        private void tileDetaljnaPretraga_Click(object sender, EventArgs e)
+        {
+            FilterString filterString = new FilterString();
+            try
+            {
+                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
+                    if (dgvPrikaz.Rows.Count == 0)
+                    {
+                        refreshTable();
+                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void tileAzurirajZapise_Click(object sender, EventArgs e)
+        {
+            refreshTable();
+            dgvPrikaz.ClearSelection();
+        }
+      
 
         private void ViewDetails(string id)
         {
