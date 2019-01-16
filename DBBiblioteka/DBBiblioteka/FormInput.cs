@@ -242,11 +242,17 @@ namespace DBBiblioteka
                         }
                         filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
                     }
+                    else if (item.GetType() == typeof(UserControlRadio))
+                    {
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        filterString.FStr += input.Name + " LIKE '" + value + "' and ";
+                    }
                 }
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
-
+                
             }
 
 
