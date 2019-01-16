@@ -29,7 +29,6 @@ namespace DBBiblioteka
         public FormInput()
         {
             InitializeComponent();
-
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -130,7 +129,6 @@ namespace DBBiblioteka
 
                     flPanelControls.Controls.Add(ucr);
                 }
-
                 else
                 {
                     InputControl ic = new InputControl();
@@ -155,6 +153,9 @@ namespace DBBiblioteka
                     {
                         ic.Enabled = false;
                     }
+
+                    if (myInterface is PropertyKnjiga && ic.Name == "Kolicina" && state != StateEnum.Search)
+                        ic.Enabled = false;
                     flPanelControls.Controls.Add(ic);
                 }
             }
@@ -212,7 +213,7 @@ namespace DBBiblioteka
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
-                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
+                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
                                 continue;
@@ -224,7 +225,7 @@ namespace DBBiblioteka
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
+                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina")))
                             filterString.FStr += input.Name + " = " + value + " and ";
                         else if (!string.IsNullOrEmpty(input.GetValue()))
                             filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
@@ -242,11 +243,17 @@ namespace DBBiblioteka
                         }
                         filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
                     }
+                    else if (item.GetType() == typeof(UserControlRadio))
+                    {
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        filterString.FStr += input.Name + " LIKE '" + value + "' and ";
+                    }
                 }
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
-
+                
             }
 
 
