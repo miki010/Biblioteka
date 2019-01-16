@@ -29,7 +29,6 @@ namespace DBBiblioteka
         public FormInput()
         {
             InitializeComponent();
-
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
