@@ -187,6 +187,11 @@ namespace DBBiblioteka.PropertiesClass
             return @"EXEC sp_KnjigaIzdavac @KnjigaID";
         }
 
+        public string GetProcedureUpdateKnjiga()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetProcedureSelectAllDetails()
         {
             throw new NotImplementedException();
