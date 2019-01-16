@@ -361,6 +361,22 @@ namespace DBBiblioteka
                     }
                 }
             }
+            else if(myProperty.GetType() == typeof(PropertyZaposleni))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
+
+                    try
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
 
         }
 
@@ -397,6 +413,34 @@ namespace DBBiblioteka
                 lblBrojRedova.Text = "1 rezultat";
             else
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
+        }
+
+        private void ViewDetailsData(string id)
+        {
+            populatePropertyInterface();
+            //dt za autora
+            DataTable dt = new DataTable();
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
+            dt.Load(reader);
+            reader.Close();
+            if(myProperty.GetType() == typeof(PropertyZaposleni))
+            {
+                    lbDetaljno.Items.Add("-----------------------------------------");
+                    lbDetaljno.Items.Add("Radno mjesto: ");
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add("\t" + row[h++]);
+                    }
+
+                }
+
+            }
+
         }
 
         private void ViewDetails(string id)
