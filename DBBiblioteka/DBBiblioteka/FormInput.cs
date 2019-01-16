@@ -129,7 +129,6 @@ namespace DBBiblioteka
 
                     flPanelControls.Controls.Add(ucr);
                 }
-
                 else
                 {
                     InputControl ic = new InputControl();
@@ -154,6 +153,9 @@ namespace DBBiblioteka
                     {
                         ic.Enabled = false;
                     }
+
+                    if (myInterface is PropertyKnjiga && ic.Name == "Kolicina" && state != StateEnum.Search)
+                        ic.Enabled = false;
                     flPanelControls.Controls.Add(ic);
                 }
             }
@@ -211,7 +213,7 @@ namespace DBBiblioteka
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
-                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos"))
+                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
                                 continue;
@@ -223,7 +225,7 @@ namespace DBBiblioteka
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos")))
+                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina")))
                             filterString.FStr += input.Name + " = " + value + " and ";
                         else if (!string.IsNullOrEmpty(input.GetValue()))
                             filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
