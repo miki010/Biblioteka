@@ -40,6 +40,7 @@
             this.btnDetaljnaPretraga = new MetroFramework.Controls.MetroButton();
             this.btnAzurirajZapise = new MetroFramework.Controls.MetroButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.lblBrojRedova = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -56,6 +57,8 @@
             this.dgvPrikaz.ReadOnly = true;
             this.dgvPrikaz.Size = new System.Drawing.Size(505, 328);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
+            this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
             this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
             // tileDodaj
@@ -179,12 +182,25 @@
             this.metroLabel1.Size = new System.Drawing.Size(97, 19);
             this.metroLabel1.TabIndex = 12;
             this.metroLabel1.Text = "Brza pretraga: ";
+            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBrojRedova
+            // 
+            this.lblBrojRedova.AutoSize = true;
+            this.lblBrojRedova.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBrojRedova.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblBrojRedova.Location = new System.Drawing.Point(58, 524);
+            this.lblBrojRedova.Name = "lblBrojRedova";
+            this.lblBrojRedova.Size = new System.Drawing.Size(37, 15);
+            this.lblBrojRedova.TabIndex = 13;
+            this.lblBrojRedova.Text = "label1";
             // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 566);
+            this.Controls.Add(this.lblBrojRedova);
             this.Controls.Add(this.lbDetaljno);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btnAzurirajZapise);
@@ -221,5 +237,6 @@
         private MetroFramework.Controls.MetroButton btnDetaljnaPretraga;
         private MetroFramework.Controls.MetroButton btnAzurirajZapise;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.Label lblBrojRedova;
     }
 }
