@@ -255,10 +255,8 @@ namespace DBBiblioteka
 
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                if (table.Columns[i].DataType.ToString() != "System.DateTime" && table.Columns[i].DataType.ToString() != "System.Int32" 
-                    && table.Columns[i].DataType.ToString() != "System.Byte" && table.Columns[i].DataType.ToString() != "System.Decimal" && table.Columns[i].DataType.ToString() != "System.Int16") // ili !nvarchar...
+                if (table.Columns[i].DataType.ToString() == "System.String") 
                     columnNames.Add(table.Columns[i].ColumnName);
-                
             }
 
             for (int i = 0; i < columnNames.Count - 1; i++)
@@ -266,7 +264,6 @@ namespace DBBiblioteka
 
             if(columnNames.Count > 0)
             searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
-            MessageBox.Show(string.Format(searchString, txtPretraga.Text));
             (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
 
         }
@@ -274,7 +271,6 @@ namespace DBBiblioteka
         private void btnDetaljnaPretraga_Click(object sender, EventArgs e)
         {
             FilterString filterString = new FilterString();
-            List<SqlParameter> sqlParameters = new List<SqlParameter>();
             try
             {
                 FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
@@ -385,6 +381,22 @@ namespace DBBiblioteka
                 default:
                     break;
             }
+        }
+
+        private void dgvPrikaz_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (dgvPrikaz.Rows.Count == 1)
+                lblBrojRedova.Text = "1 rezultat";
+            else
+                lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
+        }
+
+        private void dgvPrikaz_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (dgvPrikaz.Rows.Count == 1)
+                lblBrojRedova.Text = "1 rezultat";
+            else
+                lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
 
         private void ViewDetails(string id)
