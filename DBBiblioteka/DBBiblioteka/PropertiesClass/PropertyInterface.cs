@@ -21,6 +21,9 @@ namespace DBBiblioteka.PropertiesClass
         string GetProcedureSelectIzdavac();
         string GetProcedureSelectAllDetails();
 
+        //update upiti
+        string GetProcedureUpdateKnjiga();
+
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();
         List<SqlParameter> GetDeleteParameters();
