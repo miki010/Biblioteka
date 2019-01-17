@@ -17,10 +17,11 @@ namespace DBBiblioteka
         public FormAdmin()
         {
             InitializeComponent();
+            tileNoviRadnik.BringToFront();
             tileAutor.BringToFront();
             tileIzdavac.BringToFront();
             tileNovaKnjiga.BringToFront();
-            tileNoviRadnik.BringToFront();
+            
         }
         public FormAdmin(string ime, string prezime)
         {

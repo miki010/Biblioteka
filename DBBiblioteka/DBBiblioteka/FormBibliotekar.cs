@@ -16,13 +16,7 @@ namespace DBBiblioteka
         string ime, prezime, srednjeIme;
         public FormBibliotekar()
         {
-            InitializeComponent();
-            tileClanarina.BringToFront();
-            tileIznajmi.BringToFront();
-            tilePregledIznajmljivanja.BringToFront();
-            tilePretraga.BringToFront();
-            tileUnosClana.BringToFront();
-            tileVracanje.BringToFront();
+            InitializeComponent();           
         }
 
         public FormBibliotekar(string ime, string srednjeIme, string prezime)
@@ -31,7 +25,13 @@ namespace DBBiblioteka
             this.ime = ime;
             this.prezime = prezime;
             this.srednjeIme = srednjeIme;
-            this.ControlBox = false;    
+            this.ControlBox = false;
+            tileClanarina.BringToFront();
+            tileIznajmi.BringToFront();
+            tilePregledIznajmljivanja.BringToFront();
+            tilePretraga.BringToFront();
+            tileUnosClana.BringToFront();
+            tileRazduzivanje.BringToFront();
         }
 
         private void Bibliotekar_Load(object sender, EventArgs e)
@@ -118,14 +118,22 @@ namespace DBBiblioteka
 
         private void tileVracanje_MouseHover(object sender, EventArgs e)
         {
-            tileVracanje.Height -= 15;
-            tileVracanje.Width -= 15;
+            tileRazduzivanje.Height -= 15;
+            tileRazduzivanje.Width -= 15;
         }
 
         private void tileVracanje_MouseLeave(object sender, EventArgs e)
         {
-            tileVracanje.Height += 15;
-            tileVracanje.Width += 15;
+            tileRazduzivanje.Height += 15;
+            tileRazduzivanje.Width += 15;
+        }
+
+        private void tileLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormLogin forma = new FormLogin();
+            forma.Show();
+            forma.Activate();
         }
 
         private void tileClanarina_MouseHover(object sender, EventArgs e)

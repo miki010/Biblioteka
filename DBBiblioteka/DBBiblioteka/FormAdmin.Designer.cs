@@ -36,12 +36,13 @@
             this.tileNoviRadnik = new MetroFramework.Controls.MetroTile();
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.tileLogout = new MetroFramework.Controls.MetroTile();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdminPozadina)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxAdminPozadina
             // 
             this.pictureBoxAdminPozadina.Image = global::DBBiblioteka.Properties.Resources.adminpozadina;
-            this.pictureBoxAdminPozadina.Location = new System.Drawing.Point(0, 60);
+            this.pictureBoxAdminPozadina.Location = new System.Drawing.Point(0, 40);
             this.pictureBoxAdminPozadina.MaximumSize = new System.Drawing.Size(900, 440);
             this.pictureBoxAdminPozadina.MinimumSize = new System.Drawing.Size(900, 440);
             this.pictureBoxAdminPozadina.Name = "pictureBoxAdminPozadina";
@@ -141,6 +142,7 @@
             // tileLogout
             // 
             this.tileLogout.BackColor = System.Drawing.Color.Teal;
+            this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileLogout.CustomBackground = true;
             this.tileLogout.Location = new System.Drawing.Point(780, 18);
             this.tileLogout.Name = "tileLogout";
@@ -158,13 +160,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 500);
+            this.ClientSize = new System.Drawing.Size(900, 477);
             this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.tileAutor);
             this.Controls.Add(this.tileIzdavac);
             this.Controls.Add(this.tileNovaKnjiga);
             this.Controls.Add(this.tileNoviRadnik);
+            this.Controls.Add(this.pictureBoxAdminPozadina);
             this.MaximizeBox = false;
             this.Name = "FormAdmin";
             this.Resizable = false;
