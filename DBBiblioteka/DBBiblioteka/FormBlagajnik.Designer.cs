@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBlagajnik));
             this.tileIzvjestaj = new MetroFramework.Controls.MetroTile();
             this.tileTipClanarine = new MetroFramework.Controls.MetroTile();
             this.tilePregledClanarina = new MetroFramework.Controls.MetroTile();
             this.tileDodajClanarinu = new MetroFramework.Controls.MetroTile();
+            this.tileLogout = new MetroFramework.Controls.MetroTile();
+            this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // tileIzvjestaj
@@ -41,7 +44,7 @@
             this.tileIzvjestaj.Size = new System.Drawing.Size(370, 175);
             this.tileIzvjestaj.TabIndex = 3;
             this.tileIzvjestaj.Text = "DETALJAN FINANCIJSKI IZVJEŠTAJ";
-           this.tileIzvjestaj.TileImage = global::DBBiblioteka.Properties.Resources.financialreport;
+            this.tileIzvjestaj.TileImage = global::DBBiblioteka.Properties.Resources.financialreport;
             this.tileIzvjestaj.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIzvjestaj.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileIzvjestaj.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -54,7 +57,7 @@
             this.tileTipClanarine.Size = new System.Drawing.Size(247, 175);
             this.tileTipClanarine.TabIndex = 2;
             this.tileTipClanarine.Text = "TIP ČLANARINE";
-           this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
+            this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
             this.tileTipClanarine.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileTipClanarine.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileTipClanarine.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -88,11 +91,42 @@
             this.tileDodajClanarinu.UseTileImage = true;
             this.tileDodajClanarinu.Click += new System.EventHandler(this.tileDodajClanarinu_Click);
             // 
+            // tileLogout
+            // 
+            this.tileLogout.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.tileLogout.CustomBackground = true;
+            this.tileLogout.Location = new System.Drawing.Point(780, 31);
+            this.tileLogout.Name = "tileLogout";
+            this.tileLogout.Size = new System.Drawing.Size(47, 43);
+            this.tileLogout.Style = MetroFramework.MetroColorStyle.Purple;
+            this.tileLogout.TabIndex = 10;
+            this.tileLogout.TileImage = ((System.Drawing.Image)(resources.GetObject("tileLogout.TileImage")));
+            this.tileLogout.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileLogout.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.tileLogout.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileLogout.UseTileImage = true;
+            this.tileLogout.Click += new System.EventHandler(this.tileLogout_Click);
+            // 
+            // lblImeZaposlenog
+            // 
+            this.lblImeZaposlenog.AutoSize = true;
+            this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(657, 49);
+            this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
+            this.lblImeZaposlenog.Name = "lblImeZaposlenog";
+            this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);
+            this.lblImeZaposlenog.TabIndex = 11;
+            this.lblImeZaposlenog.Text = "ime";
+            this.lblImeZaposlenog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FormBlagajnik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.tileLogout);
+            this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.tileIzvjestaj);
             this.Controls.Add(this.tileTipClanarine);
             this.Controls.Add(this.tilePregledClanarina);
@@ -100,9 +134,10 @@
             this.MaximizeBox = false;
             this.Name = "FormBlagajnik";
             this.Resizable = false;
-            this.Text = "Panel: Blagajnik";
+            this.Text = "Blagajnik";
             this.Load += new System.EventHandler(this.FormBlagajnik_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -112,5 +147,7 @@
         private MetroFramework.Controls.MetroTile tilePregledClanarina;
         private MetroFramework.Controls.MetroTile tileTipClanarine;
         private MetroFramework.Controls.MetroTile tileIzvjestaj;
+        private MetroFramework.Controls.MetroTile tileLogout;
+        private MetroFramework.Controls.MetroLabel lblImeZaposlenog;
     }
 }

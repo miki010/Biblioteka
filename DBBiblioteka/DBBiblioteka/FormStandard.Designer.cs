@@ -172,7 +172,7 @@
             this.lbDetaljno.FormattingEnabled = true;
             this.lbDetaljno.Location = new System.Drawing.Point(7, 32);
             this.lbDetaljno.Name = "lbDetaljno";
-            this.lbDetaljno.Size = new System.Drawing.Size(347, 325);
+            this.lbDetaljno.Size = new System.Drawing.Size(241, 325);
             this.lbDetaljno.TabIndex = 6;
             // 
             // txtPretraga
@@ -338,7 +338,7 @@
             this.panelDetalno.HorizontalScrollbarSize = 10;
             this.panelDetalno.Location = new System.Drawing.Point(826, 151);
             this.panelDetalno.Name = "panelDetalno";
-            this.panelDetalno.Size = new System.Drawing.Size(357, 370);
+            this.panelDetalno.Size = new System.Drawing.Size(259, 370);
             this.panelDetalno.TabIndex = 16;
             this.panelDetalno.VerticalScrollbarBarColor = true;
             this.panelDetalno.VerticalScrollbarHighlightOnWheel = false;
@@ -348,7 +348,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 566);
+            this.ClientSize = new System.Drawing.Size(1093, 566);
             this.Controls.Add(this.panelDetalno);
             this.Controls.Add(this.panelPretraga);
             this.Controls.Add(this.lblBrojRedova);

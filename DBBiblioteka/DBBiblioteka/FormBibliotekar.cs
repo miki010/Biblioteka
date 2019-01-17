@@ -13,14 +13,24 @@ namespace DBBiblioteka
 {
     public partial class FormBibliotekar : MetroFramework.Forms.MetroForm
     {
+        string ime, prezime, srednjeIme;
         public FormBibliotekar()
         {
             InitializeComponent();
         }
 
-        private void Bibliotekar_Load(object sender, EventArgs e)
+        public FormBibliotekar(string ime, string srednjeIme, string prezime)
         {
+            InitializeComponent();
+            this.ime = ime;
+            this.prezime = prezime;
+            this.srednjeIme = srednjeIme;
+            this.ControlBox = false;    
+        }
 
+        private void Bibliotekar_Load(object sender, EventArgs e)
+        {   
+              lblImeZaposlenog.Text = ime.ToString() + " " + srednjeIme.ToString() + " " + prezime.ToString();
         }
 
         private void tilePretraga_Click(object sender, EventArgs e)
@@ -40,7 +50,7 @@ namespace DBBiblioteka
             formStandard.ShowDialog();
         }
 
-        private void tileVracanje_Click(object sender, EventArgs e)
+        private void tileRazduzivanje_Click(object sender, EventArgs e)
         {
             FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
             formStandard.ShowDialog();
@@ -51,5 +61,17 @@ namespace DBBiblioteka
             FormStandard formStandard = new FormStandard(new PropertyClan(), StateEnum.View);
             formStandard.ShowDialog();
         }
+
+      
+
+        private void tileLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormLogin novaForma = new FormLogin();
+            novaForma.Show();
+            novaForma.Activate();
+        }
+
+      
     }
 }
