@@ -414,7 +414,7 @@ namespace DBBiblioteka
             else
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
-
+        
         private void ViewDetailsData(string id)
         {
             populatePropertyInterface();
@@ -441,6 +441,14 @@ namespace DBBiblioteka
 
             }
 
+        }
+
+        private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvPrikaz.Rows.Count > 0)
+                lblRedIndex.Text = (dgvPrikaz.CurrentCell.RowIndex + 1).ToString() + "/" + dgvPrikaz.Rows.Count;
+            else
+                lblRedIndex.Text = "0/0";
         }
 
         private void ViewDetails(string id)
