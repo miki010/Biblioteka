@@ -35,19 +35,7 @@
             this.tileDodajClanarinu = new MetroFramework.Controls.MetroTile();
             this.tileLogout = new MetroFramework.Controls.MetroTile();
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlagajnikPozadina)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxBlagajnikPozadina
-            // 
-            this.pictureBoxBlagajnikPozadina.Image = global::DBBiblioteka.Properties.Resources.blaganikpozadina;
-            this.pictureBoxBlagajnikPozadina.Location = new System.Drawing.Point(0, 60);
-            this.pictureBoxBlagajnikPozadina.MaximumSize = new System.Drawing.Size(900, 440);
-            this.pictureBoxBlagajnikPozadina.MinimumSize = new System.Drawing.Size(900, 440);
-            this.pictureBoxBlagajnikPozadina.Name = "pictureBoxBlagajnikPozadina";
-            this.pictureBoxBlagajnikPozadina.Size = new System.Drawing.Size(900, 440);
-            this.pictureBoxBlagajnikPozadina.TabIndex = 4;
-            this.pictureBoxBlagajnikPozadina.TabStop = false;
             // 
             // tileIzvjestaj
             // 
@@ -105,6 +93,7 @@
             // 
             // tileDodajClanarinu
             // 
+            this.tileDodajClanarinu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileDodajClanarinu.Location = new System.Drawing.Point(35, 85);
             this.tileDodajClanarinu.MaximumSize = new System.Drawing.Size(275, 185);
             this.tileDodajClanarinu.MinimumSize = new System.Drawing.Size(255, 170);
@@ -124,6 +113,7 @@
             // tileLogout
             // 
             this.tileLogout.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileLogout.CustomBackground = true;
             this.tileLogout.Location = new System.Drawing.Point(780, 31);
             this.tileLogout.Name = "tileLogout";
@@ -142,7 +132,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(657, 49);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(602, 49);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);
@@ -154,10 +144,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.lblImeZaposlenog);
-            this.Controls.Add(this.pictureBoxBlagajnikPozadina);
             this.Controls.Add(this.tileIzvjestaj);
             this.Controls.Add(this.tileTipClanarine);
             this.Controls.Add(this.tilePregledClanarina);
@@ -167,7 +157,6 @@
             this.Resizable = false;
             this.Text = "Blagajnik";
             this.Load += new System.EventHandler(this.FormBlagajnik_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlagajnikPozadina)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

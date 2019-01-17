@@ -36,9 +36,9 @@
             this.tilePretraga = new MetroFramework.Controls.MetroTile();
             this.tileIznajmi = new MetroFramework.Controls.MetroTile();
             this.tileUnosClana = new MetroFramework.Controls.MetroTile();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).BeginInit();
             this.tileLogout = new MetroFramework.Controls.MetroTile();
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxBibliotekarPozadina
@@ -76,7 +76,7 @@
             this.tileRazduzivanje.Location = new System.Drawing.Point(194, 284);
             this.tileRazduzivanje.MaximumSize = new System.Drawing.Size(190, 190);
             this.tileRazduzivanje.MinimumSize = new System.Drawing.Size(175, 175);
-            this.tileRazduzivanje.Name = "tileVracanje";
+            this.tileRazduzivanje.Name = "tileRazduzivanje";
             this.tileRazduzivanje.Size = new System.Drawing.Size(190, 190);
             this.tileRazduzivanje.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileRazduzivanje.TabIndex = 5;
@@ -86,7 +86,7 @@
             this.tileRazduzivanje.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileRazduzivanje.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileRazduzivanje.UseTileImage = true;
-            this.tileRazduzivanje.Click += new System.EventHandler(this.tileVracanje_Click);
+            this.tileRazduzivanje.Click += new System.EventHandler(this.tileRazduzivanje_Click);
             this.tileRazduzivanje.MouseLeave += new System.EventHandler(this.tileVracanje_MouseLeave);
             this.tileRazduzivanje.MouseHover += new System.EventHandler(this.tileVracanje_MouseHover);
             // 
@@ -167,7 +167,8 @@
             // 
             // tileLogout
             // 
-            this.tileLogout.Location = new System.Drawing.Point(796, 20);
+            this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tileLogout.Location = new System.Drawing.Point(851, 11);
             this.tileLogout.Name = "tileLogout";
             this.tileLogout.Size = new System.Drawing.Size(47, 43);
             this.tileLogout.Style = MetroFramework.MetroColorStyle.Purple;
@@ -184,7 +185,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(671, 29);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(716, 29);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);
@@ -196,17 +197,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            
+            this.ClientSize = new System.Drawing.Size(950, 500);
             this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.tileLogout);
-            this.ClientSize = new System.Drawing.Size(950, 500);
-            this.Controls.Add(this.pictureBoxBibliotekarPozadina);
             this.Controls.Add(this.tileClanarina);
             this.Controls.Add(this.tileRazduzivanje);
             this.Controls.Add(this.tilePregledIznajmljivanja);
             this.Controls.Add(this.tilePretraga);
             this.Controls.Add(this.tileIznajmi);
             this.Controls.Add(this.tileUnosClana);
+            this.Controls.Add(this.pictureBoxBibliotekarPozadina);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormBibliotekar";
