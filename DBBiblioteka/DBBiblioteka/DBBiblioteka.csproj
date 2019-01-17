@@ -230,6 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\blaganikpozadina.jpg" />
+    <None Include="Resources\adminpozadina.jpg" />
+    <None Include="Resources\bibliotekarpozadina.jpg" />
+    <None Include="Resources\loginimage.jpg" />
+    <None Include="Resources\elsalogofinal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

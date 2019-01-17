@@ -443,6 +443,34 @@ namespace DBBiblioteka
 
         }
 
+        private void ViewDetailsData(string id)
+        {
+            populatePropertyInterface();
+            //dt za autora
+            DataTable dt = new DataTable();
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
+            dt.Load(reader);
+            reader.Close();
+            if(myProperty.GetType() == typeof(PropertyZaposleni))
+            {
+                    lbDetaljno.Items.Add("-----------------------------------------");
+                    lbDetaljno.Items.Add("Radno mjesto: ");
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add("\t" + row[h++]);
+                    }
+
+                }
+
+            }
+
+        }
+
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPrikaz.Rows.Count > 0)

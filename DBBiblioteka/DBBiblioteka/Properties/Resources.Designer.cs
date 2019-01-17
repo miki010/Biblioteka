@@ -93,9 +93,39 @@ namespace DBBiblioteka.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap adminpozadina {
+            get {
+                object obj = ResourceManager.GetObject("adminpozadina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap author {
             get {
                 object obj = ResourceManager.GetObject("author", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bibliotekarpozadina {
+            get {
+                object obj = ResourceManager.GetObject("bibliotekarpozadina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blaganikpozadina {
+            get {
+                object obj = ResourceManager.GetObject("blaganikpozadina", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +146,16 @@ namespace DBBiblioteka.Properties {
         internal static System.Drawing.Bitmap devicestemplate1 {
             get {
                 object obj = ResourceManager.GetObject("devicestemplate1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap elsalogofinal {
+            get {
+                object obj = ResourceManager.GetObject("elsalogofinal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +186,16 @@ namespace DBBiblioteka.Properties {
         internal static System.Drawing.Bitmap listofmembers {
             get {
                 object obj = ResourceManager.GetObject("listofmembers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loginimage {
+            get {
+                object obj = ResourceManager.GetObject("loginimage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
