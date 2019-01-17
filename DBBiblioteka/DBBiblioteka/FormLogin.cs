@@ -31,6 +31,7 @@ namespace DBBiblioteka
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
+            txtPassword.UseSystemPasswordChar = true;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -39,7 +40,7 @@ namespace DBBiblioteka
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            //prije poziva f-je provjerava da li su obadva polja popunjena
+            //prije poziva f-je provjerava da li su oba polja popunjena
             
             
             if(!txtUserName.Text.Trim().Equals("") && !txtPassword.Text.Trim().Equals(""))
@@ -102,7 +103,7 @@ namespace DBBiblioteka
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska!");
+                    MessageBox.Show("Greška!", "Upozorenje!");
                 }
 
                 if (ime == txtUserName.Text)
@@ -169,13 +170,13 @@ namespace DBBiblioteka
             }
             else if (prosaoIme)
             {
-                MessageBox.Show("Pogresna lozinka", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Pogrešna lozinka!", "Obavještenje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblInvalid.Visible = true;
                 txtPassword.Clear();
             }
             else if (nijeProsaoIme)
             {
-                MessageBox.Show("Uneseno korisnicko ime ne postoji u bazi!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);//
+                MessageBox.Show("Unešeno korisničko ime ne postoji!", "Obavještenje!", MessageBoxButtons.OK, MessageBoxIcon.Information);//
                 txtPassword.Clear();
                 txtUserName.Clear();
             }        
@@ -196,7 +197,7 @@ namespace DBBiblioteka
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Da li ste sigurni da želite da napustite aplikaciju?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Da li ste sigurni da želite napustiti aplikaciju?", "Upozorenje!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Close();
             }
@@ -212,6 +213,18 @@ namespace DBBiblioteka
         {
             lblUName.Visible = false;
 
+        }
+
+        private void togglePassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (togglePassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
         }
     }
 }

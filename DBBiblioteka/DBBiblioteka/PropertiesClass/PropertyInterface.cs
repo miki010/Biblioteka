@@ -19,6 +19,7 @@ namespace DBBiblioteka.PropertiesClass
 
         string GetProcedureSelectAutor();
         string GetProcedureSelectIzdavac();
+        string GetProcedureSelectAllDetails();
 
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();

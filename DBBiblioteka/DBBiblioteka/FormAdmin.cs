@@ -16,6 +16,10 @@ namespace DBBiblioteka
         public FormAdmin()
         {
             InitializeComponent();
+            tileAutor.BringToFront();
+            tileIzdavac.BringToFront();
+            tileNovaKnjiga.BringToFront();
+            tileNoviRadnik.BringToFront();
         }
 
         private void FormAdmin_Load(object sender, EventArgs e)
@@ -45,6 +49,54 @@ namespace DBBiblioteka
         {
             FormStandard formStandard = new FormStandard(new PropertyAutor());
             formStandard.ShowDialog();
+        }
+
+        private void tileNoviRadnik_MouseHover(object sender, EventArgs e)
+        {
+            tileNoviRadnik.Height -= 15;
+            tileNoviRadnik.Width -= 20;
+        }
+
+        private void tileNoviRadnik_MouseLeave(object sender, EventArgs e)
+        {
+            tileNoviRadnik.Height += 15;
+            tileNoviRadnik.Width += 20;
+        }
+
+        private void tileNovaKnjiga_MouseHover(object sender, EventArgs e)
+        {
+            tileNovaKnjiga.Height -= 15;
+            tileNovaKnjiga.Width -= 20;
+        }
+
+        private void tileNovaKnjiga_MouseLeave(object sender, EventArgs e)
+        {
+            tileNovaKnjiga.Height += 15;
+            tileNovaKnjiga.Width += 20;
+        }
+
+        private void tileIzdavac_MouseHover(object sender, EventArgs e)
+        {
+            tileIzdavac.Height -= 15;
+            tileIzdavac.Width -= 20;
+        }
+
+        private void tileIzdavac_MouseLeave(object sender, EventArgs e)
+        {
+            tileIzdavac.Height += 15;
+            tileIzdavac.Width += 20;
+        }
+
+        private void tileAutor_MouseHover(object sender, EventArgs e)
+        {
+            tileAutor.Height -= 15;
+            tileAutor.Width -= 20;
+        }
+
+        private void tileAutor_MouseLeave(object sender, EventArgs e)
+        {
+            tileAutor.Height += 15;
+            tileAutor.Width += 20;
         }
     }
 }
