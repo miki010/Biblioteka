@@ -414,7 +414,7 @@ namespace DBBiblioteka
             else
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
-
+        
         private void ViewDetailsData(string id)
         {
             populatePropertyInterface();
