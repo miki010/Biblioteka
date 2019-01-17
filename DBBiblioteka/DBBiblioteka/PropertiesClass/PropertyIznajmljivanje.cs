@@ -112,12 +112,18 @@ namespace DBBiblioteka.PropertiesClass
 
         public List<SqlParameter> GetProcedureParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+            SqlParameter parameter = new SqlParameter("@IznajmljivanjeID", System.Data.SqlDbType.Int);
+            parameter.Value = IznajmljivanjeID;
+            list.Add(parameter);
+            }
+            return list;
         }
 
         public string GetProcedureSelectAllDetails()
         {
-            throw new NotImplementedException();
+            return @"EXEC [dbo].[sp_Iznajmljivanje] @IznajmljivanjeID";
         }
 
         public string GetProcedureSelectAutor()

@@ -193,7 +193,7 @@ namespace DBBiblioteka
                 {
                     string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
                     item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
-
+                    //MessageBox.Show(value);
                 }
             }
             //}
@@ -326,7 +326,7 @@ namespace DBBiblioteka
                 }
 
             }
-            if (myProperty.GetType() == typeof(PropertyKnjiga))
+            if (myProperty.GetType() == typeof(PropertyKnjiga))//mislim da ce ovde biti dovoljan samo jedan if, ***************testirati***************
             {
                 if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
                 {
@@ -349,6 +349,39 @@ namespace DBBiblioteka
 
                     try
                     {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
+            else if (myProperty.GetType() == typeof(PropertyClanarina))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
+
+                    try
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
+            else if (myProperty.GetType() == typeof(PropertyIznajmljivanje))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
+
+                    try
+                    {
+                      
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
                     }
                     catch (Exception)
@@ -399,13 +432,13 @@ namespace DBBiblioteka
         private void ViewDetailsData(string id)
         {
             populatePropertyInterface();
-            //dt za autora
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
             myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
             dt.Load(reader);
             reader.Close();
-            if(myProperty.GetType() == typeof(PropertyZaposleni))
+           
+            if (myProperty.GetType() == typeof(PropertyZaposleni))
             {
                     lbDetaljno.Items.Add("-----------------------------------------");
                     lbDetaljno.Items.Add("Radno mjesto: ");
@@ -416,6 +449,36 @@ namespace DBBiblioteka
                     foreach (DataColumn col in dt.Columns)
                     {
                         lbDetaljno.Items.Add("\t" + row[h++]);
+                    }
+
+                }
+
+            }
+           else if (myProperty.GetType() == typeof(PropertyClanarina))
+            {
+                lbDetaljno.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add(col + ": " + row[h++]);
+                    }
+
+                }
+
+            }
+            else if (myProperty.GetType() == typeof(PropertyIznajmljivanje))
+            {
+                lbDetaljno.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add(col + ": " + row[h++]);
                     }
 
                 }
