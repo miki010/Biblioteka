@@ -25,17 +25,11 @@ namespace DBBiblioteka
         PropertyZaposleni propertyZaposleni = new PropertyZaposleni();
         public static string idZaposlenog = "";
 
-
-
         public FormLogin()
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
             txtPassword.UseSystemPasswordChar = true;
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
         }
 
         private void btnLogin_Click_1(object sender, EventArgs e)
@@ -85,6 +79,7 @@ namespace DBBiblioteka
             foreach (DataRow row in dt.Rows)
             {
                 string ime = row["KorisnickoIme"].ToString();
+                //MessageBox.Show(ime.Substring(0,1).ToUpper() + ime.Substring(1));
                 string sifra = row["Lozinka"].ToString();
                 string id = row["ZaposleniID"].ToString();
                 idZaposlenog = id; //koristi se za pracenje ko se prijavio u sistem
@@ -147,26 +142,28 @@ namespace DBBiblioteka
 
                     if (idProsao == zaposleniID && idRadnogMjesta == 1)
                     {
-                        FormAdmin formAdmin = new FormAdmin();
+                        FormAdmin formAdmin = new FormAdmin(row["Ime"].ToString(), row["Prezime"].ToString());                
                         formAdmin.Show();
                        
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 2)
                     {
-                        FormBlagajnik formBlagajnik = new FormBlagajnik();
+                        FormBlagajnik formBlagajnik = new FormBlagajnik(row["Ime"].ToString(), row["Prezime"].ToString());
                         formBlagajnik.Show();
                        
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 3)
                     {
-                        FormBibliotekar formBibliotekar = new FormBibliotekar();
+                        //pokusati proslijediti ime na formu
+                        FormBibliotekar formBibliotekar = new FormBibliotekar(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString());                 
                         formBibliotekar.Show();
                         
                     }
-                    //this.Hide();
+                    this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
-                }   
+                }
+                
             }
             else if (prosaoIme)
             {

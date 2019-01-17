@@ -190,6 +190,13 @@ namespace DBBiblioteka
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                     }
+                    else if (item.GetType() == typeof(UserControlRadio))
+                    {
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
 
                 }
             else
