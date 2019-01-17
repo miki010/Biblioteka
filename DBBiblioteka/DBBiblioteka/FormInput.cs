@@ -213,6 +213,7 @@ namespace DBBiblioteka
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
+                        
                         if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
