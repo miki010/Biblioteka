@@ -20,6 +20,7 @@ namespace DBBiblioteka
     public partial class FormInput : MetroFramework.Forms.MetroForm
     {
         PropertyInterface myInterface;
+        PropertyIzdavacKnjiga izdavacKnjigaProperty = new PropertyIzdavacKnjiga();
         StateEnum state;
         int? idKnjige;
 
@@ -201,6 +202,7 @@ namespace DBBiblioteka
                         InputControl input = item as InputControl;
 
                         string value = input.GetValue();
+<<<<<<< HEAD
 
                         try
                         {
@@ -228,6 +230,42 @@ namespace DBBiblioteka
                             return;
 
                         }
+=======
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        if (myInterface.GetType() == typeof(PropertyIznajmljivanje) || myInterface.GetType() == typeof(PropertyIzdavacKnjiga))
+                        {
+                            int idAkcije = 0, idKnjige = 0;
+                            int? kolicina = null;
+                            if (state == StateEnum.Create)
+                            {
+                                idAkcije = 1;
+                                MessageBox.Show(idAkcije + "create");
+                            }
+                            else if (state == StateEnum.Update)
+                            {
+                                idAkcije = 2;
+                                MessageBox.Show(idAkcije + "update");
+                            }
+                            if (input.Name == "KnjigaID")
+                            {
+                                idKnjige = Convert.ToInt32(input.GetValue());
+                            }
+
+                            if (input.Name == "Kolicina")
+                            {
+                                idAkcije = 3;
+                                kolicina = Convert.ToInt32(input.GetValue());
+
+                                //SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, izdavacKnjigaProperty.GetDeleteQuery(), izdavacKnjigaProperty.GetDeleteParameters().ToArray());
+                                //MessageBox.Show("Podatak je obrisan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //refreshTable();
+                            }
+
+
+                        }
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+>>>>>>> Izmjene na property klasi knjiga
                     }
                     else if (item.GetType() == typeof(DateTimeControl))
                     {

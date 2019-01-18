@@ -189,7 +189,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureUpdateKnjiga()
         {
-            throw new NotImplementedException();
+            return @"EXEC [dbo].[sp_IznajmiRazduzi] @IdAkcije, @KnjigaID, @Kolicina";
         }
 
         public string GetProcedureSelectAllDetails()
