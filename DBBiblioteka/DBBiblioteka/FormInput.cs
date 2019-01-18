@@ -21,12 +21,12 @@ namespace DBBiblioteka
         PropertyInterface myInterface;
         StateEnum state;
         int? idKnjige;
-        
+
 
         public FormInput()
         {
             InitializeComponent();
-            
+
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -65,12 +65,12 @@ namespace DBBiblioteka
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
-                    if(ul.Name == "ZaposleniID")
+                    if (ul.Name == "ZaposleniID")
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
                         ul.Enabled = false;
                     }
-                    
+
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
@@ -137,13 +137,13 @@ namespace DBBiblioteka
                 }
             }
         }
-
+        bool popunjeno = true;
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
 
             var properties = myInterface.GetType().GetProperties();
 
-
+            
             foreach (var item in flPanelControls.Controls)
             {
 
@@ -153,12 +153,16 @@ namespace DBBiblioteka
                     string value = input.Key;
                     try
                     {
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();                        
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                         if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
                         {
                             input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                            popunjeno = false;
+                            return;
                         }
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        else
+                            popunjeno = true;
                     }
                     catch (Exception)
                     {
@@ -169,19 +173,27 @@ namespace DBBiblioteka
                 else if (item.GetType() == typeof(InputControl))
                 {
                     InputControl input = item as InputControl;
+
                     string value = input.GetValue();
+
                     try
                     {
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
                         if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
                         {
-                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
-                        }
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                    }
-                    catch (Exception)
-                    {
 
+                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                            popunjeno = false;
+
+                            return;
+                        }
+                        else
+                            popunjeno = true;
+                    }
+                    catch (Exception ex)
+                    {
                         return;
                     }
 
@@ -204,20 +216,25 @@ namespace DBBiblioteka
 
 
 
-            if (state == StateEnum.Create)
+            if (popunjeno)
             {
-                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
-                MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (state == StateEnum.Update)
-            {
-                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
-                MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (state == StateEnum.Create)
+                {
+                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                    MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (state == StateEnum.Update)
+                {
+                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                    MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                DialogResult = DialogResult.OK;
 
-            DialogResult = DialogResult.OK;
+            }
+            else
+                return;
 
 
         }
