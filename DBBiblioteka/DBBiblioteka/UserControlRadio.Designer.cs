@@ -36,18 +36,22 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(3, 4);
+            this.lblNaziv.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.lblNaziv.Location = new System.Drawing.Point(5, 0);
+            this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(55, 19);
+            this.lblNaziv.Size = new System.Drawing.Size(56, 19);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "lblNaziv";
             // 
             // rbM
             // 
             this.rbM.AutoSize = true;
-            this.rbM.Location = new System.Drawing.Point(92, 8);
+            this.rbM.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.rbM.Location = new System.Drawing.Point(203, 0);
+            this.rbM.Margin = new System.Windows.Forms.Padding(4);
             this.rbM.Name = "rbM";
-            this.rbM.Size = new System.Drawing.Size(55, 15);
+            this.rbM.Size = new System.Drawing.Size(62, 19);
             this.rbM.TabIndex = 1;
             this.rbM.TabStop = true;
             this.rbM.Text = "Muški";
@@ -56,9 +60,11 @@
             // rbZenski
             // 
             this.rbZenski.AutoSize = true;
-            this.rbZenski.Location = new System.Drawing.Point(153, 8);
+            this.rbZenski.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.rbZenski.Location = new System.Drawing.Point(399, 0);
+            this.rbZenski.Margin = new System.Windows.Forms.Padding(4);
             this.rbZenski.Name = "rbZenski";
-            this.rbZenski.Size = new System.Drawing.Size(57, 15);
+            this.rbZenski.Size = new System.Drawing.Size(64, 19);
             this.rbZenski.TabIndex = 2;
             this.rbZenski.TabStop = true;
             this.rbZenski.Text = "Ženski";
@@ -66,13 +72,16 @@
             // 
             // UserControlRadio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.rbZenski);
             this.Controls.Add(this.rbM);
             this.Controls.Add(this.lblNaziv);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControlRadio";
-            this.Size = new System.Drawing.Size(219, 29);
+            this.Size = new System.Drawing.Size(500, 31);
             this.ResumeLayout(false);
             this.PerformLayout();
 

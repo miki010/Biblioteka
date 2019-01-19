@@ -37,7 +37,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText.Location = new System.Drawing.Point(18, 9);
+            this.lblText.Location = new System.Drawing.Point(5, 10);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(45, 16);
             this.lblText.TabIndex = 0;
@@ -46,9 +46,9 @@
             // txtValue
             // 
             this.txtValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValue.Location = new System.Drawing.Point(113, 6);
+            this.txtValue.Location = new System.Drawing.Point(170, 7);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(288, 22);
+            this.txtValue.Size = new System.Drawing.Size(320, 22);
             this.txtValue.TabIndex = 1;
             this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 
@@ -72,7 +72,7 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblText);
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(408, 55);
+            this.Size = new System.Drawing.Size(500, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 
