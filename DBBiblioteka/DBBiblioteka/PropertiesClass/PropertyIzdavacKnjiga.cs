@@ -184,6 +184,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureUpdateKnjiga()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetProcedureSelectAllDetails()
         {
             throw new NotImplementedException();

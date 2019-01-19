@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBibliotekar));
             this.pictureBoxBibliotekarPozadina = new System.Windows.Forms.PictureBox();
             this.tileClanarina = new MetroFramework.Controls.MetroTile();
-            this.tileVracanje = new MetroFramework.Controls.MetroTile();
+            this.tileRazduzivanje = new MetroFramework.Controls.MetroTile();
             this.tilePregledIznajmljivanja = new MetroFramework.Controls.MetroTile();
             this.tilePretraga = new MetroFramework.Controls.MetroTile();
             this.tileIznajmi = new MetroFramework.Controls.MetroTile();
             this.tileUnosClana = new MetroFramework.Controls.MetroTile();
+            this.tileLogout = new MetroFramework.Controls.MetroTile();
+            this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,24 +71,24 @@
             this.tileClanarina.MouseLeave += new System.EventHandler(this.tileClanarina_MouseLeave);
             this.tileClanarina.MouseHover += new System.EventHandler(this.tileClanarina_MouseHover);
             // 
-            // tileVracanje
+            // tileRazduzivanje
             // 
-            this.tileVracanje.Location = new System.Drawing.Point(194, 284);
-            this.tileVracanje.MaximumSize = new System.Drawing.Size(190, 190);
-            this.tileVracanje.MinimumSize = new System.Drawing.Size(175, 175);
-            this.tileVracanje.Name = "tileVracanje";
-            this.tileVracanje.Size = new System.Drawing.Size(190, 190);
-            this.tileVracanje.Style = MetroFramework.MetroColorStyle.Purple;
-            this.tileVracanje.TabIndex = 5;
-            this.tileVracanje.Text = "VRAĆANJE";
-            this.tileVracanje.TileImage = global::DBBiblioteka.Properties.Resources.returnedbooks;
-            this.tileVracanje.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileVracanje.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileVracanje.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileVracanje.UseTileImage = true;
-            this.tileVracanje.Click += new System.EventHandler(this.tileVracanje_Click);
-            this.tileVracanje.MouseLeave += new System.EventHandler(this.tileVracanje_MouseLeave);
-            this.tileVracanje.MouseHover += new System.EventHandler(this.tileVracanje_MouseHover);
+            this.tileRazduzivanje.Location = new System.Drawing.Point(194, 284);
+            this.tileRazduzivanje.MaximumSize = new System.Drawing.Size(190, 190);
+            this.tileRazduzivanje.MinimumSize = new System.Drawing.Size(175, 175);
+            this.tileRazduzivanje.Name = "tileRazduzivanje";
+            this.tileRazduzivanje.Size = new System.Drawing.Size(190, 190);
+            this.tileRazduzivanje.Style = MetroFramework.MetroColorStyle.Purple;
+            this.tileRazduzivanje.TabIndex = 5;
+            this.tileRazduzivanje.Text = "RAZDUŽIVANJE";
+            this.tileRazduzivanje.TileImage = global::DBBiblioteka.Properties.Resources.returnedbooks;
+            this.tileRazduzivanje.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileRazduzivanje.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileRazduzivanje.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileRazduzivanje.UseTileImage = true;
+            this.tileRazduzivanje.Click += new System.EventHandler(this.tileRazduzivanje_Click);
+            this.tileRazduzivanje.MouseLeave += new System.EventHandler(this.tileVracanje_MouseLeave);
+            this.tileRazduzivanje.MouseHover += new System.EventHandler(this.tileVracanje_MouseHover);
             // 
             // tilePregledIznajmljivanja
             // 
@@ -162,27 +165,59 @@
             this.tileUnosClana.MouseLeave += new System.EventHandler(this.tileUnosClana_MouseLeave);
             this.tileUnosClana.MouseHover += new System.EventHandler(this.tileUnosClana_MouseHover);
             // 
+            // tileLogout
+            // 
+            this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tileLogout.Location = new System.Drawing.Point(903, 11);
+            this.tileLogout.Name = "tileLogout";
+            this.tileLogout.Size = new System.Drawing.Size(47, 43);
+            this.tileLogout.Style = MetroFramework.MetroColorStyle.Purple;
+            this.tileLogout.TabIndex = 7;
+            this.tileLogout.TileImage = ((System.Drawing.Image)(resources.GetObject("tileLogout.TileImage")));
+            this.tileLogout.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileLogout.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.tileLogout.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileLogout.UseTileImage = true;
+            this.tileLogout.Click += new System.EventHandler(this.tileLogout_Click);
+            // 
+            // lblImeZaposlenog
+            // 
+            this.lblImeZaposlenog.AutoSize = true;
+            this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(716, 19);
+            this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
+            this.lblImeZaposlenog.Name = "lblImeZaposlenog";
+            this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);
+            this.lblImeZaposlenog.TabIndex = 9;
+            this.lblImeZaposlenog.Text = "ime";
+            this.lblImeZaposlenog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FormBibliotekar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 500);
-            this.Controls.Add(this.pictureBoxBibliotekarPozadina);
+            this.Controls.Add(this.lblImeZaposlenog);
+            this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.tileClanarina);
-            this.Controls.Add(this.tileVracanje);
+            this.Controls.Add(this.tileRazduzivanje);
             this.Controls.Add(this.tilePregledIznajmljivanja);
             this.Controls.Add(this.tilePretraga);
             this.Controls.Add(this.tileIznajmi);
             this.Controls.Add(this.tileUnosClana);
+            this.Controls.Add(this.pictureBoxBibliotekarPozadina);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormBibliotekar";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
-            this.Text = "Panel: Bibliotekar";
+            this.Text = "Bibliotekar";
             this.Load += new System.EventHandler(this.Bibliotekar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -190,10 +225,12 @@
 
         private MetroFramework.Controls.MetroTile tileUnosClana;
         private MetroFramework.Controls.MetroTile tileIznajmi;
-        private MetroFramework.Controls.MetroTile tileVracanje;
+        private MetroFramework.Controls.MetroTile tileRazduzivanje;
         private MetroFramework.Controls.MetroTile tilePregledIznajmljivanja;
         private MetroFramework.Controls.MetroTile tilePretraga;
         private MetroFramework.Controls.MetroTile tileClanarina;
+        private MetroFramework.Controls.MetroTile tileLogout;
+        private MetroFramework.Controls.MetroLabel lblImeZaposlenog;
         private System.Windows.Forms.PictureBox pictureBoxBibliotekarPozadina;
     }
 }

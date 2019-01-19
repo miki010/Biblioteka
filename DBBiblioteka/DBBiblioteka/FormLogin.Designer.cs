@@ -65,6 +65,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Highlight = true;
             this.btnLogin.Location = new System.Drawing.Point(66, 550);
             this.btnLogin.Name = "btnLogin";
@@ -77,6 +78,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Highlight = true;
             this.btnCancel.Location = new System.Drawing.Point(214, 550);
             this.btnCancel.Name = "btnCancel";
@@ -240,7 +242,6 @@
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).EndInit();
             this.ResumeLayout(false);
