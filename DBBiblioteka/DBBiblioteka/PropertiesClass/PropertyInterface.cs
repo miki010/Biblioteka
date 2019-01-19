@@ -20,6 +20,7 @@ namespace DBBiblioteka.PropertiesClass
         string GetProcedureSelectAutor();
         string GetProcedureSelectIzdavac();
         string GetProcedureSelectAllDetails();
+        string GetProcedureStatusClanarineZaClanID();
 
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();

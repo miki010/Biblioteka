@@ -151,7 +151,7 @@ namespace DBBiblioteka
                         formAdmin.Show();
                        
                     }
-                    else if (idProsao == zaposleniID && idRadnogMjesta == 2)
+                    else if (idProsao == zaposleniID && idRadnogMjesta == 4)
                     {
                         FormBlagajnik formBlagajnik = new FormBlagajnik();
                         formBlagajnik.Show();

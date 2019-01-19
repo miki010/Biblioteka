@@ -19,10 +19,11 @@ namespace DBBiblioteka
 {
     public partial class FormInput : MetroFramework.Forms.MetroForm
     {
-        PropertyInterface myInterface;
+        PropertyInterface myProperty;
         StateEnum state;
         int? idKnjige;
 
+        DateTime datumRazduzivanja;
 
         FilterString filterString;
 
@@ -34,7 +35,7 @@ namespace DBBiblioteka
         public FormInput(PropertyInterface myInterface, StateEnum state)
         {
             InitializeComponent();
-            this.myInterface = myInterface;
+            this.myProperty = myInterface;
             this.state = state;
 
             PopulateControls();
@@ -42,7 +43,7 @@ namespace DBBiblioteka
         public FormInput(PropertyInterface myInterface, StateEnum state, int id)
         {
             InitializeComponent();
-            this.myInterface = myInterface;
+            this.myProperty = myInterface;
             this.state = state;
             this.idKnjige = id;
             PopulateControls();
@@ -51,7 +52,7 @@ namespace DBBiblioteka
         public FormInput(PropertyInterface myInterface, StateEnum state, FilterString filterString)  //konstruktor za Search inputform
         {
             InitializeComponent();
-            this.myInterface = myInterface;
+            this.myProperty = myInterface;
             this.state = state;
             this.filterString = filterString;
 
@@ -60,7 +61,7 @@ namespace DBBiblioteka
 
         private void PopulateControls()
         {
-            foreach (PropertyInfo item in myInterface.GetType().GetProperties())
+            foreach (PropertyInfo item in myProperty.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
                 {
@@ -86,7 +87,7 @@ namespace DBBiblioteka
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
-                        ul.SetKey(item.GetValue(myInterface).ToString());
+                        ul.SetKey(item.GetValue(myProperty).ToString());
                     }
                     flPanelControls.Controls.Add(ul);
                 }
@@ -99,12 +100,22 @@ namespace DBBiblioteka
                         dtc.Name = item.Name;
                         dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
+                        if (dtc.Name == "DatumRazduzivanja" || dtc.Name == "DatumIznajmljivanja")
+                            dtc.Enabled = false;
+
                         if (state == StateEnum.Create)
                             dtc.SetValue(DateTime.Now);
                         else if (state == StateEnum.Update)
-                            dtc.SetValue((DateTime)item.GetValue(myInterface));
+                            dtc.SetValue((DateTime)item.GetValue(myProperty));
 
                         flPanelControls.Controls.Add(dtc);
+
+                        if (state == StateEnum.Create && dtc.Name == "DatumIznajmljivanja")
+                            datumRazduzivanja = dtc.GetValue().AddDays(15);
+                        else if (state == StateEnum.Create && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(datumRazduzivanja);
+                        else if (state == StateEnum.Update && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now);
                     }
                     else if (state == StateEnum.Search)
                     {
@@ -124,7 +135,7 @@ namespace DBBiblioteka
 
                     if (state == StateEnum.Update)
                     {
-                        ucr.SetValue(item.GetValue(myInterface).ToString());
+                        ucr.SetValue(item.GetValue(myProperty).ToString());
                     }
 
                     flPanelControls.Controls.Add(ucr);
@@ -147,14 +158,14 @@ namespace DBBiblioteka
                     }
                     if (state == StateEnum.Update)
                     {
-                        ic.SetValue(item.GetValue(myInterface).ToString());
+                        ic.SetValue(item.GetValue(myProperty).ToString());
                     }
                     if (item.GetCustomAttribute<ForeignKeyAttribute>() != null && state == StateEnum.Update)
                     {
                         ic.Enabled = false;
                     }
 
-                    if (myInterface is PropertyKnjiga && ic.Name == "Kolicina" && state != StateEnum.Search)
+                    if (myProperty is PropertyKnjiga && ic.Name == "Kolicina" && state != StateEnum.Search)
                         ic.Enabled = false;
                     flPanelControls.Controls.Add(ic);
                 }
@@ -163,9 +174,8 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
-
-            var properties = myInterface.GetType().GetProperties();
-
+            var properties = myProperty.GetType().GetProperties();
+            int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
                 foreach (var item in flPanelControls.Controls)
                 {
@@ -174,21 +184,24 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         string value = input.Key;
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        property.SetValue(myProperty, Convert.ChangeType(value, property.PropertyType));
+
+                        if (input.Name == "ClanID")
+                            idClana = Convert.ToInt32(input.Key);
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        property.SetValue(myProperty, Convert.ChangeType(value, property.PropertyType));
                     }
                     else if (item.GetType() == typeof(DateTimeControl))
                     {
                         DateTimeControl input = item as DateTimeControl;
                         DateTime value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        property.SetValue(myProperty, Convert.ChangeType(value, property.PropertyType));
                     }
 
                 }
@@ -254,20 +267,60 @@ namespace DBBiblioteka
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
-                
+                MessageBox.Show(filterString.FStr);
             }
 
+            if (myProperty is PropertyIznajmljivanje && state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
+            {
+
+                //SREDITI
+                PropertyClanarina clanarina = new PropertyClanarina();
+                DataTable tableClanarina = new DataTable();
+                SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                clanarina.GetSelectQuery());
+                tableClanarina.Load(reader2);
+                reader2.Close();
+
+                bool ima = false;
+                for (int i = 0; i < tableClanarina.Rows.Count; i++)
+                {
+                    if((int)(tableClanarina.Rows[i][1]) == idClana)
+                    {
+                        ima = true;
+                    }
+                }
+                if(!ima)
+                {
+                    MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
+                    return;
+                }
+       
+
+                    DataTable dt = new DataTable();
+                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myProperty.GetProcedureStatusClanarineZaClanID(), myProperty.GetProcedureParameters().ToArray());
+                    dt.Load(reader);
+                    reader.Close();
+
+                    DateTime datumIsteka = (DateTime)dt.Rows[0][1];
+                    if (datumIsteka < DateTime.Now)
+                    {
+                        MessageBox.Show("Korisniku je istekla članarina, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    } 
+                
+            }
 
             if (state == StateEnum.Create)
             {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                    myProperty.GetInsertQuery(), myProperty.GetInsertParameters().ToArray());
                 MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (state == StateEnum.Update)
             {
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                    myProperty.GetUpdateQuery(), myProperty.GetUpdateParameters().ToArray());
                 MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 

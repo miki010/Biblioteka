@@ -49,7 +49,6 @@ namespace DBBiblioteka
             this.state = stateEnum;
             this.red = red;
             loadTable();
-
         }
 
         private void FormStandard_Load(object sender, EventArgs e)
@@ -63,7 +62,12 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
-            
+
+            foreach (DataGridViewColumn column in dgvPrikaz.Columns)
+            {
+                if (column.ValueType.ToString() == "System.DateTime")
+                    column.DefaultCellStyle.Format = "dd.MM.yyyy";
+            }
         }
 
         private void loadTable()
@@ -184,8 +188,12 @@ namespace DBBiblioteka
 
                 foreach (PropertyInfo item in properties)
                 {
+                    
                     string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
-                    item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
+                    if (row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].ToString() == "DatumRazduzivanja")
+                        continue;
+                    else
+                        item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
 
                 }
             }
@@ -415,34 +423,6 @@ namespace DBBiblioteka
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
         
-        private void ViewDetailsData(string id)
-        {
-            populatePropertyInterface();
-            //dt za autora
-            DataTable dt = new DataTable();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
-            dt.Load(reader);
-            reader.Close();
-            if(myProperty.GetType() == typeof(PropertyZaposleni))
-            {
-                    lbDetaljno.Items.Add("-----------------------------------------");
-                    lbDetaljno.Items.Add("Radno mjesto: ");
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    int h = 0;
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        lbDetaljno.Items.Add("\t" + row[h++]);
-                    }
-
-                }
-
-            }
-
-        }
-
         private void ViewDetailsData(string id)
         {
             populatePropertyInterface();

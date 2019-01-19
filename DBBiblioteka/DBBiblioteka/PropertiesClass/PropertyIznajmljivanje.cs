@@ -110,9 +110,20 @@ namespace DBBiblioteka.PropertiesClass
                            ,@DatumRazduzivanja)";
         }
 
-        public List<SqlParameter> GetProcedureParameters()
+        public List<SqlParameter> GetProcedureParameters() // // za proceduru [dbo].[sp_StatusClanarineZaClanID]
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            return @"EXEC [dbo].[sp_StatusClanarineZaClanID] @ClanID";
         }
 
         public string GetProcedureSelectAllDetails()
