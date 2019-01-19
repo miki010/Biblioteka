@@ -73,14 +73,14 @@ namespace DBBiblioteka
                     if (idKnjige != null && ul.Name == "KnjigaID" && state != StateEnum.Search)
                     {
                         ul.SetKey(idKnjige.ToString());
-                            ul.Enabled = false;
+                        ul.Enabled = false;
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
                     if (ul.Name == "ZaposleniID" && state != StateEnum.Search)
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
-                            ul.Enabled = false;
+                        ul.Enabled = false;
                     }
 
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
@@ -160,7 +160,7 @@ namespace DBBiblioteka
                 }
             }
         }
-
+        bool popunjeno = true;
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
 
@@ -173,15 +173,61 @@ namespace DBBiblioteka
                     {
                         LookUpControl input = item as LookUpControl;
                         string value = input.Key;
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        try
+                        {
+                            
+                            PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            //zadrzati provjera unosa da li je popunjeno obavezno polje
+                            if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
+                            {
+                                input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                                popunjeno = false;
+                                return;
+                            }
+                            else
+                            {
+                                popunjeno = true;
+                                property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            return;
+                        }
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
+
                         string value = input.GetValue();
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        try
+                        {
+                            PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                            //zadrzati provjera unosa da li je popunjeno obavezno polje
+                            if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
+                            {
+
+                                input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                                popunjeno = false;
+
+                                return;
+                            }
+                            else
+                            {
+                                popunjeno = true;
+                                property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            return;
+
+                        }
                     }
                     else if (item.GetType() == typeof(DateTimeControl))
                     {
@@ -196,6 +242,19 @@ namespace DBBiblioteka
                         string value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value == "N")
+                        {
+                            MessageBox.Show("obavezan je i pol");
+                            //input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                            popunjeno = false;
+
+                            return;
+                        }
+                        else
+                        {
+                            popunjeno = true;
+                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        }
                     }
 
                 }
@@ -211,7 +270,7 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
-                        
+
                         string value = input.Key;
                         filterString.FStr += input.Name + " = " + value + " and ";
 
@@ -253,6 +312,8 @@ namespace DBBiblioteka
                     else if (item.GetType() == typeof(UserControlRadio))
                     {
                         UserControlRadio input = item as UserControlRadio;
+                        if (input.GetValue() != "M" || input.GetValue() != "Ž")
+                            continue;
                         string value = input.GetValue();
                         filterString.FStr += input.Name + " LIKE '" + value + "' and ";
                     }
@@ -260,7 +321,7 @@ namespace DBBiblioteka
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
-                
+
             }
 
 
