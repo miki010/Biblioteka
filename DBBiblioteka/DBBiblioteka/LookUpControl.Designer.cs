@@ -37,25 +37,31 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(99, 7);
+            this.txtID.BackColor = System.Drawing.Color.White;
+            this.txtID.CustomBackground = true;
+            this.txtID.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.txtID.Location = new System.Drawing.Point(170, 5);
             this.txtID.MaxLength = 9;
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(94, 25);
+            this.txtID.Size = new System.Drawing.Size(45, 25);
             this.txtID.TabIndex = 0;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(312, 7);
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.CustomBackground = true;
+            this.txtName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.txtName.Location = new System.Drawing.Point(263, 5);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(300, 25);
+            this.txtName.Size = new System.Drawing.Size(228, 25);
             this.txtName.TabIndex = 1;
             // 
             // tileLookUp
             // 
-            this.tileLookUp.Location = new System.Drawing.Point(209, 7);
+            this.tileLookUp.Location = new System.Drawing.Point(221, 5);
             this.tileLookUp.Name = "tileLookUp";
-            this.tileLookUp.Size = new System.Drawing.Size(84, 24);
+            this.tileLookUp.Size = new System.Drawing.Size(36, 24);
             this.tileLookUp.TabIndex = 2;
             this.tileLookUp.Text = "...";
             this.tileLookUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -66,9 +72,10 @@
             // lblText
             // 
             this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(11, 13);
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText.Location = new System.Drawing.Point(5, 9);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(35, 13);
+            this.lblText.Size = new System.Drawing.Size(45, 16);
             this.lblText.TabIndex = 3;
             this.lblText.Text = "label1";
             // 
@@ -93,7 +100,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
             this.Name = "LookUpControl";
-            this.Size = new System.Drawing.Size(620, 63);
+            this.Size = new System.Drawing.Size(500, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

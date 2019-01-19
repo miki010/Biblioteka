@@ -38,14 +38,15 @@ namespace DBBiblioteka
             dateTimePicker2.CustomFormat = "dd.MM.yyyy.";
         }
 
-        private void btnDanasnjiDan_Click(object sender, EventArgs e)
+    
+        private void btnDanasnjiDatum_Click(object sender, EventArgs e)
         {
             SetValue(DateTime.Now.Date, DateTime.Now.Date);
         }
 
         private void btnPonistiDatum_Click(object sender, EventArgs e)
         {
-            SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+               SetValue(DateTime.Now.Date, DateTime.Now.Date);
         }
     }
 }

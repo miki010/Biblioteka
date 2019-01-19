@@ -37,18 +37,19 @@
             // 
             // flPanelControls
             // 
+            this.flPanelControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.flPanelControls.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flPanelControls.Location = new System.Drawing.Point(35, 53);
+            this.flPanelControls.Location = new System.Drawing.Point(20, 60);
             this.flPanelControls.Name = "flPanelControls";
-            this.flPanelControls.Size = new System.Drawing.Size(880, 509);
+            this.flPanelControls.Size = new System.Drawing.Size(561, 638);
             this.flPanelControls.TabIndex = 0;
             // 
             // tilePotvrdi
             // 
             this.tilePotvrdi.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tilePotvrdi.Location = new System.Drawing.Point(5, 5);
+            this.tilePotvrdi.Location = new System.Drawing.Point(118, 5);
             this.tilePotvrdi.Name = "tilePotvrdi";
-            this.tilePotvrdi.Size = new System.Drawing.Size(260, 60);
+            this.tilePotvrdi.Size = new System.Drawing.Size(125, 45);
             this.tilePotvrdi.Style = MetroFramework.MetroColorStyle.Green;
             this.tilePotvrdi.TabIndex = 1;
             this.tilePotvrdi.Text = "POTVRDI";
@@ -60,9 +61,9 @@
             // tileOdustani
             // 
             this.tileOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileOdustani.Location = new System.Drawing.Point(271, 5);
+            this.tileOdustani.Location = new System.Drawing.Point(282, 5);
             this.tileOdustani.Name = "tileOdustani";
-            this.tileOdustani.Size = new System.Drawing.Size(260, 60);
+            this.tileOdustani.Size = new System.Drawing.Size(125, 45);
             this.tileOdustani.Style = MetroFramework.MetroColorStyle.Red;
             this.tileOdustani.TabIndex = 2;
             this.tileOdustani.Text = "ODUSTANI";
@@ -76,12 +77,13 @@
             // 
             this.metroPanel1.Controls.Add(this.tilePotvrdi);
             this.metroPanel1.Controls.Add(this.tileOdustani);
+            this.metroPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(213, 582);
+            this.metroPanel1.Location = new System.Drawing.Point(20, 698);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(540, 68);
+            this.metroPanel1.Size = new System.Drawing.Size(561, 57);
             this.metroPanel1.TabIndex = 1;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -91,14 +93,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 673);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(601, 756);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.flPanelControls);
             this.MaximizeBox = false;
             this.Name = "FormInput";
             this.Resizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Style = MetroFramework.MetroColorStyle.Purple;
-            this.Text = "Forma za unos podataka";
+            this.Text = "Unos podataka";
+            this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

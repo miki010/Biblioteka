@@ -168,7 +168,7 @@
             // tileLogout
             // 
             this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileLogout.Location = new System.Drawing.Point(851, 11);
+            this.tileLogout.Location = new System.Drawing.Point(903, 11);
             this.tileLogout.Name = "tileLogout";
             this.tileLogout.Size = new System.Drawing.Size(47, 43);
             this.tileLogout.Style = MetroFramework.MetroColorStyle.Purple;
@@ -185,7 +185,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(716, 29);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(716, 19);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);

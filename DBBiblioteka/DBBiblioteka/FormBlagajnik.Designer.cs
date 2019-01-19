@@ -115,7 +115,7 @@
             this.tileLogout.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.tileLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileLogout.CustomBackground = true;
-            this.tileLogout.Location = new System.Drawing.Point(780, 31);
+            this.tileLogout.Location = new System.Drawing.Point(771, 11);
             this.tileLogout.Name = "tileLogout";
             this.tileLogout.Size = new System.Drawing.Size(47, 43);
             this.tileLogout.Style = MetroFramework.MetroColorStyle.Purple;
@@ -132,7 +132,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(602, 49);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(619, 29);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(41, 25);
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(900, 500);
+            this.ClientSize = new System.Drawing.Size(861, 500);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.tileIzvjestaj);
@@ -168,7 +168,6 @@
         private MetroFramework.Controls.MetroTile tilePregledClanarina;
         private MetroFramework.Controls.MetroTile tileTipClanarine;
         private MetroFramework.Controls.MetroTile tileIzvjestaj;
-        private System.Windows.Forms.PictureBox pictureBoxBlagajnikPozadina;
         private MetroFramework.Controls.MetroTile tileLogout;
         private MetroFramework.Controls.MetroLabel lblImeZaposlenog;
     }
