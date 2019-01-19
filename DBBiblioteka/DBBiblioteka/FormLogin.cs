@@ -195,8 +195,8 @@ namespace DBBiblioteka
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Da li ste sigurni da želite napustiti aplikaciju?", "Upozorenje!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
+            {               
+                Application.Exit();
             }
         }
 
