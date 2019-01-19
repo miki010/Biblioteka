@@ -136,7 +136,7 @@ namespace DBBiblioteka
                             refreshTable();
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //hvata exception za nevalidan unos u textID lookupcontrol polje
                     }

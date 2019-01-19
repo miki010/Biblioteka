@@ -28,8 +28,10 @@ namespace DBBiblioteka
         {
             if (rbM.Checked)
                 return rbM.Text.Substring(0, 1);
-            else
+            else if (rbZenski.Checked)
                 return rbZenski.Text.Substring(0, 1);
+            else
+                return "N";
         }
 
         public void SetValue(string value)
