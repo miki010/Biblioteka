@@ -59,9 +59,11 @@ namespace DBBiblioteka
         private void txtID_TextChanged(object sender, EventArgs e)
         {
             lblObavezno.Visible = false;
+            //Key = "";
             if (txtID.Text == "")
             {
                 txtName.Text = "";
+                
             }
 
             else

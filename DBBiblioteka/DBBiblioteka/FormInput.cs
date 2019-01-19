@@ -48,6 +48,7 @@ namespace DBBiblioteka
 
         private void PopulateControls()
         {
+            
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
@@ -56,7 +57,10 @@ namespace DBBiblioteka
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
-
+                    if(state == StateEnum.Update)
+                    {
+                        ul.Enabled = false;
+                    }
                     //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
                     if (idKnjige != null && ul.Name == "KnjigaID")
                     {
@@ -140,21 +144,19 @@ namespace DBBiblioteka
         bool popunjeno = true;
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
-
             var properties = myInterface.GetType().GetProperties();
-
-            
+     
             foreach (var item in flPanelControls.Controls)
-            {
-
+            {             
                 if (item.GetType() == typeof(LookUpControl))
                 {
                     LookUpControl input = item as LookUpControl;
                     string value = input.Key;
+
                     try
                     {
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();                        
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        //zadrzati provjera unosa da li je popunjeno obavezno polje
                         if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
                         {
                             input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
@@ -162,7 +164,10 @@ namespace DBBiblioteka
                             return;
                         }
                         else
+                        {
                             popunjeno = true;
+                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                        }
                     }
                     catch (Exception)
                     {
@@ -173,24 +178,21 @@ namespace DBBiblioteka
                 else if (item.GetType() == typeof(InputControl))
                 {
                     InputControl input = item as InputControl;
-
                     string value = input.GetValue();
-
                     try
                     {
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-
+                        //zadrzati provjera unosa da li je popunjeno obavezno polje
                         if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
                         {
-
                             input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                             popunjeno = false;
-
                             return;
                         }
                         else
                             popunjeno = true;
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
                     }
                     catch (Exception ex)
                     {

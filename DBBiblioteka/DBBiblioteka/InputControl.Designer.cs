@@ -72,7 +72,7 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblText);
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(408, 55);
+            this.Size = new System.Drawing.Size(408, 45);
             this.ResumeLayout(false);
             this.PerformLayout();
 
