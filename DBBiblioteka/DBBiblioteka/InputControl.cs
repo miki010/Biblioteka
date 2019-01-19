@@ -26,6 +26,7 @@ namespace DBBiblioteka
 
         public void SetLblObavezno(string text)
         {
+            lblObavezno.Visible = true;
             lblObavezno.Text = text;
             lblObavezno.ForeColor = Color.Red;
         }

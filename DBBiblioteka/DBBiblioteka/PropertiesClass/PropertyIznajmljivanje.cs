@@ -130,6 +130,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureUpdateKnjiga()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectPregledClanarinePoClanovima()
         {
             throw new NotImplementedException();
