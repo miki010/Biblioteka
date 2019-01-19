@@ -17,12 +17,18 @@ namespace DBBiblioteka.PropertiesClass
         //select upiti
         string GetSelectPregledClanarinePoClanovima();
 
+        string GetProcedureSelectAutor();
+        string GetProcedureSelectIzdavac();
+        string GetProcedureSelectAllDetails();
+
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();
         List<SqlParameter> GetDeleteParameters();
 
         //parametri za select upite
         List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
+
+        List<SqlParameter> GetProcedureParameters();
 
     }
 }

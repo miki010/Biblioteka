@@ -13,6 +13,7 @@ using DBBiblioteka.PropertiesClass;
 using DBBiblioteka.Helper;
 using DBBiblioteka.AttributesClass;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace DBBiblioteka
 {
@@ -23,10 +24,11 @@ namespace DBBiblioteka
         int? idKnjige;
 
 
+        FilterString filterString;
+
         public FormInput()
         {
             InitializeComponent();
-
         }
 
         public FormInput(PropertyInterface myInterface, StateEnum state)
@@ -46,6 +48,16 @@ namespace DBBiblioteka
             PopulateControls();
         }
 
+        public FormInput(PropertyInterface myInterface, StateEnum state, FilterString filterString)  //konstruktor za Search inputform
+        {
+            InitializeComponent();
+            this.myInterface = myInterface;
+            this.state = state;
+            this.filterString = filterString;
+
+            PopulateControls();
+        }
+
         private void PopulateControls()
         {
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
@@ -58,17 +70,17 @@ namespace DBBiblioteka
                     ul.Name = item.Name;
 
                     //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
-                    if (idKnjige != null && ul.Name == "KnjigaID")
+                    if (idKnjige != null && ul.Name == "KnjigaID" && state != StateEnum.Search)
                     {
                         ul.SetKey(idKnjige.ToString());
-                        ul.Enabled = false;
+                            ul.Enabled = false;
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
-                    if (ul.Name == "ZaposleniID")
+                    if (ul.Name == "ZaposleniID" && state != StateEnum.Search)
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
-                        ul.Enabled = false;
+                            ul.Enabled = false;
                     }
 
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
@@ -81,19 +93,28 @@ namespace DBBiblioteka
 
                 else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
-                    DateTimeControl dtc = new DateTimeControl();
-                    dtc.Name = item.Name;
-                    dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    if (state == StateEnum.Create || state == StateEnum.Update)
+                    {
+                        DateTimeControl dtc = new DateTimeControl();
+                        dtc.Name = item.Name;
+                        dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
-                    if (state == StateEnum.Create)
-                    {
-                        dtc.SetValue(DateTime.Now);
+                        if (state == StateEnum.Create)
+                            dtc.SetValue(DateTime.Now);
+                        else if (state == StateEnum.Update)
+                            dtc.SetValue((DateTime)item.GetValue(myInterface));
+
+                        flPanelControls.Controls.Add(dtc);
                     }
-                    else
+                    else if (state == StateEnum.Search)
                     {
-                        dtc.SetValue((DateTime)item.GetValue(myInterface));
+                        DateRangeControl dateRange = new DateRangeControl();
+                        dateRange.Name = item.Name;
+                        dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                        dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+                        flPanelControls.Controls.Add(dateRange);
                     }
-                    flPanelControls.Controls.Add(dtc);
+
                 }
                 else if (item.GetCustomAttribute<RadioValue>() != null)
                 {
@@ -108,7 +129,6 @@ namespace DBBiblioteka
 
                     flPanelControls.Controls.Add(ucr);
                 }
-
                 else
                 {
                     InputControl ic = new InputControl();
@@ -133,109 +153,132 @@ namespace DBBiblioteka
                     {
                         ic.Enabled = false;
                     }
+
+                    if (myInterface is PropertyKnjiga && ic.Name == "Kolicina" && state != StateEnum.Search)
+                        ic.Enabled = false;
                     flPanelControls.Controls.Add(ic);
                 }
             }
         }
-        bool popunjeno = true;
+
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
 
             var properties = myInterface.GetType().GetProperties();
 
-            
-            foreach (var item in flPanelControls.Controls)
-            {
-
-                if (item.GetType() == typeof(LookUpControl))
+            if (state != StateEnum.Search)
+                foreach (var item in flPanelControls.Controls)
                 {
-                    LookUpControl input = item as LookUpControl;
-                    string value = input.Key;
-                    try
+                    if (item.GetType() == typeof(LookUpControl))
                     {
-                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();                        
-                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
-                        {
-                            input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
-                            popunjeno = false;
-                            return;
-                        }
-                        else
-                            popunjeno = true;
-                    }
-                    catch (Exception)
-                    {
-
-                        return;
-                    }
-                }
-                else if (item.GetType() == typeof(InputControl))
-                {
-                    InputControl input = item as InputControl;
-
-                    string value = input.GetValue();
-
-                    try
-                    {
+                        LookUpControl input = item as LookUpControl;
+                        string value = input.Key;
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    else if (item.GetType() == typeof(InputControl))
+                    {
+                        InputControl input = item as InputControl;
+                        string value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    else if (item.GetType() == typeof(DateTimeControl))
+                    {
+                        DateTimeControl input = item as DateTimeControl;
+                        DateTime value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
+                    else if (item.GetType() == typeof(UserControlRadio))
+                    {
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                    }
 
-                        if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
+                }
+            else
+            {
+
+                for (int i = 0; i < flPanelControls.Controls.Count; i++)
+                {
+                    var item = flPanelControls.Controls[i];
+
+                    if (item.GetType() == typeof(LookUpControl))
+                    {
+                        LookUpControl input = item as LookUpControl;
+                        if (string.IsNullOrEmpty(input.Key))
+                            continue;
+                        
+                        string value = input.Key;
+                        filterString.FStr += input.Name + " = " + value + " and ";
+
+                    }
+                    else if (item.GetType() == typeof(InputControl))
+                    {
+                        InputControl input = item as InputControl;
+                        string value = input.GetValue();
+                        if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
+                            if (string.IsNullOrEmpty(input.GetValue()))
+                                continue;
+                            else if (!int.TryParse(input.GetValue(), out int number1) && !double.TryParse(input.GetValue(), out double numer2))
+                            {
+                                MessageBox.Show("Polje " + input.Name + " može sadržati samo brojevne podatke!", "Greška");
+                                input.SetValue("");
+                                return;
+                            }
+                        }
 
-                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
-                            popunjeno = false;
-
+                        if (!string.IsNullOrEmpty(input.GetValue()) && (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina")))
+                            filterString.FStr += input.Name + " = " + value + " and ";
+                        else if (!string.IsNullOrEmpty(input.GetValue()))
+                            filterString.FStr += input.Name + " LIKE '%" + value + "%' and ";
+                    }
+                    else if (item.GetType() == typeof(DateRangeControl))
+                    {
+                        DateRangeControl input = item as DateRangeControl;
+                        DateTime[] dates = input.GetValue();
+                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                            continue;
+                        else if (dates[0].Date > dates[1].Date)
+                        {
+                            MessageBox.Show("Izaberite validan raspon datuma!", "Greška");
                             return;
                         }
-                        else
-                            popunjeno = true;
+                        filterString.FStr += input.Name + " >= '" + dates[0].Date.ToString() + "' and " + input.Name + " <= '" + dates[1].Date.ToString() + "' and ";
                     }
-                    catch (Exception ex)
+                    else if (item.GetType() == typeof(UserControlRadio))
                     {
-                        return;
+                        UserControlRadio input = item as UserControlRadio;
+                        string value = input.GetValue();
+                        filterString.FStr += input.Name + " LIKE '" + value + "' and ";
                     }
-
                 }
-                else if (item.GetType() == typeof(DateTimeControl))
-                {
-                    DateTimeControl input = item as DateTimeControl;
-                    DateTime value = input.GetValue();
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                }
-                else if (item.GetType() == typeof(UserControlRadio))
-                {
-                    UserControlRadio input = item as UserControlRadio;
-                    string value = input.GetValue();
-                    PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                }
+                if (filterString.FStr.Length == 0)
+                    return;
+                filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
+                
             }
 
 
-
-            if (popunjeno)
+            if (state == StateEnum.Create)
             {
-                if (state == StateEnum.Create)
-                {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
-                    MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (state == StateEnum.Update)
-                {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
-                    MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                DialogResult = DialogResult.OK;
-
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-                return;
+            else if (state == StateEnum.Update)
+            {
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
+
+            DialogResult = DialogResult.OK;
 
         }
 

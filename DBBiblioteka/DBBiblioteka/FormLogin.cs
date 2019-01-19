@@ -25,21 +25,16 @@ namespace DBBiblioteka
         PropertyZaposleni propertyZaposleni = new PropertyZaposleni();
         public static string idZaposlenog = "";
 
-
-
         public FormLogin()
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
+            txtPassword.UseSystemPasswordChar = true;
         }
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            //prije poziva f-je provjerava da li su obadva polja popunjena
+            //prije poziva f-je provjerava da li su oba polja popunjena
             
             
             if(!txtUserName.Text.Trim().Equals("") && !txtPassword.Text.Trim().Equals(""))
@@ -84,6 +79,7 @@ namespace DBBiblioteka
             foreach (DataRow row in dt.Rows)
             {
                 string ime = row["KorisnickoIme"].ToString();
+                //MessageBox.Show(ime.Substring(0,1).ToUpper() + ime.Substring(1));
                 string sifra = row["Lozinka"].ToString();
                 string id = row["ZaposleniID"].ToString();
                 idZaposlenog = id; //koristi se za pracenje ko se prijavio u sistem
@@ -102,7 +98,7 @@ namespace DBBiblioteka
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska!");
+                    MessageBox.Show("Greška!", "Upozorenje!");
                 }
 
                 if (ime == txtUserName.Text)
@@ -146,36 +142,38 @@ namespace DBBiblioteka
 
                     if (idProsao == zaposleniID && idRadnogMjesta == 1)
                     {
-                        FormAdmin formAdmin = new FormAdmin();
+                        FormAdmin formAdmin = new FormAdmin(row["Ime"].ToString(), row["Prezime"].ToString());                
                         formAdmin.Show();
                        
                     }
-                    else if (idProsao == zaposleniID && idRadnogMjesta == 2)
+                    else if (idProsao == zaposleniID && idRadnogMjesta == 4)
                     {
-                        FormBlagajnik formBlagajnik = new FormBlagajnik();
+                        FormBlagajnik formBlagajnik = new FormBlagajnik(row["Ime"].ToString(), row["Prezime"].ToString());
                         formBlagajnik.Show();
                        
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 3)
                     {
-                        FormBibliotekar formBibliotekar = new FormBibliotekar();
+                        //pokusati proslijediti ime na formu
+                        FormBibliotekar formBibliotekar = new FormBibliotekar(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString());                 
                         formBibliotekar.Show();
                         
                     }
-                    //this.Hide();
+                    this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
-                }   
+                }
+                
             }
             else if (prosaoIme)
             {
-                MessageBox.Show("Pogresna lozinka", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Pogrešna lozinka!", "Obavještenje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblInvalid.Visible = true;
                 txtPassword.Clear();
             }
             else if (nijeProsaoIme)
             {
-                MessageBox.Show("Uneseno korisnicko ime ne postoji u bazi!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);//
+                MessageBox.Show("Unešeno korisničko ime ne postoji!", "Obavještenje!", MessageBoxButtons.OK, MessageBoxIcon.Information);//
                 txtPassword.Clear();
                 txtUserName.Clear();
             }        
@@ -196,7 +194,7 @@ namespace DBBiblioteka
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Da li ste sigurni da želite da napustite aplikaciju?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Da li ste sigurni da želite napustiti aplikaciju?", "Upozorenje!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Close();
             }
@@ -212,6 +210,18 @@ namespace DBBiblioteka
         {
             lblUName.Visible = false;
 
+        }
+
+        private void togglePassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (togglePassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
         }
     }
 }

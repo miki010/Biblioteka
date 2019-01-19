@@ -304,6 +304,32 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.TinyInt);
+                parameter.Value = ZaposleniID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAllDetails()
+        {
+            return @"EXEC [dbo].[sp.Radnik] @ZaposleniID";
+        }
+
 
 
         #endregion

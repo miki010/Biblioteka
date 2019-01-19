@@ -275,5 +275,25 @@ namespace DBBiblioteka.PropertiesClass
 
             return list;
         }
+
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAllDetails()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -34,20 +34,22 @@
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lblUsername = new MetroFramework.Controls.MetroLabel();
             this.lblPassword = new MetroFramework.Controls.MetroLabel();
-            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
-            this.lblSee = new MetroFramework.Controls.MetroLabel();
             this.lblInvalid = new MetroFramework.Controls.MetroLabel();
             this.lblTitle1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
-            this.lblTitle3 = new System.Windows.Forms.Label();
             this.lblUName = new MetroFramework.Controls.MetroLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pictureBoxLoginbg = new System.Windows.Forms.PictureBox();
+            this.pictureBoxELSALogo = new System.Windows.Forms.PictureBox();
+            this.lblVerzija = new MetroFramework.Controls.MetroLabel();
+            this.lblSeePass = new MetroFramework.Controls.MetroLabel();
+            this.togglePassword = new MetroFramework.Controls.MetroToggle();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(57, 395);
+            this.txtUserName.Location = new System.Drawing.Point(36, 404);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(352, 25);
             this.txtUserName.TabIndex = 0;
@@ -55,7 +57,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(57, 458);
+            this.txtPassword.Location = new System.Drawing.Point(36, 461);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(352, 25);
             this.txtPassword.TabIndex = 2;
@@ -63,10 +65,11 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Highlight = true;
-            this.btnLogin.Location = new System.Drawing.Point(157, 541);
+            this.btnLogin.Location = new System.Drawing.Point(66, 550);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(142, 39);
+            this.btnLogin.Size = new System.Drawing.Size(142, 42);
             this.btnLogin.Style = MetroFramework.MetroColorStyle.Purple;
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Prijava";
@@ -75,10 +78,11 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Highlight = true;
-            this.btnCancel.Location = new System.Drawing.Point(157, 596);
+            this.btnCancel.Location = new System.Drawing.Point(214, 550);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(142, 39);
+            this.btnCancel.Size = new System.Drawing.Size(142, 42);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Silver;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Izlaz";
@@ -88,7 +92,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(57, 373);
+            this.lblUsername.Location = new System.Drawing.Point(36, 382);
             this.lblUsername.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(96, 19);
@@ -98,40 +102,20 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(57, 436);
+            this.lblPassword.Location = new System.Drawing.Point(36, 439);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(55, 19);
             this.lblPassword.TabIndex = 9;
             this.lblPassword.Text = "Lozinka:";
             // 
-            // metroToggle1
-            // 
-            this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(157, 493);
-            this.metroToggle1.MaximumSize = new System.Drawing.Size(60, 15);
-            this.metroToggle1.Name = "metroToggle1";
-            this.metroToggle1.Size = new System.Drawing.Size(60, 15);
-            this.metroToggle1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroToggle1.TabIndex = 10;
-            this.metroToggle1.Text = "Off";
-            this.metroToggle1.UseVisualStyleBackColor = true;
-            // 
-            // lblSee
-            // 
-            this.lblSee.AutoSize = true;
-            this.lblSee.Location = new System.Drawing.Point(57, 489);
-            this.lblSee.Name = "lblSee";
-            this.lblSee.Size = new System.Drawing.Size(94, 19);
-            this.lblSee.TabIndex = 11;
-            this.lblSee.Text = "Prikaži lozinku:";
-            // 
             // lblInvalid
             // 
             this.lblInvalid.AutoSize = true;
+            this.lblInvalid.BackColor = System.Drawing.Color.Transparent;
             this.lblInvalid.ForeColor = System.Drawing.Color.Red;
-            this.lblInvalid.Location = new System.Drawing.Point(118, 436);
+            this.lblInvalid.Location = new System.Drawing.Point(87, 439);
             this.lblInvalid.Name = "lblInvalid";
-            this.lblInvalid.Size = new System.Drawing.Size(111, 19);
+            this.lblInvalid.Size = new System.Drawing.Size(112, 19);
             this.lblInvalid.Style = MetroFramework.MetroColorStyle.Red;
             this.lblInvalid.TabIndex = 12;
             this.lblInvalid.Text = "Pogrešna lozinka!";
@@ -141,64 +125,105 @@
             // lblTitle1
             // 
             this.lblTitle1.AutoSize = true;
-            this.lblTitle1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle1.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle1.Location = new System.Drawing.Point(129, 249);
+            this.lblTitle1.Font = new System.Drawing.Font("Segoe UI", 20.2F, System.Drawing.FontStyle.Bold);
+            this.lblTitle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblTitle1.Location = new System.Drawing.Point(119, 34);
             this.lblTitle1.Name = "lblTitle1";
             this.lblTitle1.Size = new System.Drawing.Size(170, 37);
             this.lblTitle1.TabIndex = 14;
             this.lblTitle1.Text = "Dobrodošli!";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DBBiblioteka.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(118, 33);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(196, 176);
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(424, 652);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(39, 19);
+            this.lblVersion.Size = new System.Drawing.Size(43, 19);
             this.lblVersion.TabIndex = 16;
             this.lblVersion.Text = "v 1.10";
-            // 
-            // lblTitle3
-            // 
-            this.lblTitle3.AutoSize = true;
-            this.lblTitle3.Location = new System.Drawing.Point(170, 212);
-            this.lblTitle3.Name = "lblTitle3";
-            this.lblTitle3.Size = new System.Drawing.Size(77, 37);
-            this.lblTitle3.TabIndex = 17;
-            this.lblTitle3.Text = "ELSA";
             // 
             // lblUName
             // 
             this.lblUName.AutoSize = true;
+            this.lblUName.BackColor = System.Drawing.Color.Transparent;
+            this.lblUName.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.lblUName.ForeColor = System.Drawing.Color.Red;
-            this.lblUName.Location = new System.Drawing.Point(159, 373);
+            this.lblUName.Location = new System.Drawing.Point(126, 382);
             this.lblUName.Name = "lblUName";
-            this.lblUName.Size = new System.Drawing.Size(23, 19);
+            this.lblUName.Size = new System.Drawing.Size(211, 19);
+            this.lblUName.Style = MetroFramework.MetroColorStyle.Red;
             this.lblUName.TabIndex = 18;
-            this.lblUName.Text = "lbl";
+            this.lblUName.Text = "Unešeno korisničko ime ne postoji!";
+            this.lblUName.UseStyleColors = true;
+            this.lblUName.UseWaitCursor = true;
+            this.lblUName.Visible = false;
+            // 
+            // pictureBoxLoginbg
+            // 
+            this.pictureBoxLoginbg.Image = global::DBBiblioteka.Properties.Resources.loginimage;
+            this.pictureBoxLoginbg.Location = new System.Drawing.Point(463, 5);
+            this.pictureBoxLoginbg.Name = "pictureBoxLoginbg";
+            this.pictureBoxLoginbg.Size = new System.Drawing.Size(463, 618);
+            this.pictureBoxLoginbg.TabIndex = 20;
+            this.pictureBoxLoginbg.TabStop = false;
+            // 
+            // pictureBoxELSALogo
+            // 
+            this.pictureBoxELSALogo.Image = global::DBBiblioteka.Properties.Resources.elsalogofinal;
+            this.pictureBoxELSALogo.Location = new System.Drawing.Point(97, 93);
+            this.pictureBoxELSALogo.Name = "pictureBoxELSALogo";
+            this.pictureBoxELSALogo.Size = new System.Drawing.Size(222, 212);
+            this.pictureBoxELSALogo.TabIndex = 19;
+            this.pictureBoxELSALogo.TabStop = false;
+            // 
+            // lblVerzija
+            // 
+            this.lblVerzija.AutoSize = true;
+            this.lblVerzija.Location = new System.Drawing.Point(190, 600);
+            this.lblVerzija.Name = "lblVerzija";
+            this.lblVerzija.Size = new System.Drawing.Size(43, 19);
+            this.lblVerzija.TabIndex = 21;
+            this.lblVerzija.Text = "v 1.10";
+            // 
+            // lblSeePass
+            // 
+            this.lblSeePass.AutoSize = true;
+            this.lblSeePass.Location = new System.Drawing.Point(36, 496);
+            this.lblSeePass.Name = "lblSeePass";
+            this.lblSeePass.Size = new System.Drawing.Size(94, 19);
+            this.lblSeePass.TabIndex = 22;
+            this.lblSeePass.Text = "Prikaži lozinku:";
+            // 
+            // togglePassword
+            // 
+            this.togglePassword.AutoSize = true;
+            this.togglePassword.Location = new System.Drawing.Point(130, 499);
+            this.togglePassword.MaximumSize = new System.Drawing.Size(60, 15);
+            this.togglePassword.MinimumSize = new System.Drawing.Size(60, 15);
+            this.togglePassword.Name = "togglePassword";
+            this.togglePassword.Size = new System.Drawing.Size(60, 15);
+            this.togglePassword.Style = MetroFramework.MetroColorStyle.Purple;
+            this.togglePassword.TabIndex = 23;
+            this.togglePassword.Text = "Off";
+            this.togglePassword.UseVisualStyleBackColor = true;
+            this.togglePassword.CheckedChanged += new System.EventHandler(this.togglePassword_CheckedChanged);
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 678);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(925, 620);
+            this.Controls.Add(this.togglePassword);
+            this.Controls.Add(this.lblSeePass);
+            this.Controls.Add(this.lblVerzija);
+            this.Controls.Add(this.pictureBoxLoginbg);
+            this.Controls.Add(this.pictureBoxELSALogo);
             this.Controls.Add(this.lblUName);
-            this.Controls.Add(this.lblTitle3);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblTitle1);
             this.Controls.Add(this.lblInvalid);
-            this.Controls.Add(this.lblSee);
-            this.Controls.Add(this.metroToggle1);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnCancel);
@@ -206,15 +231,19 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(925, 625);
+            this.MinimumSize = new System.Drawing.Size(925, 620);
             this.Name = "FormLogin";
             this.Padding = new System.Windows.Forms.Padding(54, 171, 54, 57);
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,14 +256,15 @@
         private MetroFramework.Controls.MetroButton btnCancel;
         private MetroFramework.Controls.MetroLabel lblUsername;
         private MetroFramework.Controls.MetroLabel lblPassword;
-        private MetroFramework.Controls.MetroToggle metroToggle1;
-        private MetroFramework.Controls.MetroLabel lblSee;
         private MetroFramework.Controls.MetroLabel lblInvalid;
         private System.Windows.Forms.Label lblTitle1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private MetroFramework.Controls.MetroLabel lblVersion;
-        private System.Windows.Forms.Label lblTitle3;
         private MetroFramework.Controls.MetroLabel lblUName;
+        private System.Windows.Forms.PictureBox pictureBoxELSALogo;
+        private System.Windows.Forms.PictureBox pictureBoxLoginbg;
+        private MetroFramework.Controls.MetroLabel lblVerzija;
+        private MetroFramework.Controls.MetroLabel lblSeePass;
+        private MetroFramework.Controls.MetroToggle togglePassword;
     }
 }
 

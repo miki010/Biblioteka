@@ -110,6 +110,26 @@ namespace DBBiblioteka.PropertiesClass
                            ,@DatumRazduzivanja)";
         }
 
+        public List<SqlParameter> GetProcedureParameters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAllDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectAutor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureSelectIzdavac()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectPregledClanarinePoClanovima()
         {
             throw new NotImplementedException();
