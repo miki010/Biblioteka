@@ -29,13 +29,19 @@ namespace DBBiblioteka
         {
             lblText.Text = text;
         }
+
         public void SetLabelObavezno(string text)
         {
             lblObavezno.Visible = true;
             lblObavezno.Text = text;
+            var point = new Point(170, 32);
+            this.lblObavezno.Location = point;
+            lblObavezno.CustomForeColor = true;
             lblObavezno.ForeColor = Color.Red;
-            //Label label = new Label();
-            //label.Text = text;
+            txtID.Text = "";
+            txtName.Text = "";
+            Key = null;
+            Value = null;
         }
 
         public void SetKey(string key)
@@ -62,8 +68,9 @@ namespace DBBiblioteka
             if (txtID.Text == "")
             {
                 txtName.Text = "";
+                SetLabelObavezno("");
+                return;
             }
-
             else
             {
                 char[] str = txtID.Text.ToCharArray();
@@ -72,16 +79,12 @@ namespace DBBiblioteka
                     txtID.Text = "";
                     return;
                 }
-
                 FormStandard sf = new FormStandard(myInterface, StateEnum.LookUp, Convert.ToInt32(txtID.Text));
                 sf.Vrati();
                 Key = sf.Key;
                 Value = sf.Value;
                 txtName.Text = Value;
             }
-
         }
-
-
     }
 }
