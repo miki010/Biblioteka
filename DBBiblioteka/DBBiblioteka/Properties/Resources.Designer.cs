@@ -153,6 +153,16 @@ namespace DBBiblioteka.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edit_woman_profile {
+            get {
+                object obj = ResourceManager.GetObject("edit-woman-profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap elsalogofinal {
             get {
                 object obj = ResourceManager.GetObject("elsalogofinal", resourceCulture);
@@ -276,6 +286,16 @@ namespace DBBiblioteka.Properties {
         internal static System.Drawing.Bitmap typeofmembership {
             get {
                 object obj = ResourceManager.GetObject("typeofmembership", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_man_profile {
+            get {
+                object obj = ResourceManager.GetObject("user-man-profile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

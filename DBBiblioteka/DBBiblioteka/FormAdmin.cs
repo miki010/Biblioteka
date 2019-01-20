@@ -13,7 +13,7 @@ namespace DBBiblioteka
 {
     public partial class FormAdmin : MetroFramework.Forms.MetroForm
     {
-        string ime, prezime;
+        string ime, prezime, srednjeIme, pol;
         public FormAdmin()
         {
             InitializeComponent();
@@ -23,17 +23,29 @@ namespace DBBiblioteka
             tileNovaKnjiga.BringToFront();
             
         }
-        public FormAdmin(string ime, string prezime)
+        public FormAdmin(string ime, string prezime, string srednjeIme, string pol)
         {
             InitializeComponent();
             this.ime = ime;
             this.prezime = prezime;
+            this.srednjeIme = srednjeIme;
+            this.pol = pol;
             this.ControlBox = false;
+            panelPromjenaLozinke.Visible = false;
         }
 
         private void FormAdmin_Load(object sender, EventArgs e)
         {
             lblImeZaposlenog.Text = ime.ToString() + " " + prezime.ToString();
+            tileProfile.UseTileImage = true;
+            if (pol == "M")
+            {
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+            }
+            else if (pol == "Z" || pol == "Ž")
+            {
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.edit_woman_profile;
+            }
         }
 
         private void tileNoviRadnik_Click(object sender, EventArgs e)
@@ -96,6 +108,23 @@ namespace DBBiblioteka
         {
             tileIzdavac.Height -= 15;
             tileIzdavac.Width -= 20;
+        }
+
+        private void tileProfile_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = true;
+            panelPromjenaLozinke.BringToFront();
+        }
+
+        private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
+        {
+            //dodati kod za izmjenu lozinke
+            panelPromjenaLozinke.Visible = false;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
         }
 
         private void tileIzdavac_MouseLeave(object sender, EventArgs e)
