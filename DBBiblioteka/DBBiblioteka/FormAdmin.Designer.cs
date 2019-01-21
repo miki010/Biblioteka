@@ -38,6 +38,7 @@
             this.tileLogout = new MetroFramework.Controls.MetroTile();
             this.tileProfile = new MetroFramework.Controls.MetroTile();
             this.panelPromjenaLozinke = new MetroFramework.Controls.MetroPanel();
+            this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lbPotvrdiLozinku = new MetroFramework.Controls.MetroLabel();
             this.txtPotvrdiLozinku = new MetroFramework.Controls.MetroTextBox();
             this.lblNovaLozinka = new MetroFramework.Controls.MetroLabel();
@@ -45,15 +46,16 @@
             this.txtNovaLozinka = new MetroFramework.Controls.MetroTextBox();
             this.txtTrenutnaLozinka = new MetroFramework.Controls.MetroTextBox();
             this.tileSacuvajIzmjene = new MetroFramework.Controls.MetroTile();
-            this.btnCancel = new MetroFramework.Controls.MetroButton();
+            this.panelUserName = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdminPozadina)).BeginInit();
             this.panelPromjenaLozinke.SuspendLayout();
+            this.panelUserName.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxAdminPozadina
             // 
             this.pictureBoxAdminPozadina.Image = global::DBBiblioteka.Properties.Resources.adminpozadina;
-            this.pictureBoxAdminPozadina.Location = new System.Drawing.Point(0, 40);
+            this.pictureBoxAdminPozadina.Location = new System.Drawing.Point(0, 60);
             this.pictureBoxAdminPozadina.MaximumSize = new System.Drawing.Size(900, 440);
             this.pictureBoxAdminPozadina.MinimumSize = new System.Drawing.Size(900, 440);
             this.pictureBoxAdminPozadina.Name = "pictureBoxAdminPozadina";
@@ -142,7 +144,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(649, 27);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(232, 0);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(119, 25);
@@ -172,7 +174,7 @@
             this.tileProfile.BackColor = System.Drawing.Color.Teal;
             this.tileProfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileProfile.CustomBackground = true;
-            this.tileProfile.Location = new System.Drawing.Point(799, 9);
+            this.tileProfile.Location = new System.Drawing.Point(799, 10);
             this.tileProfile.Name = "tileProfile";
             this.tileProfile.Size = new System.Drawing.Size(47, 43);
             this.tileProfile.Style = MetroFramework.MetroColorStyle.Purple;
@@ -203,6 +205,19 @@
             this.panelPromjenaLozinke.VerticalScrollbarBarColor = true;
             this.panelPromjenaLozinke.VerticalScrollbarHighlightOnWheel = false;
             this.panelPromjenaLozinke.VerticalScrollbarSize = 10;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Highlight = true;
+            this.btnCancel.Location = new System.Drawing.Point(168, 243);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(123, 44);
+            this.btnCancel.Style = MetroFramework.MetroColorStyle.Silver;
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Izlaz";
+            this.btnCancel.UseMnemonic = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lbPotvrdiLozinku
             // 
@@ -270,27 +285,23 @@
             this.tileSacuvajIzmjene.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSacuvajIzmjene.Click += new System.EventHandler(this.tileSacuvajIzmjene_Click);
             // 
-            // btnCancel
+            // panelUserName
             // 
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Highlight = true;
-            this.btnCancel.Location = new System.Drawing.Point(168, 243);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(123, 44);
-            this.btnCancel.Style = MetroFramework.MetroColorStyle.Silver;
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Izlaz";
-            this.btnCancel.UseMnemonic = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.panelUserName.Controls.Add(this.lblImeZaposlenog);
+            this.panelUserName.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.panelUserName.Location = new System.Drawing.Point(442, 16);
+            this.panelUserName.Name = "panelUserName";
+            this.panelUserName.Size = new System.Drawing.Size(354, 36);
+            this.panelUserName.TabIndex = 17;
             // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 477);
+            this.ClientSize = new System.Drawing.Size(900, 499);
+            this.Controls.Add(this.panelUserName);
             this.Controls.Add(this.panelPromjenaLozinke);
             this.Controls.Add(this.tileProfile);
-            this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.tileAutor);
             this.Controls.Add(this.tileIzdavac);
@@ -306,8 +317,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdminPozadina)).EndInit();
             this.panelPromjenaLozinke.ResumeLayout(false);
             this.panelPromjenaLozinke.PerformLayout();
+            this.panelUserName.ResumeLayout(false);
+            this.panelUserName.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -330,5 +342,6 @@
         private MetroFramework.Controls.MetroTextBox txtTrenutnaLozinka;
         private MetroFramework.Controls.MetroTile tileSacuvajIzmjene;
         private MetroFramework.Controls.MetroButton btnCancel;
+        private System.Windows.Forms.FlowLayoutPanel panelUserName;
     }
 }

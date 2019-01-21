@@ -71,7 +71,7 @@ namespace DBBiblioteka
                     ul.Name = item.Name;
                     if(state == StateEnum.Update)
                     {
-                        ul.Enabled = false;
+                        ul.Enabled = true;
                     }
 
                     //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
@@ -185,7 +185,9 @@ namespace DBBiblioteka
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
                             {
+                                input.txtID.Focus();
                                 input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                               
                                 popunjeno = false;
                                 return;
                             }
@@ -217,12 +219,12 @@ namespace DBBiblioteka
                                 if (state == StateEnum.Create)
                                 {
                                     idAkcije = 1;
-                                    MessageBox.Show(idAkcije + "create");
+                                   // MessageBox.Show(idAkcije + "create");
                                 }
                                 else if (state == StateEnum.Update)
                                 {
                                     idAkcije = 2;
-                                    MessageBox.Show(idAkcije + "update");
+                                 //   MessageBox.Show(idAkcije + "update");
                                 }
                                 if (input.Name == "KnjigaID")
                                 {

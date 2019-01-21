@@ -23,6 +23,7 @@ namespace DBBiblioteka
             InitializeComponent();
             myInterface = interf;
             txtName.ReadOnly = true;
+            txtID.Focus();
         }
 
         public void SetLabel(string text)
@@ -42,6 +43,7 @@ namespace DBBiblioteka
             txtName.Text = "";
             Key = null;
             Value = null;
+         
         }
 
         public void SetKey(string key)

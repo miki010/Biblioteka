@@ -20,7 +20,7 @@ namespace DBBiblioteka
             InitializeComponent();
         }
 
-        public FormBlagajnik(string ime, string prezime, string srednjeIme, string pol)
+        public FormBlagajnik(string ime, string srednjeIme, string prezime, string pol)
         {
             InitializeComponent();
             this.ime = ime;
