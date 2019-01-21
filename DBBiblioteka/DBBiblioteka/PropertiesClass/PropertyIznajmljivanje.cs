@@ -110,15 +110,9 @@ namespace DBBiblioteka.PropertiesClass
                            ,@DatumRazduzivanja)";
         }
 
-        public List<SqlParameter> GetProcedureParameters() // // za proceduru [dbo].[sp_StatusClanarineZaClanID]
+        public List<SqlParameter> GetProcedureParameters() // 
         {
-            List<SqlParameter> list = new List<SqlParameter>();
-            {
-                SqlParameter parameter = new SqlParameter("@ClanID", System.Data.SqlDbType.Int);
-                parameter.Value = ClanID;
-                list.Add(parameter);
-            }
-
+           
             List<SqlParameter> list = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
@@ -220,6 +214,17 @@ namespace DBBiblioteka.PropertiesClass
                           ,[DatumIznajmljivanja] = @DatumIznajmljivanja
                           ,[DatumRazduzivanja] = @DatumRazduzivanja
                      WHERE IznajmljivanjeID = @IznajmljivanjeID";
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanID;
+                list.Add(parameter);
+            }
+            return list;
         }
     }
 }

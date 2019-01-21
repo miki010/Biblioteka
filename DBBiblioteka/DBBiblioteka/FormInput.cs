@@ -190,6 +190,9 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         string value = input.Key;
 
+                        if (input.Name == "ClanID")
+                            idClana = Convert.ToInt32(input.Key);
+
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
@@ -420,13 +423,13 @@ namespace DBBiblioteka
                     clanarina.GetSelectQuery());
                     tableClanarina.Load(reader2);
                     reader2.Close();
-
+                    
                     bool ima = false;
                     for (int i = 0; i < tableClanarina.Rows.Count; i++)
                     {
-                        if ((int)(tableClanarina.Rows[i][1]) == idClana)
+                        if ((int)(tableClanarina.Rows[i][1]) == idClana)/////////
                         {
-                            ima = true;
+                            ima = true; 
                         }
                     }
                     if (!ima)
@@ -438,7 +441,7 @@ namespace DBBiblioteka
 
                     DataTable dt = new DataTable();
                     SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParameters().ToArray());
+                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParametersClanID().ToArray());
                     dt.Load(reader);
                     reader.Close();
 
