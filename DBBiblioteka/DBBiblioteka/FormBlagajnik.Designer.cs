@@ -171,6 +171,7 @@
             // 
             // panelPromjenaLozinke
             // 
+            this.panelPromjenaLozinke.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelPromjenaLozinke.Controls.Add(this.btnCancel);
             this.panelPromjenaLozinke.Controls.Add(this.lbPotvrdiLozinku);
             this.panelPromjenaLozinke.Controls.Add(this.txtPotvrdiLozinku);
@@ -216,10 +217,8 @@
             // 
             this.txtPotvrdiLozinku.Location = new System.Drawing.Point(148, 154);
             this.txtPotvrdiLozinku.Name = "txtPotvrdiLozinku";
-            this.txtPotvrdiLozinku.PasswordChar = '*';
             this.txtPotvrdiLozinku.Size = new System.Drawing.Size(181, 23);
             this.txtPotvrdiLozinku.TabIndex = 7;
-            this.txtPotvrdiLozinku.Text = "metrotextBox";
             // 
             // lblNovaLozinka
             // 
@@ -243,27 +242,23 @@
             // 
             this.txtNovaLozinka.Location = new System.Drawing.Point(148, 105);
             this.txtNovaLozinka.Name = "txtNovaLozinka";
-            this.txtNovaLozinka.PasswordChar = '*';
             this.txtNovaLozinka.Size = new System.Drawing.Size(181, 23);
             this.txtNovaLozinka.TabIndex = 4;
-            this.txtNovaLozinka.Text = "metroTextBox2";
             // 
             // txtTrenutnaLozinka
             // 
             this.txtTrenutnaLozinka.Location = new System.Drawing.Point(148, 55);
             this.txtTrenutnaLozinka.Name = "txtTrenutnaLozinka";
-            this.txtTrenutnaLozinka.PasswordChar = '*';
             this.txtTrenutnaLozinka.Size = new System.Drawing.Size(181, 23);
             this.txtTrenutnaLozinka.TabIndex = 3;
-            this.txtTrenutnaLozinka.Text = "metroTextBox1";
             // 
             // tileSacuvajIzmjene
             // 
             this.tileSacuvajIzmjene.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileSacuvajIzmjene.Location = new System.Drawing.Point(13, 234);
+            this.tileSacuvajIzmjene.Location = new System.Drawing.Point(39, 234);
             this.tileSacuvajIzmjene.Name = "tileSacuvajIzmjene";
             this.tileSacuvajIzmjene.Size = new System.Drawing.Size(125, 44);
-            this.tileSacuvajIzmjene.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tileSacuvajIzmjene.Style = MetroFramework.MetroColorStyle.Pink;
             this.tileSacuvajIzmjene.TabIndex = 2;
             this.tileSacuvajIzmjene.Text = "Sačuvaj izmjene";
             this.tileSacuvajIzmjene.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -260,7 +260,6 @@
             this.txtPotvrdiLozinku.PasswordChar = '*';
             this.txtPotvrdiLozinku.Size = new System.Drawing.Size(181, 23);
             this.txtPotvrdiLozinku.TabIndex = 7;
-            this.txtPotvrdiLozinku.Text = "metrotextBox";
             // 
             // lblNovaLozinka
             // 
@@ -287,7 +286,6 @@
             this.txtNovaLozinka.PasswordChar = '*';
             this.txtNovaLozinka.Size = new System.Drawing.Size(181, 23);
             this.txtNovaLozinka.TabIndex = 4;
-            this.txtNovaLozinka.Text = "metroTextBox2";
             // 
             // txtTrenutnaLozinka
             // 
@@ -296,7 +294,6 @@
             this.txtTrenutnaLozinka.PasswordChar = '*';
             this.txtTrenutnaLozinka.Size = new System.Drawing.Size(181, 23);
             this.txtTrenutnaLozinka.TabIndex = 3;
-            this.txtTrenutnaLozinka.Text = "metroTextBox1";
             // 
             // tileSacuvajIzmjene
             // 

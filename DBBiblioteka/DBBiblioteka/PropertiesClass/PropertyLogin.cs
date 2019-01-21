@@ -12,6 +12,9 @@ namespace DBBiblioteka.PropertiesClass
 {
     public class PropertyLogin
     {
+        [SqlName("ID")]
+        public int ID { get; set; }
+
         [SqlName("ZaposleniID")]
         public int ZaposleniID { get; set; }
 
@@ -50,7 +53,15 @@ namespace DBBiblioteka.PropertiesClass
         {
             return @"SELECT ZaposleniID , KorisnickoIme, Lozinka FROM dbo.PristupniPodaci";
         }
+   
+        public string GetSelectNewPassword()
+        {
+            return @"
+                    UPDATE [dbo].[PristupniPodaci]
+                    SET 
+                         [Lozinka] = @Lozinka
+                    WHERE ZaposleniID=@ZaposleniID";
+        }
 
-        
     }
 }

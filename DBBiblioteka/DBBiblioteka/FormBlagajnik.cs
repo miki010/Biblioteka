@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBBiblioteka.Helper;
 using DBBiblioteka.PropertiesClass;
 
 namespace DBBiblioteka
 {
     public partial class FormBlagajnik : MetroFramework.Forms.MetroForm
     {
+
+        PropertyLogin myProperty = new PropertyLogin();
         string ime, prezime, srednjeIme, pol;
 
         public FormBlagajnik()
@@ -112,9 +116,86 @@ namespace DBBiblioteka
 
 
         private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
-        {
-            //dodati kod za izmjenu lozinke
-            panelPromjenaLozinke.Visible = false;
+        {           
+            string staraLozinka = "";
+            string novaLozinka = txtNovaLozinka.ToString();
+            string potvrdiLozinku = txtPotvrdiLozinku.ToString();
+
+            DataTable dt = new DataTable();
+
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                myProperty.GetLoginQuery());
+
+            dt.Load(reader);
+            reader.Close();
+            bool idProsao = false;
+            bool NovaRazlicitaOdStare = false;
+
+
+            if (txtTrenutnaLozinka.Text != "" && txtNovaLozinka.Text!="" && txtPotvrdiLozinku.Text!="")
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    // string idZaposlenog = FormLogin.idZaposlenog;
+
+                    string ZaposleniID = row["ZaposleniID"].ToString();
+                    string trenutnaLozinkaIzBaze = row["Lozinka"].ToString();
+
+                    if (ZaposleniID == FormLogin.idZaposlenog)
+                    {
+                        idProsao = true;
+                        staraLozinka = trenutnaLozinkaIzBaze;
+                        MessageBox.Show("ID  " + ZaposleniID + "  lozinka: " + trenutnaLozinkaIzBaze);
+                        break;
+                    }
+                }
+
+                if (!idProsao)
+                {
+                    MessageBox.Show("Pogrezna trenutna lozinka");
+                    txtTrenutnaLozinka.Text = "";
+                    txtTrenutnaLozinka.Focus();
+                }
+
+                else
+                {
+                    if (staraLozinka != txtTrenutnaLozinka.Text)
+                    {
+                        MessageBox.Show("Lozinka iz baze se ne poklapa sa trenutnom unesenom lozinkom!");
+                        txtNovaLozinka.Text = "";
+                        txtNovaLozinka.Focus();
+                    }
+                    else if (staraLozinka == txtTrenutnaLozinka.Text)
+                    {
+                       // MessageBox.Show("Trenutna se poklapa sa lozinkom iz baze " + txtTrenutnaLozinka.Text);
+                        if (txtNovaLozinka.Text == txtTrenutnaLozinka.Text)
+                        {
+                            MessageBox.Show("Lozinka je vec u upotrebi! Unesite drugu");
+                        }
+                        else if (txtNovaLozinka.Text == txtPotvrdiLozinku.Text)
+                        {
+                            //izvrsiti izmjenu lozinke
+                            MessageBox.Show("usjeno idi kuci");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nova i ponovljena lozinka se ne poklapaju!");
+                        }
+                    }                
+                } 
+            }
+            else
+            {
+                MessageBox.Show("Sva polja moraju biti popunjena!");
+                //staviti fokuse
+            }
+
+
+
+         //   panelPromjenaLozinke.Visible = false;
+
+            //if (trenutnaLozinka == txtTrenutnaLozinka.ToString())
+            //    MessageBox.Show("id zapo:" + ZaposleniID + " lozinka" + trenutnaLozinka);
         }
 
         private void tileProfile_Click(object sender, EventArgs e)
