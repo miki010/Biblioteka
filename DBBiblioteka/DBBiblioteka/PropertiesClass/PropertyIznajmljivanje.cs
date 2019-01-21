@@ -110,7 +110,7 @@ namespace DBBiblioteka.PropertiesClass
                            ,@DatumRazduzivanja)";
         }
 
-        public List<SqlParameter> GetProcedureParameters() // // za proceduru [dbo].[sp_StatusClanarineZaClanID]
+        public List<SqlParameter> GetProcedureParameters() // 
         {
            
             List<SqlParameter> list = new List<SqlParameter>();
