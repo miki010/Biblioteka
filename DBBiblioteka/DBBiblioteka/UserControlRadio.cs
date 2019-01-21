@@ -41,5 +41,23 @@ namespace DBBiblioteka
             else if (value == rbZenski.Text.Substring(0, 1))
                 rbZenski.Checked = true;
         }
+
+        //Zadrzati! setovana labela za obaveznan unos u polje M/Z
+        public void SetLblObavezno(string text)
+        {
+            lblObavezno.Visible = true;
+            lblObavezno.Text = text;
+            lblObavezno.ForeColor = Color.Red;
+        }
+
+        private void rbM_CheckedChanged(object sender, EventArgs e)
+        {
+            lblObavezno.Visible = false;
+        }
+
+        private void rbZenski_CheckedChanged(object sender, EventArgs e)
+        {
+            lblObavezno.Visible = false;
+        }
     }
 }

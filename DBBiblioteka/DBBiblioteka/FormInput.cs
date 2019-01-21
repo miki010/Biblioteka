@@ -181,7 +181,6 @@ namespace DBBiblioteka
 
                         try
                         {
-
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
@@ -246,8 +245,9 @@ namespace DBBiblioteka
 
                                 input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
-
+                                
                                 return;
+                                
                             }
                             else
                             {
@@ -262,8 +262,6 @@ namespace DBBiblioteka
                             //return;
 
                         }
-
-
                     }
 
                     else if (item.GetType() == typeof(DateTimeControl))
@@ -281,8 +279,8 @@ namespace DBBiblioteka
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                         if (property.GetCustomAttribute<RequiredAttribute>() != null && value == "N")
                         {
-                            MessageBox.Show("obavezan je i pol");
-                            //input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                            //MessageBox.Show("obavezan je i pol");
+                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                             popunjeno = false;
 
                             return;
