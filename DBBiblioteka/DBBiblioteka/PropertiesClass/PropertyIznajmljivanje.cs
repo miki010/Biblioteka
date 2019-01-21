@@ -112,12 +112,19 @@ namespace DBBiblioteka.PropertiesClass
 
         public List<SqlParameter> GetProcedureParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
+                parameter.Value = KnjigaID;
+                list.Add(parameter);
+            }
+            
+            return list;
         }
 
         public string GetProcedureSelectAllDetails()
         {
-            throw new NotImplementedException();
+            return @"EXEC dbo.proc_VratiNaStanje @KnjigaID";
         }
 
         public string GetProcedureSelectAutor()
@@ -132,7 +139,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureUpdateKnjiga()
         {
-            throw new NotImplementedException();
+            return @"EXEC dbo.proc_SkiniSaStanja @KnjigaID";
         }
 
         public string GetSelectPregledClanarinePoClanovima()
