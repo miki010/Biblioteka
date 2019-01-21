@@ -71,6 +71,7 @@
             this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
             this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
             this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
+            this.dgvPrikaz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvPrikaz_KeyDown);
             this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
             // tileDodaj
@@ -273,6 +274,7 @@
             this.tileSelectFirst.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectFirst.TileImage")));
             this.tileSelectFirst.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSelectFirst.UseTileImage = true;
+            this.tileSelectFirst.Click += new System.EventHandler(this.tileSelectFirst_Click);
             // 
             // tileSelectNext
             // 
@@ -287,6 +289,7 @@
             this.tileSelectNext.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectNext.TileImage")));
             this.tileSelectNext.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSelectNext.UseTileImage = true;
+            this.tileSelectNext.Click += new System.EventHandler(this.tileSelectNext_Click);
             // 
             // tileSelectPrevious
             // 
@@ -301,6 +304,7 @@
             this.tileSelectPrevious.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectPrevious.TileImage")));
             this.tileSelectPrevious.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSelectPrevious.UseTileImage = true;
+            this.tileSelectPrevious.Click += new System.EventHandler(this.tileSelectPrevious_Click);
             // 
             // tileSelectLast
             // 
@@ -315,6 +319,7 @@
             this.tileSelectLast.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectLast.TileImage")));
             this.tileSelectLast.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSelectLast.UseTileImage = true;
+            this.tileSelectLast.Click += new System.EventHandler(this.tileSelectLast_Click);
             // 
             // lblDetaljno
             // 
@@ -332,8 +337,8 @@
             this.panelDetalno.BackColor = System.Drawing.Color.AliceBlue;
             this.panelDetalno.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelDetalno.CausesValidation = false;
-            this.panelDetalno.Controls.Add(this.lblDetaljno);
             this.panelDetalno.Controls.Add(this.lbDetaljno);
+            this.panelDetalno.Controls.Add(this.lblDetaljno);
             this.panelDetalno.CustomBackground = true;
             this.panelDetalno.HorizontalScrollbarBarColor = true;
             this.panelDetalno.HorizontalScrollbarHighlightOnWheel = false;
@@ -364,7 +369,6 @@
             this.ClientSize = new System.Drawing.Size(1093, 566);
             this.Controls.Add(this.panelDetalno);
             this.Controls.Add(this.panelPretraga);
-        
             this.Controls.Add(this.lblRedIndex);
             this.Controls.Add(this.lblBrojRedova);
             this.Controls.Add(this.panelVrati);
