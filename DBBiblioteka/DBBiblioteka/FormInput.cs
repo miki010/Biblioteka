@@ -438,7 +438,7 @@ namespace DBBiblioteka
 
                     DataTable dt = new DataTable();
                     SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParameters().ToArray());
+                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParametersClanID().ToArray());
                     dt.Load(reader);
                     reader.Close();
 

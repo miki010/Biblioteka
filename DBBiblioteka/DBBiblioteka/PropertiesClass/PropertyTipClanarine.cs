@@ -152,6 +152,11 @@ namespace DBBiblioteka.PropertiesClass
                           ,[IznosClanarine] = @IznosClanarine
                      WHERE TipID = @TipID";
         }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
