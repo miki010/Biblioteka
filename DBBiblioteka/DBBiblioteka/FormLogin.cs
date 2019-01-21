@@ -146,13 +146,13 @@ namespace DBBiblioteka
                         formAdmin.Show();
                        
                     }
-                    else if (idProsao == zaposleniID && idRadnogMjesta == 4)
+                    else if (idProsao == zaposleniID && idRadnogMjesta == 3)
                     {
                         FormBlagajnik formBlagajnik = new FormBlagajnik(row["Ime"].ToString(), row["Prezime"].ToString());
                         formBlagajnik.Show();
                        
                     }
-                    else if (idProsao == zaposleniID && idRadnogMjesta == 3)
+                    else if (idProsao == zaposleniID && idRadnogMjesta == 2)
                     {
                         //pokusati proslijediti ime na formu
                         FormBibliotekar formBibliotekar = new FormBibliotekar(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString());                 
