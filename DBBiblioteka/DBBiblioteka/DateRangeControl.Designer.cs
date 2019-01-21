@@ -33,8 +33,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.btnDanasnjiDan = new MetroFramework.Controls.MetroButton();
-            this.btnPonistiDatum = new MetroFramework.Controls.MetroButton();
+            this.cbEnableDate = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // lblText
@@ -42,7 +41,7 @@
             this.lblText.AutoSize = true;
             this.lblText.Location = new System.Drawing.Point(3, 9);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(81, 19);
+            this.lblText.Size = new System.Drawing.Size(83, 19);
             this.lblText.TabIndex = 0;
             this.lblText.Text = "metroLabel1";
             // 
@@ -81,38 +80,28 @@
             this.metroLabel3.TabIndex = 4;
             this.metroLabel3.Text = "Do: ";
             // 
-            // btnDanasnjiDan
+            // cbEnableDate
             // 
-            this.btnDanasnjiDan.Location = new System.Drawing.Point(628, 9);
-            this.btnDanasnjiDan.Name = "btnDanasnjiDan";
-            this.btnDanasnjiDan.Size = new System.Drawing.Size(91, 20);
-            this.btnDanasnjiDan.TabIndex = 5;
-            this.btnDanasnjiDan.Text = "Današnji datum";
-            this.btnDanasnjiDan.Click += new System.EventHandler(this.btnDanasnjiDan_Click);
-            // 
-            // btnPonistiDatum
-            // 
-            this.btnPonistiDatum.Location = new System.Drawing.Point(725, 9);
-            this.btnPonistiDatum.Name = "btnPonistiDatum";
-            this.btnPonistiDatum.Size = new System.Drawing.Size(91, 20);
-            this.btnPonistiDatum.TabIndex = 6;
-            this.btnPonistiDatum.Text = "Poništi";
-            this.btnPonistiDatum.Click += new System.EventHandler(this.btnPonistiDatum_Click);
+            this.cbEnableDate.Location = new System.Drawing.Point(640, 9);
+            this.cbEnableDate.Name = "cbEnableDate";
+            this.cbEnableDate.Size = new System.Drawing.Size(96, 19);
+            this.cbEnableDate.TabIndex = 5;
+            this.cbEnableDate.Text = "Čitaj datum";
+            this.cbEnableDate.UseVisualStyleBackColor = true;
             // 
             // DateRangeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.btnPonistiDatum);
-            this.Controls.Add(this.btnDanasnjiDan);
+            this.Controls.Add(this.cbEnableDate);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.lblText);
             this.Name = "DateRangeControl";
-            this.Size = new System.Drawing.Size(825, 37);
+            this.Size = new System.Drawing.Size(754, 37);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,7 +114,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroButton btnDanasnjiDan;
-        private MetroFramework.Controls.MetroButton btnPonistiDatum;
+        private MetroFramework.Controls.MetroCheckBox cbEnableDate;
     }
 }

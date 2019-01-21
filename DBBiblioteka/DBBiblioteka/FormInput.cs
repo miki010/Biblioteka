@@ -23,8 +23,6 @@ namespace DBBiblioteka
         StateEnum state;
         int? idKnjige;
 
-        DateTime datumRazduzivanja;
-
         FilterString filterString;
 
         public FormInput()
@@ -74,14 +72,14 @@ namespace DBBiblioteka
                     if (idKnjige != null && ul.Name == "KnjigaID" && state != StateEnum.Search)
                     {
                         ul.SetKey(idKnjige.ToString());
-                            ul.Enabled = false;
+                        ul.Enabled = false;
                     }
 
                     //kao id zaposlenog postavlja se vrijednost staticke varijable koja tu vrijednost dobija prilikom logovanja
                     if (ul.Name == "ZaposleniID" && state != StateEnum.Search)
                     {
                         ul.SetKey(FormLogin.idZaposlenog);
-                            ul.Enabled = false;
+                        ul.Enabled = false;
                     }
 
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
@@ -110,10 +108,8 @@ namespace DBBiblioteka
 
                         flPanelControls.Controls.Add(dtc);
 
-                        if (state == StateEnum.Create && dtc.Name == "DatumIznajmljivanja")
-                            datumRazduzivanja = dtc.GetValue().AddDays(15);
-                        else if (state == StateEnum.Create && dtc.Name == "DatumRazduzivanja")
-                            dtc.SetValue(datumRazduzivanja);
+                        if (state == StateEnum.Create && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now.AddDays(15));
                         else if (state == StateEnum.Update && dtc.Name == "DatumRazduzivanja")
                             dtc.SetValue(DateTime.Now);
                     }
@@ -122,7 +118,7 @@ namespace DBBiblioteka
                         DateRangeControl dateRange = new DateRangeControl();
                         dateRange.Name = item.Name;
                         dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                        dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+                        //dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
                         flPanelControls.Controls.Add(dateRange);
                     }
 
@@ -174,6 +170,8 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
+            DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
+            int j = 0; //brojac datuma^
             var properties = myProperty.GetType().GetProperties();
             int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
@@ -202,6 +200,9 @@ namespace DBBiblioteka
                         DateTime value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myProperty, Convert.ChangeType(value, property.PropertyType));
+
+                        if (myProperty is PropertyIznajmljivanje && state == StateEnum.Update)
+                            datumi[j++] = input.GetValue(); //cuva datum Iznajmljivanja i Danasnji datum(datum Razduzivanja knjige)
                     }
 
                 }
@@ -217,7 +218,7 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
-                        
+
                         string value = input.Key.Trim();
                         filterString.FStr += input.Name + " = " + value + " and ";
                     }
@@ -246,7 +247,7 @@ namespace DBBiblioteka
                     {
                         DateRangeControl input = item as DateRangeControl;
                         DateTime[] dates = input.GetValue();
-                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                        if (!input.GetChecked())
                             continue;
                         else if (dates[0].Date > dates[1].Date)
                         {
@@ -268,31 +269,32 @@ namespace DBBiblioteka
                 MessageBox.Show(filterString.FStr);
             }
 
-            if (myProperty is PropertyIznajmljivanje && state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
+            if (myProperty is PropertyIznajmljivanje)
             {
 
-                //SREDITI
-                PropertyClanarina clanarina = new PropertyClanarina();
-                DataTable tableClanarina = new DataTable();
-                SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                clanarina.GetSelectQuery());
-                tableClanarina.Load(reader2);
-                reader2.Close();
+                if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
+                {
+                    PropertyClanarina clanarina = new PropertyClanarina();
+                    DataTable tableClanarina = new DataTable();
+                    SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    clanarina.GetSelectQuery());
+                    tableClanarina.Load(reader2);
+                    reader2.Close();
 
-                bool ima = false;
-                for (int i = 0; i < tableClanarina.Rows.Count; i++)
-                {
-                    if((int)(tableClanarina.Rows[i][1]) == idClana)
+                    bool ima = false;
+                    for (int i = 0; i < tableClanarina.Rows.Count; i++)
                     {
-                        ima = true;
+                        if ((int)(tableClanarina.Rows[i][1]) == idClana)
+                        {
+                            ima = true;
+                        }
                     }
-                }
-                if(!ima)
-                {
-                    MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
-                    return;
-                }
-       
+                    if (!ima)
+                    {
+                        MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    }
+
 
                     DataTable dt = new DataTable();
                     SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
@@ -305,8 +307,22 @@ namespace DBBiblioteka
                     {
                         MessageBox.Show("Korisniku je istekla članarina, iznajmljivanje nije moguće!", "Greška!");
                         return;
-                    } 
-                
+                    }
+                }
+                else if (state == StateEnum.Update)
+                {
+                    if(((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
+                    {
+                        MessageBox.Show("Knjiga uredno vraćena");
+                       
+                    }
+                    else
+                    {
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); //
+                        return;
+                    }
+                    
+                }
             }
 
             if (state == StateEnum.Create)
