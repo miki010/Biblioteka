@@ -215,9 +215,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
-        public List<SqlParameter> GetProcedureParameters()
+        public List<SqlParameter> GetProcedureParameters() // za proceduru [dbo].[sp_StatusClanarineZaClanID]
         {
+
             throw new NotImplementedException();
+
         }
 
         public string GetProcedureSelectIzdavac()
@@ -235,6 +237,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
 

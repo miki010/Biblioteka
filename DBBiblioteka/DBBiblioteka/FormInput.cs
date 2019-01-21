@@ -26,7 +26,6 @@ namespace DBBiblioteka
         StateEnum state;
         int? idKnjige;
 
-
         FilterString filterString;
 
         public FormInput()
@@ -106,19 +105,27 @@ namespace DBBiblioteka
                         dtc.Name = item.Name;
                         dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
+                        if (dtc.Name == "DatumRazduzivanja" || dtc.Name == "DatumIznajmljivanja")
+                            dtc.Enabled = false;
+
                         if (state == StateEnum.Create)
                             dtc.SetValue(DateTime.Now);
                         else if (state == StateEnum.Update)
                             dtc.SetValue((DateTime)item.GetValue(myInterface));
 
                         flPanelControls.Controls.Add(dtc);
+
+                        if (state == StateEnum.Create && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now.AddDays(15));
+                        else if (state == StateEnum.Update && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now);
                     }
                     else if (state == StateEnum.Search)
                     {
                         DateRangeControl dateRange = new DateRangeControl();
                         dateRange.Name = item.Name;
                         dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                        dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+
                         flPanelControls.Controls.Add(dateRange);
                     }
 
@@ -171,9 +178,10 @@ namespace DBBiblioteka
         string stanje;
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
-
+            DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
+            int j = 0; //brojac datuma^
             var properties = myInterface.GetType().GetProperties();
-
+            int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
                 foreach (var item in flPanelControls.Controls)
                 {
@@ -349,15 +357,13 @@ namespace DBBiblioteka
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
 
-                        string value = input.Key;
+                        string value = input.Key.Trim();
                         filterString.FStr += input.Name + " = " + value + " and ";
-
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
-                        string value = input.GetValue();
-                        
+                        string value = input.GetValue().Trim();
                         if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
@@ -379,7 +385,7 @@ namespace DBBiblioteka
                     {
                         DateRangeControl input = item as DateRangeControl;
                         DateTime[] dates = input.GetValue();
-                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                        if (!input.GetChecked())
                             continue;
                         else if (dates[0].Date > dates[1].Date)
                         {
@@ -400,9 +406,64 @@ namespace DBBiblioteka
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
+                MessageBox.Show(filterString.FStr);
+            }
 
-            }//detaljna pretraga
+            if (myInterface is PropertyIznajmljivanje)
+            {
 
+                if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
+                {
+                    PropertyClanarina clanarina = new PropertyClanarina();
+                    DataTable tableClanarina = new DataTable();
+                    SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    clanarina.GetSelectQuery());
+                    tableClanarina.Load(reader2);
+                    reader2.Close();
+
+                    bool ima = false;
+                    for (int i = 0; i < tableClanarina.Rows.Count; i++)
+                    {
+                        if ((int)(tableClanarina.Rows[i][1]) == idClana)
+                        {
+                            ima = true;
+                        }
+                    }
+                    if (!ima)
+                    {
+                        MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    }
+
+
+                    DataTable dt = new DataTable();
+                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParameters().ToArray());
+                    dt.Load(reader);
+                    reader.Close();
+
+                    DateTime datumIsteka = (DateTime)dt.Rows[0][1];
+                    if (datumIsteka < DateTime.Now)
+                    {
+                        MessageBox.Show("Korisniku je istekla članarina, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    }
+                }
+                else if (state == StateEnum.Update)
+                {
+                    if(((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
+                    {
+                        MessageBox.Show("Knjiga uredno vraćena");
+                       
+                    }
+                    else
+                    {
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); //
+                        return;
+                    }
+                    
+                }
+            }
 
             if (popunjeno)
             {

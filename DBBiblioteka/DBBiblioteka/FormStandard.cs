@@ -49,7 +49,6 @@ namespace DBBiblioteka
             this.state = stateEnum;
             this.red = red;
             loadTable();
-
         }
 
         private void FormStandard_Load(object sender, EventArgs e)
@@ -70,7 +69,12 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
-            
+
+            foreach (DataGridViewColumn column in dgvPrikaz.Columns)
+            {
+                if (column.ValueType.ToString() == "System.DateTime")
+                    column.DefaultCellStyle.Format = "dd.MM.yyyy";
+            }
         }
 
         private void loadTable()
@@ -192,7 +196,10 @@ namespace DBBiblioteka
                 foreach (PropertyInfo item in properties)
                 {
                     string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].Value.ToString();
-                    item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
+                    if (row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Name].ToString() == "DatumRazduzivanja")
+                        continue;
+                    else
+                        item.SetValue(myProperty, Convert.ChangeType(value, item.PropertyType));
 
                 }
             }
@@ -275,10 +282,36 @@ namespace DBBiblioteka
 
         }
 
-     
+        private void btnDetaljnaPretraga_Click(object sender, EventArgs e)
+        {
+            FilterString filterString = new FilterString();
+            try
+            {
+                FormInput formInput = new FormInput(myProperty, StateEnum.Search, filterString);
+                formInput.ShowDialog();
+                if (formInput.DialogResult == DialogResult.OK)
+                {
+                    (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
+                    if(dgvPrikaz.Rows.Count == 0)
+                    {
+                        refreshTable();
+                        MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
 
+        }
+
+        private void btnAzurirajZapise_Click(object sender, EventArgs e)
+        {
+            refreshTable();
+            dgvPrikaz.ClearSelection();
+        }
         int idReda, idKnjige;
-
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
             //popunjavanje list box-a
@@ -462,7 +495,6 @@ namespace DBBiblioteka
             refreshTable();
             dgvPrikaz.ClearSelection();
         }
-      
 
         private void ViewDetails(string id)
         {

@@ -335,7 +335,10 @@ namespace DBBiblioteka.PropertiesClass
             return @"EXEC [dbo].[sp.Radnik] @ZaposleniID";
         }
 
-
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }
