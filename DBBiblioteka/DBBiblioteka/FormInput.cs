@@ -176,6 +176,7 @@ namespace DBBiblioteka
         }
         bool popunjeno = true;
         string stanje;
+
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
             DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
@@ -183,6 +184,9 @@ namespace DBBiblioteka
             var properties = myInterface.GetType().GetProperties();
             int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
+            {
+
+
                 foreach (var item in flPanelControls.Controls)
                 {
                     if (item.GetType() == typeof(LookUpControl))
@@ -257,7 +261,7 @@ namespace DBBiblioteka
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                            //property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
 
                             //-***************************
                             if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
@@ -300,9 +304,9 @@ namespace DBBiblioteka
 
                                 input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
-                                
+
                                 return;
-                                
+
                             }
                             else
                             {
@@ -324,6 +328,9 @@ namespace DBBiblioteka
                         DateTime value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
+                            datumi[j++] = input.GetValue(); //cuva datum Iznajmljivanja i Danasnji datum(datum Razduzivanja knjige)
                     }
                     else if (item.GetType() == typeof(UserControlRadio))
                     {
@@ -347,6 +354,7 @@ namespace DBBiblioteka
                     }
 
                 }
+            }
             else
             {
 
@@ -423,13 +431,13 @@ namespace DBBiblioteka
                     clanarina.GetSelectQuery());
                     tableClanarina.Load(reader2);
                     reader2.Close();
-                    
+
                     bool ima = false;
                     for (int i = 0; i < tableClanarina.Rows.Count; i++)
                     {
-                        if ((int)(tableClanarina.Rows[i][1]) == idClana)/////////
+                        if ((int)(tableClanarina.Rows[i][1]) == idClana)
                         {
-                            ima = true; 
+                            ima = true;
                         }
                     }
                     if (!ima)
@@ -454,17 +462,16 @@ namespace DBBiblioteka
                 }
                 else if (state == StateEnum.Update)
                 {
-                    if(((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
+                    if (((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
                     {
                         MessageBox.Show("Knjiga uredno vraćena");
-                       
                     }
                     else
                     {
                         MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); //
                         return;
                     }
-                    
+
                 }
             }
 
@@ -509,7 +516,10 @@ namespace DBBiblioteka
                 DialogResult = DialogResult.OK;
             }
             else
+            {
                 return;
+            }
+                
 
         }
 
