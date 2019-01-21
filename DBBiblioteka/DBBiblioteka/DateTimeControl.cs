@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DBBiblioteka
 {
     public partial class DateTimeControl : UserControl
@@ -35,6 +36,23 @@ namespace DBBiblioteka
             dateTimePicker.Format = DateTimePickerFormat.Custom;
             dateTimePicker.CustomFormat = "dd.MM.yyyy.";
         }
-        
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            //if(lblText.Text == "Datum iznajmljivanja")
+            //{
+            //    DateTimeControl dtcIznajmljivanje = new DateTimeControl();
+
+            //    foreach (var control in Parent.Controls)
+            //    {
+            //        if (control is DateTimeControl)
+            //            dtcIznajmljivanje = control as DateTimeControl;
+            //    }
+
+            //    dtcIznajmljivanje.SetValue(GetValue().AddDays(15));
+            //}
+
+            //Parent.Controls.Cast<ControlCollection>().Where(c =>)
+        }
     }
 }

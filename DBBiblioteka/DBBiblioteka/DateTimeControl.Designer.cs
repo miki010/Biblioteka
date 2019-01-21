@@ -52,6 +52,7 @@
             this.dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateTimePicker.Size = new System.Drawing.Size(320, 22);
             this.dateTimePicker.TabIndex = 1;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // DateTimeControl
             // 

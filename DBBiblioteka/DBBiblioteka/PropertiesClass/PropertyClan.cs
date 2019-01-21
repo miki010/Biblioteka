@@ -300,5 +300,10 @@ namespace DBBiblioteka.PropertiesClass
         {
             throw new NotImplementedException();
         }
+
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
