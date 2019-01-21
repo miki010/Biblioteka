@@ -50,6 +50,7 @@
             this.lblDetaljno = new MetroFramework.Controls.MetroLabel();
             this.panelDetalno = new MetroFramework.Controls.MetroPanel();
             this.lblRedIndex = new System.Windows.Forms.Label();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.panelCrud.SuspendLayout();
             this.panelVrati.SuspendLayout();
@@ -61,12 +62,13 @@
             // 
             this.dgvPrikaz.AllowUserToAddRows = false;
             this.dgvPrikaz.AllowUserToDeleteRows = false;
+            this.dgvPrikaz.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrikaz.Location = new System.Drawing.Point(23, 151);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            this.dgvPrikaz.Size = new System.Drawing.Size(797, 370);
+            this.dgvPrikaz.Size = new System.Drawing.Size(1115, 524);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
             this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
@@ -174,7 +176,7 @@
             this.lbDetaljno.FormattingEnabled = true;
             this.lbDetaljno.Location = new System.Drawing.Point(7, 32);
             this.lbDetaljno.Name = "lbDetaljno";
-            this.lbDetaljno.Size = new System.Drawing.Size(241, 325);
+            this.lbDetaljno.Size = new System.Drawing.Size(241, 481);
             this.lbDetaljno.TabIndex = 6;
             // 
             // txtPretraga
@@ -202,7 +204,7 @@
             this.lblBrojRedova.AutoSize = true;
             this.lblBrojRedova.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrojRedova.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblBrojRedova.Location = new System.Drawing.Point(58, 524);
+            this.lblBrojRedova.Location = new System.Drawing.Point(37, 678);
             this.lblBrojRedova.Name = "lblBrojRedova";
             this.lblBrojRedova.Size = new System.Drawing.Size(39, 15);
             this.lblBrojRedova.TabIndex = 13;
@@ -329,18 +331,19 @@
             // 
             // panelDetalno
             // 
-            this.panelDetalno.BackColor = System.Drawing.Color.AliceBlue;
+            this.panelDetalno.BackColor = System.Drawing.Color.White;
             this.panelDetalno.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelDetalno.CausesValidation = false;
+            this.panelDetalno.Controls.Add(this.metroPanel1);
             this.panelDetalno.Controls.Add(this.lblDetaljno);
             this.panelDetalno.Controls.Add(this.lbDetaljno);
             this.panelDetalno.CustomBackground = true;
             this.panelDetalno.HorizontalScrollbarBarColor = true;
             this.panelDetalno.HorizontalScrollbarHighlightOnWheel = false;
             this.panelDetalno.HorizontalScrollbarSize = 10;
-            this.panelDetalno.Location = new System.Drawing.Point(826, 151);
+            this.panelDetalno.Location = new System.Drawing.Point(1141, 151);
             this.panelDetalno.Name = "panelDetalno";
-            this.panelDetalno.Size = new System.Drawing.Size(259, 370);
+            this.panelDetalno.Size = new System.Drawing.Size(259, 524);
             this.panelDetalno.TabIndex = 16;
             this.panelDetalno.VerticalScrollbarBarColor = true;
             this.panelDetalno.VerticalScrollbarHighlightOnWheel = false;
@@ -351,26 +354,39 @@
             this.lblRedIndex.AutoSize = true;
             this.lblRedIndex.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRedIndex.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblRedIndex.Location = new System.Drawing.Point(120, 524);
+            this.lblRedIndex.Location = new System.Drawing.Point(99, 678);
             this.lblRedIndex.Name = "lblRedIndex";
             this.lblRedIndex.Size = new System.Drawing.Size(39, 15);
             this.lblRedIndex.TabIndex = 14;
             this.lblRedIndex.Text = "label1";
             // 
+            // metroPanel1
+            // 
+            this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.metroPanel1.CustomBackground = true;
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(0, 27);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(259, 1);
+            this.metroPanel1.TabIndex = 16;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
             // FormStandard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 566);
+            this.ClientSize = new System.Drawing.Size(1423, 713);
             this.Controls.Add(this.panelDetalno);
             this.Controls.Add(this.panelPretraga);
-        
             this.Controls.Add(this.lblRedIndex);
             this.Controls.Add(this.lblBrojRedova);
             this.Controls.Add(this.panelVrati);
             this.Controls.Add(this.panelCrud);
             this.Controls.Add(this.dgvPrikaz);
-            this.MaximizeBox = false;
             this.Name = "FormStandard";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
@@ -411,5 +427,6 @@
         private MetroFramework.Controls.MetroLabel lblDetaljno;
         private MetroFramework.Controls.MetroPanel panelDetalno;
         private System.Windows.Forms.Label lblRedIndex;
+        private MetroFramework.Controls.MetroPanel metroPanel1;
     }
 }
