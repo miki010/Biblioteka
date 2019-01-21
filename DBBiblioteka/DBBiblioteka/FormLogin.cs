@@ -140,13 +140,13 @@ namespace DBBiblioteka
                     string zaposleniID = row["ZaposleniID"].ToString();
                     int idRadnogMjesta = Convert.ToInt32(row["RadnoMjestoID"]);
 
-                    if (idProsao == zaposleniID && idRadnogMjesta == 1)
+                    if (idProsao == zaposleniID && idRadnogMjesta == 1)//prepraviti da ide preko naziva radnog mjesta a ne id-a
                     {
                         FormAdmin formAdmin = new FormAdmin(row["Ime"].ToString(), row["Prezime"].ToString());                
                         formAdmin.Show();
                        
                     }
-                    else if (idProsao == zaposleniID && idRadnogMjesta == 4)
+                    else if (idProsao == zaposleniID && idRadnogMjesta == 2)//ide 4 na novoj verziji baze
                     {
                         FormBlagajnik formBlagajnik = new FormBlagajnik(row["Ime"].ToString(), row["Prezime"].ToString());
                         formBlagajnik.Show();

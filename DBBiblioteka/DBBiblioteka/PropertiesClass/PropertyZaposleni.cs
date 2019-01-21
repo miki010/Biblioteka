@@ -335,6 +335,11 @@ namespace DBBiblioteka.PropertiesClass
             return @"EXEC [dbo].[sp.Radnik] @ZaposleniID";
         }
 
+        public List<SqlParameter> GetProcedureUpdateParameters()
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         #endregion

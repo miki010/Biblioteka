@@ -90,6 +90,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public List<SqlParameter> GetProcedureUpdateParameters()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectPregledClanarinePoClanovima()
         {
             throw new NotImplementedException();

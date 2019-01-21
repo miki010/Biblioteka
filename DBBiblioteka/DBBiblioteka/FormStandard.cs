@@ -105,6 +105,8 @@ namespace DBBiblioteka
         {
             try
             {
+                MessageBox.Show(myProperty.ToString(),"dodaje");
+
                 FormInput formInput = new FormInput(myProperty, StateEnum.Create);
                 formInput.ShowDialog();
                 if (formInput.DialogResult == DialogResult.OK)
@@ -115,7 +117,7 @@ namespace DBBiblioteka
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.ToString(), "Poruka, ovde puca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }

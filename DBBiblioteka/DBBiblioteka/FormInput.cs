@@ -21,9 +21,14 @@ namespace DBBiblioteka
     {
         PropertyInterface myInterface;
         PropertyIzdavacKnjiga izdavacKnjigaProperty = new PropertyIzdavacKnjiga();
+        PropertyIznajmljivanje propertyIznajmljivanje = new PropertyIznajmljivanje();
+        PropertyKnjiga propertyKnjiga = new PropertyKnjiga();
         StateEnum state;
         int? idKnjige;
-
+        public static int AkcijaID = 0;
+        public static int? Kolicina = null;
+        public static int KnjigaID = 0;
+        string akcija;
 
         FilterString filterString;
 
@@ -61,6 +66,8 @@ namespace DBBiblioteka
 
         private void PopulateControls()
         {
+            this.AcceptButton = tilePotvrdi;//Enter
+            this.CancelButton = tileOdustani;//Esc
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
@@ -69,7 +76,7 @@ namespace DBBiblioteka
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
-                    if(state == StateEnum.Update)
+                    if (state == StateEnum.Update)
                     {
                         ul.Enabled = false;
                     }
@@ -210,40 +217,46 @@ namespace DBBiblioteka
                         try
                         {
                             property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                            //property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                             if (myInterface.GetType() == typeof(PropertyIznajmljivanje) || myInterface.GetType() == typeof(PropertyIzdavacKnjiga))
                             {
-                                int idAkcije = 0, idKnjige = 0;
-                                int? kolicina = null;
+                                
+
                                 if (state == StateEnum.Create)
                                 {
-                                    idAkcije = 1;
-                                    MessageBox.Show(idAkcije + "create");
+                                    AkcijaID = 1;
+                                    MessageBox.Show(AkcijaID + "create");
                                 }
                                 else if (state == StateEnum.Update)
                                 {
-                                    idAkcije = 2;
-                                    MessageBox.Show(idAkcije + "update");
+                                    AkcijaID = 2;
+                                    MessageBox.Show(AkcijaID + "update");
                                 }
                                 if (input.Name == "KnjigaID")
                                 {
                                     idKnjige = Convert.ToInt32(input.GetValue());
                                 }
-
                                 if (input.Name == "Kolicina")
                                 {
-                                    idAkcije = 3;
-                                    kolicina = Convert.ToInt32(input.GetValue());
-
-                                    //SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, izdavacKnjigaProperty.GetDeleteQuery(), izdavacKnjigaProperty.GetDeleteParameters().ToArray());
-                                    //MessageBox.Show("Podatak je obrisan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //refreshTable();
+                                    AkcijaID = 3;
+                                    Kolicina = Convert.ToInt32(input.GetValue());
+                                }
+                                if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
+                                {
+                                    PropertyInfo propertyProc = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                    propertyProc.SetValue(propertyIznajmljivanje, Convert.ChangeType(value, property.PropertyType));
+                                    akcija = StateEnum.Iznajmljivanje.ToString();
+                                }
+                                else if (myInterface.GetType() == typeof(PropertyKnjiga))
+                                {
+                                    PropertyInfo propertyProc = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                    propertyProc.SetValue(propertyKnjiga, Convert.ChangeType(value, property.PropertyType));
+                                    akcija = StateEnum.Knjiga.ToString();
                                 }
                             }
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
                             {
-
                                 input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
 
@@ -258,8 +271,8 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
-                            //return;
+                            //input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
+                            return;
 
                         }
 
@@ -364,24 +377,44 @@ namespace DBBiblioteka
 
             if (popunjeno)
             {
-                if (state == StateEnum.Create)
+                try//exception u slucaju da podatak vec postoji u tabeli, unique key
                 {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
-                    MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (state == StateEnum.Create)
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                            myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                        MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else if (state == StateEnum.Update)
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                            myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                        MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    if (akcija == StateEnum.Iznajmljivanje.ToString())
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        propertyIznajmljivanje.GetProcedureUpdateKnjiga(), propertyIznajmljivanje.GetProcedureUpdateParameters().ToArray());
+
+                    }
+                    else if(akcija == StateEnum.Knjiga.ToString())
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        propertyKnjiga.GetProcedureUpdateKnjiga(), propertyKnjiga.GetProcedureUpdateParameters().ToArray());
+
+                    }
+
+                    DialogResult = DialogResult.OK;
                 }
-                else if (state == StateEnum.Update)
+                catch (Exception ex)
                 {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
-                    MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Molimo Vas da unesete jedinstven podatak u tabelu!");
                 }
 
-
-                DialogResult = DialogResult.OK;
             }
             else
-            return;
+                return;
 
         }
 

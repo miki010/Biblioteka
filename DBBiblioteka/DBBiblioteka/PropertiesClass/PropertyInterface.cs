@@ -31,7 +31,11 @@ namespace DBBiblioteka.PropertiesClass
         //parametri za select upite
         List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
 
+
+
+        //parametri za update procedure
         List<SqlParameter> GetProcedureParameters();
 
+        List<SqlParameter> GetProcedureUpdateParameters();
     }
 }

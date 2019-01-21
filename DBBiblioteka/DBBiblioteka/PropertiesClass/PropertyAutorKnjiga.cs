@@ -154,5 +154,10 @@ namespace DBBiblioteka.PropertiesClass
         {
             throw new NotImplementedException();
         }
+
+        public List<SqlParameter> GetProcedureUpdateParameters()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

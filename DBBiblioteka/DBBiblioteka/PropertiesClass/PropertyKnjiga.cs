@@ -33,12 +33,14 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Količina")]
         [SqlName("Kolicina")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public int Kolicina { get; set; }
 
         [DisplayName("Žanr")]
         [SqlName("Zanr")]
         public string Zanr { get; set; }
+
+        //[SqlName("AkcijaID")]
+        //public int AkcijaID { get; set; }
  
         #endregion
 
@@ -187,14 +189,37 @@ namespace DBBiblioteka.PropertiesClass
             return @"EXEC sp_KnjigaIzdavac @KnjigaID";
         }
 
-        public string GetProcedureUpdateKnjiga()
-        {
-            return @"EXEC [dbo].[sp_IznajmiRazduzi] @IdAkcije, @KnjigaID, @Kolicina";
-        }
-
         public string GetProcedureSelectAllDetails()
         {
             throw new NotImplementedException();
         }
+        //=========================================================================================
+        public string GetProcedureUpdateKnjiga()
+        {
+            return @"EXEC [dbo].[sp_IznajmiRazduzi] @AkcijaID, @KnjigaID, @Kolicina";//tri param
+        }
+
+        public List<SqlParameter> GetProcedureUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@AkcijaID", System.Data.SqlDbType.Int);
+                parameter.Value = FormInput.AkcijaID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
+                parameter.Value = KnjigaID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Kolicina", System.Data.SqlDbType.Int);
+                parameter.Value = Kolicina;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        //=========================================================================================
+
     }
 }

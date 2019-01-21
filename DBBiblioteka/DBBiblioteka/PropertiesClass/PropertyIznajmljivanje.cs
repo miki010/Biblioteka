@@ -49,10 +49,16 @@ namespace DBBiblioteka.PropertiesClass
         [DateTimeAttribute]
         public DateTime DatumRazduzivanja { get; set; }
 
-    #endregion
+        //[SqlName("AkcijaID")]
+        //public int? AkcijaID { get; set; }
+
+        //[SqlName("Kolicina")]
+        //public int? Kolicina { get; set; }
+
+        #endregion
 
 
-    public List<SqlParameter> GetDeleteParameters()
+        public List<SqlParameter> GetDeleteParameters()
         {
             throw new NotImplementedException();
         }
@@ -129,11 +135,34 @@ namespace DBBiblioteka.PropertiesClass
         {
             throw new NotImplementedException();
         }
-
+        //=========================================================================================
         public string GetProcedureUpdateKnjiga()
         {
-            throw new NotImplementedException();
+            return @"EXEC [dbo].[sp_IznajmiRazduzi] @AkcijaID, @KnjigaID, @Kolicina";//tri param
         }
+
+        public List<SqlParameter> GetProcedureUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@AkcijaID", System.Data.SqlDbType.Int);
+                parameter.Value = FormInput.AkcijaID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
+                parameter.Value = KnjigaID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Kolicina", System.Data.SqlDbType.Int);
+                parameter.Value = FormInput.Kolicina;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        //=========================================================================================
+
 
         public string GetSelectPregledClanarinePoClanovima()
         {
