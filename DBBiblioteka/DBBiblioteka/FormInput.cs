@@ -218,15 +218,13 @@ namespace DBBiblioteka
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
                         
-                        string value = input.Key;
+                        string value = input.Key.Trim();
                         filterString.FStr += input.Name + " = " + value + " and ";
-
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
-                        string value = input.GetValue();
-                        
+                        string value = input.GetValue().Trim();
                         if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
