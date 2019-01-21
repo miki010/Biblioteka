@@ -29,6 +29,7 @@ namespace DBBiblioteka
             lblObavezno.Visible = true;
             lblObavezno.Text = text;
             lblObavezno.ForeColor = Color.Red;
+            txtValue.Focus();
         }
 
         public string GetValue()
@@ -38,7 +39,7 @@ namespace DBBiblioteka
 
         public void SetValue(string value)
         {
-            txtValue.Text = value;
+            txtValue.Text = value;          
         }
 
         private void txtValue_TextChanged(object sender, EventArgs e)

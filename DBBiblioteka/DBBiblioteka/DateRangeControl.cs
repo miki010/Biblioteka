@@ -46,7 +46,7 @@ namespace DBBiblioteka
 
         private void btnPonistiDatum_Click(object sender, EventArgs e)
         {
-               SetValue(DateTime.Now.Date, DateTime.Now.Date);
+               SetValue(DateTime.MinValue, DateTime.MaxValue);
         }
     }
 }
