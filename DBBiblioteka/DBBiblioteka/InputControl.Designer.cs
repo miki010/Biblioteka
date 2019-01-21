@@ -55,9 +55,11 @@
             // lblObavezno
             // 
             this.lblObavezno.AutoSize = true;
-            this.lblObavezno.BackColor = System.Drawing.SystemColors.Control;
+            this.lblObavezno.BackColor = System.Drawing.Color.White;
+            this.lblObavezno.CustomBackground = true;
+            this.lblObavezno.CustomForeColor = true;
             this.lblObavezno.ForeColor = System.Drawing.Color.Red;
-            this.lblObavezno.Location = new System.Drawing.Point(113, 31);
+            this.lblObavezno.Location = new System.Drawing.Point(175, 32);
             this.lblObavezno.Name = "lblObavezno";
             this.lblObavezno.Size = new System.Drawing.Size(0, 0);
             this.lblObavezno.Style = MetroFramework.MetroColorStyle.Red;
@@ -68,6 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblObavezno);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblText);
