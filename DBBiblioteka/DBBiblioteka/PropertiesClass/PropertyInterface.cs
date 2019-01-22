@@ -20,6 +20,7 @@ namespace DBBiblioteka.PropertiesClass
         string GetProcedureSelectAutor();
         string GetProcedureSelectIzdavac();
         string GetProcedureSelectAllDetails();
+        string GetProcedureStatusClanarineZaClanID();
 
         //update upiti
         string GetProcedureUpdateKnjiga();
@@ -32,6 +33,7 @@ namespace DBBiblioteka.PropertiesClass
         List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
 
         List<SqlParameter> GetProcedureParameters();
+        List<SqlParameter> GetProcedureParametersClanID();
 
     }
 }

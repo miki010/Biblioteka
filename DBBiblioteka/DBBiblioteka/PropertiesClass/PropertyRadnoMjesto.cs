@@ -100,6 +100,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectQuery()
         {
             return @"SELECT [RadnoMjestoID]
@@ -128,7 +133,12 @@ namespace DBBiblioteka.PropertiesClass
             return @"UPDATE [dbo].[RadnoMjesto]
                        SET [Naziv] = @Naziv
                      WHERE RadnoMjestoID = @RadnoMjestoID";
-        } 
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

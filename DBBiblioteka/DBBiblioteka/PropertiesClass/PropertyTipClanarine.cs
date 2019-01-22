@@ -111,6 +111,11 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetSelectQuery()
         {
             return @"SELECT [TipID]
@@ -146,6 +151,11 @@ namespace DBBiblioteka.PropertiesClass
                        SET [NazivTipa] = @NazivTipa
                           ,[IznosClanarine] = @IznosClanarine
                      WHERE TipID = @TipID";
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

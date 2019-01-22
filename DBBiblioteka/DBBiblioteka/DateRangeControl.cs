@@ -15,6 +15,14 @@ namespace DBBiblioteka
         public DateRangeControl()
         {
             InitializeComponent();
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd.MM.yyyy.";
+
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "dd.MM.yyyy.";
         }
 
         public void SetLabel(string name)
@@ -27,26 +35,18 @@ namespace DBBiblioteka
             return new DateTime[] { dateTimePicker1.Value, dateTimePicker2.Value };
         }
 
+        public bool GetChecked()
+        {
+            if (cbEnableDate.Checked)
+                return true;
+            else
+                return false;
+        }
         public void SetValue(DateTime date1, DateTime date2)
         {
-            dateTimePicker1.Value = date1;
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd.MM.yyyy.";
-
-            dateTimePicker2.Value = date2;
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "dd.MM.yyyy.";
+           
         }
 
-    
-        private void btnDanasnjiDatum_Click(object sender, EventArgs e)
-        {
-            SetValue(DateTime.Now.Date, DateTime.Now.Date);
-        }
-
-        private void btnPonistiDatum_Click(object sender, EventArgs e)
-        {
-               SetValue(DateTime.MinValue, DateTime.MaxValue);
-        }
+       
     }
 }

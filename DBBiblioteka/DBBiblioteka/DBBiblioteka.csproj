@@ -92,6 +92,7 @@
     <Compile Include="AttributesClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributesClass\RadioValue.cs" />
     <Compile Include="AttributesClass\SqlNameAttribute.cs" />
+    <Compile Include="DatePart.cs" />
     <Compile Include="DateRangeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

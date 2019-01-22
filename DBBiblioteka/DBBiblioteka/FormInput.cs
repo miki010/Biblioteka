@@ -21,9 +21,10 @@ namespace DBBiblioteka
     {
         PropertyInterface myInterface;
         PropertyIzdavacKnjiga izdavacKnjigaProperty = new PropertyIzdavacKnjiga();
+        PropertyIznajmljivanje iznajmljivanje = new PropertyIznajmljivanje();
+        PropertyIzdavacKnjiga izdavacKnjiga = new PropertyIzdavacKnjiga();
         StateEnum state;
         int? idKnjige;
-
 
         FilterString filterString;
 
@@ -69,7 +70,7 @@ namespace DBBiblioteka
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className) as PropertyInterface;
                     LookUpControl ul = new LookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
-                    if(state == StateEnum.Update)
+                    if (state == StateEnum.Update)
                     {
                         ul.Enabled = false;
                     }
@@ -104,19 +105,27 @@ namespace DBBiblioteka
                         dtc.Name = item.Name;
                         dtc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
 
+                        if (dtc.Name == "DatumRazduzivanja" || dtc.Name == "DatumIznajmljivanja")
+                            dtc.Enabled = false;
+
                         if (state == StateEnum.Create)
                             dtc.SetValue(DateTime.Now);
                         else if (state == StateEnum.Update)
                             dtc.SetValue((DateTime)item.GetValue(myInterface));
 
                         flPanelControls.Controls.Add(dtc);
+
+                        if (state == StateEnum.Create && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now.AddDays(15));
+                        else if (state == StateEnum.Update && dtc.Name == "DatumRazduzivanja")
+                            dtc.SetValue(DateTime.Now);
                     }
                     else if (state == StateEnum.Search)
                     {
                         DateRangeControl dateRange = new DateRangeControl();
                         dateRange.Name = item.Name;
                         dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                        dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
+
                         flPanelControls.Controls.Add(dateRange);
                     }
 
@@ -166,12 +175,19 @@ namespace DBBiblioteka
             }
         }
         bool popunjeno = true;
+        string stanje;
+
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
-
+            
+            DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
+            int j = 0; //brojac datuma^
             var properties = myInterface.GetType().GetProperties();
-
+            int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
+            {
+
+                
                 foreach (var item in flPanelControls.Controls)
                 {
                     if (item.GetType() == typeof(LookUpControl))
@@ -179,10 +195,47 @@ namespace DBBiblioteka
                         LookUpControl input = item as LookUpControl;
                         string value = input.Key;
 
+                        if (input.Name == "ClanID")
+                            idClana = Convert.ToInt32(input.Key);
+
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
+
+                            if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
+                            {
+                                if (state == StateEnum.Create)
+                                {
+                                    stanje = "zaduzivanje";
+                                    MessageBox.Show(stanje);
+                                    PropertyInfo propertyIznajmljivanje = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                    if (input.Name == "KnjigaID")
+                                    {
+                                        propertyIznajmljivanje.SetValue(iznajmljivanje, Convert.ChangeType(value, property.PropertyType));
+                                    }
+                                }
+                                else if (state == StateEnum.Update)
+                                {
+                                    stanje = "vracanje";
+                                    PropertyInfo propertyIzdavacKnjiga = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+
+                                    if (input.Name == "KnjigaID")
+                                    {
+                                        propertyIzdavacKnjiga.SetValue(izdavacKnjiga, Convert.ChangeType(value, property.PropertyType));
+
+                                    }
+                                }
+                            }
+                            else if (myInterface.GetType() == typeof(PropertyIzdavacKnjiga))
+                            {
+                                stanje = "kpp";//kolicina++;
+                                PropertyInfo propertyIzdavac = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                propertyIzdavac.SetValue(izdavacKnjiga, Convert.ChangeType(value, propertyIzdavac.PropertyType));
+
+                            }
+
+
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
                             {
                                 input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
@@ -195,9 +248,10 @@ namespace DBBiblioteka
                                 property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            return;
+                            MessageBox.Show(ex.Message);///////////////////////////////////////////////
+                            //return;
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
@@ -205,49 +259,56 @@ namespace DBBiblioteka
                         InputControl input = item as InputControl;
 
                         string value = input.GetValue();
-                        PropertyInfo property = null;
+
                         try
                         {
-                            property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                             property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
-                            if (myInterface.GetType() == typeof(PropertyIznajmljivanje) || myInterface.GetType() == typeof(PropertyIzdavacKnjiga))
+
+                            //-***************************
+                            if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
                             {
-                                int idAkcije = 0, idKnjige = 0;
-                                int? kolicina = null;
                                 if (state == StateEnum.Create)
                                 {
-                                    idAkcije = 1;
-                                    MessageBox.Show(idAkcije + "create");
+
+                                    stanje = "zaduzivanje";
+                                    MessageBox.Show(stanje);
+                                    PropertyInfo propertyIznajmljivanje = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                    if (input.Name == "KnjigaID")
+                                    {
+                                        propertyIznajmljivanje.SetValue(iznajmljivanje, Convert.ChangeType(value, property.PropertyType));
+                                    }
                                 }
                                 else if (state == StateEnum.Update)
                                 {
-                                    idAkcije = 2;
-                                    MessageBox.Show(idAkcije + "update");
-                                }
-                                if (input.Name == "KnjigaID")
-                                {
-                                    idKnjige = Convert.ToInt32(input.GetValue());
-                                }
+                                    stanje = "vracanje";
+                                    PropertyInfo propertyIzdavacKnjiga = properties.Where(x => input.Name == x.Name).FirstOrDefault();
 
-                                if (input.Name == "Kolicina")
-                                {
-                                    idAkcije = 3;
-                                    kolicina = Convert.ToInt32(input.GetValue());
+                                    if (input.Name == "KnjigaID")
+                                    {
+                                        propertyIzdavacKnjiga.SetValue(izdavacKnjiga, Convert.ChangeType(value, property.PropertyType));
 
-                                    //SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, izdavacKnjigaProperty.GetDeleteQuery(), izdavacKnjigaProperty.GetDeleteParameters().ToArray());
-                                    //MessageBox.Show("Podatak je obrisan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //refreshTable();
+                                    }
                                 }
                             }
+                            else if (myInterface.GetType() == typeof(PropertyIzdavacKnjiga))
+                            {
+                                stanje = "kpp";//kolicina++;
+                                PropertyInfo propertyIzdavac = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                                propertyIzdavac.SetValue(izdavacKnjiga, Convert.ChangeType(value, propertyIzdavac.PropertyType));
+
+                            }
+                            //************************************
+
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
                             {
 
                                 input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
-                                
+
                                 return;
-                                
+
                             }
                             else
                             {
@@ -258,8 +319,7 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
-                            //return;
+                            return;
 
                         }
                     }
@@ -270,6 +330,9 @@ namespace DBBiblioteka
                         DateTime value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
+                            datumi[j++] = input.GetValue(); //cuva datum Iznajmljivanja i Danasnji datum(datum Razduzivanja knjige)
                     }
                     else if (item.GetType() == typeof(UserControlRadio))
                     {
@@ -293,6 +356,7 @@ namespace DBBiblioteka
                     }
 
                 }
+            }
             else
             {
 
@@ -306,14 +370,13 @@ namespace DBBiblioteka
                         if (string.IsNullOrEmpty(input.Key))
                             continue;
 
-                        string value = input.Key;
+                        string value = input.Key.Trim();
                         filterString.FStr += input.Name + " = " + value + " and ";
-
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
-                        string value = input.GetValue();
+                        string value = input.GetValue().Trim();
                         if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                         {
                             if (string.IsNullOrEmpty(input.GetValue()))
@@ -335,7 +398,7 @@ namespace DBBiblioteka
                     {
                         DateRangeControl input = item as DateRangeControl;
                         DateTime[] dates = input.GetValue();
-                        if (dates[0].Date == DateTimePicker.MinimumDateTime.Date && dates[1].Date == DateTimePicker.MinimumDateTime.Date)
+                        if (!input.GetChecked())
                             continue;
                         else if (dates[0].Date > dates[1].Date)
                         {
@@ -356,9 +419,63 @@ namespace DBBiblioteka
                 if (filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
+                MessageBox.Show(filterString.FStr);
+            }
 
-            }//detaljna pretraga
+            if (myInterface is PropertyIznajmljivanje)
+            {
+                if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
+                {
+                    PropertyClanarina clanarina = new PropertyClanarina();
+                    DataTable tableClanarina = new DataTable();
+                    SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    clanarina.GetSelectQuery());
+                    tableClanarina.Load(reader2);
+                    reader2.Close();
 
+                    bool ima = false;
+                    for (int i = 0; i < tableClanarina.Rows.Count; i++)
+                    {
+                        if ((int)(tableClanarina.Rows[i][1]) == idClana)
+                        {
+                            ima = true;
+                        }
+                    }
+                    if (!ima)
+                    {
+                        MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    }
+
+
+                    DataTable dt = new DataTable();
+                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParametersClanID().ToArray());
+                    dt.Load(reader);
+                    reader.Close();
+
+                    DateTime datumIsteka = (DateTime)dt.Rows[0][1];
+                    if (datumIsteka < DateTime.Now)
+                    {
+                        MessageBox.Show("Korisniku je istekla članarina, iznajmljivanje nije moguće!", "Greška!");
+                        return;
+                    }
+                }
+                else if (state == StateEnum.Update)
+                {
+                    if (datumi[1] <= datumi[0].AddDays(15))
+                    {
+                        MessageBox.Show("Knjiga uredno vracena");
+                    }
+                    else
+                    {
+                        MessageBox.Show(((TimeSpan)(datumi[1] - datumi[0].AddDays(15))).Days.ToString());
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
+
+                    }
+
+                }
+            }
 
             if (popunjeno)
             {
@@ -366,12 +483,32 @@ namespace DBBiblioteka
                 {
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                         myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                    if (stanje == "zaduzivanje")
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                                iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
+                        MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    if (stanje == "kpp")
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        izdavacKnjiga.GetProcedureUpdateKnjiga(), izdavacKnjiga.GetProcedureParameters().ToArray());
+                        MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                     MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (state == StateEnum.Update)
                 {
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                         myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                    if (stanje == "vracanje")
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                        iznajmljivanje.GetProcedureSelectAllDetails(), iznajmljivanje.GetProcedureParameters().ToArray());
+                        MessageBox.Show("Knjiga je vracena na stanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -379,7 +516,10 @@ namespace DBBiblioteka
                 DialogResult = DialogResult.OK;
             }
             else
-            return;
+            {
+                return;
+            }
+                
 
         }
 

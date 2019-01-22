@@ -165,6 +165,11 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = KnjigaID;
                 list.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Kolicina", System.Data.SqlDbType.SmallInt);
+                parameter.Value = Kolicina;
+                list.Add(parameter);
+            }
             return list;
         }
         public string GetProcedureSelectAutor()
@@ -189,10 +194,20 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureUpdateKnjiga()
         {
-            return @"EXEC [dbo].[sp_IznajmiRazduzi] @IdAkcije, @KnjigaID, @Kolicina";
+            return @"EXEC dbo.proc_DodajNaStanje @KnjigaID, @Kolicina";
         }
 
         public string GetProcedureSelectAllDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
         {
             throw new NotImplementedException();
         }

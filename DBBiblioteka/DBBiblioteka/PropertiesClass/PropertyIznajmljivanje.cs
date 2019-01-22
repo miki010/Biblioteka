@@ -110,14 +110,26 @@ namespace DBBiblioteka.PropertiesClass
                            ,@DatumRazduzivanja)";
         }
 
-        public List<SqlParameter> GetProcedureParameters()
+        public List<SqlParameter> GetProcedureParameters() // 
         {
-            throw new NotImplementedException();
+           
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@KnjigaID", System.Data.SqlDbType.Int);
+                parameter.Value = KnjigaID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+
+        public string GetProcedureStatusClanarineZaClanID()
+        {
+            return @"EXEC [dbo].[sp_StatusClanarineZaClanID] @ClanID";
         }
 
         public string GetProcedureSelectAllDetails()
         {
-            throw new NotImplementedException();
+            return @"EXEC dbo.proc_VratiNaStanje @KnjigaID";
         }
 
         public string GetProcedureSelectAutor()
@@ -132,7 +144,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureUpdateKnjiga()
         {
-            throw new NotImplementedException();
+            return @"EXEC dbo.proc_SkiniSaStanja @KnjigaID";
         }
 
         public string GetSelectPregledClanarinePoClanovima()
@@ -202,6 +214,17 @@ namespace DBBiblioteka.PropertiesClass
                           ,[DatumIznajmljivanja] = @DatumIznajmljivanja
                           ,[DatumRazduzivanja] = @DatumRazduzivanja
                      WHERE IznajmljivanjeID = @IznajmljivanjeID";
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanID;
+                list.Add(parameter);
+            }
+            return list;
         }
     }
 }
