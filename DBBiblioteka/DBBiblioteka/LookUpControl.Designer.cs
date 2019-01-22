@@ -107,11 +107,10 @@
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroTextBox txtID;
         private MetroFramework.Controls.MetroTextBox txtName;
         private MetroFramework.Controls.MetroTile tileLookUp;
         private System.Windows.Forms.Label lblText;
         private MetroFramework.Controls.MetroLabel lblObavezno;
+        public MetroFramework.Controls.MetroTextBox txtID;
     }
 }
