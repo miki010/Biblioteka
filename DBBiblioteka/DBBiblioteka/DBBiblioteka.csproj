@@ -156,6 +156,7 @@
     <Compile Include="LookUpControl.Designer.cs">
       <DependentUpon>LookUpControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordToBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PropertiesClass\PropertyAutor.cs" />
     <Compile Include="PropertiesClass\PropertyAutorKnjiga.cs" />

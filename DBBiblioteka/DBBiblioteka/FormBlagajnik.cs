@@ -118,9 +118,10 @@ namespace DBBiblioteka
 
         private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
         {
+            panelPromjenaLozinke.Focus();
             string staraLozinka = "";
-            string novaLozinka = txtNovaLozinka.ToString();
-            string potvrdiLozinku = txtPotvrdiLozinku.ToString();
+            string novaLozinka = txtNovaLozinka.Text.Trim();
+            string potvrdiLozinku = txtPotvrdiLozinku.Text.Trim();
 
             DataTable dt = new DataTable();
 
@@ -172,15 +173,23 @@ namespace DBBiblioteka
                         }
                         else if (txtNovaLozinka.Text == txtPotvrdiLozinku.Text)
                         {
-                           
+                            string zaposleniID = FormLogin.idZaposlenog;
+                            string Lozinka = txtNovaLozinka.Text.Trim();
 
-                            MessageBox.Show("Uspješno ste promijenili lozinku promjena");
+                            PasswordToBase.NewPasswordToBase(zaposleniID, Lozinka);
+
+                            MessageBox.Show("Uspješno ste promijenili lozinku!");
+                            resetujPolja();
+                            panelPromjenaLozinke.Visible = false;
+
                         }
+
                         else
                         {
                             MessageBox.Show("Nova i ponovljena lozinka se ne poklapaju!");
                             txtPotvrdiLozinku.Text = "";
                             txtPotvrdiLozinku.Focus();
+
                         }
                     }
                 }
@@ -189,7 +198,7 @@ namespace DBBiblioteka
             {
                 MessageBox.Show("Sva polja moraju biti popunjena!");
                 //staviti fokuse
-                if (txtTrenutnaLozinka.Text=="")
+                if (txtTrenutnaLozinka.Text == "")
                 {
                     txtTrenutnaLozinka.Focus();
                 }
@@ -203,35 +212,26 @@ namespace DBBiblioteka
                 }
             }
 
-
-
-            //   panelPromjenaLozinke.Visible = false;
-
-            //if (trenutnaLozinka == txtTrenutnaLozinka.ToString())
-            //    MessageBox.Show("id zapo:" + ZaposleniID + " lozinka" + trenutnaLozinka);
         }
 
         private void tileProfile_Click(object sender, EventArgs e)
         {
-
             panelPromjenaLozinke.Visible = true;
-            panelPromjenaLozinke.BringToFront();        
+            panelPromjenaLozinke.BringToFront();
             txtTrenutnaLozinka.Focus();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            resetujPolja();
             panelPromjenaLozinke.Visible = false;
-            txtTrenutnaLozinka.Text = "";
-            txtNovaLozinka.Text = "";
-            txtPotvrdiLozinku.Text = "";
-
         }
 
-        private void FormBlagajnik_Click(object sender, EventArgs e)
+        private void resetujPolja()
         {
-            panelPromjenaLozinke.Visible = false;
-            panelPromjenaLozinke.Hide();
+            txtNovaLozinka.Text = "";
+            txtTrenutnaLozinka.Text = "";
+            txtPotvrdiLozinku.Text = "";
         }
 
         private void tileTipClanarine_MouseLeave(object sender, EventArgs e)
