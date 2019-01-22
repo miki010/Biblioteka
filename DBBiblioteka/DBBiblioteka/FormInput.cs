@@ -72,7 +72,7 @@ namespace DBBiblioteka
                     ul.Name = item.Name;
                     if (state == StateEnum.Update)
                     {
-                        ul.Enabled = false;
+                        ul.Enabled = true;
                     }
 
                     //provjerava da li ima, id koji se prosljedjuje kroz konstruktor, kod unosa autora i izdavaca knjige
@@ -125,7 +125,7 @@ namespace DBBiblioteka
                         DateRangeControl dateRange = new DateRangeControl();
                         dateRange.Name = item.Name;
                         dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-
+                    //   dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
                         flPanelControls.Controls.Add(dateRange);
                     }
 
@@ -238,6 +238,7 @@ namespace DBBiblioteka
 
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value == null)
                             {
+                                input.txtID.Focus();
                                 input.SetLabelObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
                                 return;

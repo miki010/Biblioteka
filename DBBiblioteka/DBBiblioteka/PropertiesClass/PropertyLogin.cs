@@ -12,6 +12,10 @@ namespace DBBiblioteka.PropertiesClass
 {
     public class PropertyLogin
     {
+        [SqlName("ID")]
+        [PrimaryKey]
+        public int ID { get; set; }
+
         [SqlName("ZaposleniID")]
         public int ZaposleniID { get; set; }
 
@@ -51,6 +55,29 @@ namespace DBBiblioteka.PropertiesClass
             return @"SELECT ZaposleniID , KorisnickoIme, Lozinka FROM dbo.PristupniPodaci";
         }
 
-        
+
+        public List<SqlParameter> GetSelectNewPasswordParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();        
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.TinyInt);
+                parameter.Value = ZaposleniID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
+                parameter.Value = Lozinka;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public string GetSelectNewPassword()
+        {
+            return @"UPDATE [dbo].[PristupniPodaci]
+                     SET 
+                         [Lozinka] = @Lozinka
+                     WHERE ZaposleniID=@ZaposleniID";
+        }
+
     }
 }

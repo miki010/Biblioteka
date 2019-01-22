@@ -38,13 +38,13 @@
             this.lblTitle1 = new System.Windows.Forms.Label();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.lblUName = new MetroFramework.Controls.MetroLabel();
-            this.pictureBoxLoginbg = new System.Windows.Forms.PictureBox();
             this.pictureBoxELSALogo = new System.Windows.Forms.PictureBox();
             this.lblVerzija = new MetroFramework.Controls.MetroLabel();
             this.lblSeePass = new MetroFramework.Controls.MetroLabel();
             this.togglePassword = new MetroFramework.Controls.MetroToggle();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).BeginInit();
+            this.pictureBoxLoginbg = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
@@ -158,15 +158,6 @@
             this.lblUName.UseWaitCursor = true;
             this.lblUName.Visible = false;
             // 
-            // pictureBoxLoginbg
-            // 
-            this.pictureBoxLoginbg.Image = global::DBBiblioteka.Properties.Resources.loginimage;
-            this.pictureBoxLoginbg.Location = new System.Drawing.Point(463, 5);
-            this.pictureBoxLoginbg.Name = "pictureBoxLoginbg";
-            this.pictureBoxLoginbg.Size = new System.Drawing.Size(463, 618);
-            this.pictureBoxLoginbg.TabIndex = 20;
-            this.pictureBoxLoginbg.TabStop = false;
-            // 
             // pictureBoxELSALogo
             // 
             this.pictureBoxELSALogo.Image = global::DBBiblioteka.Properties.Resources.elsalogofinal;
@@ -208,6 +199,15 @@
             this.togglePassword.UseVisualStyleBackColor = true;
             this.togglePassword.CheckedChanged += new System.EventHandler(this.togglePassword_CheckedChanged);
             // 
+            // pictureBoxLoginbg
+            // 
+            this.pictureBoxLoginbg.Image = global::DBBiblioteka.Properties.Resources.loginimage;
+            this.pictureBoxLoginbg.Location = new System.Drawing.Point(463, 5);
+            this.pictureBoxLoginbg.Name = "pictureBoxLoginbg";
+            this.pictureBoxLoginbg.Size = new System.Drawing.Size(463, 618);
+            this.pictureBoxLoginbg.TabIndex = 20;
+            this.pictureBoxLoginbg.TabStop = false;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
@@ -242,8 +242,8 @@
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,10 +261,10 @@
         private MetroFramework.Controls.MetroLabel lblVersion;
         private MetroFramework.Controls.MetroLabel lblUName;
         private System.Windows.Forms.PictureBox pictureBoxELSALogo;
-        private System.Windows.Forms.PictureBox pictureBoxLoginbg;
         private MetroFramework.Controls.MetroLabel lblVerzija;
         private MetroFramework.Controls.MetroLabel lblSeePass;
         private MetroFramework.Controls.MetroToggle togglePassword;
+        private System.Windows.Forms.PictureBox pictureBoxLoginbg;
     }
 }
 
