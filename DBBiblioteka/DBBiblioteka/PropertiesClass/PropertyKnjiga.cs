@@ -33,7 +33,6 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Količina")]
         [SqlName("Kolicina")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public int Kolicina { get; set; }
 
         [DisplayName("Žanr")]
