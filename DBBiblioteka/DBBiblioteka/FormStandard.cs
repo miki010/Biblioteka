@@ -70,7 +70,7 @@ namespace DBBiblioteka
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.Rows[0].Selected = true;
-        }
+        //}
 
             foreach (DataGridViewColumn column in dgvPrikaz.Columns)
             {
@@ -472,7 +472,7 @@ namespace DBBiblioteka
 
 
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,                          
-            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
+            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParametersIznajmljivanjeID().ToArray());
            
             dt.Load(reader);
             reader.Close();

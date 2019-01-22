@@ -341,7 +341,7 @@
             this.panelDetalno.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelDetalno.CausesValidation = false;
             this.panelDetalno.Controls.Add(this.metroPanel1);
-            //this.panelDetalno.Controls.Add(this.lbDetaljno);
+            this.panelDetalno.Controls.Add(this.lbDetaljno);
             this.panelDetalno.Controls.Add(this.lblDetaljno);
             this.panelDetalno.CustomBackground = true;
             this.panelDetalno.HorizontalScrollbarBarColor = true;

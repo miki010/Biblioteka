@@ -252,6 +252,22 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanarinaID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanarinaID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+
         #endregion
 
     }
