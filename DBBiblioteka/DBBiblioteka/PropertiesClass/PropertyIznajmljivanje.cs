@@ -121,6 +121,18 @@ namespace DBBiblioteka.PropertiesClass
             }
             return list;
         }
+        /* dodati
+         public List<SqlParameter> GetProcedureParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+            SqlParameter parameter = new SqlParameter("@IznajmljivanjeID", System.Data.SqlDbType.Int);
+            parameter.Value = IznajmljivanjeID;
+            list.Add(parameter);
+            }
+            return list;
+        }
+             */
 
         public string GetProcedureStatusClanarineZaClanID()
         {
@@ -129,8 +141,14 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectAllDetails()
         {
+            return @"EXEC [dbo].[sp_Iznajmljivanje] @IznajmljivanjeID";
+        }
+        /*dodati
+         public string GetProcedureSelectAllDetails()
+        {
             return @"EXEC [dbo].[proc_VratiNaStanje] @KnjigaID";
         }
+             */
 
         public string GetProcedureSelectAutor()
         {
