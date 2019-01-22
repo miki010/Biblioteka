@@ -72,6 +72,7 @@
             this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
             this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
             this.dgvPrikaz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvPrikaz_KeyDown);
+            this.dgvPrikaz.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvPrikaz_KeyUp);
             this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
             // 
             // tileDodaj

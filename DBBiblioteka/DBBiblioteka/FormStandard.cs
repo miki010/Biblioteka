@@ -537,6 +537,7 @@ namespace DBBiblioteka
         private void tileSelectNext_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
             if (dgv.SelectedRows[0].Index == dgv.Rows.Count - 1) return;
             
             if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
@@ -626,7 +627,7 @@ namespace DBBiblioteka
             DataGridView dgv = dgvPrikaz;
 
 
-            
+            dgv.Focus();
             if (dgv.SelectedRows[0].Index == 0) return;
             if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
             {
@@ -710,6 +711,7 @@ namespace DBBiblioteka
         private void tileSelectLast_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
             try
             {
                 dgv.ClearSelection();
@@ -764,8 +766,9 @@ namespace DBBiblioteka
 
         private void tileSelectFirst_Click(object sender, EventArgs e)
         {
-
+            
             DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
             try
             {
                 dgv.ClearSelection();
@@ -820,8 +823,55 @@ namespace DBBiblioteka
 
         private void dgvPrikaz_KeyDown(object sender, KeyEventArgs e)
         {
+
            
 
+
+        }
+
+        private void dgvPrikaz_KeyUp(object sender, KeyEventArgs e)
+        {
+            DataGridView dgv = dgvPrikaz;
+
+
+         
+            dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            lbDetaljno.Items.Clear();
+            for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+            {
+                if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                {
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                }
+                else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                {
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                {
+                    //lbDetaljno.Items.Clear();
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else
+                {
+
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                }
+
+            }
         }
 
         private void ViewDetails(string id)
