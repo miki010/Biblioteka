@@ -129,7 +129,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectAllDetails()
         {
-            return @"EXEC dbo.proc_VratiNaStanje @KnjigaID";
+            return @"EXEC [dbo].[proc_VratiNaStanje] @KnjigaID";
         }
 
         public string GetProcedureSelectAutor()

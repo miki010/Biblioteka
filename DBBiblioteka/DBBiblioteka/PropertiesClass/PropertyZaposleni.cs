@@ -68,6 +68,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKey("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertiesClass.PropertyRadnoMjesto")]
         public int RadnoMjestoID { get; set; }
 
