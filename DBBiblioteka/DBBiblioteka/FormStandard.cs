@@ -69,6 +69,8 @@ namespace DBBiblioteka
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
+            dgvPrikaz.Rows[0].Selected = true;
+        //}
 
             foreach (DataGridViewColumn column in dgvPrikaz.Columns)
             {
@@ -359,7 +361,7 @@ namespace DBBiblioteka
                 }
 
             }
-            if (myProperty.GetType() == typeof(PropertyKnjiga))
+            if (myProperty.GetType() == typeof(PropertyKnjiga))//mislim da ce ovde biti dovoljan samo jedan if, ***************testirati***************
             {
                 if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
                 {
@@ -382,6 +384,39 @@ namespace DBBiblioteka
 
                     try
                     {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
+            else if (myProperty.GetType() == typeof(PropertyClanarina))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
+
+                    try
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
+            }
+            else if (myProperty.GetType() == typeof(PropertyIznajmljivanje))
+            {
+                if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
+                {
+
+                    try
+                    {
+                      
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
                     }
                     catch (Exception)
@@ -428,18 +463,25 @@ namespace DBBiblioteka
             else
                 lblBrojRedova.Text = dgvPrikaz.Rows.Count + " rezultata";
         }
-        
+
         private void ViewDetailsData(string id)
         {
             populatePropertyInterface();
             //dt za autora
             DataTable dt = new DataTable();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParameters().ToArray());
+
+
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,                          
+            myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParametersIznajmljivanjeID().ToArray());
+           
             dt.Load(reader);
             reader.Close();
-            if(myProperty.GetType() == typeof(PropertyZaposleni))
+           
+
+
+            if (myProperty.GetType() == typeof(PropertyZaposleni))
             {
+                
                     lbDetaljno.Items.Add("-----------------------------------------");
                     lbDetaljno.Items.Add("Radno mjesto: ");
 
@@ -454,9 +496,38 @@ namespace DBBiblioteka
                 }
 
             }
+           else if (myProperty.GetType() == typeof(PropertyClanarina))
+            {
+                lbDetaljno.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add(col + ": " + row[h++]);
+                    }
+
+                }
+
+            }
+            else if (myProperty.GetType() == typeof(PropertyIznajmljivanje))
+            {
+                lbDetaljno.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int h = 0;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        lbDetaljno.Items.Add(col + ": " + row[h++]);
+                    }
+
+                }
+
+            }
 
         }
- 
 
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
         {
@@ -494,6 +565,347 @@ namespace DBBiblioteka
         {
             refreshTable();
             dgvPrikaz.ClearSelection();
+        }
+
+        //Vlado promjena reda na dugme i detaljan prikaz*************************************************************************************
+        private void tileSelectNext_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
+            if (dgv.SelectedRows[0].Index == dgv.Rows.Count - 1) return;
+            
+            if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
+            {
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                    {
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                    {
+                        //lbDetaljno.Items.Clear();
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+
+                        ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else
+                    {
+
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                    }
+                }
+            }
+            dgv.Rows[dgv.SelectedRows[0].Index + 1].Selected = true;
+            dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            lbDetaljno.Items.Clear();
+
+            for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+            {
+                if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                {
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                }
+                else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                {
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                {
+                    //lbDetaljno.Items.Clear();
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else
+                {
+
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                }
+            }
+
+
+
+
+        }
+
+        private void tileSelectPrevious_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dgvPrikaz;
+
+
+            dgv.Focus();
+            if (dgv.SelectedRows[0].Index == 0) return;
+            if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
+            {
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                    {
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                    {
+                        //lbDetaljno.Items.Clear();
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else
+                    {
+
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                    }
+                }
+            }
+            dgv.Rows[dgv.SelectedRows[0].Index - 1].Selected = true;
+            dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            lbDetaljno.Items.Clear();
+            for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+            {
+                if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                {
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                }
+                else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                {
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                {
+                    //lbDetaljno.Items.Clear();
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else
+                {
+
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                }
+
+            }
+
+            }
+    
+
+        private void tileSelectLast_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
+            try
+            {
+                dgv.ClearSelection();
+                int Index = dgv.Rows.Count - 1;
+
+                dgv.Rows[Index].Selected = true;
+                dgv.Rows[Index].Cells[0].Selected = true;
+                lbDetaljno.Items.Clear();
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                    {
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                    {
+                        //lbDetaljno.Items.Clear();
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else
+                    {
+
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                    }
+                
+            }
+
+            
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void tileSelectFirst_Click(object sender, EventArgs e)
+        {
+            
+            DataGridView dgv = dgvPrikaz;
+            dgv.Focus();
+            try
+            {
+                dgv.ClearSelection();
+                int Index = 0;
+
+                dgv.Rows[Index].Selected = true;
+                dgv.Rows[Index].Cells[0].Selected = true;
+                lbDetaljno.Items.Clear();
+
+                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                {
+                    if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                    {
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                    {
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                    {
+                        //lbDetaljno.Items.Clear();
+                        for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                        }
+                        ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                        break;
+                    }
+                    else
+                    {
+
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                    }
+                
+            }
+
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        private void dgvPrikaz_KeyDown(object sender, KeyEventArgs e)
+        {
+
+           
+
+
+        }
+
+        private void dgvPrikaz_KeyUp(object sender, KeyEventArgs e)
+        {
+            DataGridView dgv = dgvPrikaz;
+
+
+         
+            dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            lbDetaljno.Items.Clear();
+            for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+            {
+                if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
+                {
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                }
+                else if (myProperty.GetType() == typeof(PropertyZaposleni))
+                {
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else if (myProperty.GetType() == typeof(PropertyKnjiga))
+                {
+                    //lbDetaljno.Items.Clear();
+                    for (int j = 0; j < dgvPrikaz.SelectedCells.Count; j++)
+                    {
+                        lbDetaljno.Items.Add(dgvPrikaz.Columns[j].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[j].Value);
+                    }
+                    ViewDetails(dgvPrikaz.SelectedRows[0].ToString());
+                    break;
+                }
+                else
+                {
+
+                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+
+
+                }
+
+            }
         }
 
         private void ViewDetails(string id)

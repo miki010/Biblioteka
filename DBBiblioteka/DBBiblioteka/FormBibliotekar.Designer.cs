@@ -150,6 +150,7 @@
             this.tilePregledIznajmljivanja.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tilePregledIznajmljivanja.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tilePregledIznajmljivanja.UseTileImage = true;
+            this.tilePregledIznajmljivanja.Click += new System.EventHandler(this.tilePregledIznajmljivanja_Click);
             this.tilePregledIznajmljivanja.MouseLeave += new System.EventHandler(this.tilePregledIznajmljivanja_MouseLeave);
             this.tilePregledIznajmljivanja.MouseHover += new System.EventHandler(this.tilePregledIznajmljivanja_MouseHover);
             // 

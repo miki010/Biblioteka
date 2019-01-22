@@ -188,7 +188,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectIzdavac()
         {
-            return @"EXEC sp_KnjigaIzdavac @KnjigaID";
+            return @"EXEC [dbo].[sp_KnjigaIzdavac] @KnjigaID";
         }
 
         public string GetProcedureUpdateKnjiga()
@@ -207,6 +207,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
         {
             throw new NotImplementedException();
         }
