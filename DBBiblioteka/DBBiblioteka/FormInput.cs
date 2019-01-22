@@ -150,10 +150,17 @@ namespace DBBiblioteka
                     cb.Name = "cbRazduzi";
                     cb.Text = item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
                     flPanelControls.Controls.Add(cb);
-                    cb.Enabled = false;
+                    if (!((PropertyIznajmljivanje)myInterface).Razduzeno && state == StateEnum.Update)
+                        cb.Enabled = true;
+                    else
+                        cb.Enabled = false;
+                    cb.Checked = ((PropertyIznajmljivanje)myInterface).Razduzeno;
+                    if (((PropertyIznajmljivanje)myInterface).Razduzeno)
+                        tilePotvrdi.Enabled = false;
                     cb.Margin = new Padding(12, 0, 0, 0);
 
                     cb.CheckedChanged += Cb_CheckedChanged;
+                    
                 }
                 else
                 {
@@ -205,8 +212,6 @@ namespace DBBiblioteka
             int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
             {
-
-                
                 foreach (var item in flPanelControls.Controls)
                 {
                     if (item.GetType() == typeof(LookUpControl))
@@ -227,7 +232,6 @@ namespace DBBiblioteka
                                 if (state == StateEnum.Create)
                                 {
                                     stanje = "zaduzivanje";
-                                    MessageBox.Show(stanje);
                                     PropertyInfo propertyIznajmljivanje = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                                     if (input.Name == "KnjigaID")
                                     {
@@ -291,7 +295,6 @@ namespace DBBiblioteka
                                 {
 
                                     stanje = "zaduzivanje";
-                                    MessageBox.Show(stanje);
                                     PropertyInfo propertyIznajmljivanje = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                                     if (input.Name == "KnjigaID")
                                     {
@@ -353,6 +356,7 @@ namespace DBBiblioteka
                         if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
                             datumi[j++] = input.GetValue(); //cuva datum Iznajmljivanja i Danasnji datum(datum Razduzivanja knjige)
                     }
+                    
                     else if (item.GetType() == typeof(UserControlRadio))
                     {
                         UserControlRadio input = item as UserControlRadio;
@@ -488,7 +492,7 @@ namespace DBBiblioteka
                     }
                     else
                     {
-                        MessageBox.Show(((TimeSpan)(datumi[1] - datumi[0].AddDays(15))).Days.ToString());
+                        MessageBox.Show((datumi[1] - datumi[0].AddDays(15)).Days.ToString());
                         MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
 
                     }
@@ -533,6 +537,8 @@ namespace DBBiblioteka
 
 
                 DialogResult = DialogResult.OK;
+                if (myInterface is PropertyIznajmljivanje)
+                    ((PropertyIznajmljivanje)myInterface).Razduzeno = false;
             }
             else
             {
