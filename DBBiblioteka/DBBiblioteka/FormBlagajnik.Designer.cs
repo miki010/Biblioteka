@@ -171,6 +171,7 @@
             // 
             // panelPromjenaLozinke
             // 
+            this.panelPromjenaLozinke.BackColor = System.Drawing.Color.AliceBlue;
             this.panelPromjenaLozinke.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelPromjenaLozinke.Controls.Add(this.btnCancel);
             this.panelPromjenaLozinke.Controls.Add(this.lbPotvrdiLozinku);
@@ -180,12 +181,13 @@
             this.panelPromjenaLozinke.Controls.Add(this.txtNovaLozinka);
             this.panelPromjenaLozinke.Controls.Add(this.txtTrenutnaLozinka);
             this.panelPromjenaLozinke.Controls.Add(this.tileSacuvajIzmjene);
+            this.panelPromjenaLozinke.CustomBackground = true;
             this.panelPromjenaLozinke.HorizontalScrollbarBarColor = true;
             this.panelPromjenaLozinke.HorizontalScrollbarHighlightOnWheel = false;
             this.panelPromjenaLozinke.HorizontalScrollbarSize = 10;
             this.panelPromjenaLozinke.Location = new System.Drawing.Point(513, 63);
             this.panelPromjenaLozinke.Name = "panelPromjenaLozinke";
-            this.panelPromjenaLozinke.Size = new System.Drawing.Size(345, 329);
+            this.panelPromjenaLozinke.Size = new System.Drawing.Size(345, 289);
             this.panelPromjenaLozinke.TabIndex = 13;
             this.panelPromjenaLozinke.VerticalScrollbarBarColor = true;
             this.panelPromjenaLozinke.VerticalScrollbarHighlightOnWheel = false;
@@ -195,7 +197,7 @@
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Highlight = true;
-            this.btnCancel.Location = new System.Drawing.Point(181, 234);
+            this.btnCancel.Location = new System.Drawing.Point(191, 214);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 44);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Silver;
@@ -207,7 +209,8 @@
             // lbPotvrdiLozinku
             // 
             this.lbPotvrdiLozinku.AutoSize = true;
-            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(13, 155);
+            this.lbPotvrdiLozinku.CustomBackground = true;
+            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(21, 155);
             this.lbPotvrdiLozinku.Name = "lbPotvrdiLozinku";
             this.lbPotvrdiLozinku.Size = new System.Drawing.Size(95, 19);
             this.lbPotvrdiLozinku.TabIndex = 8;
@@ -223,7 +226,8 @@
             // lblNovaLozinka
             // 
             this.lblNovaLozinka.AutoSize = true;
-            this.lblNovaLozinka.Location = new System.Drawing.Point(13, 106);
+            this.lblNovaLozinka.CustomBackground = true;
+            this.lblNovaLozinka.Location = new System.Drawing.Point(32, 106);
             this.lblNovaLozinka.Name = "lblNovaLozinka";
             this.lblNovaLozinka.Size = new System.Drawing.Size(84, 19);
             this.lblNovaLozinka.TabIndex = 6;
@@ -232,6 +236,7 @@
             // lblTrenutnaLozinka
             // 
             this.lblTrenutnaLozinka.AutoSize = true;
+            this.lblTrenutnaLozinka.CustomBackground = true;
             this.lblTrenutnaLozinka.Location = new System.Drawing.Point(12, 55);
             this.lblTrenutnaLozinka.Name = "lblTrenutnaLozinka";
             this.lblTrenutnaLozinka.Size = new System.Drawing.Size(104, 19);
@@ -254,8 +259,11 @@
             // 
             // tileSacuvajIzmjene
             // 
+            this.tileSacuvajIzmjene.BackColor = System.Drawing.Color.CadetBlue;
             this.tileSacuvajIzmjene.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileSacuvajIzmjene.Location = new System.Drawing.Point(39, 234);
+            this.tileSacuvajIzmjene.CustomBackground = true;
+            this.tileSacuvajIzmjene.CustomForeColor = true;
+            this.tileSacuvajIzmjene.Location = new System.Drawing.Point(42, 214);
             this.tileSacuvajIzmjene.Name = "tileSacuvajIzmjene";
             this.tileSacuvajIzmjene.Size = new System.Drawing.Size(125, 44);
             this.tileSacuvajIzmjene.Style = MetroFramework.MetroColorStyle.Pink;

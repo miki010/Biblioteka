@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -116,7 +117,7 @@ namespace DBBiblioteka
 
 
         private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
-        {           
+        {
             string staraLozinka = "";
             string novaLozinka = txtNovaLozinka.ToString();
             string potvrdiLozinku = txtPotvrdiLozinku.ToString();
@@ -129,10 +130,8 @@ namespace DBBiblioteka
             dt.Load(reader);
             reader.Close();
             bool idProsao = false;
-            bool NovaRazlicitaOdStare = false;
 
-
-            if (txtTrenutnaLozinka.Text != "" && txtNovaLozinka.Text!="" && txtPotvrdiLozinku.Text!="")
+            if (txtTrenutnaLozinka.Text != "" && txtNovaLozinka.Text != "" && txtPotvrdiLozinku.Text != "")
             {
                 foreach (DataRow row in dt.Rows)
                 {
@@ -145,14 +144,13 @@ namespace DBBiblioteka
                     {
                         idProsao = true;
                         staraLozinka = trenutnaLozinkaIzBaze;
-                        MessageBox.Show("ID  " + ZaposleniID + "  lozinka: " + trenutnaLozinkaIzBaze);
                         break;
                     }
                 }
 
                 if (!idProsao)
                 {
-                    MessageBox.Show("Pogrezna trenutna lozinka");
+                    MessageBox.Show("Pogresna trenutna lozinka");
                     txtTrenutnaLozinka.Text = "";
                     txtTrenutnaLozinka.Focus();
                 }
@@ -161,38 +159,53 @@ namespace DBBiblioteka
                 {
                     if (staraLozinka != txtTrenutnaLozinka.Text)
                     {
-                        MessageBox.Show("Lozinka iz baze se ne poklapa sa trenutnom unesenom lozinkom!");
-                        txtNovaLozinka.Text = "";
+                        MessageBox.Show("Lozinka iz baze se ne poklapa sa trenutnom unešenom lozinkom!");
+                        //   txtNovaLozinka.Text = "";
                         txtNovaLozinka.Focus();
                     }
                     else if (staraLozinka == txtTrenutnaLozinka.Text)
                     {
-                       // MessageBox.Show("Trenutna se poklapa sa lozinkom iz baze " + txtTrenutnaLozinka.Text);
+                        // MessageBox.Show("Trenutna se poklapa sa lozinkom iz baze " + txtTrenutnaLozinka.Text);
                         if (txtNovaLozinka.Text == txtTrenutnaLozinka.Text)
                         {
-                            MessageBox.Show("Lozinka je vec u upotrebi! Unesite drugu");
+                            MessageBox.Show("Lozinka je vec u upotrebi! Pokušajte ponovo!");
                         }
                         else if (txtNovaLozinka.Text == txtPotvrdiLozinku.Text)
                         {
-                            //izvrsiti izmjenu lozinke
-                            MessageBox.Show("usjeno idi kuci");
+                           
+
+                            MessageBox.Show("Uspješno ste promijenili lozinku promjena");
                         }
                         else
                         {
                             MessageBox.Show("Nova i ponovljena lozinka se ne poklapaju!");
+                            txtPotvrdiLozinku.Text = "";
+                            txtPotvrdiLozinku.Focus();
                         }
-                    }                
-                } 
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Sva polja moraju biti popunjena!");
                 //staviti fokuse
+                if (txtTrenutnaLozinka.Text=="")
+                {
+                    txtTrenutnaLozinka.Focus();
+                }
+                if (txtNovaLozinka.Text == "")
+                {
+                    txtNovaLozinka.Focus();
+                }
+                if (txtPotvrdiLozinku.Text == "")
+                {
+                    txtPotvrdiLozinku.Focus();
+                }
             }
 
 
 
-         //   panelPromjenaLozinke.Visible = false;
+            //   panelPromjenaLozinke.Visible = false;
 
             //if (trenutnaLozinka == txtTrenutnaLozinka.ToString())
             //    MessageBox.Show("id zapo:" + ZaposleniID + " lozinka" + trenutnaLozinka);
@@ -200,13 +213,25 @@ namespace DBBiblioteka
 
         private void tileProfile_Click(object sender, EventArgs e)
         {
+
             panelPromjenaLozinke.Visible = true;
-            panelPromjenaLozinke.BringToFront();
+            panelPromjenaLozinke.BringToFront();        
+            txtTrenutnaLozinka.Focus();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             panelPromjenaLozinke.Visible = false;
+            txtTrenutnaLozinka.Text = "";
+            txtNovaLozinka.Text = "";
+            txtPotvrdiLozinku.Text = "";
+
+        }
+
+        private void FormBlagajnik_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
+            panelPromjenaLozinke.Hide();
         }
 
         private void tileTipClanarine_MouseLeave(object sender, EventArgs e)
