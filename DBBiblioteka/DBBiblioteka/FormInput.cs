@@ -23,6 +23,7 @@ namespace DBBiblioteka
         PropertyIzdavacKnjiga izdavacKnjigaProperty = new PropertyIzdavacKnjiga();
         PropertyIznajmljivanje iznajmljivanje = new PropertyIznajmljivanje();
         PropertyIzdavacKnjiga izdavacKnjiga = new PropertyIzdavacKnjiga();
+        PropertyLogin propertyLogin = new PropertyLogin();
         StateEnum state;
         int? idKnjige;
 
@@ -250,6 +251,13 @@ namespace DBBiblioteka
                                 propertyIzdavac.SetValue(izdavacKnjiga, Convert.ChangeType(value, propertyIzdavac.PropertyType));
 
                             }
+                            //else if (myInterface.GetType() == typeof(PropertyZaposleni))
+                            //{
+                            //    stanje = "pristupniPodaci";
+                            //    PropertyInfo propertyLoginInfo = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            //    propertyLoginInfo.SetValue(propertyLogin, Convert.ChangeType(value, propertyLoginInfo.PropertyType));
+                            //}
+
                             #endregion
                         }
                         catch (Exception ex)
@@ -507,6 +515,13 @@ namespace DBBiblioteka
                         MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
+                    //if (stanje == "pristupniPodaci")
+                    //{
+                    //    //popuniPristupnePodatke();
+                    //    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                    //     propertyLogin.GetInsertQuery(), propertyLogin.GetLoginParameters().ToArray());
+                    //}
+
                     MessageBox.Show("Podatak je sacuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (state == StateEnum.Update)
@@ -542,6 +557,13 @@ namespace DBBiblioteka
             {
                 this.Close();
             }
+        }
+
+        private void popuniPristupnePodatke()
+        {
+            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                propertyLogin.GetInsertQuery(), propertyLogin.GetLoginParameters().ToArray());
+            MessageBox.Show("dodat");
         }
 
         private void FormInput_Load(object sender, EventArgs e)

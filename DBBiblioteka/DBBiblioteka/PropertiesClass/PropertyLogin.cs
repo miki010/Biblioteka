@@ -27,6 +27,11 @@ namespace DBBiblioteka.PropertiesClass
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string Lozinka { get; set; }
 
+        [SqlName("RadnoMjestoID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
+        [ForeignKeyAttribute("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertiesClass.PropertyRadnoMjesto")]
+        public string RadnoMjestoID { get; set; }
+
         public List<SqlParameter> GetLoginParameters()
         {
             List<SqlParameter> list = new List<SqlParameter>();
@@ -39,10 +44,10 @@ namespace DBBiblioteka.PropertiesClass
                 SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.VarChar);
                 parameter.Value = KorisnickoIme;
                 list.Add(parameter);
-            }
+            }                       
             {
-                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.VarChar);
-                parameter.Value = Lozinka;
+                SqlParameter parameter = new SqlParameter("@RadnoMjestoID", System.Data.SqlDbType.TinyInt);
+                parameter.Value = RadnoMjestoID;
                 list.Add(parameter);
             }
 

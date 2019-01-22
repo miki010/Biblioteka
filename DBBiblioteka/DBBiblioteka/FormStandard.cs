@@ -371,7 +371,10 @@ namespace DBBiblioteka
                     if (idReda >= 0)
                     {
                         m.Items.Add("Dodaj izdavača").Name = "Izdavac";
-                        m.Items.Add("Dodaj autora").Name = "Autor";
+                        m.Items.Add("Izmjeni izdavača").Name = "IzdavacIzmjena";
+                        //m.Items.Add("Dodaj autora").Name = "Autor";
+                        //m.Items.Add("Izmjeni autora").Name = "AutorIzmjena";
+
                     }
                     m.Show(dgvPrikaz, new Point(e.X, e.Y));
                     m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
@@ -460,7 +463,6 @@ namespace DBBiblioteka
                 case "Autor":
                     FormInput inputAutor = new FormInput(new PropertyAutorKnjiga(), StateEnum.Create, idKnjige);
                     inputAutor.ShowDialog();
-
                     break;
                 default:
                     break;
