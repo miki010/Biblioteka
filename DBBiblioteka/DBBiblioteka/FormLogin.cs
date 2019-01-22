@@ -29,6 +29,7 @@ namespace DBBiblioteka
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
+            this.CancelButton = btnCancel;
             txtPassword.UseSystemPasswordChar = true;
         }
 
