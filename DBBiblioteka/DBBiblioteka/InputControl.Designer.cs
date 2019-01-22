@@ -84,7 +84,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblText;
-        private System.Windows.Forms.TextBox txtValue;
         private MetroFramework.Controls.MetroLabel lblObavezno;
+        public System.Windows.Forms.TextBox txtValue;
     }
 }
