@@ -8,35 +8,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DBBiblioteka.PropertiesClass;
+using DBBiblioteka.Properties;
 
 namespace DBBiblioteka
 {
     public partial class FormBibliotekar : MetroFramework.Forms.MetroForm
     {
-        string ime, prezime, srednjeIme;
+        string ime, prezime, srednjeIme, pol;
         public FormBibliotekar()
         {
             InitializeComponent();           
         }
 
-        public FormBibliotekar(string ime, string srednjeIme, string prezime)
+        public FormBibliotekar(string ime, string srednjeIme, string prezime, string pol)
         {
             InitializeComponent();
             this.ime = ime;
             this.prezime = prezime;
             this.srednjeIme = srednjeIme;
             this.ControlBox = false;
+            this.pol = pol;
             tileClanarina.BringToFront();
             tileIznajmi.BringToFront();
             tilePregledIznajmljivanja.BringToFront();
             tilePretraga.BringToFront();
             tileUnosClana.BringToFront();
             tileRazduzivanje.BringToFront();
+            panelPromjenaLozinke.Visible = false;
         }
 
         private void Bibliotekar_Load(object sender, EventArgs e)
         {   
               lblImeZaposlenog.Text = ime.ToString() + " " + srednjeIme.ToString() + " " + prezime.ToString();
+            tileProfile.UseTileImage = true;
+            if(pol=="M")
+            {
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+            }
+            else if(pol=="Z" || pol == "Ž")
+            {
+                tileProfile.TileImage= DBBiblioteka.Properties.Resources.edit_woman_profile;
+            }
+
         }
 
         private void tilePretraga_Click(object sender, EventArgs e)
@@ -126,6 +139,28 @@ namespace DBBiblioteka
         {
             tileRazduzivanje.Height += 15;
             tileRazduzivanje.Width += 15;
+        }
+
+        private void tileProfile_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = true;
+            panelPromjenaLozinke.BringToFront();
+        }
+
+        private void tileSacuvaj_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
+        }
+
+        private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
+        {
+            //dodati kod za izmjenu lozinke
+            panelPromjenaLozinke.Visible = false;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
         }
 
         private void tileLogout_Click(object sender, EventArgs e)

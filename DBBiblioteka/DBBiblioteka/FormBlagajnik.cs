@@ -2,40 +2,56 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBBiblioteka.Helper;
 using DBBiblioteka.PropertiesClass;
 
 namespace DBBiblioteka
 {
     public partial class FormBlagajnik : MetroFramework.Forms.MetroForm
     {
-        string ime, prezime;
 
-      
+        PropertyLogin myProperty = new PropertyLogin();
+        string ime, prezime, srednjeIme, pol;
+
         public FormBlagajnik()
         {
-            InitializeComponent();   
+            InitializeComponent();
         }
-    
-        public FormBlagajnik(string ime, string prezime)
+
+        public FormBlagajnik(string ime, string srednjeIme, string prezime, string pol)
         {
             InitializeComponent();
             this.ime = ime;
             this.prezime = prezime;
+            this.srednjeIme = srednjeIme;
+            this.pol = pol;
             this.ControlBox = false;
             tileDodajClanarinu.BringToFront();
             tileIzvjestaj.BringToFront();
             tilePregledClanarina.BringToFront();
             tileTipClanarine.BringToFront();
+            panelPromjenaLozinke.Visible = false;
         }
 
         private void FormBlagajnik_Load(object sender, EventArgs e)
         {
             lblImeZaposlenog.Text = ime.ToString() + " " + prezime.ToString();
+            tileProfile.UseTileImage = true;
+            if (pol == "M")
+            {
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+            }
+            else if (pol == "Z" || pol == "Ž")
+            {
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.edit_woman_profile;
+            }
         }
 
         private void tileDodajClanarinu_Click(object sender, EventArgs e)
@@ -97,6 +113,125 @@ namespace DBBiblioteka
         {
             tileTipClanarine.Height -= 15;
             tileTipClanarine.Width -= 20;
+        }
+
+
+        private void tileSacuvajIzmjene_Click(object sender, EventArgs e)
+        {
+            string staraLozinka = "";
+            string novaLozinka = txtNovaLozinka.ToString();
+            string potvrdiLozinku = txtPotvrdiLozinku.ToString();
+
+            DataTable dt = new DataTable();
+
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                myProperty.GetLoginQuery());
+
+            dt.Load(reader);
+            reader.Close();
+            bool idProsao = false;
+
+            if (txtTrenutnaLozinka.Text != "" && txtNovaLozinka.Text != "" && txtPotvrdiLozinku.Text != "")
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    // string idZaposlenog = FormLogin.idZaposlenog;
+
+                    string ZaposleniID = row["ZaposleniID"].ToString();
+                    string trenutnaLozinkaIzBaze = row["Lozinka"].ToString();
+
+                    if (ZaposleniID == FormLogin.idZaposlenog)
+                    {
+                        idProsao = true;
+                        staraLozinka = trenutnaLozinkaIzBaze;
+                        break;
+                    }
+                }
+
+                if (!idProsao)
+                {
+                    MessageBox.Show("Pogresna trenutna lozinka");
+                    txtTrenutnaLozinka.Text = "";
+                    txtTrenutnaLozinka.Focus();
+                }
+
+                else
+                {
+                    if (staraLozinka != txtTrenutnaLozinka.Text)
+                    {
+                        MessageBox.Show("Lozinka iz baze se ne poklapa sa trenutnom unešenom lozinkom!");
+                        //   txtNovaLozinka.Text = "";
+                        txtNovaLozinka.Focus();
+                    }
+                    else if (staraLozinka == txtTrenutnaLozinka.Text)
+                    {
+                        // MessageBox.Show("Trenutna se poklapa sa lozinkom iz baze " + txtTrenutnaLozinka.Text);
+                        if (txtNovaLozinka.Text == txtTrenutnaLozinka.Text)
+                        {
+                            MessageBox.Show("Lozinka je vec u upotrebi! Pokušajte ponovo!");
+                        }
+                        else if (txtNovaLozinka.Text == txtPotvrdiLozinku.Text)
+                        {
+                           
+
+                            MessageBox.Show("Uspješno ste promijenili lozinku promjena");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nova i ponovljena lozinka se ne poklapaju!");
+                            txtPotvrdiLozinku.Text = "";
+                            txtPotvrdiLozinku.Focus();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sva polja moraju biti popunjena!");
+                //staviti fokuse
+                if (txtTrenutnaLozinka.Text=="")
+                {
+                    txtTrenutnaLozinka.Focus();
+                }
+                if (txtNovaLozinka.Text == "")
+                {
+                    txtNovaLozinka.Focus();
+                }
+                if (txtPotvrdiLozinku.Text == "")
+                {
+                    txtPotvrdiLozinku.Focus();
+                }
+            }
+
+
+
+            //   panelPromjenaLozinke.Visible = false;
+
+            //if (trenutnaLozinka == txtTrenutnaLozinka.ToString())
+            //    MessageBox.Show("id zapo:" + ZaposleniID + " lozinka" + trenutnaLozinka);
+        }
+
+        private void tileProfile_Click(object sender, EventArgs e)
+        {
+
+            panelPromjenaLozinke.Visible = true;
+            panelPromjenaLozinke.BringToFront();        
+            txtTrenutnaLozinka.Focus();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
+            txtTrenutnaLozinka.Text = "";
+            txtNovaLozinka.Text = "";
+            txtPotvrdiLozinku.Text = "";
+
+        }
+
+        private void FormBlagajnik_Click(object sender, EventArgs e)
+        {
+            panelPromjenaLozinke.Visible = false;
+            panelPromjenaLozinke.Hide();
         }
 
         private void tileTipClanarine_MouseLeave(object sender, EventArgs e)
