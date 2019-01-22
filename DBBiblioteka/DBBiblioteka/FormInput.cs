@@ -179,6 +179,7 @@ namespace DBBiblioteka
 
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
+            
             DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
             int j = 0; //brojac datuma^
             var properties = myInterface.GetType().GetProperties();
@@ -186,7 +187,7 @@ namespace DBBiblioteka
             if (state != StateEnum.Search)
             {
 
-
+                
                 foreach (var item in flPanelControls.Controls)
                 {
                     if (item.GetType() == typeof(LookUpControl))
@@ -247,9 +248,10 @@ namespace DBBiblioteka
                                 property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            return;
+                            MessageBox.Show(ex.Message);///////////////////////////////////////////////
+                            //return;
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
@@ -422,7 +424,6 @@ namespace DBBiblioteka
 
             if (myInterface is PropertyIznajmljivanje)
             {
-
                 if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
                 {
                     PropertyClanarina clanarina = new PropertyClanarina();
@@ -462,14 +463,15 @@ namespace DBBiblioteka
                 }
                 else if (state == StateEnum.Update)
                 {
-                    if (((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
+                    if (datumi[1] <= datumi[0].AddDays(15))
                     {
-                        MessageBox.Show("Knjiga uredno vraćena");
+                        MessageBox.Show("Knjiga uredno vracena");
                     }
                     else
                     {
-                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); //
-                        return;
+                        MessageBox.Show(((TimeSpan)(datumi[1] - datumi[0].AddDays(15))).Days.ToString());
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
+
                     }
 
                 }
@@ -509,8 +511,6 @@ namespace DBBiblioteka
                     }
                     MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
 
 
                 DialogResult = DialogResult.OK;
