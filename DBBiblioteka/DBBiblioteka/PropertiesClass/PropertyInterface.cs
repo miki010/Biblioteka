@@ -33,6 +33,7 @@ namespace DBBiblioteka.PropertiesClass
         List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
 
         List<SqlParameter> GetProcedureParameters();
+        List<SqlParameter> GetProcedureParametersClanID();
 
     }
 }

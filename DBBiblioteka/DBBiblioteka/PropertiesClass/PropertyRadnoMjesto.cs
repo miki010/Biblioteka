@@ -133,7 +133,12 @@ namespace DBBiblioteka.PropertiesClass
             return @"UPDATE [dbo].[RadnoMjesto]
                        SET [Naziv] = @Naziv
                      WHERE RadnoMjestoID = @RadnoMjestoID";
-        } 
+        }
+
+        public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

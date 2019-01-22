@@ -176,19 +176,27 @@ namespace DBBiblioteka
         }
         bool popunjeno = true;
         string stanje;
+
         private void tilePotvrdi_Click(object sender, EventArgs e)
         {
+            
             DateTime[] datumi = new DateTime[2]; //cuva datum Iznajmljivanja i datum Razduzivanja(u slucaju razduzivanja)
             int j = 0; //brojac datuma^
             var properties = myInterface.GetType().GetProperties();
             int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
             if (state != StateEnum.Search)
+            {
+
+                
                 foreach (var item in flPanelControls.Controls)
                 {
                     if (item.GetType() == typeof(LookUpControl))
                     {
                         LookUpControl input = item as LookUpControl;
                         string value = input.Key;
+
+                        if (input.Name == "ClanID")
+                            idClana = Convert.ToInt32(input.Key);
 
                         try
                         {
@@ -240,9 +248,10 @@ namespace DBBiblioteka
                                 property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            return;
+                            MessageBox.Show(ex.Message);///////////////////////////////////////////////
+                            //return;
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
@@ -254,7 +263,7 @@ namespace DBBiblioteka
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                            //property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+                            property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
 
                             //-***************************
                             if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
@@ -297,9 +306,9 @@ namespace DBBiblioteka
 
                                 input.SetLblObavezno(property.GetCustomAttribute<RequiredAttribute>().ErrorMessage);
                                 popunjeno = false;
-                                
+
                                 return;
-                                
+
                             }
                             else
                             {
@@ -321,6 +330,9 @@ namespace DBBiblioteka
                         DateTime value = input.GetValue();
                         PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         property.SetValue(myInterface, Convert.ChangeType(value, property.PropertyType));
+
+                        if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
+                            datumi[j++] = input.GetValue(); //cuva datum Iznajmljivanja i Danasnji datum(datum Razduzivanja knjige)
                     }
                     else if (item.GetType() == typeof(UserControlRadio))
                     {
@@ -344,6 +356,7 @@ namespace DBBiblioteka
                     }
 
                 }
+            }
             else
             {
 
@@ -411,7 +424,6 @@ namespace DBBiblioteka
 
             if (myInterface is PropertyIznajmljivanje)
             {
-
                 if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
                 {
                     PropertyClanarina clanarina = new PropertyClanarina();
@@ -438,7 +450,7 @@ namespace DBBiblioteka
 
                     DataTable dt = new DataTable();
                     SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParameters().ToArray());
+                    myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParametersClanID().ToArray());
                     dt.Load(reader);
                     reader.Close();
 
@@ -451,17 +463,17 @@ namespace DBBiblioteka
                 }
                 else if (state == StateEnum.Update)
                 {
-                    if(((TimeSpan)(datumi[1].AddDays(15) - datumi[0])).Days <= 15 && datumi[0] <= datumi[1])
+                    if (datumi[1] <= datumi[0].AddDays(15))
                     {
-                        MessageBox.Show("Knjiga uredno vraćena");
-                       
+                        MessageBox.Show("Knjiga uredno vracena");
                     }
                     else
                     {
-                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); //
-                        return;
+                        MessageBox.Show(((TimeSpan)(datumi[1] - datumi[0].AddDays(15))).Days.ToString());
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
+
                     }
-                    
+
                 }
             }
 
@@ -501,12 +513,13 @@ namespace DBBiblioteka
                 }
 
 
-
-
                 DialogResult = DialogResult.OK;
             }
             else
+            {
                 return;
+            }
+                
 
         }
 
