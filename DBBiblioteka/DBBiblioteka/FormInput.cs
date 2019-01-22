@@ -14,6 +14,7 @@ using DBBiblioteka.Helper;
 using DBBiblioteka.AttributesClass;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using MetroFramework.Controls;
 
 namespace DBBiblioteka
 {
@@ -143,6 +144,17 @@ namespace DBBiblioteka
 
                     flPanelControls.Controls.Add(ucr);
                 }
+                else if (item.GetCustomAttribute<CheckValue>() != null)
+                {
+                    MetroCheckBox cb = new MetroCheckBox();
+                    cb.Name = "cbRazduzi";
+                    cb.Text = item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
+                    flPanelControls.Controls.Add(cb);
+                    cb.Enabled = false;
+                    cb.Margin = new Padding(12, 0, 0, 0);
+
+                    cb.CheckedChanged += Cb_CheckedChanged;
+                }
                 else
                 {
                     InputControl ic = new InputControl();
@@ -174,6 +186,13 @@ namespace DBBiblioteka
                 }
             }
         }
+
+        private void Cb_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+            ((PropertyIznajmljivanje)myInterface).Razduzeno = cb.Checked;
+        }
+
         bool popunjeno = true;
         string stanje;
 

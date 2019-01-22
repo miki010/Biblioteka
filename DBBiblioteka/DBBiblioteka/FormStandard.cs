@@ -320,7 +320,21 @@ namespace DBBiblioteka
             {
                 for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
                 {
-                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                    try
+                    {
+                        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
+
+                        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
+                        {
+                            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
+                        }
+                        else
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                    }
+                    catch (Exception) { } // U slucaju da je datum ili bool NULL
                 }
             }
 
