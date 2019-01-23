@@ -43,11 +43,11 @@ namespace DBBiblioteka
             tileProfile.UseTileImage = true;
             if(pol=="M")
             {
-                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
             else if(pol=="Z" || pol == "Ž")
             {
-                tileProfile.TileImage= DBBiblioteka.Properties.Resources.edit_woman_profile;
+                tileProfile.TileImage= DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
 
         }
@@ -83,62 +83,62 @@ namespace DBBiblioteka
 
         private void tileUnosClana_MouseHover(object sender, EventArgs e)
         {
-            tileUnosClana.Height -= 15;
-            tileUnosClana.Width -= 20;
+            tileUnosClana.Height -= 10;
+            tileUnosClana.Width -= 10;
         }
 
         private void tileUnosClana_MouseLeave(object sender, EventArgs e)
         {
-            tileUnosClana.Height += 15;
-            tileUnosClana.Width += 20;
+            tileUnosClana.Height += 10;
+            tileUnosClana.Width += 10;
         }
 
         private void tilePretraga_MouseHover(object sender, EventArgs e)
         {
-            tilePretraga.Height -= 15;
-            tilePretraga.Width -= 20;
+            tilePretraga.Height -= 10;
+            tilePretraga.Width -= 10;
         }
 
         private void tilePretraga_MouseLeave(object sender, EventArgs e)
         {
-            tilePretraga.Height += 15;
-            tilePretraga.Width += 20;
+            tilePretraga.Height += 10;
+            tilePretraga.Width += 10;
         }
 
         private void tilePregledIznajmljivanja_MouseHover(object sender, EventArgs e)
         {
-            tilePregledIznajmljivanja.Height -= 15;
-            tilePregledIznajmljivanja.Width -= 20;
+            tilePregledIznajmljivanja.Height -= 10;
+            tilePregledIznajmljivanja.Width -= 10;
         }
 
         private void tilePregledIznajmljivanja_MouseLeave(object sender, EventArgs e)
         {
-            tilePregledIznajmljivanja.Height += 15;
-            tilePregledIznajmljivanja.Width += 20;
+            tilePregledIznajmljivanja.Height += 10;
+            tilePregledIznajmljivanja.Width += 10;
         }
 
         private void tileIznajmi_MouseHover(object sender, EventArgs e)
         {
-            tileIznajmi.Height -= 20;
-            tileIznajmi.Width -= 15;
+            tileIznajmi.Height -= 10;
+            tileIznajmi.Width -= 10;
         }
 
         private void tileIznajmi_MouseLeave(object sender, EventArgs e)
         {
-            tileIznajmi.Height += 20;
-            tileIznajmi.Width += 15;
+            tileIznajmi.Height += 10;
+            tileIznajmi.Width += 10;
         }
 
         private void tileVracanje_MouseHover(object sender, EventArgs e)
         {
-            tileRazduzivanje.Height -= 15;
-            tileRazduzivanje.Width -= 15;
+            tileRazduzivanje.Height -= 10;
+            tileRazduzivanje.Width -= 10;
         }
 
         private void tileVracanje_MouseLeave(object sender, EventArgs e)
         {
-            tileRazduzivanje.Height += 15;
-            tileRazduzivanje.Width += 15;
+            tileRazduzivanje.Height += 10;
+            tileRazduzivanje.Width += 10;
         }
 
         private void tileProfile_Click(object sender, EventArgs e)
@@ -163,6 +163,26 @@ namespace DBBiblioteka
             panelPromjenaLozinke.Visible = false;
         }
 
+        private void tileProfile_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip1.Show("Promijeni lozinku?", tileProfile);
+        }
+
+        private void tileLogout_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip2.Show("Odjava?", tileLogout);
+        }
+
+        private void pictureBoxBibliotekarPozadina_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelPromjenaLozinke_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void tileLogout_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -171,16 +191,22 @@ namespace DBBiblioteka
             forma.Activate();
         }
 
+        private void tilePregledIznajmljivanja_Click(object sender, EventArgs e)
+        {
+            Report rpt = new Report();
+            rpt.Show();
+        }
+
         private void tileClanarina_MouseHover(object sender, EventArgs e)
         {
-            tileClanarina.Height -= 15;
-            tileClanarina.Width -= 20;
+            tileClanarina.Height -= 10;
+            tileClanarina.Width -= 10;
         }
 
         private void tileClanarina_MouseLeave(object sender, EventArgs e)
         {
-            tileClanarina.Height += 15;
-            tileClanarina.Width += 20;
+            tileClanarina.Height += 10;
+            tileClanarina.Width += 10;
         }
     }
 }

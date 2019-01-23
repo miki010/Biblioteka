@@ -118,76 +118,109 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="adduser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adduser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blaganikpozadina1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blaganikpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resetpasswordfinal2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resetpasswordfinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="searchusermemberships" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\searchusermemberships.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="adminpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adminpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="resetpasswordfinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resetpasswordfinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bibliotekarpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bibliotekarpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="listofmembers" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\listofmembers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="searchbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\searchbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devicestemplate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devicestemplate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="searchissued" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\searchissued.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="returnedbooks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\returnedbooks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="elsalogofinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\elsalogofinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="loginimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loginimage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="publisher" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\publisher.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="takebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\takebook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="id-card" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\id-card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="financialreport" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\financialreport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="addmember" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addmember.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="blaganikpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blaganikpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devicestemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devicestemplate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="standardpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\standardpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="typeofmembership" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\typeofmembership.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="addbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="forminputpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\forminputpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="financialreport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\financialreport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="id-card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\id-card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adminpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adminpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="standardpozadinafinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\standardpozadinafinal.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="forminputpozadina1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\forminputpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resetpasswordfinal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resetpasswordfinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\searchbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blaganikpozadina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blaganikpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="listofmembers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\listofmembers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loginformafinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loginformafinal.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addmember" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addmember.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adduser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adduser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="takebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\takebook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="author" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\author.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user-man-profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user-man-profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loginimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loginimage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edit-woman-profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit-woman-profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="returnedbooks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\returnedbooks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="forminputpozadina2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\forminputpozadina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doubleup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\doubleup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="elsalogofinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\elsalogofinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="publisher" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\publisher.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doubledown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\doubledown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchissued" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\searchissued.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resetpasswordfinal3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resetpasswordfinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoblagajnik" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoblagajnik.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

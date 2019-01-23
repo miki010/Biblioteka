@@ -217,9 +217,13 @@ namespace DBBiblioteka.PropertiesClass
 
         public List<SqlParameter> GetProcedureParameters() // za proceduru [dbo].[sp_StatusClanarineZaClanID]
         {
-
-            throw new NotImplementedException();
-
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanarinaID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanarinaID;
+                list.Add(parameter);
+            }
+            return list;
         }
 
         public string GetProcedureSelectIzdavac()
@@ -234,7 +238,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectAllDetails()
         {
-            throw new NotImplementedException();
+            return @"EXEC [dbo].[sp_Clan] @ClanarinaID";
         }
 
 
@@ -246,6 +250,22 @@ namespace DBBiblioteka.PropertiesClass
         public List<SqlParameter> GetProcedureParametersClanID()
         {
             throw new NotImplementedException();
+        }
+
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ClanarinaID", System.Data.SqlDbType.Int);
+                parameter.Value = ClanarinaID;
+                list.Add(parameter);
+            }
+            return list;
         }
 
         #endregion

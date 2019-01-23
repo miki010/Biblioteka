@@ -122,6 +122,7 @@ namespace DBBiblioteka.PropertiesClass
             return list;
         }
 
+
         public string GetProcedureStatusClanarineZaClanID()
         {
             return @"EXEC [dbo].[sp_StatusClanarineZaClanID] @ClanID";
@@ -129,8 +130,9 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectAllDetails()
         {
-            return @"EXEC [dbo].[proc_VratiNaStanje] @KnjigaID";
+            return @"EXEC [dbo].[sp_Iznajmljivanje] @IznajmljivanjeID";
         }
+
 
         public string GetProcedureSelectAutor()
         {
@@ -222,6 +224,22 @@ namespace DBBiblioteka.PropertiesClass
             {
                 SqlParameter parameter = new SqlParameter("@ClanID", System.Data.SqlDbType.Int);
                 parameter.Value = ClanID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        //dodao vlado poslije konflikta
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            return @"EXEC [dbo].[proc_VratiNaStanje] @KnjigaID";
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@IznajmljivanjeID", System.Data.SqlDbType.Int);
+                parameter.Value = IznajmljivanjeID;
                 list.Add(parameter);
             }
             return list;
