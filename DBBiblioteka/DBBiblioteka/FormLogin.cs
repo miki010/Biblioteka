@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework;
 using System.Windows.Controls;
-
+using MetroFramework.Forms;
 namespace DBBiblioteka
 {
     public partial class FormLogin : MetroFramework.Forms.MetroForm
@@ -29,6 +29,7 @@ namespace DBBiblioteka
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
+            this.CancelButton = btnCancel;
             txtPassword.UseSystemPasswordChar = true;
         }
 

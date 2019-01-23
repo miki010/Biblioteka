@@ -31,7 +31,7 @@ namespace DBBiblioteka.PropertiesClass
         {
             List<SqlParameter> list = new List<SqlParameter>();
             {
-                SqlParameter parameter = new SqlParameter("@Zaposleni", System.Data.SqlDbType.TinyInt);
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.TinyInt);
                 parameter.Value = ZaposleniID;
                 list.Add(parameter);
             }
