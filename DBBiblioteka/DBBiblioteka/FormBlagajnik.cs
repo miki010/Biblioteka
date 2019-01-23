@@ -46,11 +46,11 @@ namespace DBBiblioteka
             tileProfile.UseTileImage = true;
             if (pol == "M")
             {
-                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
             else if (pol == "Z" || pol == "Ž")
             {
-                tileProfile.TileImage = DBBiblioteka.Properties.Resources.edit_woman_profile;
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
         }
 
@@ -213,7 +213,6 @@ namespace DBBiblioteka
 
         private void tileProfile_Click(object sender, EventArgs e)
         {
-
             panelPromjenaLozinke.Visible = true;
             panelPromjenaLozinke.BringToFront();        
             txtTrenutnaLozinka.Focus();
@@ -232,6 +231,16 @@ namespace DBBiblioteka
         {
             panelPromjenaLozinke.Visible = false;
             panelPromjenaLozinke.Hide();
+        }
+
+        private void tileProfile_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip1.Show("Promijeni lozinku?", tileProfile);
+        }
+
+        private void tileLogout_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip2.Show("Odjava?", tileLogout);
         }
 
         private void tileTipClanarine_MouseLeave(object sender, EventArgs e)

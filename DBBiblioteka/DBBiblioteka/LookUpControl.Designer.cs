@@ -94,13 +94,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblObavezno);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.tileLookUp);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "LookUpControl";
-            this.Size = new System.Drawing.Size(500, 50);
+            this.Size = new System.Drawing.Size(500, 45);
             this.ResumeLayout(false);
             this.PerformLayout();
 

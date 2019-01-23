@@ -40,11 +40,11 @@ namespace DBBiblioteka
             tileProfile.UseTileImage = true;
             if (pol == "M")
             {
-                tileProfile.TileImage = DBBiblioteka.Properties.Resources.user_man_profile;
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
             else if (pol == "Z" || pol == "Ž")
             {
-                tileProfile.TileImage = DBBiblioteka.Properties.Resources.edit_woman_profile;
+                tileProfile.TileImage = DBBiblioteka.Properties.Resources.resetpasswordfinal;
             }
         }
 
@@ -125,6 +125,26 @@ namespace DBBiblioteka
         private void btnCancel_Click(object sender, EventArgs e)
         {
             panelPromjenaLozinke.Visible = false;
+        }
+
+        private void tileProfile_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip1.Show("Promijeni lozinku?", tileProfile);
+        }
+
+        private void tileLogout_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip2.Show("Odjava?", tileLogout);
+        }
+
+        private void lblImeZaposlenog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBoxAdminPozadina_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void tileIzdavac_MouseLeave(object sender, EventArgs e)

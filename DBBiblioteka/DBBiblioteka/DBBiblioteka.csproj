@@ -265,14 +265,25 @@
     <None Include="Resources\laptoptemplate.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MetroFramework.txt" />
-    <None Include="Resources\edit-woman-profile.png" />
-    <None Include="Resources\user-man-profile.png" />
     <None Include="Resources\blaganikpozadina.jpg" />
     <None Include="Resources\adminpozadina.jpg" />
     <None Include="Resources\bibliotekarpozadina.jpg" />
     <None Include="Resources\loginimage.jpg" />
     <None Include="Resources\elsalogofinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MetroFramework.txt" />
+    <None Include="Resources\logoblagajnik.png" />
+    <None Include="Resources\loginformafinal.jpg" />
+    <None Include="Resources\standardpozadinafinal.jpg" />
+    <None Include="Resources\standardpozadina.jpg" />
+    <None Include="Resources\doubleup.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\doubledown.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\forminputpozadina.jpg" />
+    <None Include="Resources\resetpasswordfinal.png" />
+    <None Include="Resources\resetpassword.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\DLL\CrystalDecisions.CrystalReports.Engine.dll" />

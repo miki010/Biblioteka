@@ -535,5 +535,13 @@ namespace DBBiblioteka
                 this.Close();
             }
         }
+
+        private void FormInput_Load(object sender, EventArgs e)
+        {
+            flPanelControls.BringToFront();
+            tilePotvrdi.BringToFront();
+            tileOdustani.BringToFront();
+            metroPanel1.BringToFront();
+        }
     }
 }
