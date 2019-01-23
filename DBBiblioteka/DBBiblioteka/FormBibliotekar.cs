@@ -57,7 +57,8 @@ namespace DBBiblioteka
 
         private void tilePretraga_Click(object sender, EventArgs e)
         {
-
+            FormStandard formStandard = new FormStandard(new PropertyKnjiga());
+            formStandard.ShowDialog();
         }
 
         private void tileUnosClana_Click(object sender, EventArgs e)
@@ -78,10 +79,12 @@ namespace DBBiblioteka
             formStandard.ShowDialog();
         }
 
+        string pregled = "Knjige";
         private void tileClanarina_Click(object sender, EventArgs e)
         {
-            FormStandard formStandard = new FormStandard(new PropertyClan(), StateEnum.View);
-            formStandard.ShowDialog();
+
+            Report rpt3 = new Report(pregled);
+            rpt3.ShowDialog();
         }
 
         private void tileUnosClana_MouseHover(object sender, EventArgs e)
@@ -297,9 +300,11 @@ namespace DBBiblioteka
             lblUpozorenje.Visible = false;
         }
 
+        string korisnik = "iznajmljivanje";
         private void tilePregledIznajmljivanja_Click(object sender, EventArgs e)
         {
-            
+            Report rpt = new Report(korisnik);
+            rpt.ShowDialog();
         }
 
         private void tileClanarina_MouseHover(object sender, EventArgs e)
