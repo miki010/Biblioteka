@@ -29,7 +29,7 @@ namespace DBBiblioteka
         public static void NewPasswordToBase(string ZapoleniID, string lozinka)
         {    
            string queryString = "UPDATE [dbo].[PristupniPodaci] SET [Lozinka] = NovaLozinka WHERE ZaposleniID = IDZaposlenog";
-            queryString = queryString.Replace("'NovaLozinka'", lozinka);
+            queryString = queryString.Replace("NovaLozinka", "'"+lozinka+"'");
             queryString = queryString.Replace("IDZaposlenog", ZapoleniID);
 
             using (SqlConnection connection = new SqlConnection(

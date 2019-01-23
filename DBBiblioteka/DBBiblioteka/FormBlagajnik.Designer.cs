@@ -29,8 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBlagajnik));
+            this.tileIzvjestaj = new MetroFramework.Controls.MetroTile();
+            this.tileTipClanarine = new MetroFramework.Controls.MetroTile();
+            this.tilePregledClanarina = new MetroFramework.Controls.MetroTile();
+            this.tileDodajClanarinu = new MetroFramework.Controls.MetroTile();
+            this.tileLogout = new MetroFramework.Controls.MetroTile();
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.panelPromjenaLozinke = new MetroFramework.Controls.MetroPanel();
+            this.lblUpozorenje = new System.Windows.Forms.Label();
+            this.lblPogresnaStara = new System.Windows.Forms.Label();
             this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lbPotvrdiLozinku = new MetroFramework.Controls.MetroLabel();
@@ -73,6 +80,8 @@
             this.panelPromjenaLozinke.BackColor = System.Drawing.Color.AliceBlue;
             this.panelPromjenaLozinke.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelPromjenaLozinke.Controls.Add(this.tilePasswordChange);
+            this.panelPromjenaLozinke.Controls.Add(this.lblUpozorenje);
+            this.panelPromjenaLozinke.Controls.Add(this.lblPogresnaStara);
             this.panelPromjenaLozinke.Controls.Add(this.btnCancel);
             this.panelPromjenaLozinke.Controls.Add(this.lbPotvrdiLozinku);
             this.panelPromjenaLozinke.Controls.Add(this.txtPotvrdiLozinku);
@@ -92,6 +101,26 @@
             this.panelPromjenaLozinke.VerticalScrollbarBarColor = true;
             this.panelPromjenaLozinke.VerticalScrollbarHighlightOnWheel = false;
             this.panelPromjenaLozinke.VerticalScrollbarSize = 10;
+            // 
+            // lblUpozorenje
+            // 
+            this.lblUpozorenje.AutoSize = true;
+            this.lblUpozorenje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblUpozorenje.Location = new System.Drawing.Point(153, 180);
+            this.lblUpozorenje.Name = "lblUpozorenje";
+            this.lblUpozorenje.Size = new System.Drawing.Size(35, 13);
+            this.lblUpozorenje.TabIndex = 12;
+            this.lblUpozorenje.Text = "label1";
+            // 
+            // lblPogresnaStara
+            // 
+            this.lblPogresnaStara.AutoSize = true;
+            this.lblPogresnaStara.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPogresnaStara.Location = new System.Drawing.Point(153, 81);
+            this.lblPogresnaStara.Name = "lblPogresnaStara";
+            this.lblPogresnaStara.Size = new System.Drawing.Size(35, 13);
+            this.lblPogresnaStara.TabIndex = 11;
+            this.lblPogresnaStara.Text = "label1";
             // 
             // tilePasswordChange
             // 
@@ -169,6 +198,7 @@
             this.txtTrenutnaLozinka.Name = "txtTrenutnaLozinka";
             this.txtTrenutnaLozinka.Size = new System.Drawing.Size(213, 23);
             this.txtTrenutnaLozinka.TabIndex = 3;
+            this.txtTrenutnaLozinka.TextChanged += new System.EventHandler(this.txtTrenutnaLozinka_TextChanged);
             // 
             // tileSacuvajIzmjene
             // 
@@ -320,6 +350,7 @@
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.panelPromjenaLozinke);
             this.Controls.Add(this.panelUserName);
+            this.Controls.Add(this.panelPromjenaLozinke);
             this.Controls.Add(this.tileProfile);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.tileIzvjestaj);
@@ -360,6 +391,8 @@
         private MetroFramework.Controls.MetroTile tileSacuvajIzmjene;
         private MetroFramework.Controls.MetroButton btnCancel;
         private System.Windows.Forms.FlowLayoutPanel panelUserName;
+        private System.Windows.Forms.Label lblUpozorenje;
+        private System.Windows.Forms.Label lblPogresnaStara;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Components.MetroToolTip metroToolTip2;
         private System.Windows.Forms.PictureBox pictureBoxBlagajnikPozadina;
