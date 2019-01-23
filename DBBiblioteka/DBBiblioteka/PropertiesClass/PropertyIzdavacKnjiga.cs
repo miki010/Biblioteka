@@ -216,6 +216,16 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

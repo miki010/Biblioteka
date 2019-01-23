@@ -24,6 +24,7 @@ namespace DBBiblioteka.PropertiesClass
 
         //update upiti
         string GetProcedureUpdateKnjiga();
+        string GetProcedureUpdateKnjigaVrati();
 
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();
@@ -34,6 +35,9 @@ namespace DBBiblioteka.PropertiesClass
 
         List<SqlParameter> GetProcedureParameters();
         List<SqlParameter> GetProcedureParametersClanID();
+        List<SqlParameter> GetProcedureParametersIznajmljivanjeID();
+
+
 
     }
 }

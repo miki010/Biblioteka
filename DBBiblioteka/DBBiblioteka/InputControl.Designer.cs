@@ -74,8 +74,9 @@
             this.Controls.Add(this.lblObavezno);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblText);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(500, 50);
+            this.Size = new System.Drawing.Size(500, 45);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,7 +85,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblText;
-        private System.Windows.Forms.TextBox txtValue;
         private MetroFramework.Controls.MetroLabel lblObavezno;
+        public System.Windows.Forms.TextBox txtValue;
     }
 }

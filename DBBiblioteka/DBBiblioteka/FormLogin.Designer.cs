@@ -38,28 +38,29 @@
             this.lblTitle1 = new System.Windows.Forms.Label();
             this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.lblUName = new MetroFramework.Controls.MetroLabel();
-            this.pictureBoxELSALogo = new System.Windows.Forms.PictureBox();
             this.lblVerzija = new MetroFramework.Controls.MetroLabel();
             this.lblSeePass = new MetroFramework.Controls.MetroLabel();
             this.togglePassword = new MetroFramework.Controls.MetroToggle();
+            this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.pictureBoxLoginbg = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).BeginInit();
+            this.pictureBoxELSALogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(36, 404);
+            this.txtUserName.Location = new System.Drawing.Point(46, 404);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(352, 25);
+            this.txtUserName.Size = new System.Drawing.Size(370, 25);
             this.txtUserName.TabIndex = 0;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(36, 461);
+            this.txtPassword.Location = new System.Drawing.Point(46, 461);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(352, 25);
+            this.txtPassword.Size = new System.Drawing.Size(370, 25);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
@@ -67,7 +68,7 @@
             // 
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Highlight = true;
-            this.btnLogin.Location = new System.Drawing.Point(66, 550);
+            this.btnLogin.Location = new System.Drawing.Point(89, 550);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(142, 42);
             this.btnLogin.Style = MetroFramework.MetroColorStyle.Purple;
@@ -80,7 +81,7 @@
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Highlight = true;
-            this.btnCancel.Location = new System.Drawing.Point(214, 550);
+            this.btnCancel.Location = new System.Drawing.Point(237, 550);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(142, 42);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Silver;
@@ -92,7 +93,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(36, 382);
+            this.lblUsername.Location = new System.Drawing.Point(46, 382);
             this.lblUsername.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(96, 19);
@@ -102,7 +103,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(36, 439);
+            this.lblPassword.Location = new System.Drawing.Point(46, 439);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(55, 19);
             this.lblPassword.TabIndex = 9;
@@ -113,7 +114,7 @@
             this.lblInvalid.AutoSize = true;
             this.lblInvalid.BackColor = System.Drawing.Color.Transparent;
             this.lblInvalid.ForeColor = System.Drawing.Color.Red;
-            this.lblInvalid.Location = new System.Drawing.Point(87, 439);
+            this.lblInvalid.Location = new System.Drawing.Point(97, 439);
             this.lblInvalid.Name = "lblInvalid";
             this.lblInvalid.Size = new System.Drawing.Size(112, 19);
             this.lblInvalid.Style = MetroFramework.MetroColorStyle.Red;
@@ -127,7 +128,7 @@
             this.lblTitle1.AutoSize = true;
             this.lblTitle1.Font = new System.Drawing.Font("Segoe UI", 20.2F, System.Drawing.FontStyle.Bold);
             this.lblTitle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTitle1.Location = new System.Drawing.Point(119, 34);
+            this.lblTitle1.Location = new System.Drawing.Point(148, 35);
             this.lblTitle1.Name = "lblTitle1";
             this.lblTitle1.Size = new System.Drawing.Size(170, 37);
             this.lblTitle1.TabIndex = 14;
@@ -148,7 +149,7 @@
             this.lblUName.BackColor = System.Drawing.Color.Transparent;
             this.lblUName.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.lblUName.ForeColor = System.Drawing.Color.Red;
-            this.lblUName.Location = new System.Drawing.Point(126, 382);
+            this.lblUName.Location = new System.Drawing.Point(136, 382);
             this.lblUName.Name = "lblUName";
             this.lblUName.Size = new System.Drawing.Size(211, 19);
             this.lblUName.Style = MetroFramework.MetroColorStyle.Red;
@@ -158,19 +159,10 @@
             this.lblUName.UseWaitCursor = true;
             this.lblUName.Visible = false;
             // 
-            // pictureBoxELSALogo
-            // 
-            this.pictureBoxELSALogo.Image = global::DBBiblioteka.Properties.Resources.elsalogofinal;
-            this.pictureBoxELSALogo.Location = new System.Drawing.Point(97, 93);
-            this.pictureBoxELSALogo.Name = "pictureBoxELSALogo";
-            this.pictureBoxELSALogo.Size = new System.Drawing.Size(222, 212);
-            this.pictureBoxELSALogo.TabIndex = 19;
-            this.pictureBoxELSALogo.TabStop = false;
-            // 
             // lblVerzija
             // 
             this.lblVerzija.AutoSize = true;
-            this.lblVerzija.Location = new System.Drawing.Point(190, 600);
+            this.lblVerzija.Location = new System.Drawing.Point(215, 600);
             this.lblVerzija.Name = "lblVerzija";
             this.lblVerzija.Size = new System.Drawing.Size(43, 19);
             this.lblVerzija.TabIndex = 21;
@@ -179,7 +171,7 @@
             // lblSeePass
             // 
             this.lblSeePass.AutoSize = true;
-            this.lblSeePass.Location = new System.Drawing.Point(36, 496);
+            this.lblSeePass.Location = new System.Drawing.Point(54, 489);
             this.lblSeePass.Name = "lblSeePass";
             this.lblSeePass.Size = new System.Drawing.Size(94, 19);
             this.lblSeePass.TabIndex = 22;
@@ -188,7 +180,7 @@
             // togglePassword
             // 
             this.togglePassword.AutoSize = true;
-            this.togglePassword.Location = new System.Drawing.Point(130, 499);
+            this.togglePassword.Location = new System.Drawing.Point(146, 492);
             this.togglePassword.MaximumSize = new System.Drawing.Size(60, 15);
             this.togglePassword.MinimumSize = new System.Drawing.Size(60, 15);
             this.togglePassword.Name = "togglePassword";
@@ -199,14 +191,31 @@
             this.togglePassword.UseVisualStyleBackColor = true;
             this.togglePassword.CheckedChanged += new System.EventHandler(this.togglePassword_CheckedChanged);
             // 
+            // metroTile1
+            // 
+            this.metroTile1.Location = new System.Drawing.Point(148, 492);
+            this.metroTile1.Name = "metroTile1";
+            this.metroTile1.Size = new System.Drawing.Size(20, 18);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.White;
+            this.metroTile1.TabIndex = 24;
+            // 
             // pictureBoxLoginbg
             // 
-            this.pictureBoxLoginbg.Image = global::DBBiblioteka.Properties.Resources.loginimage;
+            this.pictureBoxLoginbg.Image = global::DBBiblioteka.Properties.Resources.loginformafinal;
             this.pictureBoxLoginbg.Location = new System.Drawing.Point(463, 5);
             this.pictureBoxLoginbg.Name = "pictureBoxLoginbg";
             this.pictureBoxLoginbg.Size = new System.Drawing.Size(463, 618);
             this.pictureBoxLoginbg.TabIndex = 20;
             this.pictureBoxLoginbg.TabStop = false;
+            // 
+            // pictureBoxELSALogo
+            // 
+            this.pictureBoxELSALogo.Image = global::DBBiblioteka.Properties.Resources.elsalogofinal;
+            this.pictureBoxELSALogo.Location = new System.Drawing.Point(121, 93);
+            this.pictureBoxELSALogo.Name = "pictureBoxELSALogo";
+            this.pictureBoxELSALogo.Size = new System.Drawing.Size(222, 212);
+            this.pictureBoxELSALogo.TabIndex = 19;
+            this.pictureBoxELSALogo.TabStop = false;
             // 
             // FormLogin
             // 
@@ -215,6 +224,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(925, 620);
+            this.Controls.Add(this.metroTile1);
             this.Controls.Add(this.togglePassword);
             this.Controls.Add(this.lblSeePass);
             this.Controls.Add(this.lblVerzija);
@@ -242,8 +252,9 @@
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).EndInit();
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginbg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxELSALogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +276,7 @@
         private MetroFramework.Controls.MetroLabel lblSeePass;
         private MetroFramework.Controls.MetroToggle togglePassword;
         private System.Windows.Forms.PictureBox pictureBoxLoginbg;
+        private MetroFramework.Controls.MetroTile metroTile1;
     }
 }
 

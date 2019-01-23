@@ -68,6 +68,7 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("ID radnog mjesta")]
         [SqlName("RadnoMjestoID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKey("RadnoMjesto", "RadnoMjestoID", "DBBiblioteka.PropertiesClass.PropertyRadnoMjesto")]
         public int RadnoMjestoID { get; set; }
 
@@ -343,6 +344,22 @@ namespace DBBiblioteka.PropertiesClass
         public List<SqlParameter> GetProcedureParametersClanID()
         {
             throw new NotImplementedException();
+        }
+
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.TinyInt);
+                parameter.Value = ZaposleniID;
+                list.Add(parameter);
+            }
+            return list;
         }
 
         #endregion

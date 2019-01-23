@@ -41,12 +41,16 @@
             this.flPanelControls.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flPanelControls.Location = new System.Drawing.Point(20, 60);
             this.flPanelControls.Name = "flPanelControls";
-            this.flPanelControls.Size = new System.Drawing.Size(561, 638);
+            this.flPanelControls.Size = new System.Drawing.Size(560, 638);
             this.flPanelControls.TabIndex = 0;
             // 
             // tilePotvrdi
             // 
+            this.tilePotvrdi.BackColor = System.Drawing.Color.SteelBlue;
             this.tilePotvrdi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tilePotvrdi.CustomBackground = true;
+            this.tilePotvrdi.CustomForeColor = true;
+            this.tilePotvrdi.ForeColor = System.Drawing.Color.White;
             this.tilePotvrdi.Location = new System.Drawing.Point(118, 5);
             this.tilePotvrdi.Name = "tilePotvrdi";
             this.tilePotvrdi.Size = new System.Drawing.Size(125, 45);
@@ -54,23 +58,25 @@
             this.tilePotvrdi.TabIndex = 1;
             this.tilePotvrdi.Text = "POTVRDI";
             this.tilePotvrdi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tilePotvrdi.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tilePotvrdi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tilePotvrdi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
             this.tilePotvrdi.Click += new System.EventHandler(this.tilePotvrdi_Click);
             // 
             // tileOdustani
             // 
+            this.tileOdustani.BackColor = System.Drawing.Color.Silver;
             this.tileOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tileOdustani.CustomBackground = true;
+            this.tileOdustani.CustomForeColor = true;
+            this.tileOdustani.ForeColor = System.Drawing.Color.SteelBlue;
             this.tileOdustani.Location = new System.Drawing.Point(282, 5);
             this.tileOdustani.Name = "tileOdustani";
             this.tileOdustani.Size = new System.Drawing.Size(125, 45);
-            this.tileOdustani.Style = MetroFramework.MetroColorStyle.Red;
+            this.tileOdustani.Style = MetroFramework.MetroColorStyle.Silver;
             this.tileOdustani.TabIndex = 2;
             this.tileOdustani.Text = "ODUSTANI";
             this.tileOdustani.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileOdustani.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileOdustani.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileOdustani.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileOdustani.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
             this.tileOdustani.Click += new System.EventHandler(this.tileOdustani_Click);
             // 
             // metroPanel1
@@ -83,7 +89,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(20, 698);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(561, 57);
+            this.metroPanel1.Size = new System.Drawing.Size(560, 57);
             this.metroPanel1.TabIndex = 1;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -94,16 +100,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(601, 756);
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(600, 760);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.flPanelControls);
             this.MaximizeBox = false;
             this.Name = "FormInput";
             this.Resizable = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Style = MetroFramework.MetroColorStyle.Purple;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
+            this.Style = MetroFramework.MetroColorStyle.Blue;
             this.Text = "Unos podataka";
-            this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
+            this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Load += new System.EventHandler(this.FormInput_Load);
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -33,7 +33,6 @@ namespace DBBiblioteka.PropertiesClass
 
         [DisplayName("Količina")]
         [SqlName("Kolicina")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public int Kolicina { get; set; }
 
         [DisplayName("Žanr")]
@@ -64,7 +63,7 @@ namespace DBBiblioteka.PropertiesClass
         {
             List<SqlParameter> list = new List<SqlParameter>();
             {
-                SqlParameter parameter = new SqlParameter("@Sifra", System.Data.SqlDbType.Char);
+                SqlParameter parameter = new SqlParameter("@Sifra", System.Data.SqlDbType.VarChar);
                 parameter.Value = Sifra;
                 list.Add(parameter);
             }
@@ -79,7 +78,7 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@Zanr", System.Data.SqlDbType.Char);
+                SqlParameter parameter = new SqlParameter("@Zanr", System.Data.SqlDbType.NVarChar);
                 parameter.Value = Zanr;
                 list.Add(parameter);
             }
@@ -99,7 +98,7 @@ namespace DBBiblioteka.PropertiesClass
                            (@Sifra
                            ,@Naziv
                            ,@Kolicina
-                           ,@Zanr";
+                           ,@Zanr)";
         }
 
         
@@ -123,7 +122,7 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@Sifra", System.Data.SqlDbType.Char);
+                SqlParameter parameter = new SqlParameter("@Sifra", System.Data.SqlDbType.VarChar);
                 parameter.Value = Sifra;
                 list.Add(parameter);
             }
@@ -138,7 +137,7 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@Zanr", System.Data.SqlDbType.Char);
+                SqlParameter parameter = new SqlParameter("@Zanr", System.Data.SqlDbType.NVarChar);
                 parameter.Value = Zanr;
                 list.Add(parameter);
             }
@@ -189,7 +188,7 @@ namespace DBBiblioteka.PropertiesClass
 
         public string GetProcedureSelectIzdavac()
         {
-            return @"EXEC sp_KnjigaIzdavac @KnjigaID";
+            return @"EXEC [dbo].[sp_KnjigaIzdavac] @KnjigaID";
         }
 
         public string GetProcedureUpdateKnjiga()
@@ -208,6 +207,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureUpdateKnjigaVrati()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
         {
             throw new NotImplementedException();
         }
