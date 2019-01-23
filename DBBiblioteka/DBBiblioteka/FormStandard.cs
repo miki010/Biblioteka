@@ -26,7 +26,6 @@ namespace DBBiblioteka
         public FormStandard()
         {
             InitializeComponent();
-
         }
 
         public FormStandard(PropertyInterface propertyInterface)
@@ -89,11 +88,27 @@ namespace DBBiblioteka
             }
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPrikaz.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.Rows[0].Selected = true;
             dgvPrikaz.Focus();
             //}
+            dgvPrikaz.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSteelBlue;
+            dgvPrikaz.EnableHeadersVisualStyles = false;
 
+            foreach (DataGridViewColumn column in dgvPrikaz.Columns)
+            {
+                if (column.HeaderText.Contains("ID"))
+                    column.Width = 130;
+            }
+            if (myProperty is PropertyIznajmljivanje)
+            {
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].Width = 80;
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            dgvPrikaz.AlternatingRowsDefaultCellStyle.BackColor = Color.PowderBlue;
             foreach (DataGridViewColumn column in dgvPrikaz.Columns)
             {
                 if (column.ValueType.ToString() == "System.DateTime")
@@ -196,7 +211,7 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Brisanje nije moguće, podatak se koristi u drugoj tabeli!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -338,14 +353,46 @@ namespace DBBiblioteka
         int idReda, idKnjige;
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
+
             //popunjavanje list box-a
             lbDetaljno.Items.Clear();
             if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
             {
+                bool jeLiRazduzeno = false;
+                string datumRazd = "";
                 for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
                 {
-                    lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                    try
+                    {
+                        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
+                        {
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
+                            jeLiRazduzeno = (bool)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                        }
+                            
+
+                        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
+                        {
+                            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                            if (dgvPrikaz.Columns[i].HeaderText == "Datum razduživanja") //ubacuje rok umjesto datuma razduzivanja
+                            {
+                                datumRazd = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                                continue;
+                            }
+                            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
+
+                            string rokZaVracanje = string.Format("{0}.{1}.{2}", datum.AddDays(15).Day, datum.AddDays(15).Month, datum.AddDays(15).Year);
+                            lbDetaljno.Items.Add("Rok za vraćanje: " + rokZaVracanje);
+                        }
+                        else
+                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                    }
+                    catch (Exception) { } // U slucaju da je datum ili bool NULL
                 }
+                if (jeLiRazduzeno)
+                    lbDetaljno.Items.Add("Datum razduživanja: " + datumRazd);
+
             }
 
 
@@ -383,7 +430,7 @@ namespace DBBiblioteka
                 }
 
             }
-            if (myProperty.GetType() == typeof(PropertyKnjiga))//mislim da ce ovde biti dovoljan samo jedan if, ***************testirati***************
+            if (myProperty.GetType() == typeof(PropertyKnjiga))//NECE BITI DOVOLJNO
             {
                 if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
                 {

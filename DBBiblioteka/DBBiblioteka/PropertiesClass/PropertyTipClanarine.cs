@@ -26,7 +26,7 @@ namespace DBBiblioteka.PropertiesClass
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string NazivTipa { get; set; }
 
-        [DisplayName("Iznos clanarine")]
+        [DisplayName("Iznos članarine")]
         [SqlName("IznosClanarine")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public decimal IznosClanarine { get; set; }
@@ -164,6 +164,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersIznajmljivanjeID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
         {
             throw new NotImplementedException();
         }

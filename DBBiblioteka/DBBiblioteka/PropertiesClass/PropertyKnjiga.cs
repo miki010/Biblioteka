@@ -211,6 +211,16 @@ namespace DBBiblioteka.PropertiesClass
             throw new NotImplementedException();
         }
 
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetProcedureUpdateKnjigaVrati()
         {
             throw new NotImplementedException();

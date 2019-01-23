@@ -21,6 +21,8 @@ namespace DBBiblioteka.PropertiesClass
         string GetProcedureSelectIzdavac();
         string GetProcedureSelectAllDetails();
         string GetProcedureStatusClanarineZaClanID();
+        string GetProcedureMozeLiSeDici();
+        string GetProcedureKnjigaNaStanju();
 
         //update upiti
         string GetProcedureUpdateKnjiga();

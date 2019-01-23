@@ -44,7 +44,7 @@ namespace DBBiblioteka.PropertiesClass
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public char Pol { get; set; }
 
-        [DisplayName("Datum rodjenja")]
+        [DisplayName("Datum rođenja")]
         [SqlName("DatumRodjenja")]
         [DateTimeAttribute]
         public DateTime DatumRodjenja { get; set; }
@@ -86,12 +86,12 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             return list;
-        }
+        } 
 
         public string GetDeleteQuery()
         {
             return @"DELETE FROM [dbo].[Zaposleni]
-                        WHERE ZapolseniID = @ZaposleniID";
+                        WHERE ZaposleniID = @ZaposleniID";
         }
 
         public List<SqlParameter> GetInsertParameters()
@@ -360,6 +360,16 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             return list;
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
