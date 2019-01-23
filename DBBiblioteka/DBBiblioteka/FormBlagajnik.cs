@@ -75,15 +75,19 @@ namespace DBBiblioteka
             FormStandard formStandard = new FormStandard(new PropertyTipClanarine());
             formStandard.ShowDialog();
         }
+        string korisnik = "blagajnik";
 
         private void tileIzvjestaj_Click(object sender, EventArgs e)
         {
-
+            
+            Report1 rpt = new Report1(korisnik);
+            rpt.ShowDialog();
         }
 
         private void tilePregledClanarina_Click(object sender, EventArgs e)
         {
-
+            FormStandard formStandard = new FormStandard(new PropertyTipClanarine());
+            formStandard.ShowDialog();
         }
 
 
