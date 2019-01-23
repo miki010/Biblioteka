@@ -30,7 +30,7 @@ namespace DBBiblioteka
             if (korisnik == "iznajmljivanje")
             {
                 var rpt = new ReportDocument();
-                string reportPath = @"C:\Users\vladimir.klisura\Desktop\IzvjestajIznajmljivanje.rpt";
+                string reportPath = @"../../../IzvjestajIznajmljivanje.rpt";
                 rpt.Load(reportPath);
                 reportViewer.ReportSource = rpt;
 
@@ -40,7 +40,7 @@ namespace DBBiblioteka
             else if (korisnik == "blagajnik")
             {
                 var rpt2 = new ReportDocument();
-                string reportPath2 = @"C:\Users\vladimir.klisura\Desktop\FinansijskiIzvjestaj.rpt";
+                string reportPath2 = @"../../../FinansijskiIzvjestaj.rpt";
                 rpt2.Load(reportPath2);
 
                 reportViewer.ReportSource = rpt2;
@@ -50,7 +50,7 @@ namespace DBBiblioteka
             else if (korisnik == "Knjige")
             {
                 var rpt3 = new ReportDocument();
-                string reportPath3 = @"C:\Users\vladimir.klisura\Desktop\PregledKnjiga.rpt";
+                string reportPath3 = @"../../../PregledKnjiga.rpt";
                 rpt3.Load(reportPath3);
 
                 reportViewer.ReportSource = rpt3;
