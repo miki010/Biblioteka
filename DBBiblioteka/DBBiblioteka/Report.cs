@@ -14,30 +14,54 @@ namespace DBBiblioteka
 {
     public partial class Report : Form
     {
-        public Report()
+        string korisnik = "";
+ 
+
+        public Report(string korisnik)
         {
+            this.korisnik = korisnik;
+
             InitializeComponent();
             CrystalReportViewer reportViewer = new CrystalReportViewer();
             this.Controls.Add(reportViewer);
 
             reportViewer.Dock = DockStyle.Fill;
 
-            var rpt = new ReportDocument();
+            if (korisnik == "iznajmljivanje")
+            {
+                var rpt = new ReportDocument();
+                string reportPath = @"C:\Users\vladimir.klisura\Desktop\IzvjestajIznajmljivanje.rpt";
+                rpt.Load(reportPath);
+                reportViewer.ReportSource = rpt;
 
-            string reportPath = @"C:\Users\vladimir.klisura\Desktop\BibliotekaReport.rpt";
-            rpt.Load(reportPath);
+                reportViewer.Refresh();
 
+            }
+            else if (korisnik == "blagajnik")
+            {
+                var rpt2 = new ReportDocument();
+                string reportPath2 = @"C:\Users\vladimir.klisura\Desktop\FinansijskiIzvjestaj.rpt";
+                rpt2.Load(reportPath2);
+               
+                reportViewer.ReportSource = rpt2;
 
-            //definisati parametre
-            // rpt.SetParameterValue("@SalesOrderID", 43659);
-            //rpt.SetParameterValue("@RadnikId, null"); null = koju vrijednost proslijedjujemo
+                reportViewer.Refresh();
+            }
+            else if(korisnik == "Knjige")
+            {
+                var rpt3 = new ReportDocument();
+                string reportPath3 = @"C:\Users\vladimir.klisura\Desktop\PregledKnjiga.rpt";
+                rpt3.Load(reportPath3);
+               
+                reportViewer.ReportSource = rpt3;
 
-            reportViewer.ReportSource = rpt;
+                reportViewer.Refresh();
 
-            reportViewer.Refresh();
+            }
         }
     }
+}
 
       
-    }
+    
 
