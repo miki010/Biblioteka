@@ -94,9 +94,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(601, 756);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.flPanelControls);
+            this.ForeColor = System.Drawing.Color.Black;
             this.MaximizeBox = false;
             this.Name = "FormInput";
             this.Resizable = false;
@@ -104,6 +106,7 @@
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = "Unos podataka";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
+            this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -249,5 +249,15 @@ namespace DBBiblioteka.PropertiesClass
             }
             return list;
         }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            return @"exec [dbo].[sp_MozeLiSeDici] @ClanID";
+        }
+
+        public string GetProcedureKnjigaNaStanju()
+        {
+            return @"EXEC [dbo].[sp_KnjigaNaStanju] @KnjigaID";
+        }
     }
 }

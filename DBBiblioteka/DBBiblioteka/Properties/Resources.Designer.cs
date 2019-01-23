@@ -213,6 +213,16 @@ namespace DBBiblioteka.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PowderBlue {
+            get {
+                object obj = ResourceManager.GetObject("PowderBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap publisher {
             get {
                 object obj = ResourceManager.GetObject("publisher", resourceCulture);

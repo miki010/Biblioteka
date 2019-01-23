@@ -44,7 +44,7 @@ namespace DBBiblioteka.PropertiesClass
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public char Pol { get; set; }
 
-        [DisplayName("Datum rodjenja")]
+        [DisplayName("Datum rođenja")]
         [SqlName("DatumRodjenja")]
         [DateTimeAttribute]
         public DateTime DatumRodjenja { get; set; }
@@ -341,6 +341,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
         {
             throw new NotImplementedException();
         }

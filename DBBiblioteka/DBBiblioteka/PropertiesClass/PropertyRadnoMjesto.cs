@@ -12,6 +12,9 @@ namespace DBBiblioteka.PropertiesClass
 {
     public class PropertyRadnoMjesto : PropertyInterface
     {
+        public PropertyRadnoMjesto()
+        {
+        }
         #region property
 
         [DisplayName("ID radnog mjesta")]
@@ -136,6 +139,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
         {
             throw new NotImplementedException();
         }

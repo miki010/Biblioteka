@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DBBiblioteka.PropertiesClass;
 using MetroFramework;
 using MetroFramework.Controls;
+using System.IO;
 
 namespace DBBiblioteka
 {
@@ -66,6 +67,10 @@ namespace DBBiblioteka
                         ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now.AddMonths(6));
                     else if (Value == "Godisnja")
                         ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now.AddYears(1));
+                    else if (txtID.Text == "")
+                        {
+                            ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
+                        }
                         else
                         {
                             ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
@@ -76,6 +81,7 @@ namespace DBBiblioteka
                     catch (Exception)
                     {
                         ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
+                        MessageBox.Show("ULAZI");
                     }
                 }
             }

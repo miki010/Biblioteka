@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\PowderBlue.jpg" />
     <None Include="Resources\blaganikpozadina.jpg" />
     <None Include="Resources\adminpozadina.jpg" />
     <None Include="Resources\bibliotekarpozadina.jpg" />

@@ -42,7 +42,6 @@ namespace DBBiblioteka
             InitializeComponent();
             this.myInterface = myInterface;
             this.state = state;
-
             PopulateControls();
         }
         public FormInput(PropertyInterface myInterface, StateEnum state, int id)
@@ -66,6 +65,11 @@ namespace DBBiblioteka
 
         private void PopulateControls()
         {
+            Opacity = 0.9;
+
+            if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
+                tilePotvrdi.Enabled = false;
+
             foreach (PropertyInfo item in myInterface.GetType().GetProperties())
             {
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
@@ -221,6 +225,11 @@ namespace DBBiblioteka
         {
             CheckBox cb = sender as CheckBox;
             ((PropertyIznajmljivanje)myInterface).Razduzeno = cb.Checked;
+
+            if (state == StateEnum.Update && cb.Checked == false)
+                tilePotvrdi.Enabled = false;
+            else
+                tilePotvrdi.Enabled = true;
         }
 
         bool popunjeno = true;
@@ -472,12 +481,26 @@ namespace DBBiblioteka
             {
                 if (state == StateEnum.Create) // provjerava da li je clanu istekla clanarina pri pokusaju iznajmljivanja knjige
                 {
+
+                    DataTable dataTable1 = new DataTable();
+                    SqlDataReader dataReader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetProcedureKnjigaNaStanju(), myInterface.GetProcedureParameters().ToArray());
+                    dataTable1.Load(dataReader1);
+                    dataReader1.Close();
+
+                    if (Convert.ToInt32(dataTable1.Rows[0][0]) < 1)
+                    {
+                        MessageBox.Show("Knjige trenutno nema na stanju!", "Greška");
+                        return;
+                    }
+
                     PropertyClanarina clanarina = new PropertyClanarina();
+
                     DataTable tableClanarina = new DataTable();
-                    SqlDataReader reader2 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    SqlDataReader readerNemaClanarine = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
                     clanarina.GetSelectQuery());
-                    tableClanarina.Load(reader2);
-                    reader2.Close();
+                    tableClanarina.Load(readerNemaClanarine);
+                    readerNemaClanarine.Close();
 
                     bool ima = false;
                     for (int i = 0; i < tableClanarina.Rows.Count; i++)
@@ -492,13 +515,13 @@ namespace DBBiblioteka
                         MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
                         return;
                     }
-
+                    
 
                     DataTable dt = new DataTable();
-                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    SqlDataReader readerIstekClanarine = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
                     myInterface.GetProcedureStatusClanarineZaClanID(), myInterface.GetProcedureParametersClanID().ToArray());
-                    dt.Load(reader);
-                    reader.Close();
+                    dt.Load(readerIstekClanarine);
+                    readerIstekClanarine.Close();
 
                     DateTime datumIsteka = (DateTime)dt.Rows[0][1];
                     if (datumIsteka < DateTime.Now)
@@ -506,6 +529,21 @@ namespace DBBiblioteka
                         MessageBox.Show("Korisniku je istekla članarina, iznajmljivanje nije moguće!", "Greška!");
                         return;
                     }
+                    dt.Clear();
+
+                    DataTable dataTable = new DataTable();
+                    SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                    myInterface.GetProcedureMozeLiSeDici(), myInterface.GetProcedureParametersClanID().ToArray());
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+
+                    if(dataTable.Rows.Count > 1)
+                    {
+                        MessageBox.Show("Korisnik ima više od jedne nerazdužene knjige! Iznajmljivanje nije moguće.", "Greška!");
+                        return;
+                    }
+                    dataTable.Clear();
+
                 }
                 else if (state == StateEnum.Update)
                 {
@@ -530,9 +568,9 @@ namespace DBBiblioteka
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                         myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
                     if (stanje == "zaduzivanje")
-                    {
+                    {                     
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                                iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
+                        iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
                         MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
