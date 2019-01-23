@@ -443,7 +443,6 @@
         private MetroFramework.Controls.MetroTile tilePasswordChange;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Components.MetroToolTip metroToolTip2;
-        private MetroFramework.Controls.MetroLabel lblZaposlenik;
         private System.Windows.Forms.Label lblPogresnaStara;
         private System.Windows.Forms.Label lblUpozorenje;
     }
