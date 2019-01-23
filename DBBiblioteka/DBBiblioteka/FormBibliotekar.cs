@@ -83,7 +83,7 @@ namespace DBBiblioteka
         private void tileClanarina_Click(object sender, EventArgs e)
         {
 
-            Report rpt3 = new Report(pregled);
+            Report1 rpt3 = new Report1(pregled);
             rpt3.ShowDialog();
         }
 
@@ -303,7 +303,7 @@ namespace DBBiblioteka
         string korisnik = "iznajmljivanje";
         private void tilePregledIznajmljivanja_Click(object sender, EventArgs e)
         {
-            Report rpt = new Report(korisnik);
+            Report1 rpt = new Report1(korisnik);
             rpt.ShowDialog();
         }
 

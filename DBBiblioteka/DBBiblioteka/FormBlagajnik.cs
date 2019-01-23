@@ -80,7 +80,7 @@ namespace DBBiblioteka
         private void tileIzvjestaj_Click(object sender, EventArgs e)
         {
             
-            Report rpt = new Report(korisnik);
+            Report1 rpt = new Report1(korisnik);
             rpt.ShowDialog();
         }
 
