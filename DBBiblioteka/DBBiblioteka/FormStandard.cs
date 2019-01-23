@@ -26,7 +26,6 @@ namespace DBBiblioteka
         public FormStandard()
         {
             InitializeComponent();
-
         }
 
         public FormStandard(PropertyInterface propertyInterface)
@@ -68,13 +67,30 @@ namespace DBBiblioteka
             }
             loadTable();
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPrikaz.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgvPrikaz.MultiSelect = false;
+            dgvPrikaz.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSteelBlue;
+            dgvPrikaz.EnableHeadersVisualStyles = false;
 
+            foreach (DataGridViewColumn column in dgvPrikaz.Columns)
+            {
+                if (column.HeaderText.Contains("ID"))
+                    column.Width = 130;
+            }
+            if (myProperty is PropertyIznajmljivanje)
+            {
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].Width = 80;
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dgvPrikaz.Columns[dgvPrikaz.Columns.Count - 1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            dgvPrikaz.AlternatingRowsDefaultCellStyle.BackColor = Color.PowderBlue;
             foreach (DataGridViewColumn column in dgvPrikaz.Columns)
             {
                 if (column.ValueType.ToString() == "System.DateTime")
                     column.DefaultCellStyle.Format = "dd.MM.yyyy";
             }
+
         }
 
         private void loadTable()
@@ -166,11 +182,12 @@ namespace DBBiblioteka
                         {
                             SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetDeleteQuery(), myProperty.GetDeleteParameters().ToArray());
                             MessageBox.Show("Podatak je obrisan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
                             refreshTable();
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Brisanje nije moguće, podatak se koristi u drugoj tabeli!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }

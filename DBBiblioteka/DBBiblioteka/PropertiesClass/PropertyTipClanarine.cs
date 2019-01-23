@@ -26,7 +26,7 @@ namespace DBBiblioteka.PropertiesClass
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string NazivTipa { get; set; }
 
-        [DisplayName("Iznos clanarine")]
+        [DisplayName("Iznos članarine")]
         [SqlName("IznosClanarine")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public decimal IznosClanarine { get; set; }

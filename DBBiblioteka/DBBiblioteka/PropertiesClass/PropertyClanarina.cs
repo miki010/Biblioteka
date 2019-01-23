@@ -17,12 +17,12 @@ namespace DBBiblioteka.PropertiesClass
     {
         #region Properties
 
-        [DisplayName("Clanarina ID")]
+        [DisplayName("Članarina ID")]
         [SqlName("ClanarinaID")]
         [PrimaryKey]
         public int ClanarinaID { get; set; }
 
-        [DisplayName("Clan ID")]
+        [DisplayName("Član ID")]
         [SqlName("ClanID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         [ForeignKey("Clan", "ClanID", "DBBiblioteka.PropertiesClass.PropertyClan")]
@@ -46,7 +46,7 @@ namespace DBBiblioteka.PropertiesClass
         [ForeignKey("Zaposleni", "ZaposleniID", "DBBiblioteka.PropertiesClass.PropertyZaposleni")]
         public int ZaposleniID { get; set; }
 
-        [DisplayName("Vazi do")]
+        [DisplayName("Važi do")]
         [SqlName("DatumIstekaClanarine")]
         [DateTimeAttribute]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]

@@ -18,8 +18,11 @@ using MetroFramework.Controls;
 
 namespace DBBiblioteka
 {
+   
+
     public partial class FormInput : MetroFramework.Forms.MetroForm
     {
+
         PropertyInterface myInterface;
         PropertyIzdavacKnjiga izdavacKnjigaProperty = new PropertyIzdavacKnjiga();
         PropertyIznajmljivanje iznajmljivanje = new PropertyIznajmljivanje();
@@ -95,7 +98,14 @@ namespace DBBiblioteka
                     {
                         ul.SetKey(item.GetValue(myInterface).ToString());
                     }
+
+                    if (myInterface is PropertyClanarina && ul.Name == "TipID" && state == StateEnum.Create)
+                    {
+                        ul.AddTextChangedEvent();////////////////////////// dodaje jos jedan event za automatsko mijenjanje datuma za tip clanarine
+                    }
+
                     flPanelControls.Controls.Add(ul);
+
                 }
 
                 else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
@@ -120,6 +130,19 @@ namespace DBBiblioteka
                             dtc.SetValue(DateTime.Now.AddDays(15));
                         else if (state == StateEnum.Update && dtc.Name == "DatumRazduzivanja")
                             dtc.SetValue(DateTime.Now);
+
+                        if (myInterface is PropertyClanarina)
+                        {
+                            dtc.Enabled = false;
+                            if (dtc.Name == "DatumIstekaClanarine" && state == StateEnum.Create)
+                            {
+                                
+                            }
+
+                            if (state == StateEnum.Update)
+                                tilePotvrdi.Enabled = false;
+                        }
+                            
                     }
                     else if (state == StateEnum.Search)
                     {

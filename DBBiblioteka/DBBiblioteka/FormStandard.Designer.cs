@@ -49,8 +49,8 @@
             this.tileSelectLast = new MetroFramework.Controls.MetroTile();
             this.lblDetaljno = new MetroFramework.Controls.MetroLabel();
             this.panelDetalno = new MetroFramework.Controls.MetroPanel();
-            this.lblRedIndex = new System.Windows.Forms.Label();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.lblRedIndex = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.panelCrud.SuspendLayout();
             this.panelVrati.SuspendLayout();
@@ -63,12 +63,16 @@
             this.dgvPrikaz.AllowUserToAddRows = false;
             this.dgvPrikaz.AllowUserToDeleteRows = false;
             this.dgvPrikaz.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvPrikaz.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPrikaz.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPrikaz.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrikaz.Location = new System.Drawing.Point(23, 151);
+            this.dgvPrikaz.Location = new System.Drawing.Point(27, 197);
+            this.dgvPrikaz.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            this.dgvPrikaz.Size = new System.Drawing.Size(1115, 524);
+            this.dgvPrikaz.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvPrikaz.Size = new System.Drawing.Size(1301, 685);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
             this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
@@ -78,9 +82,10 @@
             // tileDodaj
             // 
             this.tileDodaj.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileDodaj.Location = new System.Drawing.Point(3, 3);
+            this.tileDodaj.Location = new System.Drawing.Point(3, 4);
+            this.tileDodaj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileDodaj.Name = "tileDodaj";
-            this.tileDodaj.Size = new System.Drawing.Size(70, 70);
+            this.tileDodaj.Size = new System.Drawing.Size(82, 92);
             this.tileDodaj.Style = MetroFramework.MetroColorStyle.Green;
             this.tileDodaj.TabIndex = 1;
             this.tileDodaj.Text = "DODAJ";
@@ -95,9 +100,10 @@
             // tileIzmijeni
             // 
             this.tileIzmijeni.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileIzmijeni.Location = new System.Drawing.Point(79, 3);
+            this.tileIzmijeni.Location = new System.Drawing.Point(92, 4);
+            this.tileIzmijeni.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileIzmijeni.Name = "tileIzmijeni";
-            this.tileIzmijeni.Size = new System.Drawing.Size(70, 70);
+            this.tileIzmijeni.Size = new System.Drawing.Size(82, 92);
             this.tileIzmijeni.Style = MetroFramework.MetroColorStyle.Orange;
             this.tileIzmijeni.TabIndex = 2;
             this.tileIzmijeni.Text = "IZMIJENI";
@@ -112,9 +118,10 @@
             // tileObrisi
             // 
             this.tileObrisi.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileObrisi.Location = new System.Drawing.Point(155, 3);
+            this.tileObrisi.Location = new System.Drawing.Point(181, 4);
+            this.tileObrisi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileObrisi.Name = "tileObrisi";
-            this.tileObrisi.Size = new System.Drawing.Size(70, 70);
+            this.tileObrisi.Size = new System.Drawing.Size(82, 92);
             this.tileObrisi.Style = MetroFramework.MetroColorStyle.Red;
             this.tileObrisi.TabIndex = 3;
             this.tileObrisi.Text = "OBRIŠI";
@@ -133,35 +140,38 @@
             this.panelCrud.Controls.Add(this.tileDodaj);
             this.panelCrud.HorizontalScrollbarBarColor = true;
             this.panelCrud.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelCrud.HorizontalScrollbarSize = 10;
-            this.panelCrud.Location = new System.Drawing.Point(23, 22);
+            this.panelCrud.HorizontalScrollbarSize = 13;
+            this.panelCrud.Location = new System.Drawing.Point(27, 29);
+            this.panelCrud.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCrud.Name = "panelCrud";
-            this.panelCrud.Size = new System.Drawing.Size(232, 81);
+            this.panelCrud.Size = new System.Drawing.Size(271, 106);
             this.panelCrud.TabIndex = 4;
             this.panelCrud.VerticalScrollbarBarColor = true;
             this.panelCrud.VerticalScrollbarHighlightOnWheel = false;
-            this.panelCrud.VerticalScrollbarSize = 10;
+            this.panelCrud.VerticalScrollbarSize = 12;
             // 
             // panelVrati
             // 
             this.panelVrati.Controls.Add(this.tileVrati);
             this.panelVrati.HorizontalScrollbarBarColor = true;
             this.panelVrati.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelVrati.HorizontalScrollbarSize = 10;
-            this.panelVrati.Location = new System.Drawing.Point(261, 22);
+            this.panelVrati.HorizontalScrollbarSize = 13;
+            this.panelVrati.Location = new System.Drawing.Point(304, 29);
+            this.panelVrati.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelVrati.Name = "panelVrati";
-            this.panelVrati.Size = new System.Drawing.Size(79, 81);
+            this.panelVrati.Size = new System.Drawing.Size(92, 106);
             this.panelVrati.TabIndex = 5;
             this.panelVrati.VerticalScrollbarBarColor = true;
             this.panelVrati.VerticalScrollbarHighlightOnWheel = false;
-            this.panelVrati.VerticalScrollbarSize = 10;
+            this.panelVrati.VerticalScrollbarSize = 12;
             // 
             // tileVrati
             // 
             this.tileVrati.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileVrati.Location = new System.Drawing.Point(3, 3);
+            this.tileVrati.Location = new System.Drawing.Point(3, 4);
+            this.tileVrati.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileVrati.Name = "tileVrati";
-            this.tileVrati.Size = new System.Drawing.Size(70, 70);
+            this.tileVrati.Size = new System.Drawing.Size(82, 92);
             this.tileVrati.TabIndex = 2;
             this.tileVrati.Text = "POTVRDI";
             this.tileVrati.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -174,17 +184,20 @@
             // 
             this.lbDetaljno.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbDetaljno.FormattingEnabled = true;
-            this.lbDetaljno.Location = new System.Drawing.Point(7, 32);
+            this.lbDetaljno.ItemHeight = 17;
+            this.lbDetaljno.Location = new System.Drawing.Point(8, 42);
+            this.lbDetaljno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbDetaljno.Name = "lbDetaljno";
-            this.lbDetaljno.Size = new System.Drawing.Size(241, 481);
+            this.lbDetaljno.Size = new System.Drawing.Size(281, 629);
             this.lbDetaljno.TabIndex = 6;
             // 
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(340, 39);
+            this.txtPretraga.Location = new System.Drawing.Point(397, 51);
+            this.txtPretraga.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(162, 26);
+            this.txtPretraga.Size = new System.Drawing.Size(188, 26);
             this.txtPretraga.TabIndex = 6;
             this.txtPretraga.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -192,7 +205,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.Location = new System.Drawing.Point(340, 9);
+            this.metroLabel1.Location = new System.Drawing.Point(397, 12);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(123, 25);
             this.metroLabel1.TabIndex = 12;
@@ -204,7 +217,7 @@
             this.lblBrojRedova.AutoSize = true;
             this.lblBrojRedova.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrojRedova.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblBrojRedova.Location = new System.Drawing.Point(37, 678);
+            this.lblBrojRedova.Location = new System.Drawing.Point(43, 887);
             this.lblBrojRedova.Name = "lblBrojRedova";
             this.lblBrojRedova.Size = new System.Drawing.Size(39, 15);
             this.lblBrojRedova.TabIndex = 13;
@@ -225,21 +238,23 @@
             this.panelPretraga.CustomBackground = true;
             this.panelPretraga.HorizontalScrollbarBarColor = true;
             this.panelPretraga.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelPretraga.HorizontalScrollbarSize = 10;
-            this.panelPretraga.Location = new System.Drawing.Point(346, 22);
+            this.panelPretraga.HorizontalScrollbarSize = 13;
+            this.panelPretraga.Location = new System.Drawing.Point(404, 29);
+            this.panelPretraga.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelPretraga.Name = "panelPretraga";
-            this.panelPretraga.Size = new System.Drawing.Size(694, 81);
+            this.panelPretraga.Size = new System.Drawing.Size(810, 106);
             this.panelPretraga.TabIndex = 14;
             this.panelPretraga.VerticalScrollbarBarColor = true;
             this.panelPretraga.VerticalScrollbarHighlightOnWheel = false;
-            this.panelPretraga.VerticalScrollbarSize = 10;
+            this.panelPretraga.VerticalScrollbarSize = 12;
             // 
             // tileAzurirajZapise
             // 
             this.tileAzurirajZapise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileAzurirajZapise.Location = new System.Drawing.Point(595, 8);
+            this.tileAzurirajZapise.Location = new System.Drawing.Point(694, 10);
+            this.tileAzurirajZapise.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileAzurirajZapise.Name = "tileAzurirajZapise";
-            this.tileAzurirajZapise.Size = new System.Drawing.Size(70, 70);
+            this.tileAzurirajZapise.Size = new System.Drawing.Size(82, 92);
             this.tileAzurirajZapise.TabIndex = 9;
             this.tileAzurirajZapise.Text = "Azuriraj\r\nzapise";
             this.tileAzurirajZapise.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -251,9 +266,10 @@
             // tileDetaljnaPretraga
             // 
             this.tileDetaljnaPretraga.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tileDetaljnaPretraga.Location = new System.Drawing.Point(520, 7);
+            this.tileDetaljnaPretraga.Location = new System.Drawing.Point(607, 9);
+            this.tileDetaljnaPretraga.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileDetaljnaPretraga.Name = "tileDetaljnaPretraga";
-            this.tileDetaljnaPretraga.Size = new System.Drawing.Size(70, 70);
+            this.tileDetaljnaPretraga.Size = new System.Drawing.Size(82, 92);
             this.tileDetaljnaPretraga.TabIndex = 8;
             this.tileDetaljnaPretraga.Text = "Detaljna\r\npretraga";
             this.tileDetaljnaPretraga.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -267,9 +283,10 @@
             this.tileSelectFirst.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.tileSelectFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileSelectFirst.CustomBackground = true;
-            this.tileSelectFirst.Location = new System.Drawing.Point(231, 3);
+            this.tileSelectFirst.Location = new System.Drawing.Point(269, 4);
+            this.tileSelectFirst.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileSelectFirst.Name = "tileSelectFirst";
-            this.tileSelectFirst.Size = new System.Drawing.Size(70, 70);
+            this.tileSelectFirst.Size = new System.Drawing.Size(82, 92);
             this.tileSelectFirst.Style = MetroFramework.MetroColorStyle.White;
             this.tileSelectFirst.TabIndex = 6;
             this.tileSelectFirst.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectFirst.TileImage")));
@@ -281,9 +298,10 @@
             this.tileSelectNext.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.tileSelectNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileSelectNext.CustomBackground = true;
-            this.tileSelectNext.Location = new System.Drawing.Point(79, 3);
+            this.tileSelectNext.Location = new System.Drawing.Point(92, 4);
+            this.tileSelectNext.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileSelectNext.Name = "tileSelectNext";
-            this.tileSelectNext.Size = new System.Drawing.Size(70, 70);
+            this.tileSelectNext.Size = new System.Drawing.Size(82, 92);
             this.tileSelectNext.Style = MetroFramework.MetroColorStyle.White;
             this.tileSelectNext.TabIndex = 3;
             this.tileSelectNext.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectNext.TileImage")));
@@ -295,9 +313,10 @@
             this.tileSelectPrevious.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.tileSelectPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileSelectPrevious.CustomBackground = true;
-            this.tileSelectPrevious.Location = new System.Drawing.Point(155, 3);
+            this.tileSelectPrevious.Location = new System.Drawing.Point(181, 4);
+            this.tileSelectPrevious.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileSelectPrevious.Name = "tileSelectPrevious";
-            this.tileSelectPrevious.Size = new System.Drawing.Size(70, 70);
+            this.tileSelectPrevious.Size = new System.Drawing.Size(82, 92);
             this.tileSelectPrevious.Style = MetroFramework.MetroColorStyle.White;
             this.tileSelectPrevious.TabIndex = 5;
             this.tileSelectPrevious.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectPrevious.TileImage")));
@@ -309,9 +328,10 @@
             this.tileSelectLast.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.tileSelectLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileSelectLast.CustomBackground = true;
-            this.tileSelectLast.Location = new System.Drawing.Point(3, 3);
+            this.tileSelectLast.Location = new System.Drawing.Point(3, 4);
+            this.tileSelectLast.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tileSelectLast.Name = "tileSelectLast";
-            this.tileSelectLast.Size = new System.Drawing.Size(70, 70);
+            this.tileSelectLast.Size = new System.Drawing.Size(82, 92);
             this.tileSelectLast.Style = MetroFramework.MetroColorStyle.White;
             this.tileSelectLast.TabIndex = 4;
             this.tileSelectLast.TileImage = ((System.Drawing.Image)(resources.GetObject("tileSelectLast.TileImage")));
@@ -340,25 +360,15 @@
             this.panelDetalno.CustomBackground = true;
             this.panelDetalno.HorizontalScrollbarBarColor = true;
             this.panelDetalno.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelDetalno.HorizontalScrollbarSize = 10;
-            this.panelDetalno.Location = new System.Drawing.Point(1141, 151);
+            this.panelDetalno.HorizontalScrollbarSize = 13;
+            this.panelDetalno.Location = new System.Drawing.Point(1331, 197);
+            this.panelDetalno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelDetalno.Name = "panelDetalno";
-            this.panelDetalno.Size = new System.Drawing.Size(259, 524);
+            this.panelDetalno.Size = new System.Drawing.Size(302, 685);
             this.panelDetalno.TabIndex = 16;
             this.panelDetalno.VerticalScrollbarBarColor = true;
             this.panelDetalno.VerticalScrollbarHighlightOnWheel = false;
-            this.panelDetalno.VerticalScrollbarSize = 10;
-            // 
-            // lblRedIndex
-            // 
-            this.lblRedIndex.AutoSize = true;
-            this.lblRedIndex.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRedIndex.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblRedIndex.Location = new System.Drawing.Point(99, 678);
-            this.lblRedIndex.Name = "lblRedIndex";
-            this.lblRedIndex.Size = new System.Drawing.Size(39, 15);
-            this.lblRedIndex.TabIndex = 14;
-            this.lblRedIndex.Text = "label1";
+            this.panelDetalno.VerticalScrollbarSize = 12;
             // 
             // metroPanel1
             // 
@@ -366,20 +376,32 @@
             this.metroPanel1.CustomBackground = true;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(0, 27);
+            this.metroPanel1.HorizontalScrollbarSize = 13;
+            this.metroPanel1.Location = new System.Drawing.Point(0, 35);
+            this.metroPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(259, 1);
+            this.metroPanel1.Size = new System.Drawing.Size(302, 1);
             this.metroPanel1.TabIndex = 16;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 10;
+            this.metroPanel1.VerticalScrollbarSize = 12;
+            // 
+            // lblRedIndex
+            // 
+            this.lblRedIndex.AutoSize = true;
+            this.lblRedIndex.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedIndex.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblRedIndex.Location = new System.Drawing.Point(115, 887);
+            this.lblRedIndex.Name = "lblRedIndex";
+            this.lblRedIndex.Size = new System.Drawing.Size(39, 15);
+            this.lblRedIndex.TabIndex = 14;
+            this.lblRedIndex.Text = "label1";
             // 
             // FormStandard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1423, 713);
+            this.ClientSize = new System.Drawing.Size(1660, 932);
             this.Controls.Add(this.panelDetalno);
             this.Controls.Add(this.panelPretraga);
             this.Controls.Add(this.lblRedIndex);
@@ -387,7 +409,10 @@
             this.Controls.Add(this.panelVrati);
             this.Controls.Add(this.panelCrud);
             this.Controls.Add(this.dgvPrikaz);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormStandard";
+            this.Padding = new System.Windows.Forms.Padding(23, 78, 23, 26);
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = " ";

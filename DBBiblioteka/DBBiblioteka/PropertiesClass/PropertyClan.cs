@@ -14,7 +14,7 @@ namespace DBBiblioteka.PropertiesClass
    public class PropertyClan : PropertyInterface
     {
         #region attributes
-        [DisplayName("Clan ID")]
+        [DisplayName("Član ID")]
         [SqlName("ClanID")]
         [PrimaryKey]
         [LookupKey]
@@ -50,7 +50,7 @@ namespace DBBiblioteka.PropertiesClass
         public char Pol { get; set; }
 
 
-        [DisplayName("Datum rodjenja")]
+        [DisplayName("Datum rođenja")]
         [SqlName("DatumRodjenja")]
         [DateTimeAttribute]
         public DateTime DatumRodjenja { get; set; }
@@ -69,7 +69,7 @@ namespace DBBiblioteka.PropertiesClass
         [SqlName("Email")]
         public string Email { get; set; }
 
-        [DisplayName("Datum uclanjenja")]
+        [DisplayName("Datum učlanjenja")]
         [SqlName("DatumUclanjenja")]
         [DateTimeAttribute]
         public DateTime DatumUclanjenja { get; set; }

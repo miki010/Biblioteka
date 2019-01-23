@@ -85,12 +85,12 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             return list;
-        }
+        } 
 
         public string GetDeleteQuery()
         {
             return @"DELETE FROM [dbo].[Zaposleni]
-                        WHERE ZapolseniID = @ZaposleniID";
+                        WHERE ZaposleniID = @ZaposleniID";
         }
 
         public List<SqlParameter> GetInsertParameters()

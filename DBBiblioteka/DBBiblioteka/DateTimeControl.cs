@@ -19,7 +19,6 @@ namespace DBBiblioteka
             
         }
 
-
         public void SetLabel(string name)
         {
             lblText.Text = name;
