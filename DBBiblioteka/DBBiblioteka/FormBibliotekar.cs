@@ -193,8 +193,7 @@ namespace DBBiblioteka
 
         private void tilePregledIznajmljivanja_Click(object sender, EventArgs e)
         {
-            Report rpt = new Report();
-            rpt.Show();
+            
         }
 
         private void tileClanarina_MouseHover(object sender, EventArgs e)
