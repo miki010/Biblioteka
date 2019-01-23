@@ -170,7 +170,7 @@ namespace DBBiblioteka
                     InputControl ic = new InputControl();
                     ic.Name = item.Name;
                     ic.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-
+                    
                     if (item.GetCustomAttribute<RequiredAttribute>() != null)
                     {
                         ic.SetLblObavezno("*");
@@ -365,6 +365,21 @@ namespace DBBiblioteka
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
 
+                            if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
+                            {
+                                
+                                if (!int.TryParse(input.GetValue(), out int number1))
+                                {
+                                    MessageBox.Show("Polje " + input.Name + " može biti samo cjelobrojni podatak!", "Greška");
+                                    input.SetValue("");
+                                    return;
+                                }
+                                else if(Convert.ToInt32(value) < 1)
+                                {
+                                        MessageBox.Show("Potrebno je dodati barem jednu knjigu!", "Greška");
+                                        return;
+                                }
+                            }
 
                             if (input.Name == "Kolicina" && value == "")
                             {
@@ -521,7 +536,7 @@ namespace DBBiblioteka
                         filterString.FStr += input.Name + " LIKE '" + value + "' and ";
                     }
                 }
-                if (filterString.FStr.Length == 0)
+                if (string.IsNullOrEmpty(filterString.FStr) || filterString.FStr.Length == 0)
                     return;
                 filterString.FStr = filterString.FStr.Substring(0, filterString.FStr.Length - 5);
                 MessageBox.Show(filterString.FStr);
