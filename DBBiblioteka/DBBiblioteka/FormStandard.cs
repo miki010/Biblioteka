@@ -49,6 +49,25 @@ namespace DBBiblioteka
             this.state = stateEnum;
             this.red = red;
             loadTable();
+            this.tileDodaj.BringToFront();
+            this.tileIzmijeni.BringToFront();
+            this.tileObrisi.BringToFront();
+            this.tileVrati.BringToFront();
+            tileSelectFirst.BringToFront();
+            tileSelectLast.BringToFront();
+            tileSelectNext.BringToFront();
+            tileSelectPrevious.BringToFront();
+            tileDetaljnaPretraga.BringToFront();
+            tileAzurirajZapise.BringToFront();
+            metroLabel1.BringToFront();
+            txtPretraga.BringToFront();
+            panelPretraga.BringToFront();
+            labelTitle.BringToFront();
+            lblBrojRedova.BringToFront();
+            lblDetaljno.BringToFront();
+            lblRedIndex.BringToFront();
+            panelDetalno.BringToFront();
+            dgvPrikaz.BringToFront();
         }
 
         private void FormStandard_Load(object sender, EventArgs e)
@@ -494,6 +513,31 @@ namespace DBBiblioteka
         {
             refreshTable();
             dgvPrikaz.ClearSelection();
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tileSelectNext_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip1.Show("Pređite na sledeću stavku", tileSelectNext);
+        }
+
+        private void tileSelectLast_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip2.Show("Pređite na poslednju stavku",tileSelectLast);
+        }
+
+        private void tileSelectPrevious_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip3.Show("Vratite se na prethodnu stavku", tileSelectPrevious);
+        }
+
+        private void tileSelectFirst_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip4.Show("Vratite se na prvu stavku", tileSelectFirst);
         }
 
         private void ViewDetails(string id)
