@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdmin));
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.panelPromjenaLozinke = new MetroFramework.Controls.MetroPanel();
+            this.lblUpozorenje = new System.Windows.Forms.Label();
+            this.lblPogresnaStara = new System.Windows.Forms.Label();
             this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lbPotvrdiLozinku = new MetroFramework.Controls.MetroLabel();
@@ -66,11 +68,12 @@
             this.lblImeZaposlenog.TabIndex = 11;
             this.lblImeZaposlenog.Text = "Ime i prezime";
             this.lblImeZaposlenog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblImeZaposlenog.Click += new System.EventHandler(this.lblImeZaposlenog_Click);
             // 
             // panelPromjenaLozinke
             // 
             this.panelPromjenaLozinke.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.panelPromjenaLozinke.Controls.Add(this.lblUpozorenje);
+            this.panelPromjenaLozinke.Controls.Add(this.lblPogresnaStara);
             this.panelPromjenaLozinke.Controls.Add(this.tilePasswordChange);
             this.panelPromjenaLozinke.Controls.Add(this.btnCancel);
             this.panelPromjenaLozinke.Controls.Add(this.lbPotvrdiLozinku);
@@ -90,6 +93,26 @@
             this.panelPromjenaLozinke.VerticalScrollbarBarColor = true;
             this.panelPromjenaLozinke.VerticalScrollbarHighlightOnWheel = false;
             this.panelPromjenaLozinke.VerticalScrollbarSize = 10;
+            // 
+            // lblUpozorenje
+            // 
+            this.lblUpozorenje.AutoSize = true;
+            this.lblUpozorenje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblUpozorenje.Location = new System.Drawing.Point(120, 236);
+            this.lblUpozorenje.Name = "lblUpozorenje";
+            this.lblUpozorenje.Size = new System.Drawing.Size(35, 13);
+            this.lblUpozorenje.TabIndex = 19;
+            this.lblUpozorenje.Text = "label1";
+            // 
+            // lblPogresnaStara
+            // 
+            this.lblPogresnaStara.AutoSize = true;
+            this.lblPogresnaStara.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPogresnaStara.Location = new System.Drawing.Point(120, 141);
+            this.lblPogresnaStara.Name = "lblPogresnaStara";
+            this.lblPogresnaStara.Size = new System.Drawing.Size(35, 13);
+            this.lblPogresnaStara.TabIndex = 18;
+            this.lblPogresnaStara.Text = "label1";
             // 
             // tilePasswordChange
             // 
@@ -121,7 +144,7 @@
             // lbPotvrdiLozinku
             // 
             this.lbPotvrdiLozinku.AutoSize = true;
-            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(12, 209);
+            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(12, 214);
             this.lbPotvrdiLozinku.Name = "lbPotvrdiLozinku";
             this.lbPotvrdiLozinku.Size = new System.Drawing.Size(98, 19);
             this.lbPotvrdiLozinku.TabIndex = 8;
@@ -129,16 +152,18 @@
             // 
             // txtPotvrdiLozinku
             // 
-            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(123, 205);
+            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(123, 210);
             this.txtPotvrdiLozinku.Name = "txtPotvrdiLozinku";
-            this.txtPotvrdiLozinku.PasswordChar = '*';
+            this.txtPotvrdiLozinku.PasswordChar = '●';
             this.txtPotvrdiLozinku.Size = new System.Drawing.Size(206, 23);
             this.txtPotvrdiLozinku.TabIndex = 7;
+            this.txtPotvrdiLozinku.UseSystemPasswordChar = true;
+            this.txtPotvrdiLozinku.TextChanged += new System.EventHandler(this.txtPotvrdiLozinku_TextChanged);
             // 
             // lblNovaLozinka
             // 
             this.lblNovaLozinka.AutoSize = true;
-            this.lblNovaLozinka.Location = new System.Drawing.Point(12, 164);
+            this.lblNovaLozinka.Location = new System.Drawing.Point(12, 169);
             this.lblNovaLozinka.Name = "lblNovaLozinka";
             this.lblNovaLozinka.Size = new System.Drawing.Size(87, 19);
             this.lblNovaLozinka.TabIndex = 6;
@@ -155,19 +180,23 @@
             // 
             // txtNovaLozinka
             // 
-            this.txtNovaLozinka.Location = new System.Drawing.Point(123, 160);
+            this.txtNovaLozinka.Location = new System.Drawing.Point(123, 165);
             this.txtNovaLozinka.Name = "txtNovaLozinka";
-            this.txtNovaLozinka.PasswordChar = '*';
+            this.txtNovaLozinka.PasswordChar = '●';
             this.txtNovaLozinka.Size = new System.Drawing.Size(206, 23);
             this.txtNovaLozinka.TabIndex = 4;
+            this.txtNovaLozinka.UseSystemPasswordChar = true;
+            this.txtNovaLozinka.TextChanged += new System.EventHandler(this.txtNovaLozinka_TextChanged);
             // 
             // txtTrenutnaLozinka
             // 
             this.txtTrenutnaLozinka.Location = new System.Drawing.Point(123, 115);
             this.txtTrenutnaLozinka.Name = "txtTrenutnaLozinka";
-            this.txtTrenutnaLozinka.PasswordChar = '*';
+            this.txtTrenutnaLozinka.PasswordChar = '●';
             this.txtTrenutnaLozinka.Size = new System.Drawing.Size(206, 23);
             this.txtTrenutnaLozinka.TabIndex = 3;
+            this.txtTrenutnaLozinka.UseSystemPasswordChar = true;
+            this.txtTrenutnaLozinka.TextChanged += new System.EventHandler(this.txtTrenutnaLozinka_TextChanged);
             // 
             // tileSacuvajIzmjene
             // 
@@ -313,7 +342,6 @@
             this.pictureBoxAdminPozadina.Size = new System.Drawing.Size(900, 440);
             this.pictureBoxAdminPozadina.TabIndex = 4;
             this.pictureBoxAdminPozadina.TabStop = false;
-            this.pictureBoxAdminPozadina.Click += new System.EventHandler(this.pictureBoxAdminPozadina_Click);
             // 
             // FormAdmin
             // 
@@ -367,5 +395,7 @@
         private MetroFramework.Components.MetroToolTip metroToolTip2;
         private MetroFramework.Controls.MetroTile tilePasswordChange;
         private MetroFramework.Controls.MetroButton btnCancel;
+        private System.Windows.Forms.Label lblPogresnaStara;
+        private System.Windows.Forms.Label lblUpozorenje;
     }
 }
