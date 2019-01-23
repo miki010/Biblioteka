@@ -18,6 +18,7 @@ namespace DBBiblioteka
         public string Key;
         public string Value;
 
+
         public LookUpControl(PropertyInterface interf)
         {
             InitializeComponent();
@@ -49,6 +50,45 @@ namespace DBBiblioteka
         public void SetKey(string key)
         {
             txtID.Text = key;
+        }
+
+        public void AddTextChangedEvent()
+        {
+            txtID.TextChanged += TxtID_TextChangedZaInput;
+        }
+
+        public void TxtID_TextChangedZaInput(object sender, EventArgs e)
+        {
+            var listaKontrola = Parent.Controls;
+            for (int i = 0; i < listaKontrola.Count; i++)
+            {
+                if (listaKontrola[i].Name == "DatumIstekaClanarine")
+                {
+                    try { 
+                    Value = Value.Trim();
+                    if (Value == "Mjesecna")
+                        ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now.AddMonths(1));
+                    else if (Value == "Polugodisnja")
+                        ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now.AddMonths(6));
+                    else if (Value == "Godisnja")
+                        ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now.AddYears(1));
+                    else if (txtID.Text == "")
+                        {
+                            ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
+                        }
+                        else
+                        {
+                            ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
+                            return;
+                        }
+                        
+                    }
+                    catch (Exception)
+                    {
+                        ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
+                    }
+                }
+            }
         }
 
         private void tileLookUp_Click_1(object sender, EventArgs e)
