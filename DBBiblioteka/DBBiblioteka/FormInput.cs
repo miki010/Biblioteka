@@ -265,6 +265,13 @@ namespace DBBiblioteka
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+
+
+                            if (input.Name == "Kolicina" && value == "")
+                            {
+                                value = "0";
+                            }
+
                             //zadrzati provjera unosa da li je popunjeno obavezno polje
                             if (property.GetCustomAttribute<RequiredAttribute>() != null && value.Trim().Equals(""))
                             {
@@ -279,7 +286,8 @@ namespace DBBiblioteka
                             }
 
                             #region Skidanje i Vracanje/Dodavanje na stanje
-                            //-***************************
+                            //-**************************
+
                             if (myInterface.GetType() == typeof(PropertyIznajmljivanje))
                             {
                                 if (state == StateEnum.Create)
