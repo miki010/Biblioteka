@@ -99,8 +99,8 @@ namespace DBBiblioteka.PropertiesClass
         public string GetInsertQuery()
         {
             return @"INSERT INTO [dbo].[Clan]
-                   ([Ime]
-                   ,[BrojLegitimacije]     
+                   ([BrojLegitimacije] 
+                   ,[Ime]  
                    ,[SrednjeIme]
                    ,[Prezime]
                    ,[Pol]
@@ -130,17 +130,17 @@ namespace DBBiblioteka.PropertiesClass
         public List<SqlParameter> GetInsertParameters()
         {
             List<SqlParameter> list = new List<SqlParameter>();
-
-            {
-                SqlParameter parameter = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
-                parameter.Value = Ime;
-                list.Add(parameter);
-            }
             {
                 SqlParameter parameter = new SqlParameter("@BrojLegitimacije", System.Data.SqlDbType.VarChar);
                 parameter.Value = BrojLegitimacije;
                 list.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
+                parameter.Value = Ime;
+                list.Add(parameter);
+            }
+          
             {
                 SqlParameter parameter = new SqlParameter("@SrednjeIme", System.Data.SqlDbType.NVarChar);
                 parameter.Value = SrednjeIme;

@@ -95,37 +95,37 @@ namespace DBBiblioteka
 
         private void tilePretraga_MouseHover(object sender, EventArgs e)
         {
-            tilePretraga.Height -= 15;
-            tilePretraga.Width -= 15;
+            tilePretraga.Height -= 10;
+            tilePretraga.Width -= 10;
         }
 
         private void tilePretraga_MouseLeave(object sender, EventArgs e)
         {
-            tilePretraga.Height += 15;
-            tilePretraga.Width += 15;
+            tilePretraga.Height += 10;
+            tilePretraga.Width += 10;
         }
 
         private void tilePregledIznajmljivanja_MouseHover(object sender, EventArgs e)
         {
-            tilePregledIznajmljivanja.Height -= 15;
-            tilePregledIznajmljivanja.Width -= 20;
+            tilePregledIznajmljivanja.Height -= 10;
+            tilePregledIznajmljivanja.Width -= 10;
         }
 
         private void tilePregledIznajmljivanja_MouseLeave(object sender, EventArgs e)
         {
-            tilePregledIznajmljivanja.Height += 15;
-            tilePregledIznajmljivanja.Width += 20;
+            tilePregledIznajmljivanja.Height += 10;
+            tilePregledIznajmljivanja.Width += 10;
         }
 
         private void tileIznajmi_MouseHover(object sender, EventArgs e)
         {
-            tileIznajmi.Height -= 15;
+            tileIznajmi.Height -= 10;
             tileIznajmi.Width -= 10;
         }
 
         private void tileIznajmi_MouseLeave(object sender, EventArgs e)
         {
-            tileIznajmi.Height += 15;
+            tileIznajmi.Height += 10;
             tileIznajmi.Width += 10;
         }
 
@@ -199,14 +199,14 @@ namespace DBBiblioteka
 
         private void tileClanarina_MouseHover(object sender, EventArgs e)
         {
-            tileClanarina.Height -= 15;
-            tileClanarina.Width -= 20;
+            tileClanarina.Height -= 10;
+            tileClanarina.Width -= 10;
         }
 
         private void tileClanarina_MouseLeave(object sender, EventArgs e)
         {
-            tileClanarina.Height += 15;
-            tileClanarina.Width += 20;
+            tileClanarina.Height += 10;
+            tileClanarina.Width += 10;
         }
     }
 }

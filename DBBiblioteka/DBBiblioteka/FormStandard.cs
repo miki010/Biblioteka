@@ -67,7 +67,9 @@ namespace DBBiblioteka
             lblDetaljno.BringToFront();
             lblRedIndex.BringToFront();
             panelDetalno.BringToFront();
+          
             dgvPrikaz.BringToFront();
+            
         }
 
         private void FormStandard_Load(object sender, EventArgs e)
@@ -89,7 +91,8 @@ namespace DBBiblioteka
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.Rows[0].Selected = true;
-        //}
+            dgvPrikaz.Focus();
+            //}
 
             foreach (DataGridViewColumn column in dgvPrikaz.Columns)
             {
@@ -102,6 +105,8 @@ namespace DBBiblioteka
         {
             DataTable dt = new DataTable();
             SqlDataReader reader = null;
+        
+            dgvPrikaz.Focus();
             //if (state == StateEnum.View)
             //{
 
@@ -198,9 +203,7 @@ namespace DBBiblioteka
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Selektujte u tabeli podatak za brisanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
         }
 
@@ -290,15 +293,15 @@ namespace DBBiblioteka
 
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                if (table.Columns[i].DataType.ToString() == "System.String") 
+                if (table.Columns[i].DataType.ToString() == "System.String")
                     columnNames.Add(table.Columns[i].ColumnName);
             }
 
             for (int i = 0; i < columnNames.Count - 1; i++)
                 searchString += columnNames[i] + " LIKE '%{0}%' or ";
 
-            if(columnNames.Count > 0)
-            searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
+            if (columnNames.Count > 0)
+                searchString += columnNames[columnNames.Count - 1] + " LIKE '%{0}%'";
             (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = string.Format(searchString, txtPretraga.Text).Trim();
 
         }
@@ -313,7 +316,7 @@ namespace DBBiblioteka
                 if (formInput.DialogResult == DialogResult.OK)
                 {
                     (dgvPrikaz.DataSource as DataTable).DefaultView.RowFilter = filterString.FStr;
-                    if(dgvPrikaz.Rows.Count == 0)
+                    if (dgvPrikaz.Rows.Count == 0)
                     {
                         refreshTable();
                         MessageBox.Show("Odgovarajući podatak(podaci) ne postoje u bazi!", "Pretraga");
@@ -323,7 +326,7 @@ namespace DBBiblioteka
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } 
+            }
 
         }
 
@@ -396,7 +399,7 @@ namespace DBBiblioteka
                     }
                 }
             }
-            else if(myProperty.GetType() == typeof(PropertyZaposleni))
+            else if (myProperty.GetType() == typeof(PropertyZaposleni))
             {
                 if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
                 {
@@ -432,20 +435,17 @@ namespace DBBiblioteka
             {
                 if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
                 {
-
                     try
                     {
-                      
+
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
                     }
                     catch (Exception)
                     {
-
                         return;
                     }
                 }
             }
-
         }
 
         private void m_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -488,21 +488,17 @@ namespace DBBiblioteka
             populatePropertyInterface();
             //dt za autora
             DataTable dt = new DataTable();
-
-
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,                          
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
             myProperty.GetProcedureSelectAllDetails(), myProperty.GetProcedureParametersIznajmljivanjeID().ToArray());
-           
+
             dt.Load(reader);
             reader.Close();
-           
-
 
             if (myProperty.GetType() == typeof(PropertyZaposleni))
             {
-                
-                    lbDetaljno.Items.Add("-----------------------------------------");
-                    lbDetaljno.Items.Add("Radno mjesto: ");
+
+                lbDetaljno.Items.Add("-----------------------------------------");
+                lbDetaljno.Items.Add("Radno mjesto: ");
 
                 foreach (DataRow row in dt.Rows)
                 {
@@ -511,14 +507,11 @@ namespace DBBiblioteka
                     {
                         lbDetaljno.Items.Add("\t" + row[h++]);
                     }
-
                 }
-
             }
-           else if (myProperty.GetType() == typeof(PropertyClanarina))
+            else if (myProperty.GetType() == typeof(PropertyClanarina))
             {
                 lbDetaljno.Items.Clear();
-
                 foreach (DataRow row in dt.Rows)
                 {
                     int h = 0;
@@ -526,9 +519,7 @@ namespace DBBiblioteka
                     {
                         lbDetaljno.Items.Add(col + ": " + row[h++]);
                     }
-
                 }
-
             }
             else if (myProperty.GetType() == typeof(PropertyIznajmljivanje))
             {
@@ -541,11 +532,8 @@ namespace DBBiblioteka
                     {
                         lbDetaljno.Items.Add(col + ": " + row[h++]);
                     }
-
                 }
-
             }
-
         }
 
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
@@ -592,7 +580,7 @@ namespace DBBiblioteka
             DataGridView dgv = dgvPrikaz;
             dgv.Focus();
             if (dgv.SelectedRows[0].Index == dgv.Rows.Count - 1) return;
-            
+
             if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
             {
                 for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
@@ -600,7 +588,6 @@ namespace DBBiblioteka
                     if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
                     {
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
-
                     }
                     else if (myProperty.GetType() == typeof(PropertyZaposleni))
                     {
@@ -624,10 +611,7 @@ namespace DBBiblioteka
                     }
                     else
                     {
-
                         lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                     }
                 }
             }
@@ -640,7 +624,6 @@ namespace DBBiblioteka
                 if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
                 {
                     ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
-
                 }
                 else if (myProperty.GetType() == typeof(PropertyZaposleni))
                 {
@@ -663,23 +646,14 @@ namespace DBBiblioteka
                 }
                 else
                 {
-
                     lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                 }
             }
-
-
-
-
         }
 
         private void tileSelectPrevious_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dgvPrikaz;
-
-
             dgv.Focus();
             if (dgv.SelectedRows[0].Index == 0) return;
             if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
@@ -712,10 +686,7 @@ namespace DBBiblioteka
                     }
                     else
                     {
-
-                        lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
+                       lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
                     }
                 }
             }
@@ -750,16 +721,10 @@ namespace DBBiblioteka
                 }
                 else
                 {
-
                     lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                 }
-
             }
-
-            }
-    
+        }
 
         private void tileSelectLast_Click(object sender, EventArgs e)
         {
@@ -778,7 +743,6 @@ namespace DBBiblioteka
                     if (myProperty.GetType() == typeof(PropertyClanarina) || myProperty.GetType() == typeof(PropertyIznajmljivanje))
                     {
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
-
                     }
                     else if (myProperty.GetType() == typeof(PropertyZaposleni))
                     {
@@ -801,15 +765,9 @@ namespace DBBiblioteka
                     }
                     else
                     {
-
                         lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                     }
-                
-            }
-
-            
+                }
             }
             catch (Exception)
             {
@@ -819,7 +777,7 @@ namespace DBBiblioteka
 
         private void tileSelectFirst_Click(object sender, EventArgs e)
         {
-            
+
             DataGridView dgv = dgvPrikaz;
             dgv.Focus();
             try
@@ -859,16 +817,11 @@ namespace DBBiblioteka
                     }
                     else
                     {
-
                         lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                     }
-                
+                }
             }
-
-            }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -876,18 +829,13 @@ namespace DBBiblioteka
 
         private void dgvPrikaz_KeyDown(object sender, KeyEventArgs e)
         {
-
-           
-
-
+        
         }
 
         private void dgvPrikaz_KeyUp(object sender, KeyEventArgs e)
         {
             DataGridView dgv = dgvPrikaz;
-
-
-         
+            dgv.Focus();
             dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
             lbDetaljno.Items.Clear();
             for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
@@ -920,10 +868,7 @@ namespace DBBiblioteka
                 {
 
                     lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-
-
                 }
-
             }
         }
 
@@ -939,7 +884,7 @@ namespace DBBiblioteka
 
         private void tileSelectLast_MouseHover(object sender, EventArgs e)
         {
-            metroToolTip2.Show("Pređite na poslednju stavku",tileSelectLast);
+            metroToolTip2.Show("Pređite na poslednju stavku", tileSelectLast);
         }
 
         private void tileSelectPrevious_MouseHover(object sender, EventArgs e)
@@ -1016,7 +961,6 @@ namespace DBBiblioteka
                 }
                 lbDetaljno.Items.Add("\t" + "--------------------------------");
             }
-
         }
     }
 }

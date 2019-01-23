@@ -63,7 +63,7 @@
             // 
             // tileOdustani
             // 
-            this.tileOdustani.BackColor = System.Drawing.Color.White;
+            this.tileOdustani.BackColor = System.Drawing.Color.Silver;
             this.tileOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileOdustani.CustomBackground = true;
             this.tileOdustani.CustomForeColor = true;
@@ -71,6 +71,7 @@
             this.tileOdustani.Location = new System.Drawing.Point(282, 5);
             this.tileOdustani.Name = "tileOdustani";
             this.tileOdustani.Size = new System.Drawing.Size(125, 45);
+            this.tileOdustani.Style = MetroFramework.MetroColorStyle.Silver;
             this.tileOdustani.TabIndex = 2;
             this.tileOdustani.Text = "ODUSTANI";
             this.tileOdustani.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,7 +109,7 @@
             this.Resizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Style = MetroFramework.MetroColorStyle.Blue;
-            this.Text = "Panel:                    Unos podataka";
+            this.Text = "Unos podataka";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Load += new System.EventHandler(this.FormInput_Load);
             this.metroPanel1.ResumeLayout(false);

@@ -116,7 +116,7 @@
             this.lblInvalid.ForeColor = System.Drawing.Color.Red;
             this.lblInvalid.Location = new System.Drawing.Point(97, 439);
             this.lblInvalid.Name = "lblInvalid";
-            this.lblInvalid.Size = new System.Drawing.Size(111, 19);
+            this.lblInvalid.Size = new System.Drawing.Size(112, 19);
             this.lblInvalid.Style = MetroFramework.MetroColorStyle.Red;
             this.lblInvalid.TabIndex = 12;
             this.lblInvalid.Text = "Pogrešna lozinka!";
@@ -139,7 +139,7 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(424, 652);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(39, 19);
+            this.lblVersion.Size = new System.Drawing.Size(43, 19);
             this.lblVersion.TabIndex = 16;
             this.lblVersion.Text = "v 1.10";
             // 
@@ -164,7 +164,7 @@
             this.lblVerzija.AutoSize = true;
             this.lblVerzija.Location = new System.Drawing.Point(215, 600);
             this.lblVerzija.Name = "lblVerzija";
-            this.lblVerzija.Size = new System.Drawing.Size(39, 19);
+            this.lblVerzija.Size = new System.Drawing.Size(43, 19);
             this.lblVerzija.TabIndex = 21;
             this.lblVerzija.Text = "v 1.10";
             // 

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBlagajnik));
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.panelPromjenaLozinke = new MetroFramework.Controls.MetroPanel();
+            this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lbPotvrdiLozinku = new MetroFramework.Controls.MetroLabel();
             this.txtPotvrdiLozinku = new MetroFramework.Controls.MetroTextBox();
@@ -40,10 +41,8 @@
             this.txtTrenutnaLozinka = new MetroFramework.Controls.MetroTextBox();
             this.tileSacuvajIzmjene = new MetroFramework.Controls.MetroTile();
             this.panelUserName = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblZaposlenik = new MetroFramework.Controls.MetroLabel();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.metroToolTip2 = new MetroFramework.Components.MetroToolTip();
-            this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.pictureBoxBlagajnikPozadina = new System.Windows.Forms.PictureBox();
             this.tileProfile = new MetroFramework.Controls.MetroTile();
             this.tileLogout = new MetroFramework.Controls.MetroTile();
@@ -52,6 +51,7 @@
             this.tilePregledClanarina = new MetroFramework.Controls.MetroTile();
             this.tileDodajClanarinu = new MetroFramework.Controls.MetroTile();
             this.panelPromjenaLozinke.SuspendLayout();
+            this.panelUserName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlagajnikPozadina)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(590, 27);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(232, 0);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(119, 25);
@@ -93,6 +93,19 @@
             this.panelPromjenaLozinke.VerticalScrollbarHighlightOnWheel = false;
             this.panelPromjenaLozinke.VerticalScrollbarSize = 10;
             // 
+            // tilePasswordChange
+            // 
+            this.tilePasswordChange.Location = new System.Drawing.Point(0, 1);
+            this.tilePasswordChange.Name = "tilePasswordChange";
+            this.tilePasswordChange.Size = new System.Drawing.Size(345, 80);
+            this.tilePasswordChange.TabIndex = 11;
+            this.tilePasswordChange.Text = "Podešavanja lozinke";
+            this.tilePasswordChange.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.tilePasswordChange.TileImage = global::DBBiblioteka.Properties.Resources.resetpasswordfinal3;
+            this.tilePasswordChange.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tilePasswordChange.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.tilePasswordChange.UseTileImage = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -110,15 +123,15 @@
             // 
             this.lbPotvrdiLozinku.AutoSize = true;
             this.lbPotvrdiLozinku.CustomBackground = true;
-            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(13, 215);
+            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(8, 215);
             this.lbPotvrdiLozinku.Name = "lbPotvrdiLozinku";
-            this.lbPotvrdiLozinku.Size = new System.Drawing.Size(97, 19);
+            this.lbPotvrdiLozinku.Size = new System.Drawing.Size(98, 19);
             this.lbPotvrdiLozinku.TabIndex = 8;
             this.lbPotvrdiLozinku.Text = "Potvrdi lozinku:";
             // 
             // txtPotvrdiLozinku
             // 
-            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(116, 212);
+            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(116, 211);
             this.txtPotvrdiLozinku.Name = "txtPotvrdiLozinku";
             this.txtPotvrdiLozinku.Size = new System.Drawing.Size(213, 23);
             this.txtPotvrdiLozinku.TabIndex = 7;
@@ -127,7 +140,7 @@
             // 
             this.lblNovaLozinka.AutoSize = true;
             this.lblNovaLozinka.CustomBackground = true;
-            this.lblNovaLozinka.Location = new System.Drawing.Point(14, 167);
+            this.lblNovaLozinka.Location = new System.Drawing.Point(8, 166);
             this.lblNovaLozinka.Name = "lblNovaLozinka";
             this.lblNovaLozinka.Size = new System.Drawing.Size(87, 19);
             this.lblNovaLozinka.TabIndex = 6;
@@ -137,15 +150,15 @@
             // 
             this.lblTrenutnaLozinka.AutoSize = true;
             this.lblTrenutnaLozinka.CustomBackground = true;
-            this.lblTrenutnaLozinka.Location = new System.Drawing.Point(11, 117);
+            this.lblTrenutnaLozinka.Location = new System.Drawing.Point(8, 117);
             this.lblTrenutnaLozinka.Name = "lblTrenutnaLozinka";
-            this.lblTrenutnaLozinka.Size = new System.Drawing.Size(105, 19);
+            this.lblTrenutnaLozinka.Size = new System.Drawing.Size(107, 19);
             this.lblTrenutnaLozinka.TabIndex = 5;
             this.lblTrenutnaLozinka.Text = "Trenutna lozinka:";
             // 
             // txtNovaLozinka
             // 
-            this.txtNovaLozinka.Location = new System.Drawing.Point(116, 163);
+            this.txtNovaLozinka.Location = new System.Drawing.Point(116, 162);
             this.txtNovaLozinka.Name = "txtNovaLozinka";
             this.txtNovaLozinka.Size = new System.Drawing.Size(213, 23);
             this.txtNovaLozinka.TabIndex = 4;
@@ -174,35 +187,12 @@
             // 
             // panelUserName
             // 
+            this.panelUserName.Controls.Add(this.lblImeZaposlenog);
             this.panelUserName.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelUserName.Location = new System.Drawing.Point(315, 20);
+            this.panelUserName.Location = new System.Drawing.Point(430, 15);
             this.panelUserName.Name = "panelUserName";
-            this.panelUserName.Size = new System.Drawing.Size(398, 35);
+            this.panelUserName.Size = new System.Drawing.Size(354, 35);
             this.panelUserName.TabIndex = 16;
-            // 
-            // lblZaposlenik
-            // 
-            this.lblZaposlenik.AutoSize = true;
-            this.lblZaposlenik.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblZaposlenik.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblZaposlenik.Location = new System.Drawing.Point(318, 28);
-            this.lblZaposlenik.Name = "lblZaposlenik";
-            this.lblZaposlenik.Size = new System.Drawing.Size(101, 25);
-            this.lblZaposlenik.TabIndex = 17;
-            this.lblZaposlenik.Text = "Zaposlenik:";
-            // 
-            // tilePasswordChange
-            // 
-            this.tilePasswordChange.Location = new System.Drawing.Point(0, 1);
-            this.tilePasswordChange.Name = "tilePasswordChange";
-            this.tilePasswordChange.Size = new System.Drawing.Size(345, 80);
-            this.tilePasswordChange.TabIndex = 11;
-            this.tilePasswordChange.Text = "Podešavanja lozinke";
-            this.tilePasswordChange.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.tilePasswordChange.TileImage = global::DBBiblioteka.Properties.Resources.resetpasswordfinal3;
-            this.tilePasswordChange.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tilePasswordChange.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.tilePasswordChange.UseTileImage = true;
             // 
             // pictureBoxBlagajnikPozadina
             // 
@@ -329,9 +319,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.panelPromjenaLozinke);
-            this.Controls.Add(this.pictureBoxBlagajnikPozadina);
-            this.Controls.Add(this.lblZaposlenik);
-            this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.panelUserName);
             this.Controls.Add(this.tileProfile);
             this.Controls.Add(this.tileLogout);
@@ -339,16 +326,18 @@
             this.Controls.Add(this.tileTipClanarine);
             this.Controls.Add(this.tilePregledClanarina);
             this.Controls.Add(this.tileDodajClanarinu);
+            this.Controls.Add(this.pictureBoxBlagajnikPozadina);
             this.MaximizeBox = false;
             this.Name = "FormBlagajnik";
             this.Resizable = false;
-            this.Text = "Panel: Blagajnik";
+            this.Text = "Blagajnik";
             this.Load += new System.EventHandler(this.FormBlagajnik_Load);
             this.panelPromjenaLozinke.ResumeLayout(false);
             this.panelPromjenaLozinke.PerformLayout();
+            this.panelUserName.ResumeLayout(false);
+            this.panelUserName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlagajnikPozadina)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -371,7 +360,6 @@
         private MetroFramework.Controls.MetroTile tileSacuvajIzmjene;
         private MetroFramework.Controls.MetroButton btnCancel;
         private System.Windows.Forms.FlowLayoutPanel panelUserName;
-        private MetroFramework.Controls.MetroLabel lblZaposlenik;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Components.MetroToolTip metroToolTip2;
         private System.Windows.Forms.PictureBox pictureBoxBlagajnikPozadina;

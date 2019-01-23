@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBibliotekar));
             this.lblImeZaposlenog = new MetroFramework.Controls.MetroLabel();
             this.panelPromjenaLozinke = new MetroFramework.Controls.MetroPanel();
+            this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.lbPotvrdiLozinku = new MetroFramework.Controls.MetroLabel();
             this.txtPotvrdiLozinku = new MetroFramework.Controls.MetroTextBox();
@@ -39,21 +40,20 @@
             this.txtNovaLozinka = new MetroFramework.Controls.MetroTextBox();
             this.txtTrenutnaLozinka = new MetroFramework.Controls.MetroTextBox();
             this.tileSacuvajIzmjene = new MetroFramework.Controls.MetroTile();
+            this.tilePretraga = new MetroFramework.Controls.MetroTile();
             this.panelUserName = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblZaposlenik = new MetroFramework.Controls.MetroLabel();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.metroToolTip2 = new MetroFramework.Components.MetroToolTip();
             this.tileRazduzivanje = new MetroFramework.Controls.MetroTile();
-            this.tilePasswordChange = new MetroFramework.Controls.MetroTile();
             this.tileProfile = new MetroFramework.Controls.MetroTile();
             this.tileLogout = new MetroFramework.Controls.MetroTile();
             this.tileClanarina = new MetroFramework.Controls.MetroTile();
             this.tilePregledIznajmljivanja = new MetroFramework.Controls.MetroTile();
-            this.tilePretraga = new MetroFramework.Controls.MetroTile();
             this.tileIznajmi = new MetroFramework.Controls.MetroTile();
             this.tileUnosClana = new MetroFramework.Controls.MetroTile();
             this.pictureBoxBibliotekarPozadina = new System.Windows.Forms.PictureBox();
             this.panelPromjenaLozinke.SuspendLayout();
+            this.panelUserName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@
             this.lblImeZaposlenog.AutoSize = true;
             this.lblImeZaposlenog.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblImeZaposlenog.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblImeZaposlenog.Location = new System.Drawing.Point(576, 26);
+            this.lblImeZaposlenog.Location = new System.Drawing.Point(264, 0);
             this.lblImeZaposlenog.MaximumSize = new System.Drawing.Size(0, 25);
             this.lblImeZaposlenog.Name = "lblImeZaposlenog";
             this.lblImeZaposlenog.Size = new System.Drawing.Size(118, 25);
@@ -93,6 +93,20 @@
             this.panelPromjenaLozinke.VerticalScrollbarSize = 10;
             this.panelPromjenaLozinke.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPromjenaLozinke_Paint);
             // 
+            // tilePasswordChange
+            // 
+            this.tilePasswordChange.Location = new System.Drawing.Point(0, 0);
+            this.tilePasswordChange.Name = "tilePasswordChange";
+            this.tilePasswordChange.Size = new System.Drawing.Size(345, 80);
+            this.tilePasswordChange.Style = MetroFramework.MetroColorStyle.Purple;
+            this.tilePasswordChange.TabIndex = 11;
+            this.tilePasswordChange.Text = "Podešavanja lozinke";
+            this.tilePasswordChange.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.tilePasswordChange.TileImage = global::DBBiblioteka.Properties.Resources.resetpasswordfinal2;
+            this.tilePasswordChange.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tilePasswordChange.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.tilePasswordChange.UseTileImage = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -109,15 +123,15 @@
             // lbPotvrdiLozinku
             // 
             this.lbPotvrdiLozinku.AutoSize = true;
-            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(13, 226);
+            this.lbPotvrdiLozinku.Location = new System.Drawing.Point(7, 226);
             this.lbPotvrdiLozinku.Name = "lbPotvrdiLozinku";
-            this.lbPotvrdiLozinku.Size = new System.Drawing.Size(97, 19);
+            this.lbPotvrdiLozinku.Size = new System.Drawing.Size(98, 19);
             this.lbPotvrdiLozinku.TabIndex = 8;
             this.lbPotvrdiLozinku.Text = "Potvrdi lozinku:";
             // 
             // txtPotvrdiLozinku
             // 
-            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(118, 222);
+            this.txtPotvrdiLozinku.Location = new System.Drawing.Point(118, 221);
             this.txtPotvrdiLozinku.Name = "txtPotvrdiLozinku";
             this.txtPotvrdiLozinku.PasswordChar = '*';
             this.txtPotvrdiLozinku.Size = new System.Drawing.Size(211, 23);
@@ -126,7 +140,7 @@
             // lblNovaLozinka
             // 
             this.lblNovaLozinka.AutoSize = true;
-            this.lblNovaLozinka.Location = new System.Drawing.Point(13, 178);
+            this.lblNovaLozinka.Location = new System.Drawing.Point(7, 176);
             this.lblNovaLozinka.Name = "lblNovaLozinka";
             this.lblNovaLozinka.Size = new System.Drawing.Size(87, 19);
             this.lblNovaLozinka.TabIndex = 6;
@@ -135,15 +149,15 @@
             // lblTrenutnaLozinka
             // 
             this.lblTrenutnaLozinka.AutoSize = true;
-            this.lblTrenutnaLozinka.Location = new System.Drawing.Point(12, 126);
+            this.lblTrenutnaLozinka.Location = new System.Drawing.Point(7, 126);
             this.lblTrenutnaLozinka.Name = "lblTrenutnaLozinka";
-            this.lblTrenutnaLozinka.Size = new System.Drawing.Size(105, 19);
+            this.lblTrenutnaLozinka.Size = new System.Drawing.Size(107, 19);
             this.lblTrenutnaLozinka.TabIndex = 5;
             this.lblTrenutnaLozinka.Text = "Trenutna lozinka:";
             // 
             // txtNovaLozinka
             // 
-            this.txtNovaLozinka.Location = new System.Drawing.Point(118, 173);
+            this.txtNovaLozinka.Location = new System.Drawing.Point(118, 172);
             this.txtNovaLozinka.Name = "txtNovaLozinka";
             this.txtNovaLozinka.PasswordChar = '*';
             this.txtNovaLozinka.Size = new System.Drawing.Size(211, 23);
@@ -169,35 +183,46 @@
             this.tileSacuvajIzmjene.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSacuvajIzmjene.Click += new System.EventHandler(this.tileSacuvajIzmjene_Click);
             // 
+            // tilePretraga
+            // 
+            this.tilePretraga.Location = new System.Drawing.Point(511, 92);
+            this.tilePretraga.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tilePretraga.MinimumSize = new System.Drawing.Size(210, 180);
+            this.tilePretraga.Name = "tilePretraga";
+            this.tilePretraga.Size = new System.Drawing.Size(240, 190);
+            this.tilePretraga.Style = MetroFramework.MetroColorStyle.Purple;
+            this.tilePretraga.TabIndex = 3;
+            this.tilePretraga.Text = "PRETRAGA KNJIGA";
+            this.tilePretraga.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.tilePretraga.TileImage = global::DBBiblioteka.Properties.Resources.searchbook;
+            this.tilePretraga.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tilePretraga.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tilePretraga.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tilePretraga.UseTileImage = true;
+            this.tilePretraga.Click += new System.EventHandler(this.tilePretraga_Click);
+            this.tilePretraga.MouseLeave += new System.EventHandler(this.tilePretraga_MouseLeave);
+            this.tilePretraga.MouseHover += new System.EventHandler(this.tilePretraga_MouseHover);
+            // 
             // panelUserName
             // 
+            this.panelUserName.Controls.Add(this.lblImeZaposlenog);
             this.panelUserName.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelUserName.Location = new System.Drawing.Point(315, 20);
+            this.panelUserName.Location = new System.Drawing.Point(449, 15);
             this.panelUserName.Name = "panelUserName";
             this.panelUserName.Size = new System.Drawing.Size(385, 35);
             this.panelUserName.TabIndex = 15;
             // 
-            // lblZaposlenik
-            // 
-            this.lblZaposlenik.AutoSize = true;
-            this.lblZaposlenik.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblZaposlenik.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.lblZaposlenik.Location = new System.Drawing.Point(317, 26);
-            this.lblZaposlenik.Name = "lblZaposlenik";
-            this.lblZaposlenik.Size = new System.Drawing.Size(101, 25);
-            this.lblZaposlenik.TabIndex = 16;
-            this.lblZaposlenik.Text = "Zaposlenik:";
-            // 
             // tileRazduzivanje
             // 
-            this.tileRazduzivanje.Location = new System.Drawing.Point(35, 304);
-            this.tileRazduzivanje.MaximumSize = new System.Drawing.Size(175, 175);
-            this.tileRazduzivanje.MinimumSize = new System.Drawing.Size(165, 165);
+            this.tileRazduzivanje.Location = new System.Drawing.Point(267, 92);
+            this.tileRazduzivanje.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tileRazduzivanje.MinimumSize = new System.Drawing.Size(210, 180);
             this.tileRazduzivanje.Name = "tileRazduzivanje";
-            this.tileRazduzivanje.Size = new System.Drawing.Size(175, 175);
+            this.tileRazduzivanje.Size = new System.Drawing.Size(240, 190);
             this.tileRazduzivanje.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileRazduzivanje.TabIndex = 5;
             this.tileRazduzivanje.Text = "RAZDUŽIVANJE";
+            this.tileRazduzivanje.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileRazduzivanje.TileImage = global::DBBiblioteka.Properties.Resources.returnedbooks;
             this.tileRazduzivanje.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileRazduzivanje.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -206,20 +231,6 @@
             this.tileRazduzivanje.Click += new System.EventHandler(this.tileRazduzivanje_Click);
             this.tileRazduzivanje.MouseLeave += new System.EventHandler(this.tileVracanje_MouseLeave);
             this.tileRazduzivanje.MouseHover += new System.EventHandler(this.tileVracanje_MouseHover);
-            // 
-            // tilePasswordChange
-            // 
-            this.tilePasswordChange.Location = new System.Drawing.Point(0, 0);
-            this.tilePasswordChange.Name = "tilePasswordChange";
-            this.tilePasswordChange.Size = new System.Drawing.Size(345, 80);
-            this.tilePasswordChange.Style = MetroFramework.MetroColorStyle.Purple;
-            this.tilePasswordChange.TabIndex = 11;
-            this.tilePasswordChange.Text = "Podešavanja lozinke";
-            this.tilePasswordChange.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.tilePasswordChange.TileImage = global::DBBiblioteka.Properties.Resources.resetpasswordfinal2;
-            this.tilePasswordChange.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tilePasswordChange.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.tilePasswordChange.UseTileImage = true;
             // 
             // tileProfile
             // 
@@ -255,14 +266,15 @@
             // 
             // tileClanarina
             // 
-            this.tileClanarina.Location = new System.Drawing.Point(393, 304);
-            this.tileClanarina.MaximumSize = new System.Drawing.Size(330, 175);
-            this.tileClanarina.MinimumSize = new System.Drawing.Size(315, 165);
+            this.tileClanarina.Location = new System.Drawing.Point(511, 287);
+            this.tileClanarina.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tileClanarina.MinimumSize = new System.Drawing.Size(210, 180);
             this.tileClanarina.Name = "tileClanarina";
-            this.tileClanarina.Size = new System.Drawing.Size(330, 175);
+            this.tileClanarina.Size = new System.Drawing.Size(240, 190);
             this.tileClanarina.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileClanarina.TabIndex = 6;
-            this.tileClanarina.Text = "PREGLED ČLANOVA SA ČLANARINOM";
+            this.tileClanarina.Text = "ŽANROVI KNJIGA";
+            this.tileClanarina.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileClanarina.TileImage = global::DBBiblioteka.Properties.Resources.searchusermemberships;
             this.tileClanarina.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileClanarina.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -274,14 +286,14 @@
             // 
             // tilePregledIznajmljivanja
             // 
-            this.tilePregledIznajmljivanja.Location = new System.Drawing.Point(408, 100);
-            this.tilePregledIznajmljivanja.MaximumSize = new System.Drawing.Size(315, 200);
-            this.tilePregledIznajmljivanja.MinimumSize = new System.Drawing.Size(300, 190);
+            this.tilePregledIznajmljivanja.Location = new System.Drawing.Point(267, 287);
+            this.tilePregledIznajmljivanja.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tilePregledIznajmljivanja.MinimumSize = new System.Drawing.Size(210, 180);
             this.tilePregledIznajmljivanja.Name = "tilePregledIznajmljivanja";
-            this.tilePregledIznajmljivanja.Size = new System.Drawing.Size(315, 200);
+            this.tilePregledIznajmljivanja.Size = new System.Drawing.Size(240, 190);
             this.tilePregledIznajmljivanja.Style = MetroFramework.MetroColorStyle.Purple;
             this.tilePregledIznajmljivanja.TabIndex = 4;
-            this.tilePregledIznajmljivanja.Text = "PREGLED SVIH IZNAJMLJIVANJA";
+            this.tilePregledIznajmljivanja.Text = "PREGLED IZNAJMLJIVANJA";
             this.tilePregledIznajmljivanja.TileImage = global::DBBiblioteka.Properties.Resources.searchissued;
             this.tilePregledIznajmljivanja.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tilePregledIznajmljivanja.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -291,35 +303,17 @@
             this.tilePregledIznajmljivanja.MouseLeave += new System.EventHandler(this.tilePregledIznajmljivanja_MouseLeave);
             this.tilePregledIznajmljivanja.MouseHover += new System.EventHandler(this.tilePregledIznajmljivanja_MouseHover);
             // 
-            // tilePretraga
-            // 
-            this.tilePretraga.Location = new System.Drawing.Point(194, 100);
-            this.tilePretraga.MaximumSize = new System.Drawing.Size(210, 200);
-            this.tilePretraga.MinimumSize = new System.Drawing.Size(195, 185);
-            this.tilePretraga.Name = "tilePretraga";
-            this.tilePretraga.Size = new System.Drawing.Size(210, 200);
-            this.tilePretraga.Style = MetroFramework.MetroColorStyle.Purple;
-            this.tilePretraga.TabIndex = 3;
-            this.tilePretraga.Text = "PRETRAGA KNJIGA";
-            this.tilePretraga.TileImage = global::DBBiblioteka.Properties.Resources.searchbook;
-            this.tilePretraga.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tilePretraga.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tilePretraga.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tilePretraga.UseTileImage = true;
-            this.tilePretraga.Click += new System.EventHandler(this.tilePretraga_Click);
-            this.tilePretraga.MouseLeave += new System.EventHandler(this.tilePretraga_MouseLeave);
-            this.tilePretraga.MouseHover += new System.EventHandler(this.tilePretraga_MouseHover);
-            // 
             // tileIznajmi
             // 
-            this.tileIznajmi.Location = new System.Drawing.Point(35, 100);
-            this.tileIznajmi.MaximumSize = new System.Drawing.Size(155, 200);
-            this.tileIznajmi.MinimumSize = new System.Drawing.Size(145, 185);
+            this.tileIznajmi.Location = new System.Drawing.Point(23, 92);
+            this.tileIznajmi.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tileIznajmi.MinimumSize = new System.Drawing.Size(210, 180);
             this.tileIznajmi.Name = "tileIznajmi";
-            this.tileIznajmi.Size = new System.Drawing.Size(155, 200);
+            this.tileIznajmi.Size = new System.Drawing.Size(240, 190);
             this.tileIznajmi.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileIznajmi.TabIndex = 1;
-            this.tileIznajmi.Text = "IZNAJMI";
+            this.tileIznajmi.Text = "IZNAJMLJIVANJE";
+            this.tileIznajmi.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileIznajmi.TileImage = global::DBBiblioteka.Properties.Resources.takebook;
             this.tileIznajmi.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIznajmi.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -331,14 +325,15 @@
             // 
             // tileUnosClana
             // 
-            this.tileUnosClana.Location = new System.Drawing.Point(214, 304);
-            this.tileUnosClana.MaximumSize = new System.Drawing.Size(175, 175);
-            this.tileUnosClana.MinimumSize = new System.Drawing.Size(165, 165);
+            this.tileUnosClana.Location = new System.Drawing.Point(23, 287);
+            this.tileUnosClana.MaximumSize = new System.Drawing.Size(240, 190);
+            this.tileUnosClana.MinimumSize = new System.Drawing.Size(210, 180);
             this.tileUnosClana.Name = "tileUnosClana";
-            this.tileUnosClana.Size = new System.Drawing.Size(175, 175);
+            this.tileUnosClana.Size = new System.Drawing.Size(240, 190);
             this.tileUnosClana.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileUnosClana.TabIndex = 0;
-            this.tileUnosClana.Text = "UNOS \r\nNOVOG ČLANA";
+            this.tileUnosClana.Text = "UNOS NOVOG ČLANA";
+            this.tileUnosClana.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileUnosClana.TileImage = global::DBBiblioteka.Properties.Resources.addmember;
             this.tileUnosClana.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileUnosClana.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -366,16 +361,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 500);
             this.Controls.Add(this.tileRazduzivanje);
-            this.Controls.Add(this.lblZaposlenik);
-            this.Controls.Add(this.lblImeZaposlenog);
             this.Controls.Add(this.panelUserName);
             this.Controls.Add(this.panelPromjenaLozinke);
             this.Controls.Add(this.tileProfile);
             this.Controls.Add(this.tileLogout);
             this.Controls.Add(this.tileClanarina);
             this.Controls.Add(this.tilePregledIznajmljivanja);
-            this.Controls.Add(this.tilePretraga);
             this.Controls.Add(this.tileIznajmi);
+            this.Controls.Add(this.tilePretraga);
             this.Controls.Add(this.tileUnosClana);
             this.Controls.Add(this.pictureBoxBibliotekarPozadina);
             this.MaximizeBox = false;
@@ -384,13 +377,14 @@
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Purple;
-            this.Text = "Panel: Bibliotekar";
+            this.Text = "Bibliotekar";
             this.Load += new System.EventHandler(this.Bibliotekar_Load);
             this.panelPromjenaLozinke.ResumeLayout(false);
             this.panelPromjenaLozinke.PerformLayout();
+            this.panelUserName.ResumeLayout(false);
+            this.panelUserName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBibliotekarPozadina)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -417,8 +411,8 @@
         private System.Windows.Forms.PictureBox pictureBoxBibliotekarPozadina;
         private System.Windows.Forms.FlowLayoutPanel panelUserName;
         private MetroFramework.Controls.MetroTile tilePasswordChange;
-        private MetroFramework.Controls.MetroLabel lblZaposlenik;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Components.MetroToolTip metroToolTip2;
+        private MetroFramework.Controls.MetroLabel lblZaposlenik;
     }
 }

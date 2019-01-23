@@ -54,9 +54,7 @@ namespace DBBiblioteka
             {
                 lblInvalid.Visible = true;
                 lblInvalid.Text = "Polje je obavezno za unos!";
-            }
-
-            
+            }        
         }
 
         private void Login()
