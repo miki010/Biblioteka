@@ -37,9 +37,15 @@ namespace DBBiblioteka
         public void SetValue(string value)
         {
             if (value == rbM.Text.Substring(0, 1))
+            {
                 rbM.Checked = true;
+
+            }
             else if (value == rbZenski.Text.Substring(0, 1))
+            {
                 rbZenski.Checked = true;
+
+            }
         }
 
         //Zadrzati! setovana labela za obaveznan unos u polje M/Z
@@ -48,6 +54,22 @@ namespace DBBiblioteka
             lblObavezno.Visible = true;
             lblObavezno.Text = text;
             lblObavezno.ForeColor = Color.Red;
+
+            if(rbM.Checked == true || rbZenski.Checked)
+            {
+                lblObavezno.Visible = false;
+            }
+
+            if (text == "*")
+            {
+                lblObavezno.FontSize = MetroLabelSize.Tall;
+                lblObavezno.FontWeight = MetroLabelWeight.Bold;
+            }
+            else
+            {
+                lblObavezno.FontSize = MetroLabelSize.Small;
+                lblObavezno.FontWeight = MetroLabelWeight.Regular;
+            }
         }
 
         private void rbM_CheckedChanged(object sender, EventArgs e)
