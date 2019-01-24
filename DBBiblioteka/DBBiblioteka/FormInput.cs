@@ -111,7 +111,7 @@ namespace DBBiblioteka
                         ul.Enabled = false;
                     }
 
-                    if(myInterface.GetType() == typeof(PropertyIznajmljivanje) && state == StateEnum.Update)
+                    if (myInterface.GetType() == typeof(PropertyIznajmljivanje) && state == StateEnum.Update)
                     {
                         ul.Enabled = false;
                     }
@@ -158,13 +158,13 @@ namespace DBBiblioteka
                             dtc.Enabled = false;
                             if (dtc.Name == "DatumIstekaClanarine" && state == StateEnum.Create)
                             {
-                                
+
                             }
 
                             if (state == StateEnum.Update)
                                 tilePotvrdi.Enabled = false;
                         }
-                            
+
                     }
                     else if (state == StateEnum.Search)
                     {
@@ -209,14 +209,14 @@ namespace DBBiblioteka
                     cb.Margin = new Padding(12, 0, 0, 0);
 
                     cb.CheckedChanged += Cb_CheckedChanged;
-                    
+
                 }
                 else
                 {
                     InputControl ic = new InputControl();
                     ic.Name = item.Name;
                     ic.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    
+
                     if (item.GetCustomAttribute<RequiredAttribute>() != null)
                     {
                         ic.SetLblObavezno("*");
@@ -246,7 +246,7 @@ namespace DBBiblioteka
 
                         if (ic.Name != "KorisnickoIme")
                         {
-                            ic.Enabled = false; 
+                            ic.Enabled = false;
                         }
 
                         switch (ic.Name.ToString())
@@ -422,18 +422,18 @@ namespace DBBiblioteka
 
                             if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
                             {
-                                
+
                                 if (!int.TryParse(input.GetValue(), out int number1))
                                 {
                                     MessageBox.Show("Polje " + input.Name + " može biti samo cjelobrojni podatak!", "Greška");
                                     input.SetValue("");
                                     return;
                                 }
-                                else if(Convert.ToInt32(value) < 1)
-                                {
-                                        MessageBox.Show("Potrebno je dodati barem jednu knjigu!", "Greška");
-                                        return;
-                                }
+                                //else if (Convert.ToInt32(value) < 1)
+                                //{
+                                //    MessageBox.Show("Potrebno je dodati barem jednu knjigu!", "Greška");
+                                //    return;
+                                //}
                             }
 
                             if (input.Name == "Kolicina" && value == "")
@@ -636,7 +636,7 @@ namespace DBBiblioteka
                         MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
                         return;
                     }
-                    
+
 
                     DataTable dt = new DataTable();
                     SqlDataReader readerIstekClanarine = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
@@ -658,7 +658,7 @@ namespace DBBiblioteka
                     dataTable.Load(dataReader);
                     dataReader.Close();
 
-                    if(dataTable.Rows.Count > 1)
+                    if (dataTable.Rows.Count > 1)
                     {
                         MessageBox.Show("Korisnik ima više od jedne nerazdužene knjige! Iznajmljivanje nije moguće.", "Greška!");
                         return;
@@ -675,7 +675,7 @@ namespace DBBiblioteka
                     else
                     {
                         MessageBox.Show((datumi[1] - datumi[0].AddDays(15)).Days.ToString());
-                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1]));
 
                     }
 
@@ -729,8 +729,7 @@ namespace DBBiblioteka
                         //MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
-                    MessageBox.Show("Podatak je sačuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    //MessageBox.Show("Podatak je sačuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (stanje == "pristupniPodaci")
                     {
                         //popuniPristupnePodatke();
@@ -770,8 +769,6 @@ namespace DBBiblioteka
 
                     MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
                 DialogResult = DialogResult.OK;
                 if (myInterface is PropertyIznajmljivanje)
                     ((PropertyIznajmljivanje)myInterface).Razduzeno = false;
@@ -780,80 +777,81 @@ namespace DBBiblioteka
             {
                 return;
             }
+        }
             #endregion
 
 
-        }
 
-        private void tileOdustani_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            private void tileOdustani_Click(object sender, EventArgs e)
             {
-                this.Close();
-            }
-        }
-
-        private void popuniPristupnePodatke()
-        {
-            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                propertyLogin.GetInsertQuery(), propertyLogin.GetLoginParameters().ToArray());
-            MessageBox.Show("dodat");
-        }
-
-        private void FormInput_Load(object sender, EventArgs e)
-        {
-            flPanelControls.BringToFront();
-            tilePotvrdi.BringToFront();
-            tileOdustani.BringToFront();
-            metroPanel1.BringToFront();
-        }
-
-        private bool ProvjeraKorisnickoIme()
-        {
-            bool postojiIme = false;
-            if (myInterface.GetType() == typeof(PropertyLogin))
-            {
-                DataTable dt = new DataTable();
-                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                   myInterface.GetSelectQuery());
-                dt.Load(reader);
-                reader.Close();
-                bool postoji = false;
-                foreach (DataRow row in dt.Rows)
+                if (MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Poruka", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string ime = row["KorisnickoIme"].ToString();
-                    foreach (var item in flPanelControls.Controls)
+                    this.Close();
+                }
+            }
+
+            private void popuniPristupnePodatke()
+            {
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                    propertyLogin.GetInsertQuery(), propertyLogin.GetLoginParameters().ToArray());
+                MessageBox.Show("dodat");
+            }
+
+            private void FormInput_Load(object sender, EventArgs e)
+            {
+                flPanelControls.BringToFront();
+                tilePotvrdi.BringToFront();
+                tileOdustani.BringToFront();
+                metroPanel1.BringToFront();
+            }
+
+            private bool ProvjeraKorisnickoIme()
+            {
+                bool postojiIme = false;
+                if (myInterface.GetType() == typeof(PropertyLogin))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                       myInterface.GetSelectQuery());
+                    dt.Load(reader);
+                    reader.Close();
+                    bool postoji = false;
+                    foreach (DataRow row in dt.Rows)
                     {
-                        if (item.GetType() == typeof(InputControl))
+                        string ime = row["KorisnickoIme"].ToString();
+                        foreach (var item in flPanelControls.Controls)
                         {
-                            InputControl input = item as InputControl;
-                            string value = input.GetValue();
-                            if (input.Name == "KorisnickoIme" && ime == value)
+                            if (item.GetType() == typeof(InputControl))
                             {
-                                postoji = true;
-                                break;
+                                InputControl input = item as InputControl;
+                                string value = input.GetValue();
+                                if (input.Name == "KorisnickoIme" && ime == value)
+                                {
+                                    postoji = true;
+                                    break;
+                                }
                             }
                         }
                     }
+
+                    postojiIme = postoji;
+
+                    if (postoji)
+                    {
+                        MessageBox.Show("Korisnicko ime vec postoji u bazi. Molimo Vas da ga promjenite!", "Obajvestenje");
+                        return postojiIme;
+                    }
+                    else if (!postoji)
+                    {
+                        return postojiIme;
+                    }
+
+
                 }
 
-                postojiIme = postoji;
-
-                if (postoji)
-                {
-                    MessageBox.Show("Korisnicko ime vec postoji u bazi. Molimo Vas da ga promjenite!", "Obajvestenje");
-                    return postojiIme;
-                }
-                else if (!postoji)
-                {
-                    return postojiIme;
-                }
-
+                return postojiIme;
 
             }
-
-            return postojiIme;
-
         }
     }
-}
