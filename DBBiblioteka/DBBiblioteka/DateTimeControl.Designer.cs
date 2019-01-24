@@ -36,7 +36,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText.Location = new System.Drawing.Point(5, 11);
+            this.lblText.Location = new System.Drawing.Point(5, 6);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(50, 16);
             this.lblText.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             this.dateTimePicker.CustomFormat = "";
             this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker.Location = new System.Drawing.Point(170, 8);
+            this.dateTimePicker.Location = new System.Drawing.Point(170, 3);
             this.dateTimePicker.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -63,7 +63,7 @@
             this.Controls.Add(this.lblText);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "DateTimeControl";
-            this.Size = new System.Drawing.Size(500, 38);
+            this.Size = new System.Drawing.Size(500, 45);
             this.ResumeLayout(false);
             this.PerformLayout();
 

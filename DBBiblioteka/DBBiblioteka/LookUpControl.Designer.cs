@@ -40,7 +40,7 @@
             this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.CustomBackground = true;
             this.txtID.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.txtID.Location = new System.Drawing.Point(170, 5);
+            this.txtID.Location = new System.Drawing.Point(170, 3);
             this.txtID.MaxLength = 9;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(45, 25);
@@ -52,14 +52,14 @@
             this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.CustomBackground = true;
             this.txtName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.txtName.Location = new System.Drawing.Point(263, 5);
+            this.txtName.Location = new System.Drawing.Point(263, 4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(228, 25);
             this.txtName.TabIndex = 1;
             // 
             // tileLookUp
             // 
-            this.tileLookUp.Location = new System.Drawing.Point(221, 5);
+            this.tileLookUp.Location = new System.Drawing.Point(221, 4);
             this.tileLookUp.Name = "tileLookUp";
             this.tileLookUp.Size = new System.Drawing.Size(36, 24);
             this.tileLookUp.TabIndex = 2;
@@ -83,7 +83,7 @@
             // 
             this.lblObavezno.AutoSize = true;
             this.lblObavezno.ForeColor = System.Drawing.Color.Red;
-            this.lblObavezno.Location = new System.Drawing.Point(99, 35);
+            this.lblObavezno.Location = new System.Drawing.Point(169, 28);
             this.lblObavezno.Name = "lblObavezno";
             this.lblObavezno.Size = new System.Drawing.Size(0, 0);
             this.lblObavezno.Style = MetroFramework.MetroColorStyle.Red;
@@ -102,7 +102,7 @@
             this.Controls.Add(this.txtID);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "LookUpControl";
-            this.Size = new System.Drawing.Size(500, 45);
+            this.Size = new System.Drawing.Size(500, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

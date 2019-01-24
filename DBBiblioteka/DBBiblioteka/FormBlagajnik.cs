@@ -44,7 +44,7 @@ namespace DBBiblioteka
 
         private void FormBlagajnik_Load(object sender, EventArgs e)
         {
-            lblImeZaposlenog.Text = ime.ToString() + " " + prezime.ToString();
+            lblImeZaposlenog.Text = ime.ToString() + " "  +srednjeIme.ToString() + " " + prezime.ToString();
             tileProfile.UseTileImage = true;
             if (pol == "M")
             {
