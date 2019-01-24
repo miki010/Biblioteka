@@ -60,6 +60,7 @@ namespace DBBiblioteka
         {
             FormStandard formStandard = new FormStandard(new PropertyClanarina());
             formStandard.tileObrisi.Enabled = false;
+            formStandard.tileIzmijeni.Enabled = false;
             formStandard.ShowDialog();
         }
 
@@ -76,19 +77,20 @@ namespace DBBiblioteka
             FormStandard formStandard = new FormStandard(new PropertyTipClanarine());
             formStandard.ShowDialog();
         }
-        string korisnik = "blagajnik";
+        string korisnik = "";
 
         private void tileIzvjestaj_Click(object sender, EventArgs e)
         {
-            
+             korisnik = "blagajnik";
             Report1 rpt = new Report1(korisnik);
             rpt.ShowDialog();
         }
 
         private void tilePregledClanarina_Click(object sender, EventArgs e)
         {
-            FormStandard formStandard = new FormStandard(new PropertyTipClanarine());
-            formStandard.ShowDialog();
+            korisnik = "blagajnikIzvjestaj";
+            Report1 rpt4 = new Report1(korisnik);
+            rpt4.ShowDialog();
         }
 
 

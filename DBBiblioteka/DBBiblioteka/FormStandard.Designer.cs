@@ -171,11 +171,13 @@
             // 
             this.lbDetaljno.BackColor = System.Drawing.Color.White;
             this.lbDetaljno.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbDetaljno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDetaljno.ForeColor = System.Drawing.Color.Black;
             this.lbDetaljno.FormattingEnabled = true;
+            this.lbDetaljno.ItemHeight = 15;
             this.lbDetaljno.Location = new System.Drawing.Point(5, 58);
             this.lbDetaljno.Name = "lbDetaljno";
-            this.lbDetaljno.Size = new System.Drawing.Size(228, 442);
+            this.lbDetaljno.Size = new System.Drawing.Size(228, 435);
             this.lbDetaljno.TabIndex = 6;
             // 
             // lblBrojRedova
@@ -419,10 +421,14 @@
             this.dgvPrikaz.AllowUserToDeleteRows = false;
             this.dgvPrikaz.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrikaz.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPrikaz.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPrikaz.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrikaz.Location = new System.Drawing.Point(6, 203);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
+            this.dgvPrikaz.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvPrikaz.RowHeadersVisible = false;
             this.dgvPrikaz.Size = new System.Drawing.Size(893, 474);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikaz_CellMouseEnter);

@@ -58,6 +58,16 @@ namespace DBBiblioteka
                 reportViewer.Refresh();
 
             }
+            else if (korisnik == "blagajnikIzvjestaj")
+            {
+                var rpt4 = new ReportDocument();
+                string reportPath4 = @"../../../rptNaplataClanarine.rpt";
+                rpt4.Load(reportPath4);
+
+                reportViewer.ReportSource = rpt4;
+
+                reportViewer.Refresh();
+            }
         }
     }
 }
