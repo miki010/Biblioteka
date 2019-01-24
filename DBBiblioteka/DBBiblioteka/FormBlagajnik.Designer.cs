@@ -65,7 +65,8 @@
             this.tileIzvjestaj.Name = "tileIzvjestaj";
             this.tileIzvjestaj.Size = new System.Drawing.Size(375, 175);
             this.tileIzvjestaj.TabIndex = 3;
-            this.tileIzvjestaj.Text = "DETALJAN FINANCIJSKI IZVJEŠTAJ";
+            this.tileIzvjestaj.Text = "DETALJAN FINANSIJSKI IZVJEŠTAJ";
+            this.tileIzvjestaj.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileIzvjestaj.TileImage = global::DBBiblioteka.Properties.Resources.financialreport;
             this.tileIzvjestaj.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIzvjestaj.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -83,7 +84,8 @@
             this.tileTipClanarine.Name = "tileTipClanarine";
             this.tileTipClanarine.Size = new System.Drawing.Size(245, 175);
             this.tileTipClanarine.TabIndex = 2;
-            this.tileTipClanarine.Text = "TIP ČLANARINE";
+            this.tileTipClanarine.Text = "TIPOVI ČLANARINA";
+            this.tileTipClanarine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
             this.tileTipClanarine.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileTipClanarine.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -101,7 +103,8 @@
             this.tilePregledClanarina.Name = "tilePregledClanarina";
             this.tilePregledClanarina.Size = new System.Drawing.Size(345, 185);
             this.tilePregledClanarina.TabIndex = 1;
-            this.tilePregledClanarina.Text = "PREGLED ČLANARINA SA PRETRAGOM";
+            this.tilePregledClanarina.Text = "IZVJEŠTAJ  O NAPLATI ČLANARINE";
+            this.tilePregledClanarina.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tilePregledClanarina.TileImage = global::DBBiblioteka.Properties.Resources.listofmembers;
             this.tilePregledClanarina.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tilePregledClanarina.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -120,7 +123,8 @@
             this.tileDodajClanarinu.Name = "tileDodajClanarinu";
             this.tileDodajClanarinu.Size = new System.Drawing.Size(275, 185);
             this.tileDodajClanarinu.TabIndex = 0;
-            this.tileDodajClanarinu.Text = "DODAJ ČLANARINU";
+            this.tileDodajClanarinu.Text = "UPLATA ČLANARINE";
+            this.tileDodajClanarinu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileDodajClanarinu.TileImage = global::DBBiblioteka.Properties.Resources.id_card;
             this.tileDodajClanarinu.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileDodajClanarinu.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;

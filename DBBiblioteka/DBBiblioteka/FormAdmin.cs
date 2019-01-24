@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,7 @@ namespace DBBiblioteka
             tileNovaKnjiga.BringToFront();
             
         }
-        public FormAdmin(string ime, string prezime, string srednjeIme, string pol)
+        public FormAdmin(string ime, string srednjeIme, string prezime,  string pol)
         {
             InitializeComponent();
             this.ime = ime;
@@ -39,7 +40,7 @@ namespace DBBiblioteka
 
         private void FormAdmin_Load(object sender, EventArgs e)
         {
-            lblImeZaposlenog.Text = ime.ToString() + " " + prezime.ToString();
+            lblImeZaposlenog.Text = ime.ToString() + " " + srednjeIme.ToString() + " " + prezime.ToString();
             tileProfile.UseTileImage = true;
             if (pol == "M")
             {
