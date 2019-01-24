@@ -21,7 +21,7 @@ namespace DBBiblioteka.PropertiesClass
         [SqlName("ZaposleniID")]
         public int ZaposleniID { get; set; }
 
-        [DisplayName("Korisnicko ime")]
+        [DisplayName("Korisničko ime")]
         [SqlName("KorisnickoIme")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Polje je obavezno za unos!")]
         public string KorisnickoIme { get; set; }

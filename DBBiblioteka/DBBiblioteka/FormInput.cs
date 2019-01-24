@@ -15,6 +15,7 @@ using DBBiblioteka.AttributesClass;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using MetroFramework.Controls;
+using System.Globalization;
 
 namespace DBBiblioteka
 {
@@ -337,6 +338,7 @@ namespace DBBiblioteka
             int j = 0; //brojac datuma^
             var properties = myInterface.GetType().GetProperties();
             int idClana = 0; //cuva vrijednost iz lookup kontrole pri provjere da li clan postoji u tabeli clanarina
+            int lol = 0;
             if (state != StateEnum.Search)
             {
                 foreach (var item in flPanelControls.Controls)
@@ -408,19 +410,35 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            //MessageBox.Show(ex.ToString());///////////////////////////////////////////////
-                            return;
+
+                            MessageBox.Show("Podatak uspješno saćuvan!");///////////////////////////////////////////////
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
+                        if (input.Name == "Kolicina" && myInterface is PropertyIzdavacKnjiga)
+                            lol = Convert.ToInt32(value);
+                        MessageBox.Show(input.Name + " je " + value);
+                        string pom = value; //cuvam value
                         try
                         {
                             PropertyInfo property = properties.Where(x => input.Name == x.Name).FirstOrDefault();
 
-                            if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina"))
+                            if(myInterface is PropertyLogin && state == StateEnum.Create && input.Name == "KorisnickoIme")
+                            {
+                                string normal = value.Normalize(NormalizationForm.FormD);
+                                var withoutDiacritics = normal.Where(
+                                    c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark);
+                                string final = new string(withoutDiacritics.ToArray());
+                                if (final != value)
+                                {
+                                    MessageBox.Show("Korisničko ime prihvata samo standardnu kolaciju!", "Greška!");
+                                    return;
+                                }
+                            }
+                            if (input.Name.Contains("ID") || input.Name.Contains("Iznos") || input.Name.Contains("Kolicina") && input.Enabled == true)
                             {
 
                                 if (!int.TryParse(input.GetValue(), out int number1))
@@ -429,14 +447,14 @@ namespace DBBiblioteka
                                     input.SetValue("");
                                     return;
                                 }
-                                //else if (Convert.ToInt32(value) < 1)
-                                //{
-                                //    MessageBox.Show("Potrebno je dodati barem jednu knjigu!", "Greška");
-                                //    return;
-                                //}
+                                else if (lol < 1 && myInterface is PropertyIzdavacKnjiga) //prilikom dodavanja knjige na stanje
+                                {
+                                    MessageBox.Show("Potrebno je dodati barem jednu knjigu!", "Greška");
+                                    return;
+                                }
                             }
 
-                            if (input.Name == "Kolicina" && value == "")
+                            if (input.Name == "Kolicina" && value == "" && myInterface is PropertyKnjiga)
                             {
                                 value = "0";
                             }

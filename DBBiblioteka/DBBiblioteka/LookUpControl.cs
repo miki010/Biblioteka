@@ -75,6 +75,7 @@ namespace DBBiblioteka
             {
                 if (listaKontrola[i].Name == "DatumIstekaClanarine")
                 {
+                    ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
                     try { 
                     Value = Value.Trim();
                     if (Value == "Mjesecna")
@@ -92,11 +93,9 @@ namespace DBBiblioteka
                             ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
                             return;
                         }
-                        
                     }
                     catch (Exception)
                     {
-                        ((DateTimeControl)listaKontrola[i]).SetValue(DateTime.Now);
                     }
                 }
             }

@@ -11,6 +11,8 @@ using DBBiblioteka.AtributesClass;
 using System.Reflection;
 using MetroFramework.Forms;
 using System.Drawing;
+using System.Text;
+using System.Globalization;
 
 namespace DBBiblioteka
 {
@@ -473,9 +475,20 @@ namespace DBBiblioteka
                                 idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
                                 zaposleniId = dgvPrikaz.SelectedRows[0].Cells[0].Value.ToString();
                                 korisnickoIme = dgvPrikaz.SelectedRows[0].Cells[1].Value.ToString().ToLower() + "." + dgvPrikaz.SelectedRows[0].Cells[3].Value.ToString().ToLower();
+
+
+                                string normal = korisnickoIme.Normalize(NormalizationForm.FormD);
+                                var withoutDiacritics = normal.Where(
+                                    c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark);
+                                string final = new string(withoutDiacritics.ToArray());
+                                if (final != korisnickoIme)
+                                    korisnickoIme = final;
+                              
+
+
                                 radnoMjestoId = dgvPrikaz.SelectedRows[0].Cells[10].Value.ToString();
                                 if (idReda >= 0)
-                                {                                   
+                                {                                    
                                     m.Items.Add("Dodaj pristupne podatke").Name = "PristupniPodaci";
    
                                 }
