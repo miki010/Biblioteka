@@ -58,6 +58,9 @@ namespace DBBiblioteka
         private void tilePretraga_Click(object sender, EventArgs e)
         {
             FormStandard formStandard = new FormStandard(new PropertyKnjiga());
+            formStandard.tileDodaj.Enabled = false;
+            formStandard.tileIzmijeni.Enabled = false;
+            formStandard.tileObrisi.Enabled = false;
             formStandard.ShowDialog();
         }
 
