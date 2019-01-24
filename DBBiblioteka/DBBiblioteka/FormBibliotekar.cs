@@ -70,12 +70,18 @@ namespace DBBiblioteka
         private void tileIznajmi_Click(object sender, EventArgs e)
         {
             FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
+            formStandard.tileIzmijeni.Enabled = false;
+            formStandard.tileObrisi.Enabled = false;
             formStandard.ShowDialog();
+
+            
         }
 
         private void tileRazduzivanje_Click(object sender, EventArgs e)
         {
             FormStandard formStandard = new FormStandard(new PropertyIznajmljivanje());
+            formStandard.tileDodaj.Enabled = false;
+            formStandard.tileObrisi.Enabled = false;
             formStandard.ShowDialog();
         }
 
