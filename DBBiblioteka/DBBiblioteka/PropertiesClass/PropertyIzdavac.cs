@@ -17,7 +17,7 @@ namespace DBBiblioteka.PropertiesClass
 
         #region Properties
 
-        [DisplayName("Izdavac ID")]
+        [DisplayName("Izdavač ID")]
         [SqlName("IzdavacID")]
         [PrimaryKey]
         [LookupKey]
@@ -227,6 +227,16 @@ namespace DBBiblioteka.PropertiesClass
         }
 
         public List<SqlParameter> GetProcedureParametersClanID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProcedureKnjigaNaStanju()
         {
             throw new NotImplementedException();
         }

@@ -14,6 +14,10 @@ namespace DBBiblioteka.PropertiesClass
     public class PropertyIznajmljivanje : PropertyInterface
     {
         #region attributes
+        public PropertyIznajmljivanje()
+        {
+            Razduzeno = false;
+        }
 
         [DisplayName("Izmajmljivanje ID")]
         [SqlName("IznajmljivanjeID")]
@@ -49,6 +53,12 @@ namespace DBBiblioteka.PropertiesClass
         [DateTimeAttribute]
         public DateTime DatumRazduzivanja { get; set; }
 
+        [DisplayName("Razduženo")]
+        [SqlName("Razduzeno")]
+        [CheckValue]
+        public bool Razduzeno { get; set; }
+
+        
     #endregion
 
 
@@ -90,7 +100,11 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = DatumRazduzivanja;
                 list.Add(parameter);
             }
-            
+            {
+                SqlParameter parameter = new SqlParameter("@Razduzeno", System.Data.SqlDbType.Bit);
+                parameter.Value = Razduzeno;
+                list.Add(parameter);
+            }
             return list;
         }
 
@@ -101,13 +115,15 @@ namespace DBBiblioteka.PropertiesClass
                            ,[KnjigaID]
                            ,[ZaposleniID]
                            ,[DatumIznajmljivanja]
-                           ,[DatumRazduzivanja])
+                           ,[DatumRazduzivanja]
+                           ,[Razduzeno])
                      VALUES
                            (@ClanID
                            ,@KnjigaID
                            ,@ZaposleniID
                            ,@DatumIznajmljivanja
-                           ,@DatumRazduzivanja)";
+                           ,@DatumRazduzivanja
+                           ,@Razduzeno)";
         }
 
         public List<SqlParameter> GetProcedureParameters() // 
@@ -167,6 +183,7 @@ namespace DBBiblioteka.PropertiesClass
                           ,[ZaposleniID]
                           ,[DatumIznajmljivanja]
                           ,[DatumRazduzivanja]
+                          ,[Razduzeno]
                       FROM [Biblioteka].[dbo].[Iznajmljivanje]";
         }
 
@@ -203,6 +220,11 @@ namespace DBBiblioteka.PropertiesClass
                 parameter.Value = DatumRazduzivanja;
                 list.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Razduzeno", System.Data.SqlDbType.Bit);
+                parameter.Value = Razduzeno;
+                list.Add(parameter);
+            }
 
             return list;
         }
@@ -215,6 +237,7 @@ namespace DBBiblioteka.PropertiesClass
                           ,[ZaposleniID] = @ZaposleniID
                           ,[DatumIznajmljivanja] = @DatumIznajmljivanja
                           ,[DatumRazduzivanja] = @DatumRazduzivanja
+                          ,[Razduzeno] = @Razduzeno
                      WHERE IznajmljivanjeID = @IznajmljivanjeID";
         }
 
@@ -227,6 +250,16 @@ namespace DBBiblioteka.PropertiesClass
                 list.Add(parameter);
             }
             return list;
+        }
+
+        public string GetProcedureMozeLiSeDici()
+        {
+            return @"exec [dbo].[sp_MozeLiSeDici] @ClanID";
+        }
+
+        public string GetProcedureKnjigaNaStanju()
+        {
+            return @"EXEC [dbo].[sp_KnjigaNaStanju] @KnjigaID";
         }
         //dodao vlado poslije konflikta
         public string GetProcedureUpdateKnjigaVrati()

@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributesClass\CheckValue.cs" />
     <Compile Include="AttributesClass\DateTimeAttribute.cs" />
     <Compile Include="AttributesClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributesClass\LookupKey.cs" />
