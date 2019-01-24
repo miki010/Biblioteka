@@ -30,6 +30,16 @@ namespace DBBiblioteka
             lblObavezno.Text = text;
             lblObavezno.ForeColor = Color.Red;
             txtValue.Focus();
+            if(text == "*")
+            {
+                lblObavezno.FontSize = MetroLabelSize.Tall;
+                lblObavezno.FontWeight = MetroLabelWeight.Bold;
+            }
+            else
+            {
+                lblObavezno.FontSize = MetroLabelSize.Small;
+                lblObavezno.FontWeight = MetroLabelWeight.Regular;
+            }
         }
 
         public string GetValue()

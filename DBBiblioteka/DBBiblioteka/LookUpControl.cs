@@ -44,7 +44,18 @@ namespace DBBiblioteka
             txtName.Text = "";
             Key = null;
             Value = null;
-         
+
+            if (text == "*")
+            {
+                lblObavezno.FontSize = MetroLabelSize.Tall;
+                lblObavezno.FontWeight = MetroLabelWeight.Bold;
+            }
+            else
+            {
+                lblObavezno.FontSize = MetroLabelSize.Small;
+                lblObavezno.FontWeight = MetroLabelWeight.Regular;
+            }
+
         }
 
         public void SetKey(string key)
