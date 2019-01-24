@@ -65,7 +65,7 @@ namespace DBBiblioteka
         #region PopulateControls
         private void PopulateControls()
         {
-            Opacity = 0.9;
+            Opacity = 0.95;
 
             if (myInterface is PropertyIznajmljivanje && state == StateEnum.Update)
                 tilePotvrdi.Enabled = false;
@@ -137,15 +137,10 @@ namespace DBBiblioteka
                         if (myInterface is PropertyClanarina)
                         {
                             dtc.Enabled = false;
-                            if (dtc.Name == "DatumIstekaClanarine" && state == StateEnum.Create)
-                            {
-                                
-                            }
-
                             if (state == StateEnum.Update)
                                 tilePotvrdi.Enabled = false;
                         }
-                            
+
                     }
                     else if (state == StateEnum.Search)
                     {
@@ -172,21 +167,31 @@ namespace DBBiblioteka
                 }
                 else if (item.GetCustomAttribute<CheckValue>() != null)
                 {
-                    MetroCheckBox cb = new MetroCheckBox();
-                    cb.Name = "cbRazduzi";
-                    cb.Text = item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
-                    flPanelControls.Controls.Add(cb);
-                    if (!((PropertyIznajmljivanje)myInterface).Razduzeno && state == StateEnum.Update)
-                        cb.Enabled = true;
-                    else
-                        cb.Enabled = false;
-                    cb.Checked = ((PropertyIznajmljivanje)myInterface).Razduzeno;
-                    if (((PropertyIznajmljivanje)myInterface).Razduzeno)
-                        tilePotvrdi.Enabled = false;
-                    cb.Margin = new Padding(12, 0, 0, 0);
+                    if (state != StateEnum.Search)
+                    {
+                        MetroCheckBox cb = new MetroCheckBox();
+                        cb.Name = "cbRazduzi";
+                        cb.Text = item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
+                        flPanelControls.Controls.Add(cb);
+                        if (!((PropertyIznajmljivanje)myInterface).Razduzeno && state == StateEnum.Update)
+                            cb.Enabled = true;
+                        else
+                            cb.Enabled = false;
+                        cb.Checked = ((PropertyIznajmljivanje)myInterface).Razduzeno;
+                        if (((PropertyIznajmljivanje)myInterface).Razduzeno)
+                            tilePotvrdi.Enabled = false;
+                        cb.Margin = new Padding(12, 0, 0, 0);
 
-                    cb.CheckedChanged += Cb_CheckedChanged;
-                    
+                        cb.CheckedChanged += Cb_CheckedChanged;
+                    }
+                    else
+                    {
+                        
+                        CheckBoxControl checkBoxControl = new CheckBoxControl();
+                        checkBoxControl.Name = "Razduzeno";
+                        flPanelControls.Controls.Add(checkBoxControl);
+                    }
+
                 }
                 else
                 {
@@ -471,6 +476,19 @@ namespace DBBiblioteka
                         string value = input.GetValue();
                         filterString.FStr += input.Name + " LIKE '" + value + "' and ";
                     }
+                    else if (item is CheckBoxControl)
+                    {
+                        CheckBoxControl input = item as CheckBoxControl;
+                        if (!input.cbRazduzeno.Enabled)
+                            continue;
+                        else
+                        {
+                            if (input.cbRazduzeno.Checked)
+                                filterString.FStr += input.Name + " = 1 and ";
+                            else
+                                filterString.FStr += input.Name + " = 0 and ";
+                        }
+                    }
                 }
                 if (filterString.FStr.Length == 0)
                     return;
@@ -518,7 +536,7 @@ namespace DBBiblioteka
                         MessageBox.Show("Korisnik nije uplatio članarinu, iznajmljivanje nije moguće!", "Greška!");
                         return;
                     }
-                    
+
 
                     DataTable dt = new DataTable();
                     SqlDataReader readerIstekClanarine = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
@@ -540,7 +558,7 @@ namespace DBBiblioteka
                     dataTable.Load(dataReader);
                     dataReader.Close();
 
-                    if(dataTable.Rows.Count > 1)
+                    if (dataTable.Rows.Count > 1)
                     {
                         MessageBox.Show("Korisnik ima više od jedne nerazdužene knjige! Iznajmljivanje nije moguće.", "Greška!");
                         return;
@@ -557,7 +575,7 @@ namespace DBBiblioteka
                     else
                     {
                         MessageBox.Show((datumi[1] - datumi[0].AddDays(15)).Days.ToString());
-                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1])); 
+                        MessageBox.Show(DatePart.TimeSpanToDateParts(datumi[0].AddDays(15), datumi[1]));
 
                     }
 
@@ -573,7 +591,7 @@ namespace DBBiblioteka
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                         myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
                     if (stanje == "zaduzivanje")
-                    {                     
+                    {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
                         iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
                         MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -611,7 +629,7 @@ namespace DBBiblioteka
             else
             {
                 return;
-            } 
+            }
             #endregion
 
 

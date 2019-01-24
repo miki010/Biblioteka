@@ -403,6 +403,7 @@
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
             this.dgvPrikaz.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvPrikaz.RowHeadersVisible = false;
             this.dgvPrikaz.Size = new System.Drawing.Size(893, 474);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
