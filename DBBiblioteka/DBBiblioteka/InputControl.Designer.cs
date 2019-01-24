@@ -37,7 +37,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText.Location = new System.Drawing.Point(5, 10);
+            this.lblText.Location = new System.Drawing.Point(5, 5);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(45, 16);
             this.lblText.TabIndex = 0;
@@ -46,7 +46,7 @@
             // txtValue
             // 
             this.txtValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValue.Location = new System.Drawing.Point(170, 7);
+            this.txtValue.Location = new System.Drawing.Point(170, 2);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(320, 22);
             this.txtValue.TabIndex = 1;
@@ -76,7 +76,7 @@
             this.Controls.Add(this.lblText);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "InputControl";
-            this.Size = new System.Drawing.Size(500, 45);
+            this.Size = new System.Drawing.Size(500, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

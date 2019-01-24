@@ -73,7 +73,7 @@
             this.panelCrud.HorizontalScrollbarBarColor = true;
             this.panelCrud.HorizontalScrollbarHighlightOnWheel = false;
             this.panelCrud.HorizontalScrollbarSize = 10;
-            this.panelCrud.Location = new System.Drawing.Point(9, 63);
+            this.panelCrud.Location = new System.Drawing.Point(6, 71);
             this.panelCrud.Name = "panelCrud";
             this.panelCrud.Size = new System.Drawing.Size(270, 73);
             this.panelCrud.TabIndex = 4;
@@ -135,7 +135,7 @@
             this.panelVrati.HorizontalScrollbarBarColor = true;
             this.panelVrati.HorizontalScrollbarHighlightOnWheel = false;
             this.panelVrati.HorizontalScrollbarSize = 10;
-            this.panelVrati.Location = new System.Drawing.Point(319, 63);
+            this.panelVrati.Location = new System.Drawing.Point(413, 73);
             this.panelVrati.Name = "panelVrati";
             this.panelVrati.Size = new System.Drawing.Size(193, 73);
             this.panelVrati.TabIndex = 5;
@@ -150,7 +150,7 @@
             this.tileVrati.CustomBackground = true;
             this.tileVrati.CustomForeColor = true;
             this.tileVrati.ForeColor = System.Drawing.Color.White;
-            this.tileVrati.Location = new System.Drawing.Point(3, 2);
+            this.tileVrati.Location = new System.Drawing.Point(5, 2);
             this.tileVrati.Name = "tileVrati";
             this.tileVrati.Size = new System.Drawing.Size(182, 70);
             this.tileVrati.TabIndex = 2;
@@ -245,8 +245,6 @@
             this.panelPretraga.BackColor = System.Drawing.Color.White;
             this.panelPretraga.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.panelPretraga.CausesValidation = false;
-            this.panelPretraga.Controls.Add(this.tileDetaljnaPretraga);
-            this.panelPretraga.Controls.Add(this.tileAzurirajZapise);
             this.panelPretraga.Controls.Add(this.metroLabel1);
             this.panelPretraga.Controls.Add(this.tileSelectFirst);
             this.panelPretraga.Controls.Add(this.tileSelectNext);
@@ -268,14 +266,15 @@
             // 
             // tileDetaljnaPretraga
             // 
-            this.tileDetaljnaPretraga.BackColor = System.Drawing.Color.DodgerBlue;
+            this.tileDetaljnaPretraga.BackColor = System.Drawing.Color.MidnightBlue;
             this.tileDetaljnaPretraga.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileDetaljnaPretraga.CustomBackground = true;
             this.tileDetaljnaPretraga.CustomForeColor = true;
             this.tileDetaljnaPretraga.ForeColor = System.Drawing.Color.White;
-            this.tileDetaljnaPretraga.Location = new System.Drawing.Point(799, 4);
+            this.tileDetaljnaPretraga.Location = new System.Drawing.Point(737, 75);
             this.tileDetaljnaPretraga.Name = "tileDetaljnaPretraga";
-            this.tileDetaljnaPretraga.Size = new System.Drawing.Size(40, 40);
+            this.tileDetaljnaPretraga.Size = new System.Drawing.Size(70, 70);
+            this.tileDetaljnaPretraga.Style = MetroFramework.MetroColorStyle.Green;
             this.tileDetaljnaPretraga.TabIndex = 8;
             this.tileDetaljnaPretraga.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileDetaljnaPretraga.TileImage = ((System.Drawing.Image)(resources.GetObject("tileDetaljnaPretraga.TileImage")));
@@ -286,14 +285,14 @@
             // 
             // tileAzurirajZapise
             // 
-            this.tileAzurirajZapise.BackColor = System.Drawing.Color.DodgerBlue;
+            this.tileAzurirajZapise.BackColor = System.Drawing.Color.MidnightBlue;
             this.tileAzurirajZapise.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tileAzurirajZapise.CustomBackground = true;
             this.tileAzurirajZapise.CustomForeColor = true;
             this.tileAzurirajZapise.ForeColor = System.Drawing.Color.White;
-            this.tileAzurirajZapise.Location = new System.Drawing.Point(848, 4);
+            this.tileAzurirajZapise.Location = new System.Drawing.Point(824, 75);
             this.tileAzurirajZapise.Name = "tileAzurirajZapise";
-            this.tileAzurirajZapise.Size = new System.Drawing.Size(40, 40);
+            this.tileAzurirajZapise.Size = new System.Drawing.Size(70, 70);
             this.tileAzurirajZapise.TabIndex = 9;
             this.tileAzurirajZapise.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileAzurirajZapise.TileImage = ((System.Drawing.Image)(resources.GetObject("tileAzurirajZapise.TileImage")));
@@ -306,7 +305,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.Location = new System.Drawing.Point(502, 11);
+            this.metroLabel1.Location = new System.Drawing.Point(429, 11);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(123, 25);
             this.metroLabel1.TabIndex = 12;
@@ -382,9 +381,9 @@
             // 
             this.txtPretraga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(624, 11);
+            this.txtPretraga.Location = new System.Drawing.Point(558, 11);
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(162, 26);
+            this.txtPretraga.Size = new System.Drawing.Size(330, 26);
             this.txtPretraga.TabIndex = 6;
             this.txtPretraga.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -436,6 +435,8 @@
             this.ClientSize = new System.Drawing.Size(1150, 700);
             this.Controls.Add(this.lblRedIndex);
             this.Controls.Add(this.dgvPrikaz);
+            this.Controls.Add(this.tileAzurirajZapise);
+            this.Controls.Add(this.tileDetaljnaPretraga);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.panelPretraga);
             this.Controls.Add(this.pictureBox1);

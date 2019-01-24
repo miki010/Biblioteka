@@ -39,7 +39,7 @@
             this.lblNaziv.AutoSize = true;
             this.lblNaziv.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.lblNaziv.ForeColor = System.Drawing.Color.Black;
-            this.lblNaziv.Location = new System.Drawing.Point(5, 10);
+            this.lblNaziv.Location = new System.Drawing.Point(5, -1);
             this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(56, 19);
@@ -50,7 +50,7 @@
             // 
             this.rbM.AutoSize = true;
             this.rbM.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.rbM.Location = new System.Drawing.Point(170, 10);
+            this.rbM.Location = new System.Drawing.Point(170, -1);
             this.rbM.Margin = new System.Windows.Forms.Padding(4);
             this.rbM.Name = "rbM";
             this.rbM.Size = new System.Drawing.Size(62, 19);
@@ -64,7 +64,7 @@
             // 
             this.rbZenski.AutoSize = true;
             this.rbZenski.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.rbZenski.Location = new System.Drawing.Point(340, 10);
+            this.rbZenski.Location = new System.Drawing.Point(340, -1);
             this.rbZenski.Margin = new System.Windows.Forms.Padding(4);
             this.rbZenski.Name = "rbZenski";
             this.rbZenski.Size = new System.Drawing.Size(64, 19);
@@ -80,7 +80,7 @@
             this.lblObavezno.CustomBackground = true;
             this.lblObavezno.CustomForeColor = true;
             this.lblObavezno.ForeColor = System.Drawing.Color.Red;
-            this.lblObavezno.Location = new System.Drawing.Point(175, 31);
+            this.lblObavezno.Location = new System.Drawing.Point(170, 16);
             this.lblObavezno.Name = "lblObavezno";
             this.lblObavezno.Size = new System.Drawing.Size(0, 0);
             this.lblObavezno.Style = MetroFramework.MetroColorStyle.Red;
