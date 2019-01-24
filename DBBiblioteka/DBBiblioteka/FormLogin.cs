@@ -36,9 +36,9 @@ namespace DBBiblioteka
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
             //prije poziva f-je provjerava da li su oba polja popunjena
-            
-            
-            if(!txtUserName.Text.Trim().Equals("") && !txtPassword.Text.Trim().Equals(""))
+
+
+            if (!txtUserName.Text.Trim().Equals("") && !txtPassword.Text.Trim().Equals(""))
             {
                 Login();
 
@@ -55,12 +55,12 @@ namespace DBBiblioteka
             {
                 lblInvalid.Visible = true;
                 lblInvalid.Text = "Polje je obavezno za unos!";
-            }        
+            }
         }
 
         private void Login()
-        { 
-            
+        {
+
             //uzima podatke iz tabele PristupniPodaci sa kojima se vrsi poredjenje unesenih podataka
             DataTable dt = new DataTable();
 
@@ -82,14 +82,14 @@ namespace DBBiblioteka
                 string sifra = row["Lozinka"].ToString();
                 string id = row["ZaposleniID"].ToString();
                 idZaposlenog = id; //koristi se za pracenje ko se prijavio u sistem
-                string pass = getHashSha256(txtPassword.Text);                
+                string pass = getHashSha256(txtPassword.Text);
 
                 try
                 {
                     using (StreamWriter sw = new StreamWriter("sha256.txt"))
                     {
                         string z = pass;
-                       
+
                         sw.WriteLine(z);
 
                     }
@@ -107,7 +107,7 @@ namespace DBBiblioteka
                     {
                         prosao = true;//dobar username i pass   
                         idProsao = id;
-                        
+
                         break;
                     }
                     else if (!sifra.Equals(txtPassword.Text)) //!=
@@ -132,18 +132,18 @@ namespace DBBiblioteka
 
                 dt2.Load(reader2);
                 reader2.Close();
-                
+
                 foreach (DataRow row in dt2.Rows)
                 {
-                    
+
                     string zaposleniID = row["ZaposleniID"].ToString();
                     int idRadnogMjesta = Convert.ToInt32(row["RadnoMjestoID"]);
 
                     if (idProsao == zaposleniID && idRadnogMjesta == 1)
                     {
-                        FormAdmin formAdmin = new FormAdmin(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString(), row["Pol"].ToString());                
+                        FormAdmin formAdmin = new FormAdmin(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString(), row["Pol"].ToString());
                         formAdmin.Show();
-                       
+
                     }
                     else if (idProsao == zaposleniID && idRadnogMjesta == 2)
                     {
@@ -157,14 +157,14 @@ namespace DBBiblioteka
                     {
                         FormBlagajnik formBlagajnik = new FormBlagajnik(row["Ime"].ToString(), row["SrednjeIme"].ToString(), row["Prezime"].ToString(), row["Pol"].ToString());
                         formBlagajnik.Show();
-                       
+
                     }
-                    
+
                     this.Hide();
                     txtPassword.Clear();
                     txtUserName.Clear();
                 }
-                
+
             }
             else if (prosaoIme)
             {
@@ -177,7 +177,7 @@ namespace DBBiblioteka
                 MessageBox.Show("Unešeno korisničko ime ne postoji!", "Obavještenje!", MessageBoxButtons.OK, MessageBoxIcon.Information);//
                 txtPassword.Clear();
                 txtUserName.Clear();
-            }        
+            }
         }
 
         public static string getHashSha256(string text)
@@ -196,7 +196,7 @@ namespace DBBiblioteka
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Da li ste sigurni da želite napustiti aplikaciju?", "Upozorenje!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {               
+            {
                 Application.Exit();
             }
         }

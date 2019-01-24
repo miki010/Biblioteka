@@ -408,8 +408,8 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            //MessageBox.Show(ex.ToString());///////////////////////////////////////////////
-                            return;
+                            MessageBox.Show("Podatak dodan u bazu!");///////////////////////////////////////////////
+                            //return;
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
@@ -708,8 +708,9 @@ namespace DBBiblioteka
                         }
                         catch (Exception)
                         {
+                            throw;
 
-                            return;
+                            //return;
                         }
                         //MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -723,8 +724,8 @@ namespace DBBiblioteka
                         }
                         catch (Exception)
                         {
-
-                            return;
+                            throw;
+                            //return;
                         }
                         //MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
