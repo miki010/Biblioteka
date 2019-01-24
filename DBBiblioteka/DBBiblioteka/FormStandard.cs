@@ -366,38 +366,38 @@ namespace DBBiblioteka
             {
                 bool jeLiRazduzeno = false;
                 string datumRazd = "";
-                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
-                {
-                    try
-                    {
-                        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
-                        {
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
-                            jeLiRazduzeno = (bool)dgvPrikaz.SelectedRows[0].Cells[i].Value;
-                        }
-                            
+                //for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                //{
+                //    try
+                //    {
+                //        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
+                //        {
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
+                //            jeLiRazduzeno = (bool)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                //        }
 
-                        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
-                        {
-                            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
-                            if (dgvPrikaz.Columns[i].HeaderText == "Datum razduživanja") //ubacuje rok umjesto datuma razduzivanja
-                            {
-                                datumRazd = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
-                                continue;
-                            }
-                            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
 
-                            string rokZaVracanje = string.Format("{0}.{1}.{2}", datum.AddDays(15).Day, datum.AddDays(15).Month, datum.AddDays(15).Year);
-                            lbDetaljno.Items.Add("Rok za vraćanje: " + rokZaVracanje);
-                        }
-                        else
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-                    }
-                    catch (Exception) { } // U slucaju da je datum ili bool NULL
-                }
-                if (jeLiRazduzeno)
-                    lbDetaljno.Items.Add("Datum razduživanja: " + datumRazd);
+                //        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
+                //        {
+                //            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                //            if (dgvPrikaz.Columns[i].HeaderText == "Datum razduživanja") //ubacuje rok umjesto datuma razduzivanja
+                //            {
+                //                datumRazd = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                //                continue;
+                //            }
+                //            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
+
+                //            string rokZaVracanje = string.Format("{0}.{1}.{2}", datum.AddDays(15).Day, datum.AddDays(15).Month, datum.AddDays(15).Year);
+                //            lbDetaljno.Items.Add("Rok za vraćanje: " + rokZaVracanje);
+                //        }
+                //        else
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                //    }
+                //    catch (Exception) { } // U slucaju da je datum ili bool NULL
+                //}
+                //if (jeLiRazduzeno)
+                //    lbDetaljno.Items.Add("Datum razduživanja: " + datumRazd);
 
             }
 
