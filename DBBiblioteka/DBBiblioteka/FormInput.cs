@@ -87,6 +87,8 @@ namespace DBBiblioteka
                         ul.Enabled = true;
                     }
 
+                   
+
                     if (item.GetCustomAttribute<RequiredAttribute>() != null)
                     {
                         ul.SetLabelObavezno("*");
@@ -423,8 +425,16 @@ namespace DBBiblioteka
                     {
                         InputControl input = item as InputControl;
                         string value = input.GetValue();
+
                         if (input.Name == "Kolicina" && myInterface is PropertyIzdavacKnjiga)
-                            lol = Convert.ToInt32(value);
+                            try
+                            {
+                                lol = Convert.ToInt32(value);
+                            }
+                            catch (Exception)
+                            {
+
+                            }
 
                         string pom = value; //cuvam value(morao sam pjeske ovako jer je doslo do hiljadu konflikta)
                         try

@@ -60,6 +60,7 @@ namespace DBBiblioteka
         {
             FormStandard formStandard = new FormStandard(new PropertyClanarina());
             formStandard.tileObrisi.Enabled = false;
+            formStandard.tileIzmijeni.Enabled = false;
             formStandard.ShowDialog();
         }
 
