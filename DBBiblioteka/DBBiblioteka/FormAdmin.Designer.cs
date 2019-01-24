@@ -265,7 +265,7 @@
             this.tileAutor.Size = new System.Drawing.Size(285, 185);
             this.tileAutor.Style = MetroFramework.MetroColorStyle.Teal;
             this.tileAutor.TabIndex = 3;
-            this.tileAutor.Text = "AUTOR";
+            this.tileAutor.Text = "DODAJ AUTORE";
             this.tileAutor.TileImage = global::DBBiblioteka.Properties.Resources.author;
             this.tileAutor.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileAutor.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -284,7 +284,7 @@
             this.tileIzdavac.Size = new System.Drawing.Size(320, 185);
             this.tileIzdavac.Style = MetroFramework.MetroColorStyle.Teal;
             this.tileIzdavac.TabIndex = 2;
-            this.tileIzdavac.Text = "IZDAVAČ";
+            this.tileIzdavac.Text = "DODAJ IZDAVAČA";
             this.tileIzdavac.TileImage = global::DBBiblioteka.Properties.Resources.publisher;
             this.tileIzdavac.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileIzdavac.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -303,7 +303,7 @@
             this.tileNovaKnjiga.Size = new System.Drawing.Size(325, 175);
             this.tileNovaKnjiga.Style = MetroFramework.MetroColorStyle.Teal;
             this.tileNovaKnjiga.TabIndex = 1;
-            this.tileNovaKnjiga.Text = "NOVA KNJIGA";
+            this.tileNovaKnjiga.Text = "DODAJ NOVU KNJIGU";
             this.tileNovaKnjiga.TileImage = global::DBBiblioteka.Properties.Resources.addbook;
             this.tileNovaKnjiga.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileNovaKnjiga.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -322,7 +322,7 @@
             this.tileNoviRadnik.Size = new System.Drawing.Size(280, 175);
             this.tileNoviRadnik.Style = MetroFramework.MetroColorStyle.Teal;
             this.tileNoviRadnik.TabIndex = 0;
-            this.tileNoviRadnik.Text = "NOVI RADNIK";
+            this.tileNoviRadnik.Text = "DODAJ NOVOG RADNIKA";
             this.tileNoviRadnik.TileImage = global::DBBiblioteka.Properties.Resources.adduser;
             this.tileNoviRadnik.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileNoviRadnik.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;

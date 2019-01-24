@@ -84,7 +84,7 @@
             this.tileTipClanarine.Name = "tileTipClanarine";
             this.tileTipClanarine.Size = new System.Drawing.Size(245, 175);
             this.tileTipClanarine.TabIndex = 2;
-            this.tileTipClanarine.Text = "TIP ČLANARINE";
+            this.tileTipClanarine.Text = "TIPOVI ČLANARINA";
             this.tileTipClanarine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileTipClanarine.TileImage = global::DBBiblioteka.Properties.Resources.typeofmembership;
             this.tileTipClanarine.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,7 +103,7 @@
             this.tilePregledClanarina.Name = "tilePregledClanarina";
             this.tilePregledClanarina.Size = new System.Drawing.Size(345, 185);
             this.tilePregledClanarina.TabIndex = 1;
-            this.tilePregledClanarina.Text = "PREGLED ČLANARINA SA PRETRAGOM";
+            this.tilePregledClanarina.Text = "IZVJEŠTAJ  O NAPLATI ČLANARINE";
             this.tilePregledClanarina.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tilePregledClanarina.TileImage = global::DBBiblioteka.Properties.Resources.listofmembers;
             this.tilePregledClanarina.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
