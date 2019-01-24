@@ -11,6 +11,8 @@ using DBBiblioteka.AtributesClass;
 using System.Reflection;
 using MetroFramework.Forms;
 using System.Drawing;
+using System.Text;
+using System.Globalization;
 
 namespace DBBiblioteka
 {
@@ -366,38 +368,38 @@ namespace DBBiblioteka
             {
                 bool jeLiRazduzeno = false;
                 string datumRazd = "";
-                for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
-                {
-                    try
-                    {
-                        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
-                        {
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
-                            jeLiRazduzeno = (bool)dgvPrikaz.SelectedRows[0].Cells[i].Value;
-                        }
-                            
+                //for (int i = 0; i < dgvPrikaz.SelectedCells.Count; i++)
+                //{
+                //    try
+                //    {
+                //        if (dgvPrikaz.Columns[i].ValueType == typeof(bool))
+                //        {
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + ((bool)dgvPrikaz.SelectedRows[0].Cells[i].Value ? "Da" : "Ne"));
+                //            jeLiRazduzeno = (bool)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                //        }
 
-                        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
-                        {
-                            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
-                            if (dgvPrikaz.Columns[i].HeaderText == "Datum razduživanja") //ubacuje rok umjesto datuma razduzivanja
-                            {
-                                datumRazd = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
-                                continue;
-                            }
-                            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
 
-                            string rokZaVracanje = string.Format("{0}.{1}.{2}", datum.AddDays(15).Day, datum.AddDays(15).Month, datum.AddDays(15).Year);
-                            lbDetaljno.Items.Add("Rok za vraćanje: " + rokZaVracanje);
-                        }
-                        else
-                            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
-                    }
-                    catch (Exception) { } // U slucaju da je datum ili bool NULL
-                }
-                if (jeLiRazduzeno)
-                    lbDetaljno.Items.Add("Datum razduživanja: " + datumRazd);
+                //        else if (dgvPrikaz.Columns[i].ValueType == typeof(DateTime))
+                //        {
+                //            DateTime datum = (DateTime)dgvPrikaz.SelectedRows[0].Cells[i].Value;
+                //            if (dgvPrikaz.Columns[i].HeaderText == "Datum razduživanja") //ubacuje rok umjesto datuma razduzivanja
+                //            {
+                //                datumRazd = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                //                continue;
+                //            }
+                //            string date = string.Format("{0}.{1}.{2}", datum.Day, datum.Month, datum.Year);
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + date);
+
+                //            string rokZaVracanje = string.Format("{0}.{1}.{2}", datum.AddDays(15).Day, datum.AddDays(15).Month, datum.AddDays(15).Year);
+                //            lbDetaljno.Items.Add("Rok za vraćanje: " + rokZaVracanje);
+                //        }
+                //        else
+                //            lbDetaljno.Items.Add(dgvPrikaz.Columns[i].HeaderText + " : " + dgvPrikaz.SelectedRows[0].Cells[i].Value);
+                //    }
+                //    catch (Exception) { } // U slucaju da je datum ili bool NULL
+                //}
+                //if (jeLiRazduzeno)
+                //    lbDetaljno.Items.Add("Datum razduživanja: " + datumRazd);
 
             }
 
@@ -473,9 +475,20 @@ namespace DBBiblioteka
                                 idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
                                 zaposleniId = dgvPrikaz.SelectedRows[0].Cells[0].Value.ToString();
                                 korisnickoIme = dgvPrikaz.SelectedRows[0].Cells[1].Value.ToString().ToLower() + "." + dgvPrikaz.SelectedRows[0].Cells[3].Value.ToString().ToLower();
+
+
+                                string normal = korisnickoIme.Normalize(NormalizationForm.FormD);
+                                var withoutDiacritics = normal.Where(
+                                    c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark);
+                                string final = new string(withoutDiacritics.ToArray());
+                                if (final != korisnickoIme)
+                                    korisnickoIme = final;
+                              
+
+
                                 radnoMjestoId = dgvPrikaz.SelectedRows[0].Cells[10].Value.ToString();
                                 if (idReda >= 0)
-                                {                                   
+                                {                                    
                                     m.Items.Add("Dodaj pristupne podatke").Name = "PristupniPodaci";
    
                                 }

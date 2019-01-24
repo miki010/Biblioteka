@@ -93,6 +93,9 @@
     <Compile Include="AttributesClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributesClass\RadioValue.cs" />
     <Compile Include="AttributesClass\SqlNameAttribute.cs" />
+    <Compile Include="CheckBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DatePart.cs" />
     <Compile Include="DateRangeControl.cs">
       <SubType>UserControl</SubType>
@@ -192,6 +195,9 @@
       <DependentUpon>UserControlRadio.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterString.cs" />
+    <EmbeddedResource Include="CheckBoxControl.resx">
+      <DependentUpon>CheckBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DateRangeControl.resx">
       <DependentUpon>DateRangeControl.cs</DependentUpon>
     </EmbeddedResource>
