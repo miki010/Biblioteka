@@ -16,7 +16,10 @@ namespace DBBiblioteka
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            FormLogin form = new FormLogin();
+            form.Show();
+            form.Activate();
+            Application.Run(form);
         }
     }
 }

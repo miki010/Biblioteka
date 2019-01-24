@@ -14,8 +14,32 @@ namespace DBBiblioteka.PropertiesClass
         string GetUpdateQuery();
         string GetDeleteQuery();
 
+        //select upiti
+        string GetSelectPregledClanarinePoClanovima();
+
+        string GetProcedureSelectAutor();
+        string GetProcedureSelectIzdavac();
+        string GetProcedureSelectAllDetails();
+        string GetProcedureStatusClanarineZaClanID();
+        string GetProcedureMozeLiSeDici();
+        string GetProcedureKnjigaNaStanju();
+
+        //update upiti
+        string GetProcedureUpdateKnjiga();
+        string GetProcedureUpdateKnjigaVrati();
+
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();
         List<SqlParameter> GetDeleteParameters();
+
+        //parametri za select upite
+        List<SqlParameter> GetSelectPregledClanarinePoClanovimaParameters();
+
+        List<SqlParameter> GetProcedureParameters();
+        List<SqlParameter> GetProcedureParametersClanID();
+        List<SqlParameter> GetProcedureParametersIznajmljivanjeID();
+
+
+
     }
 }

@@ -117,4 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="metroToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="metroToolTip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>149, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tileLogout.TileImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA68AAAOvAGVvHJJAAAAB3RJ
+        TUUH4wEQFQcFFLu+cAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAI4SURBVFhH
+        7ZY7axRRGIYXG8V4TZGQtFqoRKuQiBckiLYKQbGMsYmVNjEE8gMESxOxExvzA1xSiJVo6QVtVlEEGyFe
+        0EQUvI3PO/MenIm77kxm10L2gafY7zvfd87O5cypdOhQhiiK1uMoXsV7+AKf4h28jqdws4e3Dpquwxl8
+        i834gpew2+XloNEe1L8sihZ72G1WBw0O4Sd1S/EYz+Eg9uAG3IFjWMWfGPiGZ9yuGBTuwmV1MW9w1OmG
+        MGYIH6nAaBFHnc4PRQ/j8oQa9jnVFMZ24U0VmvfY63QWEgN4G+dwjcOKf0CxiNsczg01emPuq4GZc+o3
+        BPWA6dIGhp1SbgRncbdDhVEtfkfxFfudqjv5S9zkdMug5424e8LZEFw5+SssfJnzQN9j8QwJ1XqTC+1s
+        UyW8gPs9ZwbiWzFQU0CXuh3oXm/3vBmIh71kuZ0L0Pte9zYS/xyPiKKP+tGOWzCJ+zxfBuLdGKiF4E58
+        HYcS2vkQHo9nSKg6HCf+1Ws4H3dPmHA4gcDKRaQ3ogN4GctsROr/A0V2IwoQ1FZ8CzVZeit+h0ILrPt0
+        /w1qtBU/UAMz61Q+KEgXP8M/V98AxuoTrU9zQH+mx+l8UKAHdUnVRgeME043hDF7UWeGgF7PI04Xg8KD
+        mD4TiCd4HvXd78WNqMWO4wKmDyS676fdbnXQQM+IzgNF0Wd8xG3KQaO1OO2mzdCudxG3uLx10FSnY20s
+        V/AuPkddHR3Lr+FJbPle0uF/olL5BZU0OvP8uwh2AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="tileAutor.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tileIzdavac.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tileNovaKnjiga.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tileNoviRadnik.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="pictureBoxAdminPozadina.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>
