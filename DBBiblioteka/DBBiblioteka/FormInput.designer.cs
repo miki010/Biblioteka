@@ -32,11 +32,14 @@
             this.tilePotvrdi = new MetroFramework.Controls.MetroTile();
             this.tileOdustani = new MetroFramework.Controls.MetroTile();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.flPanelControls.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flPanelControls
             // 
+            this.flPanelControls.Controls.Add(this.metroLabel1);
             this.flPanelControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.flPanelControls.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flPanelControls.Location = new System.Drawing.Point(20, 60);
@@ -95,6 +98,19 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.CustomForeColor = true;
+            this.metroLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.ForeColor = System.Drawing.Color.Red;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 0);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(257, 19);
+            this.metroLabel1.TabIndex = 0;
+            this.metroLabel1.Text = "Polja označena sa * su obavezna za unos";
+            // 
             // FormInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,6 +128,9 @@
             this.Text = "Unos podataka";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Load += new System.EventHandler(this.FormInput_Load);
+            this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
+            this.flPanelControls.ResumeLayout(false);
+            this.flPanelControls.PerformLayout();
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -123,5 +142,6 @@
         private MetroFramework.Controls.MetroTile tilePotvrdi;
         private MetroFramework.Controls.MetroTile tileOdustani;
         private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

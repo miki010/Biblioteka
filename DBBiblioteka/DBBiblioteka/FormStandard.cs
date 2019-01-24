@@ -16,6 +16,13 @@ namespace DBBiblioteka
 {
     public partial class FormStandard : MetroForm
     {
+        PropertyLogin propertyLogin = new PropertyLogin();
+
+        public static string zaposleniId;
+        public static string korisnickoIme;
+        public static string radnoMjestoId;
+
+
         PropertyInterface myProperty;
 
         StateEnum state;
@@ -130,7 +137,6 @@ namespace DBBiblioteka
             //{
             reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
                myProperty.GetSelectQuery());
-            //}
             dt.Load(reader);
             reader.Close();
             dgvPrikaz.DataSource = dt;
@@ -155,12 +161,12 @@ namespace DBBiblioteka
                 if (formInput.DialogResult == DialogResult.OK)
                 {
                     refreshTable();
-                    // loadTable();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+               // MessageBox.Show(ex.ToString(), "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -183,6 +189,7 @@ namespace DBBiblioteka
                     }
                     catch (Exception)
                     {
+                        return;
                         //hvata exception za nevalidan unos u textID lookupcontrol polje
                     }
 
@@ -350,7 +357,7 @@ namespace DBBiblioteka
             refreshTable();
             dgvPrikaz.ClearSelection();
         }
-        int idReda, idKnjige;
+        int idReda, idKnjige, idZaposlenog;
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
 
@@ -418,7 +425,10 @@ namespace DBBiblioteka
                     if (idReda >= 0)
                     {
                         m.Items.Add("Dodaj izdavača").Name = "Izdavac";
+                        //m.Items.Add("Izmjeni izdavača").Name = "IzdavacIzmjena";
                         m.Items.Add("Dodaj autora").Name = "Autor";
+                        //m.Items.Add("Izmjeni autora").Name = "AutorIzmjena";
+
                     }
                     m.Show(dgvPrikaz, new Point(e.X, e.Y));
                     m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
@@ -454,6 +464,31 @@ namespace DBBiblioteka
                     try
                     {
                         ViewDetailsData(dgvPrikaz.SelectedRows[0].ToString());
+
+                        //desni
+                        if(e.Button == MouseButtons.Right)
+                        {
+                            try
+                            {
+                                ContextMenuStrip m = new ContextMenuStrip();
+                                idReda = dgvPrikaz.HitTest(e.X, e.Y).RowIndex;
+                                zaposleniId = dgvPrikaz.SelectedRows[0].Cells[0].Value.ToString();
+                                korisnickoIme = dgvPrikaz.SelectedRows[0].Cells[1].Value.ToString().ToLower() + "." + dgvPrikaz.SelectedRows[0].Cells[3].Value.ToString().ToLower();
+                                radnoMjestoId = dgvPrikaz.SelectedRows[0].Cells[10].Value.ToString();
+                                if (idReda >= 0)
+                                {                                   
+                                    m.Items.Add("Dodaj pristupne podatke").Name = "PristupniPodaci";
+   
+                                }
+                                m.Show(dgvPrikaz, new Point(e.X, e.Y));
+                                m.ItemClicked += new ToolStripItemClickedEventHandler(m_ItemClicked);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                                return;
+                            }
+                        }
                     }
                     catch (Exception)
                     {
@@ -497,6 +532,7 @@ namespace DBBiblioteka
 
         private void m_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+           
             switch (e.ClickedItem.Name.ToString())
             {
                 case "Izdavac":
@@ -507,7 +543,10 @@ namespace DBBiblioteka
                 case "Autor":
                     FormInput inputAutor = new FormInput(new PropertyAutorKnjiga(), StateEnum.Create, idKnjige);
                     inputAutor.ShowDialog();
-
+                    break;
+                case "PristupniPodaci":                   
+                    FormInput inputPodaci = new FormInput(new PropertyLogin(), StateEnum.Create);
+                    inputPodaci.ShowDialog();
                     break;
                 default:
                     break;
