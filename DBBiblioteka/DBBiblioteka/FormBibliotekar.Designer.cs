@@ -303,11 +303,10 @@
             this.tileClanarina.Size = new System.Drawing.Size(240, 190);
             this.tileClanarina.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileClanarina.TabIndex = 6;
-            this.tileClanarina.Text = "ŽANROVI KNJIGA";
+            this.tileClanarina.Text = "PREGLED KNJIGA PO ŽANROVIMA";
             this.tileClanarina.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileClanarina.TileImage = global::DBBiblioteka.Properties.Resources.searchusermemberships;
             this.tileClanarina.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileClanarina.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileClanarina.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileClanarina.UseTileImage = true;
             this.tileClanarina.Click += new System.EventHandler(this.tileClanarina_Click);
@@ -324,9 +323,9 @@
             this.tilePregledIznajmljivanja.Style = MetroFramework.MetroColorStyle.Purple;
             this.tilePregledIznajmljivanja.TabIndex = 4;
             this.tilePregledIznajmljivanja.Text = "PREGLED IZNAJMLJIVANJA";
+            this.tilePregledIznajmljivanja.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tilePregledIznajmljivanja.TileImage = global::DBBiblioteka.Properties.Resources.searchissued;
             this.tilePregledIznajmljivanja.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tilePregledIznajmljivanja.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tilePregledIznajmljivanja.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tilePregledIznajmljivanja.UseTileImage = true;
             this.tilePregledIznajmljivanja.Click += new System.EventHandler(this.tilePregledIznajmljivanja_Click);
@@ -362,7 +361,7 @@
             this.tileUnosClana.Size = new System.Drawing.Size(240, 190);
             this.tileUnosClana.Style = MetroFramework.MetroColorStyle.Purple;
             this.tileUnosClana.TabIndex = 0;
-            this.tileUnosClana.Text = "UNOS NOVOG ČLANA";
+            this.tileUnosClana.Text = "DODAJ NOVOG ČLANA";
             this.tileUnosClana.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tileUnosClana.TileImage = global::DBBiblioteka.Properties.Resources.addmember;
             this.tileUnosClana.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
