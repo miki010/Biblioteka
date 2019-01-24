@@ -59,6 +59,7 @@ namespace DBBiblioteka
         private void tileDodajClanarinu_Click(object sender, EventArgs e)
         {
             FormStandard formStandard = new FormStandard(new PropertyClanarina());
+            formStandard.tileObrisi.Enabled = false;
             formStandard.ShowDialog();
         }
 

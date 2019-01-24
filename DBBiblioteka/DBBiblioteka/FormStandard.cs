@@ -360,7 +360,6 @@ namespace DBBiblioteka
         int idReda, idKnjige, idZaposlenog;
         private void dgvPrikaz_MouseClick(object sender, MouseEventArgs e)
         {
-
             //popunjavanje list box-a
             lbDetaljno.Items.Clear();
             if (dgvPrikaz.HitTest(e.X, e.Y).RowIndex >= 0)
@@ -981,6 +980,58 @@ namespace DBBiblioteka
         private void tileSelectFirst_MouseHover(object sender, EventArgs e)
         {
             metroToolTip4.Show("Vratite se na prvu stavku", tileSelectFirst);
+        }
+
+        private void tileDodaj_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip5.Show("Dodaj", tileDodaj);
+        }
+
+        private void tileIzmijeni_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip5.Show("Izmjeni", tileIzmijeni);
+        }
+
+        private void tileObrisi_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip5.Show("Obriši", tileObrisi);
+        }
+
+        private void tileVrati_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip5.Show("Potvrdi", tileVrati);
+        }
+
+        private void tileDetaljnaPretraga_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip6.Show("Detaljna pretraga", tileDetaljnaPretraga);
+        }
+
+        private void txtPretraga_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip6.Show("Brza pretraga", txtPretraga);
+        }
+
+        private void tileAzurirajZapise_MouseHover(object sender, EventArgs e)
+        {
+            metroToolTip6.Show("Osvježi prikaz", tileAzurirajZapise);
+        }
+
+        private void dgvPrikaz_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvPrikaz_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //metroToolTip6.Show("Desni klik", dgvPrikaz);
+            if ((e.RowIndex != -1) && (e.ColumnIndex == 1))
+            {
+                //MessageBox.Show("TEST");
+                ToolTip tooltip1 = new ToolTip();
+                tooltip1.Show("hello", dgvPrikaz, Cursor.Position.X, Cursor.Position.Y);
+
+            }
         }
 
         private void ViewDetails(string id)

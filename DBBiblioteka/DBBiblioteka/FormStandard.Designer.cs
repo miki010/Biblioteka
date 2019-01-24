@@ -57,6 +57,8 @@
             this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.labelTitle = new System.Windows.Forms.Label();
             this.lblRedIndex = new System.Windows.Forms.Label();
+            this.metroToolTip5 = new MetroFramework.Components.MetroToolTip();
+            this.metroToolTip6 = new MetroFramework.Components.MetroToolTip();
             this.panelCrud.SuspendLayout();
             this.panelVrati.SuspendLayout();
             this.panelDetalno.SuspendLayout();
@@ -96,6 +98,7 @@
             this.tileObrisi.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileObrisi.UseTileImage = true;
             this.tileObrisi.Click += new System.EventHandler(this.tileObrisi_Click);
+            this.tileObrisi.MouseHover += new System.EventHandler(this.tileObrisi_MouseHover);
             // 
             // tileIzmijeni
             // 
@@ -112,6 +115,7 @@
             this.tileIzmijeni.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileIzmijeni.UseTileImage = true;
             this.tileIzmijeni.Click += new System.EventHandler(this.tileIzmijeni_Click);
+            this.tileIzmijeni.MouseHover += new System.EventHandler(this.tileIzmijeni_MouseHover);
             // 
             // tileDodaj
             // 
@@ -128,6 +132,7 @@
             this.tileDodaj.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileDodaj.UseTileImage = true;
             this.tileDodaj.Click += new System.EventHandler(this.tileDodaj_Click);
+            this.tileDodaj.MouseHover += new System.EventHandler(this.tileDodaj_MouseHover);
             // 
             // panelVrati
             // 
@@ -160,6 +165,7 @@
             this.tileVrati.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileVrati.UseTileImage = true;
             this.tileVrati.Click += new System.EventHandler(this.btnVrati_Click);
+            this.tileVrati.MouseHover += new System.EventHandler(this.tileVrati_MouseHover);
             // 
             // lbDetaljno
             // 
@@ -231,6 +237,22 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.AutomaticDelay = 100;
+            // 
+            // metroToolTip2
+            // 
+            this.metroToolTip2.AutomaticDelay = 100;
+            // 
+            // metroToolTip3
+            // 
+            this.metroToolTip3.AutomaticDelay = 100;
+            // 
+            // metroToolTip4
+            // 
+            this.metroToolTip4.AutomaticDelay = 100;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DBBiblioteka.Properties.Resources.logoblagajnik;
@@ -283,6 +305,7 @@
             this.tileDetaljnaPretraga.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
             this.tileDetaljnaPretraga.UseTileImage = true;
             this.tileDetaljnaPretraga.Click += new System.EventHandler(this.tileDetaljnaPretraga_Click);
+            this.tileDetaljnaPretraga.MouseHover += new System.EventHandler(this.tileDetaljnaPretraga_MouseHover);
             // 
             // tileAzurirajZapise
             // 
@@ -301,6 +324,7 @@
             this.tileAzurirajZapise.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
             this.tileAzurirajZapise.UseTileImage = true;
             this.tileAzurirajZapise.Click += new System.EventHandler(this.tileAzurirajZapise_Click);
+            this.tileAzurirajZapise.MouseHover += new System.EventHandler(this.tileAzurirajZapise_MouseHover);
             // 
             // metroLabel1
             // 
@@ -387,6 +411,7 @@
             this.txtPretraga.Size = new System.Drawing.Size(162, 26);
             this.txtPretraga.TabIndex = 6;
             this.txtPretraga.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtPretraga.MouseHover += new System.EventHandler(this.txtPretraga_MouseHover);
             // 
             // dgvPrikaz
             // 
@@ -400,12 +425,14 @@
             this.dgvPrikaz.ReadOnly = true;
             this.dgvPrikaz.Size = new System.Drawing.Size(893, 474);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikaz_CellMouseEnter);
             this.dgvPrikaz.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPrikaz_RowsAdded);
             this.dgvPrikaz.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvPrikaz_RowsRemoved);
             this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
             this.dgvPrikaz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvPrikaz_KeyDown);
             this.dgvPrikaz.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvPrikaz_KeyUp);
             this.dgvPrikaz.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrikaz_MouseClick);
+            this.dgvPrikaz.MouseHover += new System.EventHandler(this.dgvPrikaz_MouseHover);
             // 
             // labelTitle
             // 
@@ -428,6 +455,14 @@
             this.lblRedIndex.Size = new System.Drawing.Size(39, 15);
             this.lblRedIndex.TabIndex = 14;
             this.lblRedIndex.Text = "label1";
+            // 
+            // metroToolTip5
+            // 
+            this.metroToolTip5.AutomaticDelay = 100;
+            // 
+            // metroToolTip6
+            // 
+            this.metroToolTip6.AutomaticDelay = 100;
             // 
             // FormStandard
             // 
@@ -464,9 +499,6 @@
         }
 
         #endregion
-        private MetroFramework.Controls.MetroTile tileDodaj;
-        private MetroFramework.Controls.MetroTile tileIzmijeni;
-        private MetroFramework.Controls.MetroTile tileObrisi;
         private MetroFramework.Controls.MetroPanel panelCrud;
         private MetroFramework.Controls.MetroPanel panelVrati;
         public MetroFramework.Controls.MetroTile tileVrati;
@@ -492,5 +524,10 @@
         private System.Windows.Forms.DataGridView dgvPrikaz;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Label lblRedIndex;
+        public MetroFramework.Controls.MetroTile tileObrisi;
+        public MetroFramework.Controls.MetroTile tileIzmijeni;
+        public MetroFramework.Controls.MetroTile tileDodaj;
+        private MetroFramework.Components.MetroToolTip metroToolTip5;
+        private MetroFramework.Components.MetroToolTip metroToolTip6;
     }
 }

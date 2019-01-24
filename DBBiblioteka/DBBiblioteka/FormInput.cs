@@ -111,6 +111,11 @@ namespace DBBiblioteka
                         ul.Enabled = false;
                     }
 
+                    if(myInterface.GetType() == typeof(PropertyIznajmljivanje) && state == StateEnum.Update)
+                    {
+                        ul.Enabled = false;
+                    }
+
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     if (state == StateEnum.Update)
                     {
@@ -166,7 +171,6 @@ namespace DBBiblioteka
                         DateRangeControl dateRange = new DateRangeControl();
                         dateRange.Name = item.Name;
                         dateRange.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                        //   dateRange.SetValue(DateTimePicker.MinimumDateTime, DateTimePicker.MinimumDateTime);
                         flPanelControls.Controls.Add(dateRange);
                     }
 
@@ -225,7 +229,7 @@ namespace DBBiblioteka
                     }
                     else if (state == StateEnum.Update && item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
                     {
-                        ic.Visible = true;
+                        ic.Visible = false;
                         ic.Enabled = false;
                     }
                     if (state == StateEnum.Update)
@@ -404,8 +408,8 @@ namespace DBBiblioteka
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString());///////////////////////////////////////////////
-                                                           //return;
+                            //MessageBox.Show(ex.ToString());///////////////////////////////////////////////
+                            return;
                         }
                     }
                     else if (item.GetType() == typeof(InputControl))
@@ -684,22 +688,49 @@ namespace DBBiblioteka
             {
                 if (state == StateEnum.Create)
                 {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
-                    if (stanje == "zaduzivanje")
-                    {                     
+                    try
+                    {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
-                        MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        myInterface.GetInsertQuery(), myInterface.GetInsertParameters().ToArray());
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("U bazi već postoji podatak sa istim identifikatorom!");
+                        return;
+                    }
+
+                    if (stanje == "zaduzivanje")
+                    {
+                        try
+                        {
+                            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                                                    iznajmljivanje.GetProcedureUpdateKnjiga(), iznajmljivanje.GetProcedureParameters().ToArray());
+                        }
+                        catch (Exception)
+                        {
+
+                            return;
+                        }
+                        //MessageBox.Show("Knjiga je skinuta sa stanja!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     if (stanje == "kpp")
                     {
-                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        izdavacKnjiga.GetProcedureUpdateKnjiga(), izdavacKnjiga.GetProcedureParameters().ToArray());
-                        MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                                            izdavacKnjiga.GetProcedureUpdateKnjiga(), izdavacKnjiga.GetProcedureParameters().ToArray());
+                        }
+                        catch (Exception)
+                        {
+
+                            return;
+                        }
+                        //MessageBox.Show("Uvecano stanje knjiga!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
+                    MessageBox.Show("Podatak je sačuvan!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                     if (stanje == "pristupniPodaci")
                     {
                         //popuniPristupnePodatke();
@@ -711,14 +742,30 @@ namespace DBBiblioteka
                 }
                 else if (state == StateEnum.Update)
                 {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                    try
+                    {
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                                        myInterface.GetUpdateQuery(), myInterface.GetUpdateParameters().ToArray());
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("U bazi već postoji podatak sa istim identifikatorom!");
+                        return;
+                    }
 
                     if (stanje == "vracanje")
                     {
-                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
-                        iznajmljivanje.GetProcedureSelectAllDetails(), iznajmljivanje.GetProcedureParameters().ToArray());
-                        MessageBox.Show("Knjiga je vracena na stanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text,
+                                            iznajmljivanje.GetProcedureSelectAllDetails(), iznajmljivanje.GetProcedureParameters().ToArray());
+                        }
+                        catch (Exception)
+                        {
+
+                            return;
+                        }
+                        //MessageBox.Show("Knjiga je vracena na stanje!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     MessageBox.Show("Podatak je izmjenjen!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);

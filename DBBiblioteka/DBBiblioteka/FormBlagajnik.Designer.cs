@@ -375,8 +375,6 @@
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroTile tileDodajClanarinu;
         private MetroFramework.Controls.MetroTile tilePregledClanarina;
         private MetroFramework.Controls.MetroTile tileTipClanarine;
         private MetroFramework.Controls.MetroTile tileIzvjestaj;
@@ -399,5 +397,6 @@
         private MetroFramework.Components.MetroToolTip metroToolTip2;
         private System.Windows.Forms.PictureBox pictureBoxBlagajnikPozadina;
         private MetroFramework.Controls.MetroTile tilePasswordChange;
+        private MetroFramework.Controls.MetroTile tileDodajClanarinu;
     }
 }
